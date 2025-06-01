@@ -1,0 +1,19 @@
+########## Arc Crucible Stage 1 ##########
+
+########## Destroyed Arc Crucible  ##########
+
+#entity = {
+#	name = "HMO_arc_crucible_destroyed_entity"
+#	pdxmesh = "HMO_arc_crucible_destroyed_mesh"
+#
+#	locator = { name = "debris1"	position = { 0 0 0 } }
+#	attach = { debris1 = "debris_smallest_01_entity" }
+#	locator = { name = "debris2"	position = { 0 2 0 } rotation = { 200 0 0 } }
+#	attach = { debris2 = "debris_smallest_01_entity" }
+#
+#}
+#
+#animation = {
+#	name = "arc_crucible_idle_animation"
+#	file = "arc_crucible_idle.anim"
+#}

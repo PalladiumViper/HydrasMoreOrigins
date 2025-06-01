@@ -1,0 +1,27 @@
+objectTypes = {
+
+	##################################################################
+	######														######
+	######					Terrestrial Planets					######
+	######														######
+	##################################################################
+		
+	
+	pdxmesh = {
+		name = "MO_alpine_planet_01_destroyed_mesh"
+		file = "gfx/models/planets/MOBrokenAlpineWorld.mesh"
+		animation = { id = "idle"	type = "destroyed_planet_idle_animation" }
+		scale = 1
+		cull_distance = 99999999.0f
+	}	
+
+}
+
+
+
+
+
+
+
+
+

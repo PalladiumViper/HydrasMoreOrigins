@@ -1,0 +1,38 @@
+## Kessler Cage Entity
+entity = {
+	name = "HMO_kessler_cage_entity"
+	locator = { name = "pos1" position = { 80 80 0 }}
+	locator = { name = "pos2" position = { 60 -100 55 }}
+	locator = { name = "pos3" position = { 100 -60 40 }}
+	locator = { name = "pos4" position = { -60 0 45 }}
+	locator = { name = "pos5" position = { 0 85 -80 }}
+	locator = { name = "pos6" position = { 60 20 -40 }}
+	locator = { name = "pos7" position = { 30 100 -20 } rotation = { 64 23 16 } }
+	locator = { name = "pos8" position = { -100 20 -40 } rotation = { 60 80 24 } }
+	
+	scale = 1.0
+	
+	attach = { "pos1" = "debris_large_01_entity" }
+	attach = { "pos2" = "debris_medium_02_entity" }
+	attach = { "pos3" = "debris_medium_01_entity" }
+	attach = { "pos4" = "debris_medium_02_entity" }
+	attach = { "pos5" = "debris_medium_01_entity" }
+	attach = { "pos6" = "debris_small_01_entity" }
+	attach = { "pos7" = "probe_entity" }
+	attach = { "pos8" = "probe_entity" }
+
+	cull_radius = 20000
+}
+
+entity = {
+	name = "HMO_probe_swarm_entity"
+	locator = { name = "pos1" position = { 30 100 -20 } rotation = { 64 23 16 } }
+	locator = { name = "pos8" position = { -100 20 -40 } rotation = { 60 80 24 } }
+	
+	scale = 1.0
+	
+	attach = { "pos1" = "probe_entity" }
+	attach = { "pos8" = "probe_entity" }
+
+	cull_radius = 20000
+}

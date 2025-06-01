@@ -1,0 +1,27 @@
+#objectTypes = {
+#
+#	########## Destroyed Arc Crucible ##########
+#
+#	pdxmesh = {
+#		name = "HMO_arc_crucible_destroyed_mesh"
+#		file = "gfx/models/ships/superstructures/arc_crucible/arc_crucible_destroyed.mesh"
+#
+#		meshsettings = {
+#			name = "arc_crucible_destroyedShape"
+#			index = 0
+#			texture_diffuse = "arc_crucible_destroyed_diffuse.dds"
+#			texture_normal = "arc_crucible_destroyed_normal.dds"
+#			texture_specular = "arc_crucible_destroyed_specular.dds"
+#			shader = "PdxMeshShipDiffuseEmissive"
+#		}
+#
+#		meshsettings = {
+#			name = "arc_crucible_destroyedShape"
+#			index = 1
+#			texture_diffuse = "tropical_02_diffuse.dds"
+#			texture_normal = "tropical_02_normal.dds"
+#			texture_specular = "tropical_02_spec.dds"
+#			shader = "PdxMeshShipDiffuseEmissive"
+#		}
+#	}
+#}
