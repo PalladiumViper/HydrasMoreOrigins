@@ -30,7 +30,7 @@ country_event = {
 			#	has_leader_flag = leader_death_events_blocked
 			#}
 			or = {
-				has_skill >= 2
+				has_base_skill >= 2
 				is_ruler = yes
 				has_leader_flag = renowned_leader
 				has_leader_flag = legendary_leader
@@ -57,7 +57,6 @@ country_event = {
 					from = {
 						OR = {
 							has_trait = leader_trait_restrained
-							has_trait = leader_trait_restrained_2
 						}
 					}
 				}

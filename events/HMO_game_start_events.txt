@@ -76,10 +76,9 @@ country_event = {
 	}
 	
 	immediate = {
-		give_technology = { tech = tech_hydroponics message = no }
-		add_research_option = tech_mine_rare_crystals
-		add_research_option = tech_mine_exotic_gases
-		add_research_option = tech_mine_volatile_motes
+		#add_research_option = tech_mine_rare_crystals
+		#add_research_option = tech_mine_exotic_gases
+		#add_research_option = tech_mine_volatile_motes
 		#add_tech_progress = { tech = tech_mine_rare_crystals progress = 0.5 }
 		#add_tech_progress = { tech = tech_mine_exotic_gases progress = 0.5 }
 		#add_tech_progress = { tech = tech_mine_volatile_motes progress = 0.5 }
@@ -89,17 +88,62 @@ country_event = {
 			remove_all_districts = yes
 			
 			change_pc = pc_city
+			
+			validate_and_repair_planet_buildings_and_districts = yes
 			set_planet_entity = {
 				entity = "city_planet_entity"
 				graphical_culture = owner
 			}
-			if = {
-				limit = { owner = { is_gestalt = no } }
-				add_building = building_factory_1
+			
+			add_building = {
+				district = district_arcology_housing
+				zone = zone_default
+				building = building_hydroponics_farm
 			}
-			if = {
-				limit = { owner = { is_gestalt = yes } }
-				add_building = building_hydroponics_farm
+			
+			add_building = {
+				district = district_arcology_housing
+				zone = zone_default
+				building = building_precinct_house
+			}
+			
+			add_zone = {
+				district = district_arcology_housing
+				zone = zone_industrial
+				zone_slot = 1
+				replace = yes
+			}
+			
+			add_zone = {
+				district = district_arcology_housing
+				zone = zone_research_unity
+				zone_slot = 2
+				replace = yes
+			}
+			
+			add_district = district_arcology_urban_1
+			
+			add_zone = {
+				district = district_arcology_urban_1
+				zone = zone_trade
+				zone_slot = 0
+				replace = yes
+			}
+			
+			add_district = district_arcology_urban_2
+			add_district = district_arcology_urban_2
+			
+			add_zone = {
+				district = district_arcology_urban_2
+				zone = zone_fortress
+				zone_slot = 0
+				replace = yes
+			}
+			
+			add_building = {
+				district = district_arcology_urban_2
+				zone = zone_fortress
+				building = building_stronghold
 			}
 			
 			add_deposit = d_HMO_insurgency_junk
@@ -114,72 +158,72 @@ country_event = {
 			add_district = district_arcology_housing
 			add_district = district_arcology_housing
 			
-			add_building = building_foundry_1
-			add_building = building_precinct_house # Need this to keep unemployment down and stability up, while not giving too many resources
-			add_building = building_hydroponics_farm
-			add_building = building_hydroponics_farm
+			#add_building = building_foundry_1
+			#add_building = building_precinct_house # Need this to keep unemployment down and stability up, while not giving too many resources
+			#add_building = building_hydroponics_farm
+			#add_building = building_hydroponics_farm
 			# Add Special Buildings
-			if = {
-				limit = {
-					owner = {
-						is_spiritualist = yes
-						OR = {
-							has_valid_civic = civic_death_cult
-							has_valid_civic = civic_death_cult_corporate
-						}
-					}
-				}
-				add_building = building_sacrificial_temple_1
-			}
-			#Aug Bazaar if enough space
-			if = {
-				limit = {
-					owner = {
-						has_valid_civic = civic_augmentation_bazaars
-					}
-					free_building_slots > 0
-				}
-				add_building = building_augmentation_bazaars
-			}
-			
-			# Pharma State
-			if = {
-				limit = {
-					owner = {
-						has_valid_civic = civic_private_healthcare_corporate
-					}
-				}
-				add_building = building_clinic
-			}
-
-			# Permanent Employment
-			if = {
-				limit = {
-					owner = {
-						has_valid_civic = civic_permanent_employment
-					}
-					free_building_slots > 0
-				}
-				add_building = building_posthumous_employment_center
-			}
-
-			# Relentless Industrialists
-			if = {
-				limit = {
-					owner = {
-						is_relentless_industrialist_empire = yes
-					}
-					free_building_slots > 0
-				}
-				add_building = building_coordinated_fulfillment_center_1
-			}
-			
-			if = {
-				limit = {
-					owner = { is_individual_machine = yes }
-				}
-				add_building = building_machine_assembly_plant
-			}
+			#if = {
+			#	limit = {
+			#		owner = {
+			#			is_spiritualist = yes
+			#			OR = {
+			#				has_valid_civic = civic_death_cult
+			#				has_valid_civic = civic_death_cult_corporate
+			#			}
+			#		}
+			#	}
+			#	add_building = building_sacrificial_temple_1
+			#}
+			##Aug Bazaar if enough space
+			#if = {
+			#	limit = {
+			#		owner = {
+			#			has_valid_civic = civic_augmentation_bazaars
+			#		}
+			#		free_building_slots > 0
+			#	}
+			#	add_building = building_augmentation_bazaars
+			#}
+			#
+			## Pharma State
+			#if = {
+			#	limit = {
+			#		owner = {
+			#			has_valid_civic = civic_private_healthcare_corporate
+			#		}
+			#	}
+			#	add_building = building_clinic
+			#}
+			#
+			## Permanent Employment
+			#if = {
+			#	limit = {
+			#		owner = {
+			#			has_valid_civic = civic_permanent_employment
+			#		}
+			#		free_building_slots > 0
+			#	}
+			#	add_building = building_posthumous_employment_center
+			#}
+			#
+			## Relentless Industrialists
+			#if = {
+			#	limit = {
+			#		owner = {
+			#			is_relentless_industrialist_empire = yes
+			#		}
+			#		free_building_slots > 0
+			#	}
+			#	add_building = building_coordinated_fulfillment_center_1
+			#}
+			#
+			#if = {
+			#	limit = {
+			#		owner = { is_individual_machine = yes }
+			#	}
+			#	add_building = building_machine_assembly_plant
+			#}
 			
 			### Mod Buildings ###
 			
@@ -214,10 +258,6 @@ country_event = {
 			event_chain = "HMO_apocalypse_chain"
 			target = ROOT
 		}
-		set_variable = {
-			which = HMO_global_insurgent_strength
-			value = 6
-		}
 		owner = { species =  { save_event_target_as = insurgent_owner_species } }
 		set_country_flag = HMO_insurgent_owner@owner
 		create_HMO_insurgent_country = yes
@@ -239,10 +279,10 @@ event = {
 			country_event = { id = HMO_origin.2150 days = 60 random = 60 } # Sol Deshielding Project
 			country_event = { id = HMO_origin.2000 days = 360 random = 60 } # Country story events for banished threat
 		}
-		every_playable_country = {
-			limit = { has_origin = origin_HMO_apocalypse }
-			country_event = { id = HMO_game_start.6 }
-		}
+		#every_playable_country = {
+		#	limit = { has_origin = origin_HMO_apocalypse }
+		#	country_event = { id = HMO_game_start.6 }
+		#}
 		# Dyson Swarm Start
 		every_playable_country = {
 			limit = {
@@ -269,53 +309,53 @@ event = {
 	}
 }
 
-# Give insurgency starting colonisables a strategic resource deposit
-country_event = {
-	id = HMO_game_start.6
-	is_triggered_only = yes
-	hide_window = yes
-
-	trigger = {
-		has_origin = origin_HMO_apocalypse
-	}
-
-	immediate = {
-		capital_scope.solar_system = {
-			closest_system = {
-				limit = { has_star_flag = neighbor_t1_first_colony }
-				max_steps = 3
-				random_system_planet = {
-					limit = {
-						is_colonizable = yes
-						is_colony = no
-						has_planet_flag = prescripted_ideal
-					}
-					add_deposit = d_dust_caverns
-					random_list = {
-						1 = { add_deposit = d_bubbling_swamp }
-						1 = { add_deposit = d_crystalline_caverns }
-					}
-				}
-			}
-			closest_system = {
-				limit = { has_star_flag = neighbor_t2_second_colony }
-				max_steps = 6
-				random_system_planet = {
-					limit = {
-						is_colonizable = yes
-						is_colony = no
-						has_planet_flag = prescripted_ideal
-					}
-					random_list = {
-						1 = { add_deposit = d_dust_caverns }
-						1 = { add_deposit = d_bubbling_swamp }
-						1 = { add_deposit = d_crystalline_caverns }
-					}
-				}
-			}
-		}
-	}
-}
+## Give insurgency starting colonisables a strategic resource deposit
+#country_event = {
+#	id = HMO_game_start.6
+#	is_triggered_only = yes
+#	hide_window = yes
+#
+#	trigger = {
+#		has_origin = origin_HMO_apocalypse
+#	}
+#
+#	immediate = {
+#		capital_scope.solar_system = {
+#			closest_system = {
+#				limit = { has_star_flag = neighbor_t1_first_colony }
+#				max_steps = 3
+#				random_system_planet = {
+#					limit = {
+#						is_colonizable = yes
+#						is_colony = no
+#						has_planet_flag = prescripted_ideal
+#					}
+#					add_deposit = d_dust_caverns
+#					random_list = {
+#						1 = { add_deposit = d_bubbling_swamp }
+#						1 = { add_deposit = d_crystalline_caverns }
+#					}
+#				}
+#			}
+#			closest_system = {
+#				limit = { has_star_flag = neighbor_t2_second_colony }
+#				max_steps = 6
+#				random_system_planet = {
+#					limit = {
+#						is_colonizable = yes
+#						is_colony = no
+#						has_planet_flag = prescripted_ideal
+#					}
+#					random_list = {
+#						1 = { add_deposit = d_dust_caverns }
+#						1 = { add_deposit = d_bubbling_swamp }
+#						1 = { add_deposit = d_crystalline_caverns }
+#					}
+#				}
+#			}
+#		}
+#	}
+#}
 
 # Unvaulted Setup
 country_event = {
@@ -337,12 +377,16 @@ country_event = {
 			clear_deposits = yes
 			HMO_generate_unvaulted_start_deposits_and_blockers = yes
 			
-			while = {
-				limit = {
-					has_district = district_farming
-				}
-				remove_district = district_farming
-				add_district = district_mining
+			#while = {
+			#	limit = {
+			#		has_district = district_farming
+			#	}
+			#	remove_district = district_farming
+			#	add_district = district_mining
+			#}
+			HMO_swap_district_with_district = {
+				REMOVE_DISTRICT = farming
+				ADD_DISTRICT = mining
 			}
 			
 			add_building = building_resource_silo
@@ -415,16 +459,16 @@ country_event = {
 				type = d_HMO_zombie_town_2
 				blocked_deposit = none
 			}
-			while = {
-				count = 1
-				add_blocker = {
-					type = d_HMO_zombie_factory
-					blocked_deposit = none
-				}
-				last_added_deposit = {
-					set_deposit_flag = keep_deposit_on_terraform
-				}
-			}
+			#while = {
+			#	count = 1
+			#	add_blocker = {
+			#		type = d_HMO_zombie_factory
+			#		blocked_deposit = none
+			#	}
+			#	last_added_deposit = {
+			#		set_deposit_flag = keep_deposit_on_terraform
+			#	}
+			#}
 			while = {
 				count = 1
 				add_blocker = {
@@ -435,30 +479,30 @@ country_event = {
 					set_deposit_flag = keep_deposit_on_terraform
 				}
 			}
-			if = {
-				limit = {
-					has_building = building_research_lab_1
-				}
-				remove_building = building_research_lab_1
-			}
-			if = {
-				limit = {
-					has_building = building_bureaucratic_1
-				}
-				remove_building = building_bureaucratic_1
-			}
-			if = {
-				limit = {
-					has_building = building_temple
-				}
-				remove_building = building_temple
-			}
-			if = {
-				limit = {
-					has_building = building_commercial_zone
-				}
-				remove_building = building_commercial_zone
-			}
+			#if = {
+			#	limit = {
+			#		has_building = building_research_lab_1
+			#	}
+			#	remove_building = building_research_lab_1
+			#}
+			#if = {
+			#	limit = {
+			#		has_building = building_bureaucratic_1
+			#	}
+			#	remove_building = building_bureaucratic_1
+			#}
+			#if = {
+			#	limit = {
+			#		has_building = building_temple
+			#	}
+			#	remove_building = building_temple
+			#}
+			#if = {
+			#	limit = {
+			#		has_building = building_commercial_zone
+			#	}
+			#	remove_building = building_commercial_zone
+			#}
 			add_building = HMO_building_zcom_headquarters
 			add_building = HMO_building_resproject_outpost
 			
@@ -647,61 +691,7 @@ country_event = {
 				modifier = HMO_keppler_cage_scrap
 				days = -1
 			}
-			
-			if = {
-				limit = {
-					has_building = building_commercial_zone
-				}
-				remove_building = building_commercial_zone
-			}
-			
-			#while = {
-			#	limit = {
-			#		free_district_slots > 1
-			#		#num_free_districts = {
-			#		#	type = district_city
-			#		#	value > 1
-			#		#}
-			#	}
-			#	add_deposit = random_blocker
-			#}
-			#if = {
-			#	limit = {
-			#		free_district_slots > 0
-			#		is_wet = yes
-			#	}
-			#	add_deposit = d_dense_jungle
-			#}
-			#else_if = {
-			#	limit = {
-			#		free_district_slots > 0
-			#		is_cold = yes
-			#	}
-			#	add_deposit = d_massive_glacier
-			#}
-			#else_if = {
-			#	limit = {
-			#		free_district_slots > 0
-			#		is_dry = yes
-			#	}
-			#	add_deposit = d_quicksand_basin
-			#}
-			#else_if = {
-			#	limit = {
-			#		free_district_slots > 0
-			#		is_planet_class = pc_nuked
-			#	}
-			#	add_deposit = d_radioactive_wasteland
-			#}
-			#else_if = {
-			#	limit = {
-			#		free_district_slots > 0
-			#	}
-			#	add_deposit = d_failing_infrastructure
-			#}
-			
-			
-			
+	
 			while = {
 				count = 29
 				add_blocker = {
@@ -785,8 +775,6 @@ country_event = {
 				add_district = district_nexus
 			}
 			
-			add_district = district_industrial
-			
 			add_district = district_generator
 			
 			if = {
@@ -813,36 +801,7 @@ country_event = {
 				last_created_ambient_object = {
 					set_ambient_object_flag = HMO_wildworld_ambient_object
 				}
-				#while = {
-				#	count = 3
-				#	create_ambient_object = {
-				#		type = "medium_debris_02_object"
-				#		location = event_target:HMO_wildworld_planet
-				#	}
-				#	last_created_ambient_object = {
-				#		set_ambient_object_flag = HMO_wildworld_ambient_object
-				#	}
-				#}
-				#while = {
-				#	count = 5
-				#	create_ambient_object = {
-				#		type = "small_debris_object"
-				#		location = event_target:HMO_wildworld_planet
-				#	}
-				#	last_created_ambient_object = {
-				#		set_ambient_object_flag = HMO_wildworld_ambient_object
-				#	}
-				#}
 			}
-			#solar_system = {
-			#	spawn_megastructure = {
-			#		type = "HMO_orbital_arc_furnace_destroyed"
-			#		planet = event_target:HMO_wildworld_planet
-			#	}
-			#	event_target:HMO_wildworld_planet = {
-			#		set_planet_entity = { entity = invisible_turret_entity }
-			#	}
-			#}
 			
 			HMO_fix_start_pops = yes
 			

@@ -75,10 +75,14 @@ planet_event = {
 	}
 
 	immediate = {
-		create_pop = {
+		create_pop_group = {
 			species = fromfrom.species
+			size = local_pop_amount
+			effect = {
+				save_event_target_as = HMO_bombed_species
+			}
 		}
-		last_created_pop = {
+		event_target:HMO_bombed_species = {
 			modify_species = {
 				species = this
 				add_trait = trait_zombie

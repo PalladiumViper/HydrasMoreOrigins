@@ -23,7 +23,7 @@ situation_event = { # Cyberization - Final hidden event - Full
 			limit = {
 				owner = {
 					NOR = {
-						any_owned_pop = { has_ethic = ethic_spiritualist }
+						any_owned_pop_group = { has_ethic = ethic_spiritualist }
 						any_owned_leader = { has_ethic = ethic_spiritualist }
 					}
 				}
