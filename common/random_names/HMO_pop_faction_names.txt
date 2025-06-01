@@ -1,0 +1,91 @@
+## Loyalist
+pop_faction_name_parts_list = {
+	key = "HMO_loyalist_names_1"
+	parts = {
+		HMO_Citizen = 1
+		HMO_Patriot = 1
+		HMO_Free_Citizen = 1
+		HMO_National_Action = 1
+	}
+}
+
+pop_faction_name_parts_list = {
+	key = "HMO_loyalist_names_2"
+	parts = {
+		Coalition = 1
+		Initiative = 1
+		Watch = 1
+		Alliance = 1
+		Movement = 1
+		Organization = 1
+		Network = 1
+		Association = 1
+		League = 1
+		Party = 1
+		Convention = 1
+		Vanguard = 1
+		Front = 1
+		Rally = 1
+		Assembly = 1
+		HMO_Defenders = 1
+	}
+}
+
+pop_faction_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 100
+			is_pop_faction_type = "HMO_loyalist"
+		}
+	}
+	format = "{[This.Owner.GetName] {<HMO_loyalist_names_1> {<HMO_loyalist_names_2>}}}"
+}
+
+## Insurgent
+pop_faction_name_parts_list = {
+	key = "HMO_insurgent_names_1"
+	parts = {
+		HMO_Chaos = 1
+		HMO_Freedom = 1
+		HMO_Anarchy = 1
+	}
+}
+
+pop_faction_name_parts_list = {
+	key = "HMO_insurgent_names_2"
+	parts = {
+		HMO_Insurgency = 1
+		HMO_Rebellion = 1
+		HMO_Revolutionaries = 1
+		HMO_Anarchists = 1
+		HMO_Initiative = 1
+		HMO_Rioters = 1
+		HMO_Fighters = 1
+	}
+}
+
+pop_faction_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 100
+			is_pop_faction_type = "HMO_insurgent"
+		}
+	}
+	format = "{<HMO_insurgent_names_1> {<HMO_insurgent_names_2>}}"
+}
+
+# Insurgent Country
+empire_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 10000
+			is_country_type = HMO_insurgency
+		}
+	}
+	format = "{AofBpfx{[last_created_pop_faction.GetName]}}"
+	adjective = "{[last_created_pop_faction.GetName]}"
+	prefix_format = "{[last_created_pop_faction.GetName]}"
+}

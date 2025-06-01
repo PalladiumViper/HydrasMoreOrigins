@@ -1,0 +1,129 @@
+# Unvaulted Planet Change
+HMO_change_to_ideal_planet_class = {
+	if = {
+		limit = {
+			event_target:$TARGET_SPECIES$ = {
+				is_synthetic_empire = no
+			}
+		}
+		event_target:$TARGET_SPECIES$ = {
+			switch = {
+				trigger = ideal_planet_class
+				pc_tundra = { $TARGET_PLANET$ = { change_pc = pc_tundra } }
+				pc_arctic = { $TARGET_PLANET$ = { change_pc = pc_arctic } }
+				pc_alpine = { $TARGET_PLANET$ = { change_pc = pc_alpine } }
+				pc_ocean = { $TARGET_PLANET$ = { change_pc = pc_ocean } }
+				pc_tropical = { $TARGET_PLANET$ = { change_pc = pc_tropical } }
+				pc_continental = { $TARGET_PLANET$ = { change_pc = pc_continental } }
+				pc_desert = { $TARGET_PLANET$ = { change_pc = pc_desert } }
+				pc_arid = { $TARGET_PLANET$ = { change_pc = pc_arid } }
+				pc_savannah = { $TARGET_PLANET$ = { change_pc = pc_savannah } }
+				pc_gaia = { $TARGET_PLANET$ = { change_pc = pc_gaia } }
+				pc_nuked = { $TARGET_PLANET$ = { change_pc = pc_gaia } }
+				default = { $TARGET_PLANET$ = { change_pc = pc_gaia } }
+			}
+		}
+	}
+	else = {
+		event_target:$TARGET_SPECIES$ = {
+			switch = {
+				trigger = has_trait
+				trait_dry_planet_preference = { $TARGET_PLANET$ = { change_pc = pc_arid } }
+				trait_wet_planet_preference = { $TARGET_PLANET$ = { change_pc = pc_continental } }
+				trait_frozen_planet_preference = { $TARGET_PLANET$ = { change_pc = pc_alpine } }
+				default = { $TARGET_PLANET$ = { change_pc = pc_gaia } }
+			}
+		}
+	}
+}
+
+HMO_fix_potential_candidate = {
+	if = {
+		limit = {
+			has_deposit_for = shipclass_mining_station
+		}
+		if = {
+			limit = {
+				has_orbital_station = yes
+			}
+			mining_station = {
+				dismantle = yes
+			}
+		}
+		clear_deposits = yes
+	}
+	else_if = {
+		limit = {
+			has_deposit_for = shipclass_research_station
+		}
+		if = {
+			limit = {
+				has_orbital_station = yes
+			}
+			research_station = {
+				dismantle = yes
+			}
+		}
+		clear_deposits = yes
+	}
+}
+
+HMO_create_zombie_pop = {
+	if = {
+		limit = { owner = { has_country_flag = HMO_cyber_zombie_authority } }
+		if = {
+			limit = {
+				any_owned_pop = {
+					has_trait = trait_zombie
+					has_trait = trait_cybernetic
+					is_robot_pop = no
+				}
+			}
+			random_owned_pop = {
+				limit = {
+					has_trait = trait_zombie
+					has_trait = trait_cybernetic
+					is_robot_pop = no
+				}
+				root = {
+					create_pop = {
+						species = prev
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_pop = {
+					is_robot_pop = no
+				}
+			}
+			random_owned_pop = {
+				limit = {
+					is_robot_pop = no
+				}
+				# Add stuff that adds zombie trait
+				root = {
+					create_pop = {
+						species = prev.species
+					}
+				}
+				last_created_pop = {
+					modify_species = {
+						species = this
+						add_trait = trait_cybernetic
+						add_trait = trait_zombie
+						add_traits_at_start_of_list = yes
+						remove_trait = trait_self_modified
+						remove_trait = trait_latent_psionic
+						remove_trait = trait_psionic
+					}
+					set_citizenship_type = {
+						country = root.owner
+						type = citizenship_full
+					}
+				}
+			}
+		}
+	}
+}

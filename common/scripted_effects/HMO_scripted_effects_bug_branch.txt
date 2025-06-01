@@ -1,0 +1,6 @@
+HMO_ascension_600_BUG_BRANCH = {
+	inline_script = {
+		script = "comptriggers/MO_Hydra_ascension_600_end"
+		HAS_MOD = @has_bug_branch
+	}
+}

@@ -1,0 +1,3 @@
+NOR = {
+	has_origin = origin_HMO_zombies
+}

@@ -1,0 +1,186 @@
+
+special_project = {
+	key = "HMO_TAKE_DOWN_BANISHED_SHIELD"
+	#cost = 0
+	days_to_research = 60
+	tech_department = society_technology
+	picture = GFX_evt_shielded_planet
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	desc = SHIELDED_PLANET_PROJECT_DESC
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		#skill = 3
+	}
+	
+	abort_trigger = {
+		fromfrom = { NOT = { is_planet_class = pc_shielded } }
+	}
+
+	on_success = {
+		ship_event = { id = HMO_origin.2202 }
+	}
+}
+
+special_project = {
+	key = "HMO_TAKE_DOWN_BANISHED_SHIELD_FAIL"
+	#cost = 0
+	days_to_research = 60
+	tech_department = society_technology
+	picture = GFX_evt_shielded_planet
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	desc = SHIELDED_PLANET_PROJECT_DESC
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		#skill = 3
+	}
+	
+	abort_trigger = {
+		fromfrom = { NOT = { is_planet_class = pc_shielded } }
+	}
+
+	on_success = {
+		ship_event = { id = HMO_origin.2201 }
+	}
+}
+
+# Earth Projects
+
+special_project = {
+	key = "HMO_TAKE_DOWN_BANISHED_SHIELD_VENUS"
+	#cost = 0
+	days_to_research = 60
+	tech_department = society_technology
+	picture = GFX_evt_shielded_planet
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	desc = HMO_TAKE_DOWN_BANISHED_SHIELD_VENUS_DESC
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		#skill = 3
+	}
+	
+	abort_trigger = {
+		fromfrom = { NOT = { is_planet_class = pc_shielded } }
+	}
+
+	on_success = {
+		ship_event = { id = HMO_origin.2151 }
+	}
+}
+
+special_project = {
+	key = "HMO_TAKE_DOWN_BANISHED_SHIELD_MARS"
+	#cost = 0
+	days_to_research = 60
+	tech_department = society_technology
+	picture = GFX_evt_shielded_planet
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	desc = HMO_TAKE_DOWN_BANISHED_SHIELD_MARS_DESC
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		#skill = 3
+	}
+	
+	abort_trigger = {
+		fromfrom = { NOT = { is_planet_class = pc_shielded } }
+	}
+
+	on_success = {
+		ship_event = { id = HMO_origin.2152 }
+	}
+}
+
+special_project = {
+	key = "HMO_ATTACK_INSURGENCY_BASE"
+	#cost = 0
+	days_to_research = 60
+	tech_department = society_technology
+	picture = GFX_evt_spymaster
+	icon = "gfx/interface/icons/situation_log/situation_log_combat.dds"
+	desc = HMO_ATTACK_INSURGENCY_BASE_DESC
+	timelimit = 720
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_transport = 5
+	}
+
+	on_success = {
+		from = {
+			planet_event = { id = HMO_origin.155 }
+		}
+	}
+	
+	abort_trigger = {
+		owner = {
+			OR = {
+				has_country_flag = HMO_insurgents_defeated
+				has_country_flag = HMO_insurgents_suppressed
+			}
+		}
+	}
+}
+
+# Recover Ancient Cache
+special_project = {
+	key = "HMO_RECOVER_CACHE_PROJECT"
+	event_chain = "HMO_ancient_caches_chain"
+	cost = 0
+	days_to_research = 180
+	tech_department = society_technology
+	picture = GFX_evt_satellite_in_orbit
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		#skill = 2
+	}
+
+	on_success = {
+		ship_event = { id = HMO_origin.2004 }
+	}
+
+	on_fail = {
+	}
+}
+
+# Remove keppler cage
+special_project = {
+	key = "HMO_WILDWORLD_CLEANUP_PROJECT"
+	event_chain = "HMO_wildworld_keppler_chain"
+	cost = 0
+	days_to_research = 1800
+	tech_department = society_technology
+	picture = GFX_evt_satellite_in_orbit
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = HMO_origin.8450 }
+	}
+
+	on_fail = {
+	}
+}

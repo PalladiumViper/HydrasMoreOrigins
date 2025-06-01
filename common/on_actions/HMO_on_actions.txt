@@ -1,0 +1,422 @@
+# Called during empire initialization when starting a new game if has_secondary_species game rule is true.
+# Called before empire_init_create_capital_pops.
+# scope: planet
+# from: founder species
+# fromfrom: secondary species (if exists)
+empire_init_capital_planet = {
+	events = {
+		HMO_game_start.1 # banished threat starting planet deposits
+		# at this point the species might have changed (because we added traits), so FROMFROM might not be the secondary species anymore
+		HMO_game_start.2 # add scavengers digsite and feature
+	}
+}
+
+# Triggers when the game starts
+on_game_start = {
+	events = {
+		HMO_game_start.9999 # set global flag more origins installed
+		HMO_game_start.5 # Start country start events
+	}
+}
+
+on_game_start_country = {
+	events = {
+		HMO_game_start.3 # Change Apocalypse World
+		HMO_game_start.4 # Create insurgent country
+		HMO_game_start.7 # Unvaulted
+		HMO_game_start.8 # After The Apocalypse Setup
+		HMO_game_start.9 # Wildworld setup
+		HMO_game_start.11 # Unlimited Potential
+	}
+}
+
+# A ship has surveyed a planet.
+# Scope = Ship
+# From = Planet
+on_survey_planet = {
+	events = {
+		HMO_origin.3001 # Finding Biosphere
+	}
+}
+
+on_entering_system_fleet = {
+	events = {
+		HMO_origin.2002
+		HMO_origin.2101
+	}
+}
+
+# Triggers event when each country first sends a ship into the system (once per country)
+# Scope = Ship
+# From = System
+# FromFrom = Country
+on_entering_system_first_time = {
+	events = {
+		HMO_origin.2200 # Banished Threat system add project
+	}
+}
+
+
+# this = country
+on_monthly_pulse_country = {
+	events = {
+		HMO_origin.1 #Adds or Removes Modifier for Apocalypse
+	}
+}
+
+on_decade_pulse_country = {
+	events = {
+		HMO_origin.189 # Insurgents Grow In Strength
+		HMO_origin.7500 # Regular Zombie Attacks for After The Apocalypse
+	}
+}
+
+# this = country
+on_mid_game_pulse_country = {
+	events = {
+		HMO_origin.500 # Apocalypse Mid-Game Setup
+	}
+}
+
+# A country has increased the level of a tech, use last_increased_tech trigger to check tech and level.
+# This = Country
+on_tech_increased = {
+	events = {
+		HMO_origin.3004 # Unvaulted increased terraforming technology
+		HMO_origin.3005
+		HMO_origin.3006
+	}
+}
+
+# A planet has been colonized.
+# Scope = Planet
+on_colonized = {
+	events = {
+		#HMO_origin.7001 # After The Apocalypse give first planet to either faction
+		HMO_origin.8601 # Wildworld Keppler Cage Country Modifier Removed
+	}
+}
+
+#This = destroyed country
+#From = optional, destroyer (country)
+on_country_destroyed = {
+	events = {
+		HMO_origin.509
+	}
+}
+
+# A war has been won
+# Root = Winner Warleader
+# From = Loser Warleader
+# FromFrom = War
+on_war_won = {
+	events = {
+		HMO_origin.520
+		HMO_origin.525
+	}
+}
+
+# A status quo has been signed
+# Root = Actor
+# From = Recipient
+# FromFrom = Main Attacker
+# FromFromFrom = Main Defender
+# FromFromFromFrom = War
+on_status_quo = {
+	events = {
+		HMO_origin.570 # Insurgency Status Quo
+	}
+}
+
+# A status quo has been signed, by force
+# Root = Recipient
+# From = Actor
+# FromFrom = Main Attacker
+# FromFromFrom = Main Defender
+# FromFromFromFrom = War
+on_status_quo_forced = {
+	events = {
+		HMO_origin.570 # Insurgency Status Quo
+	}
+}
+
+# Triggers when trying to open the diplomacy view for countries with custom diplomacy.
+# Country scope
+# This = target country (player)
+# From = source country
+on_custom_diplomacy = {
+	events = {
+		HMO_origin.100 # Insurgent Diplomacy
+	}
+}
+
+# Triggers country_event for the defender upon victory
+# Root = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+on_planet_defenders_win = {
+	events = {
+		HMO_origin.51 # Winning against insurgents
+		HMO_origin.503 # Final invasion repelled
+		HMO_origin.54 # Winning against sneaky insurgents
+		HMO_origin.181 # Winning Against Revolt
+		HMO_origin.7020 # Zombies horde stopped
+	}
+}
+
+# Triggers country_event for the defender upon defeat
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+on_planet_defenders_lose = {
+	events = {
+		HMO_origin.52 # Losing against insurgents
+		HMO_origin.55 # Losing against sneaky insurgents
+		HMO_origin.504 # The final invastion occupied our capital!
+		HMO_origin.180 # Losing against Revolt
+		HMO_origin.7010 # Zombies conquer planet
+		HMO_origin.7550 # Zombie Horde Conquer Planet
+	}
+}
+
+# Triggers country_event for the attacker upon victory
+# (Before controller is switched)
+# This = country, leader attacker
+# From = country, planet owner
+# FromFrom = planet
+# IDENTITIES: attacker is the side that "IsHostile" to
+# the planet controller; e.g. spawned monster armies
+# are attackers, but if they win and the player attempts
+# to retake the planet, the player is the attacker
+on_planet_attackers_win = {
+	events = {
+		HMO_origin.59 # Winning against insurgents on a planet that was occupied
+		HMO_origin.182 # Winning against Revolt that had the planet occupied
+	}
+}
+
+# a new leader is generated for an empire, to be available for recruitment
+# scope: country, from: leader
+on_leader_spawned = {
+	events = {
+		HMO_origin.701 # Insurgency Training Trait
+	}
+}
+
+# Executed just before on_leader_death if show_notification = yes (default)
+# This = Country
+# From = Leader
+on_leader_death_notify = {
+	events = {
+		HMO_special_event.1 # Leader Funeral Events
+	}
+}
+
+# Executed just before on_leader_death if show_notification = no (explicitly set)
+# This = Country
+# From = Leader
+on_leader_death_no_notify = {
+	events = {
+		HMO_special_event.1
+	}
+}
+
+#An army has been killed in ground combat
+# This = owner
+# From = army
+# FromFrom = opponent
+# FromFromFrom = planet
+on_army_killed_in_combat = {
+	events = {
+		HMO_event.3
+	}
+}
+
+on_planet_transfer = {
+	events = {
+		HMO_origin.2 #Removing insurgent Modifier if not apocalypse origin
+	}
+}
+
+#FromFrom = Former Owner
+#From = Country scope (new owner, so invalid)
+#This = Planet scope
+on_planet_ownerless = {
+	events = {
+		HMO_origin.3 #Apocalypse cleanup
+	}
+}
+
+# Executed when a country picks any tradition (including starters and finishers)
+# THIS = country
+on_tradition_picked = {
+	events = {
+		HMO_ascension.1
+		HMO_ascension.500
+		HMO_ascension.501
+		HMO_cyber.500
+		HMO_cyber.501
+	}
+}
+
+# Executed whenever a pop is killed due to bombardment damages
+# This = Planet where the pop was bombed to death
+# From = Country which is raining down fire and brimstone
+# FromFrom = Biggest fleet bombarding the planet (the one we used the bombardment stance from)
+on_pop_bombed_to_death = {
+	events = {
+		HMO_event.1 # Zombie Bombardment
+	}
+}
+
+# A pop has finished purging
+# This = Planet scope
+# From = Country
+# FromFrom = Pop
+on_pop_purged = {
+	events = {
+		HMO_event.2 # Cyber Zombie Authority
+	}
+}
+
+HMO_insurgency_bad_events = {
+	random_events = {
+		2 = HMO_origin.170 # Increasing Propaganda
+		#HMO_origin.175 # Organized Crime
+		5 = HMO_origin.176 # Increasing Tensions
+		1 = HMO_origin.200 # Hydrogen Bomb Stolen
+		10 = HMO_origin.185 # Infrastructure Damaged
+		2 = HMO_origin.50 # The Insurgency Attacks!
+		5 = HMO_origin.186 # Embassy Attacked
+		5 = HMO_origin.190 # Governor Attacked
+	}
+}
+
+HMO_insurgency_good_events = {
+	random_events = {
+		15 = HMO_origin.154 # Insurgent Base Found
+		# Defecting Insurgent Leader
+		# Insurgents Captured
+		5 = HMO_origin.151 # Weapons Confiscated
+		2 = HMO_origin.210 # Insurgent Defector
+	}
+}
+
+# Virus Event Pool | Fired by HMO_ascension.600
+# This = Country
+on_HMO_synthshock_chain_virus_events_list = {
+	random_events = {
+		5 = HMO_ascension.610 # Digital Zombies
+		5 = HMO_ascension.620 # Altered Minds
+	}
+}
+
+# Malware Event Pool | Fired by HMO_ascension.800
+# This = Country
+on_HMO_synthshock_chain_malware_events_list = {
+	random_events = {
+		20 = HMO_ascension.810 # Backdoor
+		5 = HMO_ascension.820 # A New Plague. Requires a prior event to have happened
+		5 = HMO_ascension.1499 # End. Can only happen after 820
+	}
+}
+
+on_HMO_synthshock_chain_start = {
+	random_events = {
+		5 = HMO_ascension.505 # Democracy
+		5 = HMO_ascension.510 # Oligarchy
+		5 = HMO_ascension.515 # Dictatorial
+		5 = HMO_ascension.520 # Imperial
+		5 = HMO_ascension.525 # Corporate
+		5 = HMO_ascension.530 # Democratic Corporate (Bug Branch)
+		5 = HMO_ascension.535 # Imperial Corporate (Bug Branch)
+		5 = HMO_ascension.540 # Direct Democratic (Bug Branch)
+	}
+}
+
+# Fired by HMO_ascension.1500
+on_HMO_synthshock_chain_end = {
+	random_events = {
+		5 = HMO_ascension.1505 # Democracy
+		5 = HMO_ascension.1510 # Oligarchy
+		5 = HMO_ascension.1515 # Dictatorial
+		5 = HMO_ascension.1520 # Imperial
+		5 = HMO_ascension.1525 # Corporate
+		5 = HMO_ascension.1530 # Democratic Corporate (Bug Branch)
+		5 = HMO_ascension.1535 # Imperial Corporate (Bug Branch)
+		5 = HMO_ascension.1540 # Direct Democratic (Bug Branch)
+	}
+}
+
+on_HMO_cybershock_chain_start = {
+	random_events = {
+		5 = HMO_cyber.505 # Democracy
+		5 = HMO_cyber.510 # Oligarchy
+		5 = HMO_cyber.515 # Dictatorial
+		5 = HMO_cyber.520 # Imperial
+		5 = HMO_cyber.525 # Corporate
+		5 = HMO_cyber.530 # Democratic Corporate (Bug Branch)
+		5 = HMO_cyber.535 # Imperial Corporate (Bug Branch)
+		5 = HMO_cyber.540 # Direct Democratic (Bug Branch)
+	}
+}
+
+# Fired by HMO_cyber.600
+HMO_on_futureshock_chain_society_events_list = {
+	random_events = {
+		5 = HMO_cyber.610
+	}
+}
+
+HMO_on_futureshock_chain_zombies_events_list = {
+	random_events = {
+		5 = HMO_cyber.810
+		5 = HMO_cyber.820
+	}
+}
+
+# Situation Random Event Pool | Fired by cyber.5
+# This = Situation
+on_HMO_cyberization_situation_random_events_list = {
+	random_events = {
+		1 = HMO_cyber.120 # Stage 1 Opportunity
+		1 = HMO_cyber.130 # Stage 1 Challenge
+		1 = HMO_cyber.210 # Stage 2 Random Event
+		1 = HMO_cyber.220 # Stage 2 Opportunity
+		1 = HMO_cyber.230 # Stage 2 Challenge
+		1 = HMO_cyber.320 # Stage 3 Opportunity
+		#1 = HMO_cyber.330 # Stage 3 Challenge
+	}
+}
+
+# Fired by HMO_ascension.1500
+on_HMO_futureshock_chain_end = {
+	random_events = {
+		5 = HMO_cyber.1505 # Democracy
+		5 = HMO_cyber.1510 # Oligarchy
+		5 = HMO_cyber.1515 # Dictatorial
+		5 = HMO_cyber.1520 # Imperial
+		5 = HMO_cyber.1525 # Corporate
+		5 = HMO_cyber.1530 # Democratic Corporate (Bug Branch)
+		5 = HMO_cyber.1535 # Imperial Corporate (Bug Branch)
+		5 = HMO_cyber.1540 # Direct Democratic (Bug Branch)
+	}
+}
+
+HMO_wildworld_exploration_events = {
+	events = {
+		HMO_origin.8700 # Dense Jungle
+		HMO_origin.8701 # Random Deposit
+		HMO_origin.8702 # Ancient Idol
+		HMO_origin.8703 # Isolated Village
+		HMO_origin.8705 # Majestic Waterfall
+	}
+}
+
+# Executed when a country picks an ascension perk
+# THIS = country
+on_ascension_perk_picked = {
+	events = {
+		HMO_origin.9000
+	}
+}

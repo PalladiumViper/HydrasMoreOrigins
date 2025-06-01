@@ -1,0 +1,15 @@
+## Orbital Arc Furnace Destroyed
+#HMO_orbital_arc_furnace_destroyed = {
+#	entity = "HMO_arc_crucible_destroyed_entity"
+#	portrait = "GFX_megastructure_construction_background"
+#	entity_offset = { x = 0 y = 0 }
+#	rotate_to_center = no
+#	scale_offset = yes
+#	place_entity_on_planet_plane = yes
+#	show_in_outliner = no
+#	scales_with_planet = yes
+#
+#	potential = {
+#		always = no
+#	}
+#}

@@ -1,0 +1,36 @@
+# Hydra's More Ascension Perks
+has_MAP_active = {
+    optimize_memory
+    always = no
+}
+
+# Forgotten History
+has_forgotten_history_active = {
+    optimize_memory
+    always = no
+}
+
+# More Precursors
+has_FHMP_active = {
+    optimize_memory
+    always = no
+}
+
+# UCmod
+has_frozen_engine = {
+	always = no
+}
+
+# More Traditions
+has_hydras_more_traditions_active = {
+    always = no
+}
+
+# Hydra's More Civics
+has_hydras_more_civics_active = {
+	always = no
+}
+
+has_bug_branch = {
+	always = no
+}

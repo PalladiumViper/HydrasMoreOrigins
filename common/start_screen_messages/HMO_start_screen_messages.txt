@@ -1,0 +1,176 @@
+# Banished Threat
+part = {
+	location = 0
+	localization = "START_SCREEN_BANISHED_HMO_PURIFIERS"
+
+	trigger = {
+		HMO_is_banished_threat = yes
+		OR = {
+			has_government = gov_blood_court
+			has_government = gov_purity_order
+			has_government = gov_purification_committee
+			has_government = gov_purity_assembly
+		}
+	}
+}
+
+part = {
+	location = 0
+	localization = "START_SCREEN_BANISHED_HMO_SWARM"
+
+	trigger = {
+		HMO_is_banished_threat = yes
+		has_authority = auth_hive_mind
+	}
+}
+
+part = {
+	location = 0
+	localization = "START_SCREEN_BANISHED_HMO_EXTERMINATORS"
+
+	trigger = {
+		HMO_is_banished_threat = yes
+		has_authority = auth_machine_intelligence
+	}
+}
+
+part = {
+	location = 1
+	localization = "START_SCREEN_BANISHED_HMO_PURIFIERS_PART_TWO"
+
+	trigger = {
+		HMO_is_banished_threat = yes
+		OR = {
+			has_government = gov_blood_court
+			has_government = gov_purity_order
+			has_government = gov_purification_committee
+			has_government = gov_purity_assembly
+		}
+	}
+}
+
+part = {
+	location = 1
+	localization = "START_SCREEN_BANISHED_HMO_SWARM_PART_TWO"
+
+	trigger = {
+		HMO_is_banished_threat = yes
+		has_authority = auth_hive_mind
+	}
+}
+
+part = {
+	location = 1
+	localization = "START_SCREEN_BANISHED_HMO_EXTERMINATORS_PART_TWO"
+
+	trigger = {
+		HMO_is_banished_threat = yes
+		has_authority = auth_machine_intelligence
+	}
+}
+
+
+part = {
+	location = 2
+	localization = "START_SCREEN_BANISHED_HMO_PURIFIERS_PART_THREE"
+
+	trigger = {
+		HMO_is_banished_threat = yes
+		OR = {
+			has_government = gov_blood_court
+			has_government = gov_purity_order
+			has_government = gov_purification_committee
+			has_government = gov_purity_assembly
+		}
+	}
+}
+
+part = {
+	location = 2
+	localization = "START_SCREEN_BANISHED_HMO_SWARM_PART_THREE"
+
+	trigger = {
+		HMO_is_banished_threat = yes
+		has_authority = auth_hive_mind
+	}
+}
+
+part = {
+	location = 2
+	localization = "START_SCREEN_BANISHED_HMO_EXTERMINATORS_PART_THREE"
+
+	trigger = {
+		HMO_is_banished_threat = yes
+		has_authority = auth_machine_intelligence
+	}
+}
+
+# Scavengers
+part = {
+	location = 0
+	localization = "HMO_START_SCREEN_SCAVENGERS"
+
+	trigger = {
+		has_origin = origin_HMO_scavengers
+	}
+}
+
+# Apocalypse
+part = {
+	location = 0
+	localization = "START_SCREEN_HMO_APOCALYPSE"
+
+	trigger = {
+		has_origin = origin_HMO_apocalypse
+	}
+}
+
+# Unvaulted
+part = {
+	location = 0
+	localization = "HMO_START_SCREEN_UNVAULTED"
+
+	trigger = {
+		has_origin = origin_HMO_unvaulted
+	}
+}
+
+# After The Apocalypse
+part = {
+	location = 0
+	localization = "HMO_START_SCREEN_ZOMBIES"
+
+	trigger = {
+		has_origin = origin_HMO_zombies
+	}
+}
+
+# Born of Necessity
+part = {
+	location = 0
+	localization = "HMO_START_SCREEN_DYSON_SWARM"
+
+	trigger = {
+		has_origin = origin_HMO_dyson_swarm
+	}
+}
+
+# Wildworld
+part = {
+	location = 0
+	localization = "HMO_START_SCREEN_WILDWORLD"
+
+	trigger = {
+		has_origin = origin_HMO_wildworld
+	}
+}
+
+# Planned Obselescence
+part = {
+	location = 0
+	localization = "HMO_START_SCREEN_PLANNED_OBSOLESCENCE"
+
+	trigger = {
+		has_origin = origin_HMO_planned_obsolescence
+	}
+}

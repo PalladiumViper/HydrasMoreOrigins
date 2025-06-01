@@ -1,0 +1,343 @@
+##################################
+# INSURGENT CREATION
+##################################
+
+# Checks if Insurgent country (global event target) exists
+# Creates the country and saves it if it does not
+# Used for Apocalypse Origin
+# Need to make a custom country type
+create_HMO_insurgent_country = {
+	optimize_memory
+	if = {
+		limit = {
+			NOT = {
+				any_country = {
+					has_country_flag = HMO_insurgency@owner
+				}
+			}
+		}
+		create_country = {
+			name = "NAME_HMO_Insurgents"
+			type = HMO_insurgency
+			authority = "auth_oligarchic"
+			civics = {
+				civic = civic_HMO_insurgency
+			}
+			origin = "origin_default"
+			species = event_target:insurgent_owner_species
+			ethos = {
+				ethic = ethic_fanatic_militarist
+			}
+			flag = {
+				icon = {
+					category = "zoological"
+					file = "flag_zoological_1.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors={
+					"black"
+					"black"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				#save_global_event_target_as = HMO_insurgent_country
+				set_country_flag = HMO_insurgency@root
+				every_country = {
+					limit = {
+						AND = { 
+							has_origin = origin_HMO_apocalypse
+							has_country_flag = HMO_insurgent_owner@root
+						}
+					}
+					establish_communications_no_message = prev
+					establish_communication_with_subjects_and_federation = { FLAG = HMO_insurgents_encountered }
+				}
+			}
+		}
+	}
+}
+
+HMO_set_insurgency_celebration_modifier = {
+	switch = {
+		trigger = has_situation_flag
+		insurgents_spared = {
+			target.owner = {
+				add_modifier = { modifier = HMO_insurgency_defeated_spared }
+			}
+		}
+		insurgents_imprisoned = {
+			target.owner = {
+				add_modifier = { modifier = HMO_insurgency_defeated_imprisoned }
+			}
+		}
+		insurgents_executed = {
+			target.owner = {
+				add_modifier = { modifier = HMO_insurgency_defeated_executed }
+			}
+		}
+		insurgents_united = {
+			target.owner = {
+				add_modifier = { modifier = HMO_insurgency_defeated_united }
+			}
+		}
+		insurgents_peace = {
+			target.owner = {
+				add_modifier = { modifier = HMO_insurgency_defeated_peace }
+			}
+		}
+	}
+}
+
+HMO_update_enforcer_scientist_values = {
+
+	set_variable = {
+		which = HMO_enforcers
+		value = 0
+	}
+	
+	set_variable = {
+		which = HMO_scientists
+		value = 0
+	}
+
+	export_trigger_value_to_variable = {
+		trigger = count_owned_pop
+		parameters = {
+			limit = {
+				OR ={
+					has_job = enforcer
+					has_job = telepath
+				}
+			}
+		}
+		variable = HMO_enforcers
+	}
+
+	export_trigger_value_to_variable = {
+		trigger = count_owned_pop
+		parameters = {
+			limit = {
+				OR ={
+					has_job = researcher
+					has_job = archaeoengineers
+					has_job = head_researcher
+				}
+			}
+		}
+		variable = HMO_scientists
+	}
+}
+
+HMO_add_insurgency_junk = {
+	random_list = {
+		20 = {
+			add_blocker = {
+				type = d_HMO_insurgency_new_junk
+			}
+		}
+		8 = {
+			add_blocker = {
+				type = d_HMO_insurgency_ruined_houses
+			}
+			add_blocker = {
+				type = d_HMO_insurgency_ruined_houses
+			}
+		}
+		2 = {
+			add_blocker = {
+				type = d_HMO_insurgency_ruined_houses
+			}
+		}
+		1 = {
+			add_blocker = {
+				type = d_HMO_insurgency_ruined_powerplant
+			}
+		}
+	}
+}
+
+HMO_leader_creator = {
+	species = {
+		save_event_target_as = leader_species
+	}
+	create_country = {
+		name = "NAME_leader_country"
+		type = faction
+		auto_delete = yes
+		flag = {
+			icon = {
+				category = "special"
+				file = "unknown.dds"
+			}
+			background = {
+				category = "backgrounds"
+				file = "00_solid.dds"
+			}
+			colors = {
+				"red"
+				"red"
+				"null"
+				"null"
+			}
+		}
+		effect = {
+			save_event_target_as = leader_country
+		}
+	}
+	event_target:leader_country = {
+		create_leader = {
+			class = $CLASS$
+			species = event_target:leader_species
+			name = random
+			skill = $LEVEL$
+			gender = $GENDER$
+			event_leader = no # Leader is allowed to lead factions and win elections
+			background_ethic = ethic_$ETHIC$
+			skip_background_generation = yes
+			custom_description = $DESC$
+			custom_catch_phrase = $CATCH_PHRASE$
+			immortal = $IMMORTAL$
+			hide_age = $IMMORTAL$ # Right now it will always match immortal
+
+			randomize_traits = no
+			effect = {
+				set_skill = $LEVEL$
+				save_event_target_as = ethic_leader
+				set_leader_flag = renowned_leader
+				set_leader_flag = is_in_recruit_window
+				set_variable = { which = leader_pending_negative_traits_unmodified value = 1 }
+			}
+		}
+	}
+	event_target:ethic_leader = {
+		set_owner = root
+		# This is a hack to make the leader not be added to player country.
+		# We must call ethic_leader_hire on the hire event
+		# We must call ethic_leader_kill on the dismiss event
+		exile_leader_as = ethic_leader_exile
+	}
+}
+
+HMO_create_insurgency_real_country = {
+	create_country = {
+		name = random
+		type = default
+		species = event_target:HMO_insurgency_species
+		ignore_initial_colony_error = yes
+		day_zero_contact = no
+		ethos = {
+			ethic = ethic_fanatic_militarist
+			ethic = ethic_egalitarian
+		}
+		authority = auth_oligarchic
+		civics = random
+		flag = random
+		origin = origin_HMO_insurgents
+		effect = {
+			save_event_target_as = HMO_insurgency_uprising
+		}
+	}
+}
+
+HMO_create_zombie_town = {
+	random_list = {
+		10 = { add_blocker = { type = d_HMO_zombie_town_1 blocked_deposit = none } }
+		2 = { add_blocker = { type = d_HMO_zombie_town_2 blocked_deposit = none } }
+		4 = { add_blocker = { type = d_HMO_zombie_town_3 blocked_deposit = none } }
+	}
+}
+
+HMO_create_zombie_country = {
+	if = {
+		limit = { NOT = { exists = event_target:HMO_Zombie_Country } }
+		create_country = {
+			name = "NAME_Zombie_Country_Name"
+			type = faction
+			flag = {
+				icon = {
+					category = "toxoid"
+					file = "toxoid_03.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors={
+					"black"
+					"black"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				establish_communications_no_message = root.owner
+				set_country_flag = HMO_zombie_plague
+				save_global_event_target_as = HMO_Zombie_Country
+			}
+		}
+	}
+}
+
+HMO_apply_deposit_flag_to_planet = {
+	switch = {
+		trigger = has_deposit_flag
+		HMO_dense_jungle = { planet = { set_planet_flag = HMO_dense_jungle } }
+		HMO_idyllic_valley = { planet = { set_planet_flag = HMO_idyllic_valley } }
+		HMO_old_ruins = { planet = { set_planet_flag = HMO_old_ruins } }
+		HMO_werediran_tower = { planet = { set_planet_flag = HMO_werediran_tower } }
+		HMO_ancient_idol = { planet = { set_planet_flag = HMO_ancient_idol } }
+		HMO_isolated_village = { planet = { set_planet_flag = HMO_isolated_village } }
+		HMO_waterfall = { planet = { set_planet_flag = HMO_waterfall } }
+	}
+}
+
+### After The Apocalypse ###
+#create_HMO_resproject_country = {
+#	if = {
+#		limit = {
+#			NOT = {
+#				any_country = {
+#					has_country_flag = HMO_resproject@prev
+#				}
+#			}
+#		}
+#		create_country = {
+#			name = "NAME_HMO_Resproject"
+#			type = HMO_resproject
+#			authority = "auth_oligarchic"
+#			civics = {
+#				civic = civic_HMO_resproject
+#			}
+#			origin = "origin_default"
+#			species = event_target:resproject_owner_species
+#			ethos = {
+#				ethic = ethic_fanatic_materialist
+#			}
+#			flag = {
+#				icon = {
+#					category = "zoological"
+#					file = "flag_zoological_1.dds"
+#				}
+#				background= {
+#					category = "backgrounds"
+#					file = "00_solid.dds"
+#				}
+#				colors={
+#					"black"
+#					"black"
+#					"null"
+#					"null"
+#				}
+#			}
+#			effect = {
+#				root = { save_global_event_target_as = HMO_resproject_country@prev }
+#				set_country_flag = HMO_resproject_country@root
+#			}
+#		}
+#	}
+#}

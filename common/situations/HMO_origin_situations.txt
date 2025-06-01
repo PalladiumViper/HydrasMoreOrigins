@@ -1,0 +1,1576 @@
+HMO_insurgency_celebration_opportunity = {
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_meh
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_desert }
+		}
+		picture = GFX_evt_desert
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_tropical }
+		}
+		picture = GFX_evt_tropical
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_arid }
+		}
+		picture = GFX_evt_arid
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_continental }
+		}
+		picture = GFX_evt_continental
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_alpine }
+		}
+		picture = GFX_evt_alpine_city
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_savannah }
+		}
+		picture = GFX_evt_savannah
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_ocean }
+		}
+		picture = GFX_evt_ocean
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_tundra }
+		}
+		picture = GFX_evt_tundra
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_arctic }
+		}
+		picture = GFX_evt_arctic
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_gaia }
+		}
+		picture = GFX_evt_gaia
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_nuked }
+		}
+		picture = GFX_evt_tomb_world
+	}
+	picture = {
+		trigger = {
+			target = {
+				OR = {
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_cybrex
+				}
+			}
+		}
+		picture = GFX_evt_ringworld
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_habitat }
+		}
+		picture = GFX_evt_habitat
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_hive }
+		}
+		picture = GFX_evt_infested
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_machine }
+		}
+		picture = GFX_evt_ai_planet
+	}
+	picture = {
+		trigger = {
+			target = { is_planet_class = pc_city }
+		}
+		picture = GFX_evt_city_planet
+	}
+
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 50
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_HMO_insurgency_2_tooltip
+			on_first_enter = {
+				situation_event = { id = HMO_origin.593 }
+				situation_event = { id = HMO_origin.594 }
+				situation_event = { id = HMO_origin.595 }
+			}
+			end = 70
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			custom_tooltip = stage_leviathan_3_tooltip
+			end = 100
+		}
+	}
+
+	category = positive
+
+	on_progress_complete = {
+		custom_tooltip = leviathan_celebration_opportunity_finish_tooltip
+		hidden_effect = {
+			situation_event = { id = HMO_origin.596 }
+		}
+	}
+	on_start = { situation_event = { id = situation.1105 } }
+	on_fail = {
+		custom_tooltip = leviathan_celebration_opportunity_fail_tooltip
+		hidden_effect = { situation_event = { id = situation.1180 } }
+	}
+
+	modifier = {
+	}
+	on_monthly = {
+	}
+	approach = {#Do Nothing
+		name = approach_default
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = leviathan_celebration_do_nothing_effect
+		}
+		ai_weight = {
+			base = 0
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				unity = 5
+			}
+		}
+	}
+	approach = {#Encourage
+		name = approach_encourage
+		on_select = {
+			custom_tooltip = leviathan_celebration_encourage_effect
+		}
+		icon = GFX_situation_approach_amenities
+		icon_background = GFX_situation_approach_bg_green
+		ai_weight = {
+			base = 10
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 25
+			}
+		}
+	}
+	monthly_progress = {
+		base = 4
+		modifier = {
+			add = 2
+			desc = string_current_approach
+			current_situation_approach = approach_encourage
+		}
+	}
+
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}
+
+## Stolen Hydrogen Bomb
+situation_HMO_stolen_bomb = {
+	complete_icon_frame = GFX_situation_outcome_frame_red
+	complete_icon = GFX_situation_outcome_negative
+	picture = GFX_evt_physics_research
+	category = negative
+
+	on_start = {
+		set_situation_locked = yes
+	}
+
+	on_progress_complete = {
+		custom_tooltip = situation_HMO_stolen_bomb_outcome
+		situation_event = { id = HMO_origin.203 }
+	}
+
+	on_abort = {
+		# Bomb May Be Detonated
+		situation_event = { id = HMO_origin.205 }
+	}
+
+	start_value = 0
+
+	# the situation automatically ends after 2 - 2.5 years
+	# progress bar: finding the bomb
+	# goal: Find the bomb before the insurgents use it
+	# Bad ending if the situation is not completed before 2 - 2.5 years
+
+	on_monthly = {
+		events = {
+			HMO_origin.202 # Update Enforcer and Scientist Variables
+		}
+	}
+
+	# Stages
+	stages = {
+		HMO_low_intel = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 40
+		}
+		HMO_medium_intel = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 70
+		}
+		HMO_high_intel = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_red
+			end = 100
+		}
+	}
+
+	# Approaches
+	approach = { # Intensive Search Efforts
+		name = HMO_intensive_search_efforts
+		icon = GFX_situation_approach_influence
+		icon_background = GFX_situation_approach_bg_green
+		potential = {
+			target = {
+				any_owned_pop = {
+					OR ={
+						has_job = enforcer
+						has_job = telepath
+					}
+				}
+			}
+		}
+		on_select = {
+			custom_tooltip = approach_HMO_search_effect
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 1
+				multiplier = target.HMO_enforcers
+			}
+		}
+		target_modifier = {
+			# Enforcers have a lot to do, requiring more resources and leaving more time for criminals to do stuff
+			planet_crime_add = 40
+		}
+	}
+
+	approach = { # Use Statistics
+		name = HMO_use_statistics
+		icon = GFX_situation_approach_pop
+		icon_background = GFX_situation_approach_bg_green
+		potential = {
+			target = {
+				any_owned_pop = {
+					OR ={
+						has_job = researcher
+						has_job = archaeoengineers
+						has_job = head_researcher
+					}
+				}
+			}
+		}
+		on_select = {
+			custom_tooltip = approach_HMO_statistic_effect
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 1
+				multiplier  = target.HMO_scientists
+				# multiply this value by the number of scientists on the planet
+			}
+		}
+		target_modifier = {
+			# Scientists computers being used for non-science
+			planet_researchers_society_research_produces_mult = -0.5
+			planet_researchers_physics_research_produces_mult = -0.5
+			planet_researchers_engineering_research_produces_mult = -0.5
+		}
+	}
+
+	approach = { # No search
+		name = HMO_no_search_efforts
+		icon_background = GFX_situation_approach_bg_yellow
+		icon = GFX_situation_approach_shrug
+		default = yes
+		on_select = {
+			custom_tooltip = approach_HMO_no_search_effect
+		}
+	}
+
+
+	#Progress
+	# 1 year in stellaris = 12 months = 360 days
+	# Situation automatically ends after 2 years
+	# Default: reach worst ending in about 2 years (20 months) if you do nothing
+	# 100 / 20 = 5
+
+	monthly_progress = {
+		base = 1
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = HMO_intensive_search_efforts
+			add = target.HMO_enforcers
+		}
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = HMO_use_statistics
+			add = target.HMO_scientists
+		}
+	}
+
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+			target.owner = { has_country_flag = HMO_insurgents_defeated }
+			target.owner = { has_country_flag = HMO_insurgents_suppressed }
+		}
+	}
+}
+
+# Unvaulted Terraforming
+HMO_unvaulted_situation = {
+	picture = GFX_evt_relic_world_building
+
+	start_value = 0
+
+	#abort_trigger = {
+	#	owner = { is_synthetic_empire = yes }
+	#}
+	#
+	#on_abort = {} # Explain that as synthetic beings there is no longer need for 
+	
+	category = positive
+
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+
+	on_progress_complete = {
+		custom_tooltip = HMO_unvaulted_situation_completion_tooltip
+		hidden_effect = {
+			target = {
+				planet_event = { id = HMO_origin.3100 }
+			}
+			situation_event = { id = HMO_origin.3500 }
+		}
+	}
+
+	stages = {
+		HMO_stage_terraforming_1 = { # Initial stage
+			end = 10
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+		}
+		HMO_stage_terraforming_2 = {
+			end = 25
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			target_modifier = {
+				pop_environment_tolerance = 0.1
+				planet_farmers_food_produces_add = -6
+				planet_farmers_society_research_produces_add = 2
+			}
+			on_first_enter = {
+				# If not has found biosphere, set flag and inform player
+				if = {
+					limit = { owner = { NOT = { has_country_flag = HMO_found_biosphere } } }
+					set_situation_flag = HMO_needs_biosphere # We need to introduce new plants and wildlife
+					owner = { set_country_flag = HMO_reached_situation_unvaulted_breakpoint }
+					situation_event = { id = HMO_origin.3002 }
+				}
+			}
+		}
+		HMO_stage_terraforming_3 = {
+			end = 50
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			target_modifier = {
+				pop_environment_tolerance = 0.2
+				planet_farmers_food_produces_add = -4
+				planet_farmers_society_research_produces_add = 2
+			}
+			on_first_enter = {
+				hidden_effect = {
+					# Lock progress if technology not researched
+					if = {
+						limit = { owner = { NOT = { has_technology = tech_terrestrial_sculpting } } }
+						set_situation_flag = HMO_needs_terraforming_tech_1
+					}
+					# First Reward: Add agriculture district capacity
+					target = {
+						planet_event = { id = HMO_origin.3003 }
+					}
+				}
+			}
+		}
+		HMO_stage_terraforming_4 = {
+			end = 75
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			target_modifier = {
+				pop_environment_tolerance = 0.3
+				planet_farmers_food_produces_add = -3
+				planet_farmers_society_research_produces_add = 2
+			}
+			on_first_enter = {
+				hidden_effect = {
+					# Lock progress if technology not researched
+					if = {
+						limit = { owner = { NOT = { has_technology = tech_ecological_adaptation } } }
+						set_situation_flag = HMO_needs_terraforming_tech_2
+					}
+					# Add two farming deposits
+					target = {
+						add_deposit = d_bountiful_plains
+						add_deposit = d_fertile_lands
+					}
+				}
+			}
+		}
+		HMO_stage_terraforming_5 = {
+			end = 100
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_green
+			target_modifier = {
+				pop_environment_tolerance = 0.4
+				planet_farmers_food_produces_add = -1
+				planet_farmers_society_research_produces_add = 2
+			}
+			on_first_enter = {
+				hidden_effect = {
+					if = {
+						limit = { owner = { NOT = { has_technology = tech_climate_restoration } } }
+						set_situation_flag = HMO_needs_terraforming_tech_3
+					}
+					# Add two farming deposits
+					target = {
+						add_deposit = d_fertile_lands
+						add_deposit = d_fertile_lands
+						add_deposit = d_black_soil
+					}
+				}
+			}
+		}
+	}
+	on_monthly = {
+		events = {
+			HMO_origin.3007 # Check if you have colonized a planet of the correct type
+		}
+	}
+	monthly_progress = {
+		modifier = {
+			desc = string_current_approach
+			NOR = {
+				has_situation_flag = HMO_needs_biosphere
+				has_situation_flag = HMO_needs_terraforming_tech_1
+				has_situation_flag = HMO_needs_terraforming_tech_2
+				has_situation_flag = HMO_needs_terraforming_tech_3
+			}
+			current_situation_approach = HMO_approach_terraform
+			add = 1
+		}
+		modifier = {
+			desc = string_current_approach
+			NOR = {
+				has_situation_flag = HMO_needs_biosphere
+				has_situation_flag = HMO_needs_terraforming_tech_1
+				has_situation_flag = HMO_needs_terraforming_tech_2
+				has_situation_flag = HMO_needs_terraforming_tech_3
+			}
+			current_situation_approach = HMO_approach_colonize
+			add = 0.5
+		}
+	}
+	
+	# We may yet salvage our homeworld
+	approach = {
+		name = HMO_approach_terraform
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_green
+
+		#allow = {
+		#	custom_tooltip = {
+		#		fail_text = HMO_situation_change_cooldown
+		#		OR = {
+		#			NOT = { has_situation_flag = path_locked }
+		#			current_situation_approach = HMO_approach_terraform
+		#		}
+		#	}
+		#}
+
+		on_select = {
+			custom_tooltip = HMO_approach_terraform_tooltip
+		}
+
+		modifier = {
+			country_society_tech_research_speed = 0.2
+			category_new_worlds_draw_chance_mult = 2
+		}
+
+		ai_weight = {
+			base = 1
+		}
+	}
+	
+	# We should focus on setting up new colonies
+	approach = {
+		name = HMO_approach_colonize
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+
+		#allow = {
+		#	custom_tooltip = {
+		#		fail_text = HMO_situation_change_cooldown
+		#		OR = {
+		#			NOT = { has_situation_flag = path_locked }
+		#			current_situation_approach = HMO_approach_colonize
+		#		}
+		#	}
+		#}
+		on_select = {
+			custom_tooltip = HMO_approach_colonize_tooltip
+		}
+		
+		modifier = {
+			planet_colony_development_speed_mult = 1
+			science_ship_survey_speed = 0.5
+		}
+
+		ai_weight = {
+			base = 5
+		}
+	}
+}
+
+##########################################
+# Resurrection Project Progress (Hidden) #
+##########################################
+
+## Resproject situation - Player can't see it.
+#HMO_resproject_situation = {
+#	picture = GFX_evt_acquire_asset
+#	complete_icon_frame = GFX_situation_outcome_frame_blue
+#	complete_icon = GFX_situation_outcome_meh
+#	on_progress_complete = {
+#		#Figure out Patron and give resources
+#		custom_tooltip = situation_unknown_outcome_approach #not really necessary except to silence the error log
+#		owner = { country_event = { id = enclave.275 } }
+#	}
+#	on_fail = {
+#		log_error = "resproject situation failed, this is not meant to happen"
+#		destroy_situation = this
+#	}
+#	on_monthly = {
+#		random_events = {
+#			5 = 0
+#			# Random events that might occour. Please specify if its a country or planet events
+#			# Zombie horde / outbreak (planet)
+#			# Biotechnolocial breakthrough that didn't help with the plague study, but can be applied elsewhere: Gain biology research (country)
+#		}
+#	}
+#	stages = {
+#		HMO_zombie_initial = { # These comments are for the previous stage, its the even that should fire when they are reached
+#			icon = GFX_situation_stage_1
+#			icon_background = GFX_situation_stage_frame_blue
+#			end = 120
+#		}
+#		HMO_zombie_study = { # Events: Additional Funding
+#			icon = GFX_situation_stage_1
+#			icon_background = GFX_situation_stage_frame_blue
+#			end = 540
+#		}
+#		HMO_zombie_origin_study = { # Cannot make a cure. Focus on findin the origin instead
+#			icon = GFX_situation_stage_1
+#			icon_background = GFX_situation_stage_frame_blue
+#			end = 600
+#		}
+#		HMO_zombie_suspicion = { # Zcom headquarters burn down or resproject is accused of being secretive
+#			icon = GFX_situation_stage_1
+#			icon_background = GFX_situation_stage_frame_blue
+#			end = 1100
+#		}
+#		HMO_zombie_the_truth = { # Resproject accused of creating the plague
+#			icon = GFX_situation_stage_1
+#			icon_background = GFX_situation_stage_frame_blue
+#			end = 1200
+#		}
+#	}
+#	# Base of 1 each month with end at 1200 for 1200 months = 100 years
+#	# Goes up by 0.3 (x4) if a zombie is being studied
+#	# Progress rate scales with mid-game start year, so it will, at default with the resproject planet, take the exact number of midgame years to finish. The effect should be that it takes slightly less than the number of midgame years to finish the situation.
+#	monthly_progress = {
+#		#total: 1200 Can use scripted variable above to fine tune progress
+#		base = 1
+#		# 50% increased speed if studying zombies on the world lab
+#		#modifier = {
+#		#	add = 0.5
+#		#	desc = HMO_zombies_studying_live_specimens
+#		#	any_playable_country = {
+#		#		has_country_flag = HMO_resproject_owner@root
+#		#		any_owned_planet = {
+#		#			has_building = HMO_building_resproject_headquarters
+#		#			# num_assigned_jobs = { job = <key>/unemployed value > 2 } # Zombie specimen jobs
+#		#		}
+#		#	}
+#		#}
+#		# 20% increased speed if you have a migration pact or have abducted xeno pops
+#		modifier = {
+#			add = 0.2
+#			desc = HMO_zombies_migration_access
+#			exists = owner
+#			owner = {
+#				has_country_flag = HMO_zombies_migration_access
+#			}
+#		}
+#		# 10% increased speed if increased funding
+#		modifier = {
+#			add = 0.1
+#			desc = HMO_zombies_increased_funding
+#			exists = owner
+#			owner = {
+#				has_country_flag = HMO_zombies_increased_funding
+#			}
+#		}
+#		# Very slow progress if no planet under resproject costudy
+#		modifier = {
+#			mult = 0.1
+#			desc = HMO_zombies_no_planet
+#			any_playable_country = {
+#				has_country_flag = HMO_resproject_owner@root
+#				NOT = {
+#					any_owned_planet = {
+#						has_building = HMO_building_resproject_headquarters
+#					}
+#				}
+#			}
+#		}
+#		# Scale the 100 years it takes at default to the amount of years until midgame
+#		modifier = {
+#			mult = value:HMO_zombie_sitation_speed_mult
+#		}
+#	}
+#	approach = { #Actually, the player will never see this Situations. Just adding one in in case one is required
+#		name = approach_HMO_study
+#		icon = GFX_situation_approach_this_is_fine
+#		icon_background = GFX_situation_approach_bg_yellow
+#		default = yes
+#		on_select = {
+#			custom_tooltip = deficit_approach_do_nothing_tooltip
+#		}
+#	}
+#}
+
+#####################################################
+# Situation For Ascensions For After The Apocalypse #
+#####################################################
+
+### Digitization - Turning people into virtual minds
+
+situation_MO_Hydra_digitization = {
+	category = neutral
+	picture = GFX_evt_synth_situation
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_ascension
+	on_progress_complete = {
+		custom_tooltip = "situation_digitization_outcome"
+		hidden_effect = {
+			situation_event = { id = HMO_ascension.2 }
+		}
+		set_situation_locked = yes
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 250
+			on_first_enter = {
+				situation_event = { id = synth.100 days = 1 }
+			}
+			custom_tooltip = "stage_digitization_effects"
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 500
+			on_first_enter = {
+				situation_event = { id = synth.200 }
+			}
+			custom_tooltip = "stage_digitization_effects"
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 750
+			on_first_enter = {
+				situation_event = { id = synth.300 }
+			}
+			custom_tooltip = "stage_digitization_effects"
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_blue
+			end = 1000
+			on_first_enter = {
+				situation_event = { id = synth.400 }
+			}
+			custom_tooltip = "stage_digitization_effects"
+		}
+	}
+	approach = {
+		name = situation_digitization_errorcorrecting
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = "approach_digitization_errorcorrecting_tt"
+		}
+		ai_weight = {
+			base = 0
+		}
+		modifier = {
+			country_engineering_tech_research_speed = -0.05
+		}
+	}
+	approach = {
+		name = situation_digitization_realtime
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_green
+		on_select = {
+			custom_tooltip = "approach_digitization_realtime_tt"
+		}
+		default = yes
+		ai_weight = {
+			base = 10
+		}
+		modifier = {
+			country_engineering_tech_research_speed = -0.10
+		}
+	}
+	approach = {
+		name = situation_digitization_overclocked
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = "approach_digitization_overclocked_tt"
+		}
+		ai_weight = {
+			base = 0
+		}
+		modifier = {
+			country_engineering_tech_research_speed = -0.15
+		}
+	}
+	on_monthly = {
+		events = {
+			synth.3 	# Full digitization of pops - situation is paused
+						# synth.3 is triggered by setting the digitization_ongoing flag
+			synth.5		# Random event pool
+			synth.105	# Stage 1 story event
+			synth.205	# Stage 2 story event
+			synth.305	# Stage 3 story event
+			synth.310	# Stage 3 story event
+			synth.405	# Stage 4 story event
+			HMO_ascension.440 # Liberation Day
+			HMO_cyber.450 # Liberation of Cities
+			
+		}
+	}
+	monthly_progress = { #On average, the situation should take about 7 years to complete
+		base = 10
+		# Modifiers are defined in tooltip order, most important first
+		modifier = {
+			mult = 1.2
+			desc = "situation_digitization_overclocked_approach_tt"
+			current_situation_approach = situation_digitization_overclocked
+		}
+		modifier = {
+			mult = 0.8
+			desc = "situation_digitization_errorcorrecting_approach_tt"
+			current_situation_approach = situation_digitization_errorcorrecting
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_synthetics_maintenance_protocols"
+			owner = { has_active_tradition = tr_synthetics_maintenance_protocols_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_synthetics_optimization_algorithms"
+			owner = { has_active_tradition = tr_synthetics_optimization_algorithms_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_synthetics_transubstatiation_synthesis"
+			owner = { has_active_tradition = tr_synthetics_transubstatiation_synthesis_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_synthetics_power_systems"
+			owner = { has_active_tradition = tr_synthetics_power_systems_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_synthetics_prefabricated_components"
+			owner = { has_active_tradition = tr_synthetics_prefabricated_components_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_synthetics_solid_state_actuators"
+			owner = { has_active_tradition = tr_synthetics_solid_state_actuators_situation }
+		}
+		modifier = {
+			mult = 1.25
+			desc = "tr_synthetics_finish"
+			owner = { has_active_tradition = tr_synthetics_finish_situation }
+		}
+		modifier = {
+			mult = 0.5
+			desc = "situation_kinesthetic_microfusion_tt"
+			has_situation_flag = kinesthetic_microfusion
+		}
+		modifier = {
+			mult = 0.75
+			desc = "situation_test_subject_lottery_tt"
+			has_situation_flag = test_subject_lottery
+		}
+		modifier = {
+			mult = 0.7
+			desc = "synth_negative_media_coverage_tt"
+			has_situation_flag = synth_negative_media_coverage
+		}
+		modifier = {
+			mult = 1.3
+			desc = "synth_positive_media_coverage_tt"
+			has_situation_flag = synth_positive_media_coverage
+		}
+		modifier = {
+			mult = 1.25
+			desc = "synth_resistance_fight"
+			has_situation_flag = synth_resistance_fight
+		}
+		modifier = {
+			mult = 0.75
+			desc = "synth_resistance_diplomacy"
+			has_situation_flag = synth_resistance_diplomacy
+		}
+		modifier = {
+			mult = 0.01
+			desc = "situation_digitization_ongoing_desc"
+			has_situation_flag = digitization_ongoing
+			owner = {
+				any_owned_planet = {
+					has_active_building = building_identity_complex
+				}
+			}
+		}
+		modifier = {
+			mult = 0.01
+			desc = "HMO_situation_liberation_ongoing_desc"
+			has_situation_flag = HMO_liberation_ongoing
+			owner = {
+				any_owned_planet = {
+					HMO_has_zombie_deposit = yes
+				}
+			}
+		}
+		modifier = {
+			mult = 0
+			desc = "situation_identity_complex_needed_desc"
+			owner = {
+				NOT = {
+					any_owned_planet = {
+						has_active_building = building_identity_complex
+					}
+				}
+			}
+		}
+		modifier = {
+			mult = 0
+			desc = "situation_digitization_pause_desc"
+			has_situation_flag = situation_digitization_pause
+		}
+	}
+	triggered_blocked_desc = {
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_planet = {
+						has_active_building = building_identity_complex
+					}
+				}
+			}
+		}
+		text = "situation_identity_complex_needed_desc"
+	}
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}
+
+### Cyberization - Outfitting citizens with cybernetics
+
+situation_MO_Hydra_cyberization = {
+	category = neutral
+	picture = GFX_evt_cyberization_1
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_ascension
+	on_progress_complete = {
+		custom_tooltip = "situation_cyberization_outcome"
+		hidden_effect = {
+			situation_event = { id = HMO_cyber.2 }
+		}
+		set_situation_locked = yes
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 250
+			on_first_enter = {
+				situation_event = { id = HMO_cyber.100 days = 1 }
+			}
+			custom_tooltip = "stage_cyberization_effects"
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 500
+			on_first_enter = {
+				situation_event = { id = HMO_cyber.200 }
+			}
+			custom_tooltip = "stage_cyberization_effects"
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 750
+			on_first_enter = {
+				situation_event = { id = HMO_cyber.300 }
+			}
+			custom_tooltip = "stage_cyberization_effects"
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_blue
+			end = 1000
+			on_first_enter = {
+				situation_event = { id = HMO_cyber.405 }
+			}
+			custom_tooltip = "stage_cyberization_effects"
+		}
+	}
+	approach = {
+		name = situation_cyberization_cautious
+		icon = GFX_situation_approach_research
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = "approach_cyberization_cautious_tt"
+		}
+		ai_weight = {
+			base = 0
+		}
+		modifier = {
+			country_engineering_tech_research_speed = -0.05
+		}
+	}
+	approach = {
+		name = situation_cyberization_streamlined
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+		on_select = {
+			custom_tooltip = "approach_cyberization_streamlined_tt"
+		}
+		default = yes
+		ai_weight = {
+			base = 10
+		}
+		modifier = {
+			country_engineering_tech_research_speed = -0.10
+		}
+	}
+	approach = {
+		name = situation_cyberization_overdrive
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = "approach_cyberization_overdrive_tt"
+		}
+		ai_weight = {
+			base = 0
+		}
+		modifier = {
+			country_engineering_tech_research_speed = -0.15
+		}
+	}
+	on_monthly = {
+		events = {
+			cyber.3		# Full cyberization of pops - situation is slowed
+						# cyber.3 is triggered by setting the cyberization_ongoing flag
+			cyber.4		# Limited cyberization of pops - situation is slowed
+						# cyber.4 is triggered by setting the cyberization_ongoing_limited flag
+			cyber.6		# Forced cyberization of pops - situation is slowed
+						# cyber.6 is triggered by setting the cyberization_ongoing_forced flag
+			HMO_cyber.5		# Random event pool
+			HMO_cyber.105	# Stage 1 story event
+			HMO_cyber.205	# Stage 2 story event
+			cyber.305	# Stage 3 story event
+			HMO_cyber.410	# Stage 4 story event
+			HMO_cyber.450 # Liberation of Cities
+		}
+	}
+	monthly_progress = { #On average, the situation should take about 7 years to complete
+		base = 10
+		# Modifiers are defined in tooltip order, most important first
+		modifier = {
+			mult = 1.2
+			desc = "situation_cyberization_overdrive_approach_tt"
+			current_situation_approach = situation_cyberization_overdrive
+		}
+		modifier = {
+			mult = 0.8
+			desc = "situation_cyberization_cautious_approach_tt"
+			current_situation_approach = situation_cyberization_cautious
+		}
+		modifier = {
+			mult = 1.1
+			desc = "civic_augmentation_bazaars"
+			owner = { has_valid_civic = civic_augmentation_bazaars }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_cybernetics_transubstantiation_synthesis"
+			owner = { has_active_tradition = tr_cybernetics_transubstantiation_synthesis_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_cybernetics_organ_harvesting"
+			owner = { has_active_tradition = tr_cybernetics_organ_harvesting_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_cybernetics_metabolic_reprocessing"
+			owner = { has_active_tradition = tr_cybernetics_metabolic_reprocessing_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_cybernetics_integrated_anatomy"
+			owner = { has_active_tradition = tr_cybernetics_integrated_anatomy_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_cybernetics_augmentation_overload"
+			owner = { has_active_tradition = tr_cybernetics_augmentation_overload_situation }
+		}
+		modifier = {
+			mult = 1.05
+			desc = "tr_cybernetics_modular_cybernetics"
+			owner = { has_active_tradition = tr_cybernetics_modular_cybernetics_situation }
+		}
+		modifier = {
+			mult = 1.25
+			desc = "tr_cybernetics_finish"
+			owner = { has_active_tradition = tr_cybernetics_finish_situation }
+		}
+		modifier = {
+			mult = 0.5
+			desc = "HMO_230_slowdown_tt"
+			has_situation_flag = HMO_230_slowdown
+		}
+		modifier = {
+			mult = 0.9
+			desc = "HMO_230_permanent_slowdown_tt"
+			has_situation_flag = HMO_230_permanent_slowdown
+		}
+		modifier = {
+			mult = 1.25
+			desc = "HMO_full_replacements_tt"
+			has_situation_flag = HMO_full_replacements
+		}
+		modifier = {
+			mult = 0.01
+			desc = "situation_cyberization_ongoing_desc"
+			OR = {
+				has_situation_flag = cyberization_ongoing
+				has_situation_flag = cyberization_ongoing_limited
+				has_situation_flag = cyberization_ongoing_forced
+			}
+			owner = {
+				any_owned_planet = {
+					has_active_building = building_augmentation_center
+				}
+			}
+		}
+		modifier = {
+			mult = 0.01
+			desc = "HMO_situation_liberation_ongoing_desc"
+			has_situation_flag = HMO_liberation_ongoing
+			owner = {
+				any_owned_planet = {
+					HMO_has_zombie_deposit = yes
+				}
+			}
+		}
+		modifier = {
+			mult = 0
+			desc = "situation_augmentation_center_needed_desc"
+			situation_progress >= 250
+			owner = {
+				NOT = {
+					any_owned_planet = {
+						has_active_building = building_augmentation_center
+					}
+				}
+			}
+		}
+		modifier = {
+			mult = 0
+			desc = "situation_cyberization_pause_desc"
+			has_situation_flag = situation_cyberization_pause
+		}
+	}
+	triggered_modifier = {
+		potential = {
+			has_situation_flag = HMO_armed_civilians_limited
+		}
+		army_defense_damage_mult = 0.05
+	}
+	triggered_modifier = {
+		potential = {
+			has_situation_flag = HMO_armed_civilians
+		}
+		army_defense_damage_mult = 0.25
+		country_alloys_produces_mult = -0.10
+	}
+	triggered_modifier = {
+		potential = {
+			has_situation_flag = HMO_maximum_firepower
+		}
+		army_defense_damage_mult = 0.25
+		army_collateral_damage_mult = 0.33
+	}
+	triggered_modifier = {
+		potential = {
+			has_situation_flag = HMO_rebuilders
+		}
+		deposit_blockers_cost_mult = -0.1
+		planet_district_city_build_speed_mult = 0.25
+	}
+	triggered_blocked_desc = {
+		trigger = {
+			OR = {
+				owner = { has_country_flag = augmentation_center_needed }
+				AND = {
+					situation_progress >= 250
+					owner = {
+						NOT = {
+							any_owned_planet = {
+								has_active_building = building_augmentation_center
+							}
+						}
+					}
+				}
+			}
+		}
+		text = "situation_augmentation_center_needed_desc"
+	}
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}
+
+# Unvaulted Terraforming
+HMO_wildworld_exploration_situation = {
+	picture = GFX_evt_tropical
+
+	start_value = 60
+	
+	category = positive
+
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+
+	on_progress_complete = {
+		custom_tooltip = HMO_wildworld_exploration_situation_completion_tooltip
+		hidden_effect = {
+			target = {
+				planet_event = { id = HMO_origin.8500 }
+			}
+			situation_event = { id = HMO_origin.8501 }
+		}
+	}
+	
+	on_abort = {
+		target = {
+			clear_blockers = yes
+		}
+	}
+	
+	on_start = {
+		set_variable = {
+			which = HMO_wildword_progress
+			value = 0
+		}
+	}
+	
+	on_monthly = {
+		events = {
+			HMO_origin.8300 # Blocker Removal
+			HMO_origin.8400 # Keppler Cage
+			HMO_origin.8475 # We need better tech
+		}
+	}
+	
+	# The situation is divided into 3 stages: Planning, Exploration and Clearing
+	# The first stage, planning, is about how you want to tackle the exploration: Should satelites aid (Cost a lot due to the keppler cage) or do we just send in explorers
+	# The second stage, exploration, is the actual exploration. The "Undiscovered Jungle" deposits are turned into random deposits as you explore (And you can gain random rewards)
+	#
+	# Actually: Use a variable and an event on_monthly, and let the variable tick up by 1(2) up to 10, with 10 exploring or clearing a blocker.
+	# 58 corresponds to 29 blockers to explore, and 29 to clear
+	# The homeworld starts with 29 "Unexplored Jungle" blockers that cannot be cleared but spawn special wildworld blockers when changed via the wildworld situation
+	# These wildworld blockers then needs to be cleared by the situation
+	# Alternatively, just do the 29 since that makes more sense.
+	stages = {
+		HMO_stage_plans = { # Initial stage
+			end = 350
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+		}
+	}
+
+	monthly_progress = {
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = HMO_approach_explore
+			add = 1
+		}
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = HMO_approach_slow_explore
+			add = 0.5
+		}
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = HMO_approach_no_explore
+			add = 0.05
+		}
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = HMO_approach_clear_jungle
+			add = 0.2
+		}
+		modifier = {
+			desc = HMO_keppler_cage_cleaned_up_tt
+			has_situation_flag = HMO_keppler_cage_cleaned_up
+			factor = 1.25
+		}
+		modifier = {
+			desc = HMO_origin.8475.tt
+			AND = {
+				has_situation_flag = HMO_8475_happened
+				target = {
+					count_deposits = {
+						type = d_dense_jungle
+						count > 6
+					}
+				}
+			}
+			factor = 0
+		}
+	}
+	
+	# We should 
+	approach = {
+		name = HMO_approach_explore
+		icon = GFX_situation_approach_HMO_magnifying_glass
+		icon_background = GFX_situation_approach_bg_green
+
+		on_select = {
+			custom_tooltip = HMO_approach_explore_tooltip
+		}
+		
+		modifier = {
+			country_unity_produces_mult = 0.1
+		}
+		
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 10
+			}
+			upkeep = {
+				trigger = {
+					owner = { is_gestalt = no }
+				}
+				consumer_goods = 10
+			}
+		}
+
+		ai_weight = {
+			base = 1
+		}
+	}
+	
+	# We should focus on other matters 50%
+	approach = {
+		name = HMO_approach_slow_explore
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_yellow
+
+		on_select = {
+			custom_tooltip = HMO_approach_slow_explore_tooltip
+		}
+		
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 5
+			}
+			upkeep = {
+				trigger = {
+					owner = { is_gestalt = no }
+				}
+				consumer_goods = 5
+			}
+		}
+
+		ai_weight = {
+			base = 5
+		}
+	}
+	
+	approach = {
+		name = HMO_approach_no_explore
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_yellow
+
+		on_select = {
+			custom_tooltip = HMO_approach_no_explore_tooltip
+		}
+		
+		modifier = {
+			country_unity_produces_mult = -0.2
+		}
+
+		ai_weight = {
+			base = 3
+		}
+	}
+	
+	approach = {
+		name = HMO_approach_clear_jungle
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_yellow
+
+		on_select = {
+			custom_tooltip = HMO_approach_clear_jungle_tooltip
+		}
+		
+		potential = {
+			has_situation_flag = HMO_8475_happened
+		}
+		
+		allow = {
+			owner = {
+				has_technology = tech_dense_jungle
+			}
+		}
+		
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 2
+			}
+			upkeep = {
+				trigger = {
+					owner = { is_gestalt = no }
+				}
+				consumer_goods = 2
+			}
+		}
+		
+		target_modifier = {
+			planet_clear_blocker_speed_mult = 1
+		}
+
+		ai_weight = {
+			base = 3
+		}
+	}
+	
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}
+
+### Transformation - Turning machines into other forms / Planned Obsolescence removes their taboo
+
+HMO_situation_planned_obsolescence = {
+	category = neutral
+	picture = GFX_evt_machine_sapience
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_ascension
+	on_progress_complete = {
+		custom_tooltip = situation_transformation_outcome
+		hidden_effect = {
+			situation_event = { id = HMO_origin.9300 }
+		}
+		set_situation_locked = yes
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 750
+			on_first_enter = {
+				situation_event = { id = HMO_origin.9050 days = 1 }
+			}
+			custom_tooltip = HMO_stage_1_effects
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 1000
+			on_first_enter = {
+				situation_event = { id = HMO_origin.9250 days = 1 }
+			}
+			custom_tooltip = HMO_stage_2_effects
+		}
+	}
+	approach = {
+		name = situation_transformation_errorcorrecting
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = approach_transformation_errorcorrecting_tt
+		}
+		ai_weight = {
+			base = 0
+		}
+	}
+	approach = {
+		name = situation_transformation_realtime
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_green
+		on_select = {
+			custom_tooltip = approach_transformation_realtime_tt
+		}
+		default = yes
+		ai_weight = {
+			base = 10
+		}
+		modifier = {
+			country_unity_produces_mult = -0.1
+		}
+	}
+	approach = {
+		name = situation_transformation_overclocked
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = approach_transformation_overclocked_tt
+		}
+		ai_weight = {
+			base = 0
+		}
+		modifier = {
+			country_unity_produces_mult = -0.2
+		}
+	}
+	on_monthly = {
+		events = {
+			HMO_origin.9100
+			HMO_origin.9150
+		}
+	}
+	monthly_progress = { #On average, the situation should take about 7 years to complete
+		base = 20
+		# Modifiers are defined in tooltip order, most important first
+		modifier = {
+			mult = 1.2
+			desc = "situation_transformation_overclocked"
+			current_situation_approach = situation_transformation_overclocked
+		}
+		modifier = {
+			mult = 0.8
+			desc = "situation_transformation_errorcorrecting"
+			current_situation_approach = situation_transformation_errorcorrecting
+		}
+		modifier = {
+			mult = 0
+			desc = "HMO_situation_homeworld_needed_desc"
+			situation_progress >= 250
+			owner = {
+				home_planet = {
+					owner = {
+						NOT = { is_same_empire = prevprev }
+					}
+				}
+			}
+			has_situation_flag = HMO_planned_obselescence_9100_happened # Tuning In / Finding the comment
+			NOT = { has_situation_flag = HMO_planned_obselescence_9250_happened } # Deciding whether or not to thaw the creators
+		}
+		modifier = {
+			mult = 0
+			desc = "HMO_situation_do_digsite_desc"
+			owner = {
+				home_planet = {
+					exists = archaeological_site
+					archaeological_site = {
+						is_site_completed = no
+					}
+				}
+			}
+		}
+		modifier = {
+			mult = 0
+			desc = "situation_transformation_pause_desc"
+			has_situation_flag = situation_transformation_pause
+		}
+	}
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}

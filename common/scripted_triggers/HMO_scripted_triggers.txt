@@ -1,0 +1,90 @@
+#	Example:
+#
+#	example_trigger = {
+#		is_country_type = default
+#		num_communications > 0
+#	}
+#
+#
+#	In a script file:
+#
+#	trigger = {
+#		example_trigger = yes
+#	}
+#
+
+HMO_is_banished_threat = {
+	OR = {
+		has_origin = HMO_origin_banished_threat
+		has_origin = HMO_origin_banished_threat_machines
+	}
+}
+
+HMO_is_apocalypse_origin_faction_allowed = {
+	OR = {
+		AND = {
+			days_passed > 30
+			has_origin = origin_HMO_apocalypse
+			NOT = { has_country_flag = HMO_insurgents_defeated }
+		}
+	}
+}
+
+HMO_has_insurgency_event = {
+	has_active_event = {
+		# Custom diplomacy screens:
+		HMO_origin.101 # Insurgent Menu
+		HMO_origin.102 # Insurgents Refuse To Speak
+	}
+}
+
+HMO_potential_candidate = {
+	OR = {
+		is_planet_class = pc_barren
+		is_planet_class = pc_barren_cold
+	}
+	is_terraforming_candidate = no
+	NOT = { has_planet_flag = HMO_unlimited_potential_moon }
+}
+
+HMO_has_zombie_deposit = {
+	OR = {
+		has_deposit = d_HMO_zombie_town_1
+		has_deposit = d_HMO_zombie_town_2
+		has_deposit = d_HMO_zombie_town_3
+		has_deposit = d_HMO_zombie_mine
+		has_deposit = d_HMO_zombie_farm
+		has_deposit = d_HMO_zombie_generator
+		has_deposit = d_HMO_zombie_factory
+	}
+}
+
+HMO_is_zombie_deposit = {
+	OR = {
+		is_deposit_type = d_HMO_zombie_town_1
+		is_deposit_type = d_HMO_zombie_town_2
+		is_deposit_type = d_HMO_zombie_town_3
+		is_deposit_type = d_HMO_zombie_mine
+		is_deposit_type = d_HMO_zombie_farm
+		is_deposit_type = d_HMO_zombie_generator
+		is_deposit_type = d_HMO_zombie_factory
+	}
+}
+
+HMO_is_zombie_deposit_town = {
+	OR = {
+		is_deposit_type = d_HMO_zombie_town_1
+		is_deposit_type = d_HMO_zombie_town_2
+		is_deposit_type = d_HMO_zombie_town_3
+	}
+}
+
+#HMO_has_wildworld_explored_blocker = {
+#	OR = {
+#		has_deposit = d_HMO_zombie_town_1
+#	}
+#}
+
+#HMO_has_wildworld_unexplored_blocker = {
+#	has_deposit = HMO_wildworld_unexplored_jungle
+#}

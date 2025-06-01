@@ -1,0 +1,24 @@
+#############################
+# Grand Archive - Specimens #
+#############################
+
+# Rarity: Common, Rare, Epic, Exceptionel
+# Production Boost: 2% / 4% / 6% / 8%
+# Amenities: x / 5 / x / 7
+# Trade Value:
+# Unity / Research: x / 10 /20 /40
+
+HMO_ancient_idol = {
+	icon = "GFX_specimen_HMO_ancient_idol"
+	type = historical_item #xeno_geology
+
+	inline_script = {
+		script = "grand_archive/set_specimen_rarity"
+		RARITY = common
+	}
+
+	triggered_country_modifier = {
+		mult = value:historical_item_specimens_modifiers_mult #value:xeno_geology_specimens_modifiers_mult
+		planet_jobs_unity_produces_mult = 0.02
+	}
+}

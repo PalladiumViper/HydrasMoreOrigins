@@ -1,0 +1,5 @@
+# corsairmarks
+has_hydras_more_origins_active = {
+    optimize_memory
+    always = yes
+}

@@ -1,0 +1,15 @@
+# Add global variables here that will be available in all script files.
+# @something = 42
+# They can be overridden in each normal script file.
+
+@has_mc_hydra = 0
+
+@has_bug_branch = 0
+
+@has_more_corporate_authorities = 0
+
+@has_eca_funefork = 0
+
+@HAS_FHMP = 0
+
+@has_planetary_diversity = 0

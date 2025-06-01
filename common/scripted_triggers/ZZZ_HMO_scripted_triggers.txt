@@ -1,0 +1,9 @@
+# For Merger
+is_HMO_apocalyptic_city = { is_planet_class = HMO_pc_apocalyptic_city }
+
+is_HMO_insurgency = {
+	OR = {
+		has_origin = origin_HMO_insurgents
+		has_origin = origin_HMO_apocalypse
+	}
+}

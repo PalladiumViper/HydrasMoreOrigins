@@ -1,0 +1,245 @@
+HMO_surviving_infrastructure = {
+	planet_districts_cost_mult = -0.25
+	icon = "gfx/interface/icons/planet_modifiers/pm_factory.dds"
+}
+
+HMO_insurgent_activity = {
+	icon = "gfx/interface/icons/planet_modifiers/HMO_insurgency_modifier.dds"
+	icon_frame = 3
+	pop_happiness = -0.05
+	planet_stability_add = -5
+	#job_HMO_insurgent_soldier_add = 1
+}
+
+HMO_insurgent_stabilized = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_unknown.dds" # Change to the loyalists faction event picture
+	icon_frame = 1
+	planet_stability_add = 10
+	pop_happiness = 0.1
+}
+
+HMO_insurgent_base = {
+	icon = "gfx/interface/icons/planet_modifiers/HMO_insurgency_modifier.dds"
+	icon_frame = 3
+	planet_stability_add = -10
+	#job_HMO_insurgent_soldier_per_pop = 0.1 # 1 per. 10 pops
+}
+
+HMO_insurgent_control = {
+	icon = "gfx/interface/icons/planet_modifiers/HMO_insurgency_modifier.dds"
+	icon_frame = 3
+	pop_happiness = -0.1
+	planet_stability_add = -10
+}
+
+HMO_insurgent_rumors = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_smugglers_in_bar.dds"
+	icon_frame = 3
+	pop_happiness = -0.01
+}
+
+HMO_society_breakdown = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
+	icon_frame = 3
+	pop_happiness = -0.2
+	planet_stability_add = -20
+}
+
+HMO_major_society_breakdown = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
+	icon_frame = 3
+	pop_happiness = -0.6
+	planet_stability_add = -50
+}
+
+HMO_insurgent_apology = {
+	pop_happiness = 0.05
+}
+
+HMO_insurgency_defeated_spared = {
+	ship_fire_rate_mult = 0.1
+	country_naval_cap_mult = 0.25
+}
+
+HMO_insurgency_defeated_imprisoned = {
+	country_unity_produces_mult = 0.25
+	pop_happiness = 0.05
+}
+
+HMO_insurgency_defeated_executed = {
+	country_unity_produces_mult = 0.25
+	country_commander_cap_add = 2
+}
+
+HMO_insurgency_defeated_united = {
+	country_unity_produces_mult = 0.25
+	pop_happiness = 0.05
+}
+
+HMO_insurgency_defeated_peace = {
+	ship_fire_rate_mult = 0.05
+	country_naval_cap_mult = 0.1
+}
+
+HMO_a_new_hope = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_unknown.dds"
+	icon_frame = 1
+	planet_stability_add = 20
+}
+
+HMO_insurgent_propaganda = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_smugglers_in_bar.dds"
+	icon_frame = 3
+	pop_happiness = -0.05
+}
+
+HMO_authoritarian_propaganda = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_unknown.dds"
+	icon_frame = 1
+	planet_stability_add = 5
+}
+
+HMO_recent_plot_foiled = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_victorious_army.dds"
+	icon_frame = 1
+}
+
+HMO_organized_crime = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_smugglers_in_bar.dds"
+	icon_frame = 2
+}
+
+HMO_increasing_tensions = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_planet_separatist_supporter.dds"
+	icon_frame = 3
+	planet_stability_add = -5
+	pop_happiness = -0.05
+}
+
+HMO_protests = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_unrest.dds"
+	icon_frame = 3
+	planet_stability_add = -10
+	pop_happiness = -0.20
+}
+
+HMO_insurgency_uprising_ai_buff = {
+	country_ai_uprising_minerals_produces_add = 100
+	country_ai_uprising_energy_produces_add = 100
+	country_naval_cap_mult = 10
+}
+
+HMO_insurgency_uprising_player_buff = {
+	country_naval_cap_mult = 10
+}
+
+#######################
+# Unvaulted Modifiers #
+#######################
+
+HMO_unvaulted_reward_modifier = {
+	terraforming_cost_mult = -0.5
+}
+
+#####################
+# Born of Necessity #
+#####################
+
+HMO_dyson_swarm_decorative_modifier = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_dyson_swarm_3.dds"
+}
+
+########################
+# After the Apocalypse #
+########################
+
+HMO_zombie_panic = {
+	planet_stability_mult = -0.1
+}
+
+HMO_personal_encryption = {
+	intel_encryption_add = 1
+}
+
+HMO_squashed_rumors = {
+	planet_stability_add = 10
+}
+
+HMO_limited_ota = {
+	intel_encryption_add = 1
+}
+
+HMO_backdoor = {
+	planet_crime_mult = -0.25
+	espionage_hostile_operation_difficulty_mult = -0.5
+}
+
+HMO_virus_in_circulation = {
+	pop_happiness = -0.05
+}
+
+HMO_mandated_firewalls = {
+	intel_encryption_add = 1
+}
+
+# Cybernetics
+
+HMO_augment_center_initiative = {
+	planet_building_augmentation_center_build_speed_mult = 0.5
+}
+
+HMO_soldiers_are_better = {
+	pop_citizen_happiness = -0.05
+}
+
+HMO_unhappy_soldiers = {
+	planet_soldiers_unity_upkeep_add = 1
+}
+
+HMO_civilian_focus = {
+	planet_jobs_worker_produces_mult = 0.05
+}
+
+HMO_army_focus = {
+	army_health = 0.25
+	army_damage_mult = 0.25
+}
+
+HMO_scientist_focus = {
+	planet_researchers_produces_mult = 0.1
+}
+
+HMO_zombie_city_permits = {
+}
+
+#############
+# Wildworld #
+#############
+
+#HMO_keppler_cage_asteroids = {
+#	icon = "gfx/interface/icons/planet_modifiers/pm_asteroid_belt.dds"
+#	planet_resettlement_unemployed_mult = -0.9
+#	pop_resettlement_cost_mult = 4
+#}
+
+HMO_keppler_cage_scrap = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_ruined_system.dds"
+	planet_resettlement_unemployed_mult = -0.9
+	pop_resettlement_cost_mult = 4
+}
+
+HMO_keppler_cage_country = {
+	shipclass_colonizer_build_cost_mult = 1
+}
+
+########################
+# Planned Obsolescence #
+########################
+
+#HMO_planned_obsolescence_forgiven = {
+#	custom_tooltip = HMO_planned_obsolescence_forgiven_tt
+#}
+
+HMO_planned_obsolescence_frozen_creators = {
+	country_unity_produces_mult = 0.33
+}

@@ -1,0 +1,9 @@
+NOR = {
+	text =  MC_Hydra_civic_tooltip_not_sapient_eater
+	value = MC_Hydra_civic_sapient_eaters
+	value = MC_Hydra_civic_sapient_eaters_corporate
+}
+NOR = {
+	value = MC_Hydra_civic_world_crackers
+	value = MC_Hydra_civic_family_business_corporate
+}

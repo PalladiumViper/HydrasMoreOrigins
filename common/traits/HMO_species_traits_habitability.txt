@@ -1,0 +1,109 @@
+####################
+# NOTE FOR MODDERS #
+####################
+# Matching to planet classes are done via name matching (trait_PLANET_CLASS_KEY_preference) or using setting ideal_planet_class.
+# ideal_planet_class = pc_desert # Must be set and match an existing planet class or it will not be treated as a habitability trait. Note that only one trait
+####################
+
+HMO_trait_ancient_organism = {
+	cost = 0
+	potential_crossbreeding_chance = 0.33
+	initial = no
+	randomized = no
+	species_potential_add = {
+		always = no
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		pc_nuked_habitability = 0.7
+		leader_lifespan_add = 10
+	}
+	slave_cost = {
+		energy = 500
+	}
+}
+
+HMO_trait_ancient_configuration = {
+	cost = 0
+	category = robotic
+
+	initial = no
+	randomized = no
+
+	species_potential_add = {
+		always = no
+	}
+
+	allowed_archetypes = { MACHINE ROBOT }
+
+	modifier = {
+		pc_nuked_habitability = 0.7
+		leader_lifespan_add = 10
+	}
+	slave_cost = {
+		energy = 500
+	}
+}
+
+HMO_trait_planned_obsolescence = {
+	cost = 0
+	category = robotic
+
+	initial = no
+	randomized = no
+	
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_remove = {
+		always = no
+	}
+	
+	opposites = { trait_robot_immortality }
+
+	allowed_archetypes = { MACHINE ROBOT }
+
+	modifier = {
+		leader_lifespan_add = 3900
+		leader_lifespan_mult = -0.99
+	}
+	
+	custom_tooltip = HMO_trait_planned_obsolescence_tt
+	
+	slave_cost = {
+		energy = 500
+	}
+}
+
+HMO_trait_planned_immortality = {
+	cost = 0
+	category = robotic
+
+	initial = no
+	randomized = no
+	
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_remove = {
+		always = no
+	}
+	
+	opposites = { trait_robot_immortality }
+
+	allowed_archetypes = { MACHINE ROBOT }
+
+	immortal_leaders = yes
+	
+	custom_tooltip = trait_robot_immortality_tt
+	
+	slave_cost = {
+		energy = 500
+	}
+}

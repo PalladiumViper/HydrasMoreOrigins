@@ -1,0 +1,118 @@
+# Democratic Final Event
+# Fired by: event
+country_event = {
+	id = HMO_ascension.$EVENT_ID$
+	title = "HMO_ascension.$EVENT_ID$.name"
+	desc = {
+		trigger = {
+			check_variable = {
+				which = "HMO_encryption_power"
+				value = HMO_zcom_power
+			}
+		}
+		text = HMO_ascension.$EVENT_ID$.desc.normal
+	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = "HMO_zcom_power"
+				value < HMO_encryption_power
+			}
+		}
+		text = HMO_ascension.$EVENT_ID$.desc.encryption
+	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = "HMO_encryption_power"
+				value = HMO_zcom_power
+			}
+		}
+		text = HMO_ascension.$EVENT_ID$.desc.zcom
+	}
+	picture = GFX_evt_virtual_world
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	trigger = {
+		inline_script = {
+			script = finalAscensionEventIDLinks/HMO_Ascension_$EVENT_ID$
+			HAS_BUG = @has_bug_branch
+		}
+	}
+	
+	option = {
+		trigger = {
+			check_variable = {
+				which = "HMO_encryption_power"
+				value >= HMO_zcom_power
+			}
+		}
+		name = HMO_ascension.$EVENT_ID$.b
+		end_event_chain = HMO_synthshock_chain
+		custom_tooltip = HMO_ascension.$EVENT_ID$.b.tt
+		set_country_flag = HMO_encryption_authority
+		set_country_flag = HMO_stable_zombie_society
+		hidden_effect = {
+			advanced_authority_refresh = yes
+			ruler = {
+				unassign_leader = this
+			}
+			set_leader = HMO_original_leader@this
+			ruler = {
+				change_species = prev.species
+				add_skill_without_trait_selection = 4 # event_target:HMO_zcom_ruler.trigger:has_skill
+				add_trait = leader_trait_synthetic
+			}
+			refresh_portraits = all
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		trigger = {
+			check_variable = {
+				which = "HMO_encryption_power"
+				value <= HMO_zcom_power
+			}
+		}
+		name = HMO_ascension.$EVENT_ID$.a
+		end_event_chain = HMO_synthshock_chain
+		custom_tooltip = HMO_ascension.$EVENT_ID$.a.tt
+		set_country_flag = HMO_infinite_martial_law
+		hidden_effect = {
+			advanced_authority_refresh = yes
+			kill_exiled_leader = HMO_original_leader@this
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		name = HMO_ascension.$EVENT_ID$.c
+		end_event_chain = HMO_synthshock_chain
+		custom_tooltip = HMO_ascension.$EVENT_ID$.c.tt
+		trigger = { is_ai = no }
+		hidden_effect = {
+			set_country_flag = HMO_normal_authority
+			advanced_authority_refresh = yes
+			ruler = {
+				save_event_target_as = HMO_zcom_ruler
+				unassign_leader = this
+			}
+			set_leader = HMO_original_leader@this
+			ruler = {
+				change_species = prev.species
+				add_skill_without_trait_selection = 4 # event_target:HMO_zcom_ruler.trigger:has_skill
+				add_trait = leader_trait_synthetic
+			}
+		}
+	}
+	
+	after = {
+		clear_global_event_target = HMO_ruler@this
+	}
+}

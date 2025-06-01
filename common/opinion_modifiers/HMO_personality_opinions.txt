@@ -1,0 +1,42 @@
+##########################################################################
+# HARD FIXED STATE - DO NOT REMOVE OR RENAME ANY OF THESE
+##########################################################################
+
+opinion_insurgents_kills_envoys = {
+	opinion = {
+		base = -50
+	}
+
+	decay = {
+		base = 0.5
+		modifier = {
+			factor = value:negative_opinion_decay_rate
+		}
+	}
+}
+
+HMO_opinion_insurgency_originator = {
+	opinion = {
+		base = -1000
+	}
+
+	decay = {
+		base = 0.5
+		modifier = {
+			factor = value:negative_opinion_decay_rate
+		}
+	}
+}
+
+HMO_opinion_insurgency_uprising = {
+	opinion = {
+		base = -1000
+	}
+
+	decay = {
+		base = 0.5
+		modifier = {
+			factor = value:negative_opinion_decay_rate
+		}
+	}
+}

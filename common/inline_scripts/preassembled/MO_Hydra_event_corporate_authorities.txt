@@ -1,0 +1,8 @@
+inline_script = {
+	script = comptriggers/MO_Hydra_corporate_authorities
+	HAS_BUG = @has_bug_branch
+	HAS_FUN = @has_eca_funefork
+	HAS_MCA = @has_more_corporate_authorities
+	VALUE = has_authority
+	GATE = $GATE$
+}

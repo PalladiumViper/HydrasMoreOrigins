@@ -1,0 +1,302 @@
+##############################
+# Loyalist Faction
+##############################
+
+HMO_loyalist = {
+	election_header = "GFX_faction_header_yellow"
+	guiding_ethic = ethic_egalitarian
+	use_guiding_ethic_as_pop_filter = no #this means that the faction will let pops that aren't egalitarian in too
+
+	persistent_faction = yes
+	can_rename = no
+	unique = yes
+	support_multiplier = 1
+
+	resources = {
+		category = pop_factions
+		produces = {
+			unity = 1 # Double normal factions
+		}
+	}
+	
+	extortion_resource = {
+		category = pop_factions
+		produces = {
+			alloys = @faction_base_output
+			mult = @faction_extortion_alloys_ratio
+		}
+	}
+
+	is_potential = {
+		# is_faction_allowed = yes
+		HMO_is_apocalypse_origin_faction_allowed = yes
+		has_faction = HMO_insurgent
+	}
+
+	parameters = {
+		empire = {
+			type = country
+			valid_objects = {
+				is_same_value = root
+			}
+		}
+	}
+
+	can_join_pre_triggers = {
+		is_enslaved = no
+		is_being_purged = no
+	}
+
+	can_join_faction = {
+		is_shackled_robot = no
+		can_think = yes
+	}
+
+	attraction = {
+		base = 100
+
+		# The more happy, the more likely they are to join the loyalists
+		modifier = {
+			factor = 1.25
+			exists = from
+			happiness > 0.75
+		}
+
+		modifier = {
+			factor = 1.25
+			exists = from
+			happiness > 0.5
+		}
+		
+		modifier = {
+			factor = 0.75
+			exists = from
+			happiness < 0.5
+		}
+		
+		modifier = {
+			factor = 0.75
+			exists = from
+			happiness < 0.25
+		}
+		
+		modifier = {
+			factor = 0.05
+			exists = from
+			happiness < 0.01
+		}
+
+		# These traits make people more likely to join the loyalists
+		modifier = {
+			factor = 1.25
+			OR = {
+				has_trait = trait_conformists
+				has_trait = trait_traditional
+			}
+		}
+		
+		modifier = { # These traits make people less likely to join the loyalists
+			factor = 0.75
+			OR = {
+				has_trait = trait_unruly
+				has_trait = trait_quarrelsome
+				has_trait = trait_deviants
+			}
+		}
+	}
+
+	leader = {
+		base = 100
+
+		modifier = {
+			factor = 0.0
+			OR = {
+				leader_class = official
+				leader_class = scientist
+			}
+		}
+
+		modifier = {
+			factor = 0.0
+			is_event_leader = yes
+		}
+	}
+
+	demand = {
+		title = "LOYALIST_FOUND_WEAPONS"
+		unfulfilled_title = "LOYALIST_FOUND_WEAPONS_UNFULFILLED"
+		desc = "LOYALIST_FOUND_WEAPONS_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				has_country_flag = HMO_found_insurgency_weapons
+			}
+		}
+	}
+
+	demand = { # Loyalists are happy if enough people are loyalists
+		title = "LOYALIST_MANY_POPS"
+		unfulfilled_title = "LOYALIST_FEW_POPS"
+		desc = "LOYALIST_POPS_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			support >= 0.1
+		}
+
+		trigger = {
+			support >= 0.25
+		}
+	}
+
+	demand = { # Loyalists don't like having few members as it means they wont be able to defeat the insurgency
+		title = "LOYALIST_VERY_WEAK"
+		unfulfilled_title = "LOYALIST_VERY_WEAK"
+		desc = "LOYALIST_VERY_WEAK_DESC"
+
+		unfulfilled_effect = -10
+		fulfilled_effect = 0.001
+
+		potential = {
+			support < 0.1
+		}
+
+		trigger = {
+			support >= 0.1
+		}
+	}
+	
+	demand = { # Loyalists don't like when insurgency have occupied planets
+		title = "LOYALIST_NO_OCCUPIED_PLANETS"
+		unfulfilled_title = "LOYALIST_OCCUPIED_PLANETS"
+		desc = "LOYALIST_OCCUPIED_PLANETS_DESC"
+
+		unfulfilled_effect = -10
+		fulfilled_effect = 20
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_planet = {
+						has_planet_flag = HMO_insurgent_control
+					}
+				}
+			}
+		}
+	}
+	
+	demand = { # Loyalists don't like when insurgency have bases
+		title = "LOYALIST_BASE_NOT_EXISTS"
+		unfulfilled_title = "LOYALIST_BASE_EXISTS"
+		desc = "LOYALIST_BASE_EXISTS_DESC"
+
+		unfulfilled_effect = -10
+		fulfilled_effect = 10
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_planet = {
+						has_modifier = HMO_insurgent_base
+					}
+				}
+			}
+		}
+	}
+	
+	demand = { # Loyalists like destroying insurgency bases
+		title = "LOYALIST_BASE_DESTROYED"
+		unfulfilled_title = "LOYALIST_BASE_DESTROYED_UNFULFILLED"
+		desc = "LOYALIST_BASE_DESTROYED_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_country_flag = HMO_insurgent_base_destroyed
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_country_flag = HMO_insurgent_base_destroyed
+			}
+		}
+	}
+	
+	demand = { # Loyalists don't like when there's insurgent activity
+		title = "LOYALIST_FREE_PLANET"
+		unfulfilled_title = "LOYALIST_ALL_PLANETS_AFFECTED"
+		desc = "LOYALIST_FREE_PLANET_DESC"
+
+		unfulfilled_effect = -0.001
+		fulfilled_effect = 5
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				any_owned_planet = {
+					NOT = { has_modifier = HMO_insurgent_activity }
+				}
+			}
+		}
+	}
+	
+	demand = { # Loyalists don't like when there's insurgent activity
+		title = "LOYALIST_STABLE_PLANET"
+		unfulfilled_title = "LOYALIST_NO_STABLE_PLANETS"
+		desc = "LOYALIST_STABLE_PLANET_DESC"
+
+		unfulfilled_effect = -0.001
+		fulfilled_effect = 5
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				any_owned_planet = {
+					has_modifier = HMO_insurgent_stabilized
+				}
+			}
+		}
+	}
+
+	on_create = {
+		pop_faction_event = { id = HMO_origin.5 }
+		owner = {
+			capital_scope = {
+				if = {
+					limit = { has_modifier = HMO_a_new_hope }
+					remove_modifier =  HMO_a_new_hope
+				}
+			}
+		}
+	}
+
+	on_destroy = {
+	}
+}

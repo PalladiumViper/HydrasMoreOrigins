@@ -1,0 +1,26 @@
+### Insurgency
+
+war_name_parts_list = {
+	key = "HMO_insurgency_war_names"
+	parts = {
+		HMO_insurgency_uprising_war = 1
+	}
+}
+
+war_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 999
+			using_war_goal = {
+				type = wg_HMO_insurgency_uprising
+				owner = attacker
+			}
+			attacker = {
+			}
+			defender = {
+			}
+		}
+	}
+	format = "{[This.MainDefender.GetAdj] {<HMO_insurgency_war_names>}}"
+}

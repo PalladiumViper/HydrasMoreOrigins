@@ -1,0 +1,165 @@
+##############################
+# Insurgent Faction
+##############################
+
+HMO_insurgent = {
+	election_header = "GFX_faction_header_yellow"
+	guiding_ethic = ethic_egalitarian
+	visual_ethic = "HMO_insurgent_faction_icon"
+	use_guiding_ethic_as_pop_filter = no #this means that the faction will let pops that aren't egalitarian in too
+
+	#persistent_faction = yes
+	can_rename = no
+	unique = yes
+	support_multiplier = 1
+
+	resources = {
+		category = pop_factions
+		#produces = {
+		#	unity = 0.5
+		#}
+	}
+	
+	extortion_resource = {
+		category = pop_factions
+		produces = {
+			alloys = @faction_base_output
+			mult = @faction_extortion_alloys_ratio
+		}
+	}
+	
+	is_potential = {
+		# is_faction_allowed = yes
+		HMO_is_apocalypse_origin_faction_allowed = yes
+	}
+
+	parameters = {
+		empire = {
+			type = country
+			valid_objects = {
+				is_same_value = root
+			}
+		}
+	}
+
+	can_join_pre_triggers = {
+		is_enslaved = no
+		is_being_purged = no
+	}
+
+	can_join_faction = {
+		is_shackled_robot = no
+		can_think = yes
+	}
+
+	attraction = {
+		base = 125
+
+		# The more unhappy, the more likely they are to join the insurgency
+		modifier = {
+			factor = 0
+			exists = from
+			happiness > 0.99
+		}
+		
+		modifier = {
+			factor = 0.75
+			exists = from
+			happiness > 0.75
+		}
+
+		modifier = {
+			factor = 0.75
+			exists = from
+			happiness > 0.5
+		}
+		
+		modifier = {
+			factor = 1.25
+			exists = from
+			happiness < 0.5
+		}
+		
+		modifier = {
+			factor = 1.25
+			exists = from
+			happiness < 0.25
+		}
+
+		modifier = { # These traits make people less likely to join the insurgency
+			factor = 0.75
+			OR = {
+				has_trait = trait_docile
+				has_trait = trait_conformists
+				has_trait = trait_traditional
+			}
+		}
+		
+		modifier = { # traits that make people distrustful makes them more likely to join the insurgency
+			factor = 1.25
+			OR = {
+				has_trait = trait_unruly
+				has_trait = trait_quarrelsome
+				has_trait = trait_deviants
+			}
+		}
+		
+		modifier = { # Non-citizens are more likely to join the insurgency
+			factor = 1.25
+			OR = {
+				NOT = { has_citizenship_type = { type = citizenship_full } }
+			}
+		}
+	}
+
+	leader = {
+		base = 0
+	}
+
+	demand = {
+		title = "HMO_INSURGENT_DEMAND_POWER"
+		unfulfilled_title = "HMO_INSURGENT_DEMAND_POWER"
+		desc = "HMO_INSURGENT_DEMAND_POWER_DESC"
+
+		fulfilled_effect = -100
+		unfulfilled_effect = -100
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			always = no
+		}
+	}
+
+	on_create = {
+		pop_faction_event = { id = HMO_origin.4 }
+		owner = {
+			capital_scope = {
+				add_modifier = {
+					modifier = HMO_a_new_hope
+					days = -1
+				}
+			}
+		}
+		#save_global_event_target_as = HMO_insurgent_faction_getname
+		#random_country = {
+		#	limit = { has_country_flag = HMO_insurgency@prev.owner }
+		#	set_name = random
+		#}
+		#event_target:insurgent_country = { set_name = random } #Didn't work
+	}
+
+	on_destroy = {
+		#if years passed is less than 30, get an event that fires in 30 years, and can only trigger if insurgents are not defeated (so if they reform and die again after the 30-year marker, it won't trigger). This event says that we are probably free from the insurgents
+		#if years passed is more than 30, get an event that says the insurgents fracture and die out
+		#pop_faction_event = { id = HMO_origin.4 } # Add an event that describes how the group falls apart
+		owner = {
+			if = {
+				limit = { NOT = { has_country_flag = HMO_insurgency_cannot_be_defeated } }
+				country_event = { id = HMO_origin.600 }
+			}
+		}
+	}
+}
