@@ -1,0 +1,4 @@
+inline_script = {
+	script = MO_Hydra_toggle_$HAS_MOD$
+	INLINE = $INLINE$
+}

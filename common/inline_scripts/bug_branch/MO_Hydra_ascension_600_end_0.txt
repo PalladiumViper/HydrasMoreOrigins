@@ -1,0 +1,1 @@
+	country_event = { id = HMO_ascension.505 }

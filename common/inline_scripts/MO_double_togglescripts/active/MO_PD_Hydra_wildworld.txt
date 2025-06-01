@@ -1,0 +1,4 @@
+starting_colony = pc_pd_wet_superhabitable
+habitability_preference = pc_pd_wet_superhabitable
+
+description = "origin_HMO_PD_wildworld_effects"

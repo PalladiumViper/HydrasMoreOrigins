@@ -1,0 +1,221 @@
+## Possible Deposit Variables ##
+# resources, resource and amount
+# potential trigger (planet scope)
+# blocked_modifier - applied to planet
+# planet_modifier - applied to planet always
+# station = station class in orbit to gather
+
+#d_HMO_wildworld_dark_forest = {
+#	time = 450
+#
+#	is_for_colonizable = yes
+#	category = deposit_cat_blockers_natural
+#
+#	can_be_cleared = {
+#		custom_tooltip = {
+#			fail_text = has_ranger_lodge
+#			planet = {
+#				NOT = { has_building = building_ranger_lodge }
+#			}
+#		}
+#		custom_tooltip = {
+#			text = d_HMO_wildworld_dark_forest_tooltip
+#			exists = owner
+#			owner = {
+#				has_technology = tech_dense_jungle
+#			}
+#		}
+#	}
+#
+#	resources = {
+#		category = deposit_blockers_natural
+#		cost = {
+#			energy = 1000
+#		}
+#	}
+#
+#	potential = {
+#		always = no
+#	}
+#
+#	planet_modifier = {
+#		planet_max_districts_add = -1
+#	}
+#
+#	triggered_planet_modifier = {
+#		potential = {
+#			exists = owner
+#			owner = { has_civic = civic_environmentalist }
+#		}
+#		planet_rangers_food_produces_add = @ranger_large_production
+#	}
+#
+#	inline_script = deposits/ai_weight_natural_blocker
+#
+#	drop_weight = {
+#		weight = 0
+#	}
+#}
+
+HMO_wildworld_unexplored_jungle = {
+
+	icon = HMO_d_dense_jungle
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = HMO_blocker_needs_to_be_explored
+			always = no
+		}
+	}
+	
+	potential = {
+		always = no
+	}
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	on_cleared = {
+		#custom_tooltip = HMO_wildworld_unexplored_jungle_tt
+		hidden_effect = {
+			planet = { fire_on_action = { on_action = HMO_wildworld_exploration_events } }
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+# Decrepit Dwellings vault-style
+d_HMO_isolated_village = {
+	icon = d_tribal_settlement
+	time = 120
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			if = {
+				limit = {
+					any_owned_pop = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop = no
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop = no
+					}
+					root = {
+						create_pop = {
+							species = prev
+						}
+					}
+				}
+			}
+			else = {
+				random_owned_pop = {
+					root = {
+						create_pop = {
+							species = prev
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = d_decrepit_dwellings_custom_tooltip
+	}
+
+	inline_script = deposits/ai_weight_pop_creating_blocker
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+HMO_d_idyllic_valley = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_alien_pets_deposit
+
+	planet_modifier = {
+		district_farming_max = 2
+		planet_jobs_society_research_produces_mult = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 2
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+HMO_d_old_ruins = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_ruins_small
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			minor_artifacts = 1
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+HMO_d_werediran_tower = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = HMO_d_werediran_tower
+
+	inline_script = {
+		script = comptriggers/MO_Hydra_arbitrary
+		CODE = "triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = { has_modifier = FHMP_werediran_signal }
+			}
+			modifier = {
+				planet_jobs_produces_mult = 0.08
+			}
+		}"
+		HAS_MOD = @HAS_FHMP
+	}
+	
+	country_modifier = {
+		intel_encryption_add = 1
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}

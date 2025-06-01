@@ -1,0 +1,59 @@
+# Fired by: event
+country_event = { # Democratic
+	id = HMO_cyber.$EVENT_ID$
+	title = "HMO_cyber.$EVENT_ID$.name"
+	desc = HMO_cyber.$EVENT_ID$.desc
+	picture = GFX_evt_cyberization_1
+	show_sound = event_cityscape
+	location = from
+	event_chain = futureshock_chain
+	is_triggered_only = yes
+
+	trigger = {
+		inline_script = {
+			script = finalAscensionEventIDLinks/HMO_Ascension_$EVENT_ID$
+			HAS_BUG = @has_bug_branch
+		}
+	}
+
+	immediate = {
+		begin_event_chain = {
+			event_chain = futureshock_chain
+			target = this
+		}
+	}
+	option = { # Zcom
+		name = HMO_cyber.$EVENT_ID$.a
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		custom_tooltip = HMO_cyber.$EVENT_ID$.a.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value = 2 # The first event is more impactful
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Zombie
+		name = HMO_cyber.$EVENT_ID$.b
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		custom_tooltip = HMO_cyber.$EVENT_ID$.b.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_cyber_zombie_power"
+				value = 2 # The first event is more impactful
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = HMO_cyber.600 days = 180 random = 90 }
+		}
+	}
+}

@@ -1,0 +1,15 @@
+spriteTypes = {	
+	### RECRUITMENT MESSAGE ICONS ###
+	
+	spriteType = {
+		name = "GFX_HMO_red_flag"
+		textureFile = "gfx/interface/icons/message/HMO_red_occupation_flag.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+	
+	spriteType = {
+		name = "GFX_HMO_green_flag"
+		textureFile = "gfx/interface/icons/message/HMO_green_occupation_flag.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+}

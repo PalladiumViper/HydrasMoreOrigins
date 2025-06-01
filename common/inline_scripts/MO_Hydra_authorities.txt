@@ -1,0 +1,1 @@
+inline_script = MO_Hydra_BUG_authorities_$HAS_MOD$

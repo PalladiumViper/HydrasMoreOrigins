@@ -1,0 +1,1007 @@
+###
+# FROM is the actor ie the initiator of the diplomatic action
+# ROOT is the recipient of the diplomatic action
+
+greetings = {
+
+	### From Banished Threat to Remnants
+	
+	# Generic Hostile Greeting from Banished Threat to Remnants (Remnants sees this) when none are gestalts
+	HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_same_species = FROM
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+				NOT = { has_country_flag = HMO_ancient_rival@root }
+			}
+		}
+	}
+	
+	# Generic Hostile Greeting from Banished Threat to Remnants (Remnants sees this) when none are gestalts
+	HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_02 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_same_species = FROM
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+				NOT = { has_country_flag = HMO_ancient_rival@root }
+			}
+		}
+	}
+	
+	# Generic Hostile Greeting from Banished Threat to Remnants (Remnants sees this) when none are gestalts
+	HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_03 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_same_species = FROM
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+				NOT = { has_country_flag = HMO_ancient_rival@root }
+			}
+		}
+	}
+	
+		# Hostile Greeting from Banished Threat to Rival (Remnants sees this) when none are gestalts
+	HMO_BANISHED_THREAT_TO_RIVAL_HOSTILE_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_same_species = FROM
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+				has_country_flag = HMO_ancient_rival@root
+			}
+		}
+	}
+	
+	# Hostile Greeting from Banished Threat to Rival (Remnants sees this) when none are gestalts
+	HMO_BANISHED_THREAT_TO_RIVAL_HOSTILE_GREETING_02 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_same_species = FROM
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+				has_country_flag = HMO_ancient_rival@root
+			}
+		}
+	}
+	
+	# Hostile Greeting from Banished Threat to Rival (Remnants sees this) when none are gestalts
+	HMO_BANISHED_THREAT_TO_RIVAL_HOSTILE_GREETING_03 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_same_species = FROM
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+				has_country_flag = HMO_ancient_rival@root
+			}
+		}
+	}
+	
+	# Hostile Greeting from Militaristic Banished Threat to Pacifistic Remnants (Remnants sees this) when none are gestalts
+	HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_04 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_militarist = yes
+			FROM = { is_pacifist = yes }
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_same_species = FROM
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+			}
+		}
+	}
+	
+	# Hostile Greeting from Spiritualistic Banished Threat to materialistic Remnants (Remnants sees this) when none are gestalts
+	HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_05 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_spiritualist = yes
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_same_species = FROM
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+				is_materialist = yes
+			}
+		}
+	}
+	
+	# Hostile Banished Threat to same species remnants when none are gestalt
+	HMO_BANISHED_THREAT_TO_REMNANTS_SAME_SPECIES_HOSTILE_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_same_species = FROM
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+				NOT = { has_country_flag = HMO_ancient_rival@root }
+			}
+		}
+	}
+	
+	HMO_BANISHED_THREAT_TO_REMNANTS_SAME_SPECIES_HOSTILE_GREETING_02 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_same_species = FROM
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				has_origin = origin_remnants
+				NOT = { has_country_flag = HMO_ancient_rival@root }
+			}
+		}
+	}
+	
+	# War against remnants 1 none gestalt
+	HMO_BANISHED_THREAT_TO_REMNANTS_01_WAR_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			NOT = { is_country_type = fallen_empire }
+			NOT = { is_country_type = awakened_fallen_empire }
+			NOT = { is_same_species = FROM }
+			is_at_war_with = FROM
+			FROM = {
+				has_origin = origin_remnants
+				NOT = { has_country_flag = HMO_ancient_rival@root }
+			}
+		}
+	}
+	# War against remnants 2 none gestalt
+	HMO_BANISHED_THREAT_TO_REMNANTS_02_WAR_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			NOT = { is_country_type = fallen_empire }
+			NOT = { is_country_type = awakened_fallen_empire }
+			NOT = { is_same_species = FROM }
+			is_at_war_with = FROM
+			FROM = {
+				has_origin = origin_remnants
+				NOT = { has_country_flag = HMO_ancient_rival@root }
+			}
+		}
+	}
+	# War against remnants 3 none gestalt
+	HMO_BANISHED_THREAT_TO_REMNANTS_03_WAR_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			NOT = { is_country_type = fallen_empire }
+			NOT = { is_country_type = awakened_fallen_empire }
+			NOT = { is_same_species = FROM }
+			is_at_war_with = FROM
+			FROM = {
+				has_origin = origin_remnants
+				NOT = { has_country_flag = HMO_ancient_rival@root }
+			}
+		}
+	}
+	
+	# War against rival 1 none gestalt
+	HMO_BANISHED_THREAT_TO_RIVAL_01_WAR_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			NOT = { is_country_type = fallen_empire }
+			NOT = { is_country_type = awakened_fallen_empire }
+			NOT = { is_same_species = FROM }
+			is_at_war_with = FROM
+			FROM = {
+				has_origin = origin_remnants
+				has_country_flag = HMO_ancient_rival@root
+			}
+		}
+	}
+	# War against remnants 2 none gestalt
+	HMO_BANISHED_THREAT_TO_RIVAL_02_WAR_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			NOT = { is_country_type = fallen_empire }
+			NOT = { is_country_type = awakened_fallen_empire }
+			NOT = { is_same_species = FROM }
+			is_at_war_with = FROM
+			FROM = {
+				has_origin = origin_remnants
+				has_country_flag = HMO_ancient_rival@root
+			}
+		}
+	}
+	# War against remnants 3 none gestalt
+	HMO_BANISHED_THREAT_TO_RIVAL_03_WAR_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			NOT = { is_country_type = fallen_empire }
+			NOT = { is_country_type = awakened_fallen_empire }
+			NOT = { is_same_species = FROM }
+			is_at_war_with = FROM
+			FROM = {
+				has_origin = origin_remnants
+				has_country_flag = HMO_ancient_rival@root
+			}
+		}
+	}
+	
+	# War against remnants Same Species none gestalt
+	HMO_BANISHED_THREAT_TO_REMNANTS_04_WAR_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			NOT = { is_country_type = fallen_empire }
+			NOT = { is_country_type = awakened_fallen_empire }
+			is_same_species = FROM
+			is_at_war_with = FROM
+			FROM = {
+				has_origin = origin_remnants
+				has_country_flag = HMO_ancient_rival@root
+			}
+		}
+	}
+	
+	### Fallen empires to banished threat
+	
+	# Benevolent Interventionists
+	HMO_BI_ARROGANT_TO_BANISHED_THREAT_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = awakened_fallen_empire
+			has_ai_personality = awakened_fallen_empire_xenophile
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_arrogant_to = FROM
+				is_imperious_to = FROM
+			}
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_BI_BELLIGERENT_TO_BANISHED_THREAT_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = awakened_fallen_empire
+			has_ai_personality = awakened_fallen_empire_xenophile
+			NOT = { is_at_war_with = FROM }
+			is_belligerent_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	HMO_DE_MECH_ARROGANT_TO_BANISHED_THREAT_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = awakened_fallen_empire
+			has_ai_personality = awakened_fallen_empire_spiritualist
+			FROM = { has_authority = auth_machine_intelligence }
+			NOT = { is_at_war_with = FROM }
+			OR = {
+				is_arrogant_to = FROM
+				is_imperious_to = FROM
+			}
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_DE_BELLIGERENT_TO_BANISHED_THREAT_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = awakened_fallen_empire
+			has_ai_personality = awakened_fallen_empire_spiritualist
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+			NOT = { is_at_war_with = FROM }
+			is_belligerent_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_DE_MECH_BELLIGERENT_TO_BANISHED_THREAT_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = awakened_fallen_empire
+			has_ai_personality = awakened_fallen_empire_spiritualist
+			FROM = { has_authority = auth_machine_intelligence }
+			NOT = { is_at_war_with = FROM }
+			is_belligerent_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	### FALLEN EMPIRE GREETINGS
+	# Fallen Empire (Dismissive Attitude)
+	HMO_01_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_02_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_03_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_04_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_05_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_06_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_07_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_08_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	# Fallen Empire (Angry Attitude)
+	HMO_01_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_02_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_03_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_04_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_05_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_06_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_07_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_08_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_FALLEN_EMPIRE_MECH_ANGRY_TO_BANISHED_THREAT_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = { has_authority = auth_machine_intelligence }
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_FALLEN_EMPIRE_MECH_ANGRY_TO_BANISHED_THREAT_GREETING_02 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = { has_authority = auth_machine_intelligence }
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+
+	# Fallen Empire (Dismissive Attitude)
+	HMO_01_FALLEN_EMPIRE_DISMISSIVE_WAR_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			is_at_war_with = FROM
+			is_dismissive_to = FROM
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_02_FALLEN_EMPIRE_DISMISSIVE_WAR_TO_BANISHED_THREAT_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			is_at_war_with = FROM
+			is_dismissive_to = FROM
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	HMO_FALLEN_EMPIRE_MECH_DISMISSIVE_WAR_TO_BANISHED_THREAT_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			is_at_war_with = FROM
+			is_dismissive_to = FROM
+			FROM = { has_authority = auth_machine_intelligence }
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	# Fallen Empire (Angry Attitude)
+	#HMO_01_FALLEN_EMPIRE_ANGRY_WAR_TO_BANISHED_THREAT_GREETING = {
+	#	trigger = {
+	#		is_country_type = fallen_empire
+	#		is_at_war_with = FROM
+	#		is_angry_to = FROM
+	#		FROM = { NOT = { has_authority = auth_machine_intelligence } }
+	#		FROM = {
+	#			HMO_is_banished_threat = yes
+	#		}
+	#	}
+	#}
+	#HMO_02_FALLEN_EMPIRE_ANGRY_WAR_TO_BANISHED_THREAT_GREETING = {
+	#	trigger = {
+	#		is_country_type = fallen_empire
+	#		is_at_war_with = FROM
+	#		is_angry_to = FROM
+	#		FROM = {
+	#			HMO_is_banished_threat = yes
+	#		}
+	#	}
+	#}
+	#HMO_FALLEN_EMPIRE_MECH_ANGRY_WAR_TO_BANISHED_THREAT_GREETING_01 = {
+	#	trigger = {
+	#		is_country_type = fallen_empire
+	#		is_at_war_with = FROM
+	#		is_angry_to = FROM
+	#		FROM = { has_authority = auth_machine_intelligence }
+	#		FROM = {
+	#			HMO_is_banished_threat = yes
+	#		}
+	#	}
+	#}
+	
+	# Awakened Fallen Empire war greeting
+	#HMO_01_AWAKENED_EMPIRE_WAR_TO_BANISHED_THREAT_GREETING = {
+	#	trigger = {
+	#		is_country_type = awakened_fallen_empire
+	#		is_fallen_empire_machine = no
+	#		is_at_war_with = FROM
+	#		FROM = {
+	#			HMO_is_banished_threat = yes
+	#		}
+	#	}
+	#}
+	#HMO_02_AWAKENED_EMPIRE_WAR_TO_BANISHED_THREAT_GREETING = {
+	#	trigger = {
+	#		is_country_type = awakened_fallen_empire
+	#		is_fallen_empire_machine = no
+	#		is_at_war_with = FROM
+	#		FROM = {
+	#			HMO_is_banished_threat = yes
+	#		}
+	#	}
+	#}
+	
+	HMO_01_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_COLOSSUS_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			any_controlled_ship = { is_ship_size = colossus }
+			OR = {
+				has_ai_personality = awakened_fallen_empire_materialist
+				has_ai_personality = awakened_fallen_empire_xenophile
+			}
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	HMO_02_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_COLOSSUS_GREETING = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			is_country_type = fallen_empire
+			any_controlled_ship = { is_ship_size = colossus }
+			OR = {
+				has_ai_personality = awakened_fallen_empire_materialist
+				has_ai_personality = awakened_fallen_empire_xenophile
+			}
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			is_fallen_empire_machine = no
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+			FROM = {
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	### from banished threat to banished threat
+	
+	# Hostile Banished Threat to same species banished threat when none are gestalt
+	HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_HOSTILE_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_same_species = FROM
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_HOSTILE_GREETING_02 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_same_species = FROM
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_hostile_to = FROM
+				is_domineering_to = FROM
+				is_unfriendly_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	# Neutral Banished Threat to same species banished threat when none are gestalt
+	HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_NEUTRAL_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_same_species = FROM
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_neutral_to = FROM
+				is_threatened_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_NEUTRAL_GREETING_02 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_same_species = FROM
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_neutral_to = FROM
+				is_threatened_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_FRIENDLY_GREETING_01 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_same_species = FROM
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+	
+	HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_FRIENDLY_GREETING_02 = {
+		weight = {
+			weight = 100000
+		}
+		trigger = {
+			HMO_is_banished_threat = yes
+			is_same_species = FROM
+			NOR = {
+				has_ethic = ethic_gestalt_consciousness
+				is_at_war_with = FROM
+			}
+			OR = {
+				is_friendly_to = FROM
+				is_cordial_to = FROM
+				is_protective_to = FROM
+			}
+			FROM = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+				HMO_is_banished_threat = yes
+			}
+		}
+	}
+}

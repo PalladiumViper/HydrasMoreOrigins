@@ -1,0 +1,102 @@
+# Zombie-infested cities
+d_HMO_zombie_town_$TOWN_NUMBER$ = {
+	icon = $ICON$
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = HMO_requires_ascension_path_completed
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = HMO_finished_ascension
+					NOT = { has_origin = origin_HMO_zombies }
+				}
+			}
+		}
+	}
+	
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			if = {
+				limit = {
+					planet = {
+						NOT = { has_planet_flag = HMO_no_city_district_next_clear }
+					}
+				}
+				planet = {
+					add_deposit = d_HMO_empty_zombie_town_$TOWN_NUMBER$
+				}
+			}
+			planet = {
+				HMO_create_zombie_pop = yes
+			}
+		}
+		if = {
+			limit = { planet.owner = { has_country_flag = HMO_cyber_zombie_authority } }
+			custom_tooltip = HMO_zombie_town_zombie_tooltip
+		}
+		else = {
+			custom_tooltip = HMO_zombie_town_tooltip
+		}
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_HMO_empty_zombie_town_$TOWN_NUMBER$ = {
+	icon = $ICON$
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			if = {
+				limit = { owner = { is_gestalt = no } }
+				add_district = district_city
+			}
+			else_if = {
+				limit = { owner = { is_hive_empire = yes } }
+				add_district = district_hive
+			}
+			else_if = {
+				limit = { owner = { is_machine_empire = yes } }
+				add_district = district_nexus
+			}
+		}
+		custom_tooltip = HMO_empty_zombie_town_tooltip
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}

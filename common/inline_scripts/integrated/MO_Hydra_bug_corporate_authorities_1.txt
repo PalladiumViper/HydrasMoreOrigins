@@ -1,0 +1,2 @@
+	$VALUE$ = auth_bugged_corporate_democratic
+	$VALUE$ = auth_bugged_corporate_imperial

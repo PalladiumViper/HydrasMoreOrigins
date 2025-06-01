@@ -1,0 +1,6 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_wg_HMO_insurgency_uprising"
+		texturefile = "gfx/interface/icons/diplomacy/diplomacy_civil_war_rebels.dds"
+	}
+}

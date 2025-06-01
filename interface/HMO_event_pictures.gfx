@@ -1,0 +1,11 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_evt_HMO_red_star"
+		texturefile = "gfx/event_pictures/HMO_red_star.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_evt_HMO_waterfall"
+		texturefile = "gfx/event_pictures/HMO_waterfall.dds"
+	}
+}

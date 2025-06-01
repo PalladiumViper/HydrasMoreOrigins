@@ -1,0 +1,984 @@
+## Possible Deposit Variables ##
+# resources, resource and amount
+# potential trigger (planet scope)
+# blocked_modifier - applied to planet
+# planet_modifier - applied to planet always
+# station = station class in orbit to gather
+
+@high = 16
+@med = 8
+@low = 4
+
+@high_rare = 2
+@med_rare = 1
+@low_rare = 0.5
+
+d_HMO_crashed_ship = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_HMO_crashed_ship
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			engineering_research = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 2
+			job_HMO_scrap_miner_scavenger_add = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_scavengers }
+		}
+		modifier = {
+			job_researcher_add = 2
+			job_HMO_scrap_miner_scavenger_add = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 2
+			job_HMO_scrap_miner_scavenger_drone_add = 4
+			
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 2
+			job_HMO_scrap_miner_scavenger_drone_add = 4
+		}
+	}
+	planet_modifier = {
+		planet_amenities_add = 10
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_crashed_ship_scrap = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_HMO_crashed_ship
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			alloys = 5
+		}
+	}
+	
+	planet_modifier = {
+		planet_miners_alloys_produces_add = 0.5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_scrap_miner_add = 16
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_scavengers }
+		}
+		modifier = {
+			job_scrap_miner_add = 16
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_scrap_miner_drone_add = 16
+			
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_scrap_miner_drone_add = 16
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_crashed_ship_tech = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_HMO_crashed_ship
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			engineering_research = 20
+		}
+	}
+
+	planet_modifier = {
+		planet_researchers_physics_research_produces_add = 0.25
+		planet_researchers_society_research_produces_add = 0.25
+		planet_researchers_engineering_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 8
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_scavengers }
+		}
+		modifier = {
+			job_researcher_add = 8
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 8
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 8
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_crashed_ship_mixed = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_HMO_crashed_ship
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			engineering_research = 10
+			alloys = 3
+
+		}
+	}
+
+	planet_modifier = {
+		planet_miners_alloys_produces_add = 0.25
+		planet_researchers_physics_research_produces_add = 0.12
+		planet_researchers_society_research_produces_add = 0.12
+		planet_researchers_engineering_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 4
+			job_HMO_scrap_miner_scavenger_add = 8
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_scavengers }
+		}
+		modifier = {
+			job_researcher_add = 4
+			job_HMO_scrap_miner_scavenger_add = 8
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 4
+			job_HMO_scrap_miner_scavenger_drone_add = 8
+			
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 4
+			job_HMO_scrap_miner_scavenger_drone_add = 8
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_crashed_ship_alloy_farm_zone = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_HMO_crashed_ship
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_HMO_catalytic_hull_technician_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_HMO_catalytic_hull_drone_add = 2
+			
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_HMO_catalytic_hull_drone_add = 2
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+# Apocalypse Blockers
+
+d_HMO_insurgency_junk = {
+	icon = d_nanite_corpses
+	#is_for_colonizeable = yes
+	
+	time = 360
+	category = deposit_cat_blockers
+	potential = { always = no }
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 250
+			
+		}
+	}
+	
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+	
+	on_cleared = {
+		owner = {
+			add_resource = {
+				minerals = 300
+				alloys = 50
+			}
+		}
+	}
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_insurgency_new_junk = {
+	icon = d_nanite_corpses
+	#is_for_colonizeable = yes
+	
+	time = 540
+	category = deposit_cat_blockers
+	potential = { always = no }
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+			
+		}
+	}
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_insurgency_ruined_houses = {
+	icon = d_nanite_corpses
+	#is_for_colonizeable = yes
+	
+	time = 180
+	category = deposit_cat_blockers
+	potential = { always = no }
+	resources = {
+		category = deposit_blockers
+		cost = {
+			minerals = 50
+			energy = 200	
+		}
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = -1
+		planet_housing_add = -3
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_insurgency_ruined_powerplant = {
+	icon = d_reactor
+	#is_for_colonizeable = yes
+	
+	time = 720
+	category = deposit_cat_blockers
+	potential = { always = no }
+	resources = {
+		category = deposit_blockers
+		cost = {
+			minerals = 200
+			energy = 500	
+		}
+	}
+	
+	planet_modifier = {
+		planet_buildings_energy_upkeep_mult = 0.1
+		planet_districts_energy_upkeep_mult = 0.1
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_HMO_insurgency_ruined_water_filtration = {
+	icon = d_nanite_corpses
+	#is_for_colonizeable = yes
+	
+	time = 720
+	category = deposit_cat_blockers
+	potential = { always = no }
+	resources = {
+		category = deposit_blockers
+		cost = {
+			alloys = 100
+			energy = 400	
+		}
+	}
+	
+	planet_modifier = {
+		planet_amenities_mult = -0.2
+		planet_max_districts_add = -1
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_insurgent_monument = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_monument
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			unity = 20
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_culture_worker_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_memorialist }
+		}
+		modifier = {
+			job_death_chronicler_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+			
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+### Unvaulted
+
+d_HMO_unvaulted_vault = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_bunker_door
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_HMO_unvaulted }
+		}
+		modifier = {
+			pop_environment_tolerance = 0.2
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+# Decrepit Dwellings vault-style
+d_HMO_decrepit_vault = {
+	icon = d_bunker_door
+	time = 120
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			if = {
+				limit = {
+					any_owned_pop = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop = no
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop = no
+					}
+					root = {
+						create_pop = {
+							species = prev
+						}
+					}
+				}
+			}
+			else = {
+				random_owned_pop = {
+					root = {
+						create_pop = {
+							species = prev
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = d_decrepit_dwellings_custom_tooltip
+	}
+
+	inline_script = deposits/ai_weight_pop_creating_blocker
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+# After The Apocalypse
+
+inline_script = {
+	script = HMO_zombie_town
+	TOWN_NUMBER = 1
+	ICON = d_metal_boneyard
+}
+
+inline_script = {
+	script = HMO_zombie_town
+	TOWN_NUMBER = 2
+	ICON = d_city_ruins
+}
+
+inline_script = {
+	script = HMO_zombie_town
+	TOWN_NUMBER = 3
+	ICON = d_nanite_corpses
+}
+
+d_HMO_historical_town = {
+	icon = d_metal_boneyard
+	is_for_colonizable = yes
+	
+	category = deposit_cat_rare
+	
+	potential = { always = no }
+	
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.25
+		planet_max_districts_add = -1
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_isolated_city = {
+	icon = d_quarantine_zone
+	is_for_colonizable = yes
+	
+	category = deposit_cat_rare
+	
+	potential = { always = no }
+	
+	planet_modifier = {
+		planet_jobs_society_research_produces_mult = 0.1
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+# Zombie-infested cities
+d_HMO_zombie_factory = {
+	icon = d_broken_spire
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = HMO_requires_ascension_path_completed
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = HMO_finished_ascension
+					NOT = { has_origin = origin_HMO_zombies }
+				}
+			}
+		}
+	}
+	
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			planet = {
+				add_deposit = d_HMO_empty_zombie_factory
+				HMO_create_zombie_pop = yes
+			}
+		}
+		if = {
+			limit = { planet.owner = { has_country_flag = HMO_cyber_zombie_authority } }
+			custom_tooltip = HMO_zombie_factory_zombie_tooltip
+		}
+		else = {
+			custom_tooltip = HMO_zombie_factory_tooltip
+		}
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_HMO_empty_zombie_factory = {
+	icon = d_broken_spire
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			add_district = district_industrial
+		}
+		custom_tooltip = HMO_empty_zombie_factory_tooltip
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_HMO_zombie_mine = {
+	icon = d_mining_tunnels
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = HMO_requires_ascension_path_completed
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = HMO_finished_ascension
+					NOT = { has_origin = origin_HMO_zombies }
+				}
+			}
+		}
+	}
+	
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			planet = {
+				add_deposit = d_HMO_empty_zombie_mine
+				HMO_create_zombie_pop = yes
+			}
+		}
+		if = {
+			limit = { planet.owner = { has_country_flag = HMO_cyber_zombie_authority } }
+			custom_tooltip = HMO_zombie_mine_zombie_tooltip
+		}
+		else = {
+			custom_tooltip = HMO_zombie_mine_tooltip
+		}
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_HMO_empty_zombie_mine = {
+	icon = d_mining_tunnels
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			add_district = district_mining
+		}
+		custom_tooltip = HMO_empty_zombie_mine_tooltip
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_HMO_zombie_generator = {
+	icon = d_reactor
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = HMO_requires_ascension_path_completed
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = HMO_finished_ascension
+					NOT = { has_origin = origin_HMO_zombies }
+				}
+			}
+		}
+	}
+	
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			planet = {
+				add_deposit = d_HMO_empty_zombie_generator
+				HMO_create_zombie_pop = yes
+			}
+		}
+		if = {
+			limit = { planet.owner = { has_country_flag = HMO_cyber_zombie_authority } }
+			custom_tooltip = HMO_zombie_generator_zombie_tooltip
+		}
+		else = {
+			custom_tooltip = HMO_zombie_generator_tooltip
+		}
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_HMO_empty_zombie_generator = {
+	icon = d_reactor
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			add_district = district_generator
+		}
+		custom_tooltip = HMO_empty_zombie_generator_tooltip
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_HMO_zombie_farm = {
+	icon = d_rotten_soil_blocker
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = HMO_requires_ascension_path_completed
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = HMO_finished_ascension
+					NOT = { has_origin = origin_HMO_zombies }
+				}
+			}
+		}
+	}
+	
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			planet = {
+				add_deposit = d_HMO_empty_zombie_farm
+				HMO_create_zombie_pop = yes
+			}
+		}
+		if = {
+			limit = { planet.owner = { has_country_flag = HMO_cyber_zombie_authority } }
+			custom_tooltip = HMO_zombie_farm_zombie_tooltip
+		}
+		else = {
+			custom_tooltip = HMO_zombie_farm_tooltip
+		}
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_HMO_empty_zombie_farm = {
+	icon = d_rotten_soil_blocker
+	time = 240
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	inline_script = deposits/ai_weight_pop_creating_blocker
+	
+	on_cleared = {
+		hidden_effect = {
+			add_district = district_farming
+		}
+		custom_tooltip = HMO_empty_zombie_farm_tooltip
+	}
+	
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}

@@ -1,0 +1,170 @@
+##########################
+#
+# ARCHAEOLOGY SITE EVENTS
+#
+##########################
+
+namespace = HMO_event
+
+####################################
+# Zombie Bombardment
+####################################
+
+# Zombie Bombardment
+# This = Planet where the pop was bombed to death
+# From = Country bombarding the planet
+# FromFrom = Biggest fleet bombarding the planet (the one we used the bombardment stance from)
+planet_event = {
+	id = HMO_event.1
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_orbital_bombardment_stance = HMO_zombie_bombardment
+	}
+
+	immediate = {
+		HMO_create_zombie_country = yes
+		while = {
+			count = 20
+			create_army = {
+				name = "NAME_HMO_Zombie_Army_Name_1"
+				owner = event_target:HMO_Zombie_Country
+				type = HMO_zombie_assault_army
+			}
+		}
+	}
+}
+
+# on_pop_purged
+# This = Planet scope
+# From = Country
+# FromFrom = Pop
+# Mechromancy - CyberZombies
+planet_event = {
+	id = HMO_event.2
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		from = {
+			has_country_flag = HMO_cyber_zombie_authority
+		}
+		exists = fromfrom #crisis.202 can remove the last pop
+		fromfrom = {
+			NOR = {
+				has_purge_type = {
+					type = purge_displacement
+				}
+				has_purge_type = {
+					type = purge_cosmogenesis
+				}
+				has_purge_type = {
+					type = purge_cosmogenesis_lathe_resettle
+				}
+			}
+			is_robotic_species = no
+			species = {
+				NOT = { is_archetype = PRESAPIENT }
+			}
+			NOT = {
+				has_trait = trait_zombie
+			}
+		}
+	}
+
+	immediate = {
+		create_pop = {
+			species = fromfrom.species
+		}
+		last_created_pop = {
+			modify_species = {
+				species = this
+				add_trait = trait_zombie
+				add_traits_at_start_of_list = yes
+				remove_trait = trait_self_modified
+				remove_trait = trait_latent_psionic
+				remove_trait = trait_psionic
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_trait = trait_cybernetic
+					}
+				}
+				modify_species = {
+					species = this
+					add_trait = trait_cybernetic
+					add_traits_at_start_of_list = yes
+				}
+			}
+			set_citizenship_type = {
+				country = root.owner
+				type = citizenship_limited
+			}
+		}
+	}
+}
+
+# Reassembled Armies: Upload new minds to defeated robot armies
+# An army has been killed in ground combat
+#	This = owner
+#	From = army
+#	FromFrom = opponent
+#	FromFromFrom = planet
+# Fired by: on_army_killed_in_combat
+country_event = {
+	id = HMO_event.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_authority = auth_imperial
+		has_country_flag = HMO_cyber_zombie_authority
+		from = {
+			exists = species
+			species = {
+				OR = {
+					is_archetype = BIOLOGICAL
+					is_archetype = LITHOID
+				}
+			}
+			NOR = {
+				army_type = undead_army
+				army_type = undead_defense_army
+				army_type = HMO_zombie_assault_army
+				army_type = HMO_zombie_army
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			1 = { }
+			1 = {
+				from = {
+					switch = {
+						trigger = is_defensive_army
+						yes = {
+							create_army_on_planet = {
+								PLANET = fromfrom # Relative to the from scope wrapper
+								OWNER = root
+								TYPE = undead_defense_army
+								SPECIES = root.from.species
+							}
+						}
+						no = {
+							create_army_on_planet = {
+								PLANET = fromfrom # Relative to the from scope wrapper
+								OWNER = root
+								TYPE = undead_army
+								SPECIES = root.from.species
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

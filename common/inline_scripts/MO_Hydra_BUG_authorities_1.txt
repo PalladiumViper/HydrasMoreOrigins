@@ -1,0 +1,86 @@
+
+
+auth_bugged_direct_democratic = {
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_bugged_direct_democratic_martial_law"
+		description = "MO_auth_bugged_direct_democratic_martial_law_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+		}
+		modifier = {
+			planet_soldiers_unity_produces_add = 1
+			faction_approval = -0.05
+			pop_demotion_time_mult = -0.75
+		}
+		ruler_council_position = councilor_ruler_MO_Hydra_bugged_direct_democratic_martial_ruler
+		has_heir = no
+		election_type = none	# oligarchic generate candidates only from leaders in the country
+		election_term_years = 0						#
+		can_have_emergency_elections = no
+		tags = {
+			AUTHORITY_SUCCESSION_TYPE
+			AUTHORITY_DICTATORIAL_SUCCESSION
+		}
+		weight = { base = 200 }
+	}
+}
+
+auth_bugged_corporate_democratic = {
+	advanced_authority_swap	= {
+		name = "MO_auth_bugged_corporate_democratic_martial_law"
+		description = "MO_auth_bugged_corporate_democratic_martial_law_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+		}
+		modifier = {
+			planet_soldiers_energy_produces_add = 2
+			pop_demotion_time_mult = -0.75
+			empire_size_colonies_mult = 1
+		}
+		ruler_council_position = councilor_ruler_MO_Hydra_bugged_corporate_democratic_martial_ruler
+		has_heir = no
+		election_type = none	# oligarchic generate candidates only from leaders in the country
+		election_term_years = 0						#
+		can_have_emergency_elections = no
+		tags = {
+			AUTHORITY_SUCCESSION_TYPE
+			AUTHORITY_DICTATORIAL_SUCCESSION
+		}
+		weight = { base = 200 }
+	}
+}
+
+auth_bugged_corporate_imperial = {
+	advanced_authority_swap	= {
+		name = "MO_auth_bugged_corporate_imperial_martial_law"
+		description = "MO_auth_bugged_corporate_imperial_martial_law_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+		}
+		modifier = {
+			pop_demotion_time_mult = -0.75
+			empire_size_colonies_mult = 1
+		}
+		ruler_council_position = councilor_ruler_MO_Hydra_bugged_corporate_imperial_martial_ruler
+		has_heir = no
+		election_type = none	# oligarchic generate candidates only from leaders in the country
+		election_term_years = 0						#
+		can_have_emergency_elections = no
+		tags = {
+			AUTHORITY_SUCCESSION_TYPE
+			AUTHORITY_DICTATORIAL_SUCCESSION
+			AUTH_IMPERIAL_CAPITAL_SYSTEM_BONUS
+		}
+		weight = { base = 200 }
+	}
+}

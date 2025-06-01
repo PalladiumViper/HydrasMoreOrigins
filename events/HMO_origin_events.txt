@@ -1,0 +1,8502 @@
+#########################################
+#
+# HMO's Origin Events
+#
+#########################################
+
+namespace = HMO_origin
+
+#########################################
+
+# Apocalypse
+
+# 1 - 49 undefined
+# 50 - 99 Invasion Events
+# 100 - 149 Insurgency Contact Menu Events
+# 150 - 499 Random Insurgent Planet Events
+# Event chains:
+# 161 = Bad Event Gatekeeper
+# 162 = Good Event Gatekeeper
+# Invasions
+# 170 - 179 Invasion Preperation: Increased Propaganda (Recruiting)
+# 180 - 189 Invasion Preperation: Weapon Smuggling
+# Sabotages
+# 260 - 269 Stolen Hydrogen Bomb
+# 270 - 279 Leaked Plans (Hydrogen Bomb)
+# 280 - 289 Forge Sabotaged
+# 290 - 299 Public Transports Attacked
+# Diplomatic Attacks
+# 350 - 359 Embassy Attack
+# 360 - 369 Envoys Attacked
+
+# 500 - 599 Mid-game Insurgent Events
+
+# Banished Threat
+
+# 2000 Gatekeeper
+# 2001 - 2049 Ancient Caches
+# 2050 - 2099 Ancient Rivals
+# 2100 - 2150 Isolation Time
+# 2200 - 2250 Shielded Systems
+
+# Unvaulted
+
+# 3000 Start Situation
+
+# Cataclysm Engine
+
+# 4000
+
+# Interstellar Scrapyard
+
+# 5000
+
+# Codekeepers
+
+# 6000
+
+# After The Apocalypse
+
+# 7000 - 7100 Zcom: What to do?
+
+# Wildworld
+
+# 8000
+
+# Planned Obsolescence
+
+# 9000
+
+####################################
+# Apocalypse
+####################################
+
+####################################
+# Unsorted Insurgency Events
+####################################
+
+#Monthly check to add and remove insurgent and anarchist modifiers
+country_event = {
+	id = HMO_origin.1
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_origin = origin_HMO_apocalypse }
+		NOR = {
+			has_country_flag = HMO_insurgents_defeated
+		}
+		has_faction = HMO_insurgent # Can only trigger if the insurgent faction exists
+	}
+
+	immediate = {
+		# Add Insurgent Activity
+		every_owned_planet = {
+			limit = {
+				NOR = {
+					has_modifier = HMO_insurgent_activity
+				}
+				OR = {
+					happiness_planet < 0.6
+					planet_stability < 60
+				}
+				NOT = { num_pops = 0 }
+			}
+			if = {
+				limit = {
+					has_modifier = HMO_insurgent_stabilized
+				}
+				remove_modifier = HMO_insurgent_stabilized
+			}
+			add_modifier = {
+				modifier = HMO_insurgent_activity
+				days = -1
+			}
+		}
+		# Remove Insurgent Activity
+		every_owned_planet = {
+			limit = {
+				has_modifier = HMO_insurgent_activity
+				NOT = { has_modifier = HMO_insurgent_base }
+				planet_stability > 95
+			}
+			remove_modifier = HMO_insurgent_activity
+		}
+		# Set planet to stabilized
+		every_owned_planet = {
+			limit = {
+				NOT = { has_modifier = HMO_insurgent_activity }
+				NOT = { has_modifier = HMO_insurgent_base }
+				planet_stability = 100
+			}
+			add_modifier = {
+				modifier = HMO_insurgent_stabilized
+				days = -1
+			}
+			if = {
+				limit = {
+					NOT = {
+						owner = { has_country_flag = HMO_insurgency_tutorial_stabilized }
+					}
+				}
+				planet_event = { id = HMO_origin.6 } # Event that says the planet has been stabilized. This is a one-time event. Warns the player to not let the stability drop below 100 again.
+			}
+		}
+		# Set Insurgent Strength
+		every_owned_planet = {
+			set_variable = { which = HMO_insurgent_strength value = 100 }
+			subtract_variable = { which = HMO_insurgent_strength value = trigger:planet_stability }
+			change_variable = { which = HMO_insurgent_strength value = trigger:planet_crime }
+			#divide_variable = { which = HMO_insurgent_strength value = trigger:happiness_planet } # Divide By Zero?
+			multiply_variable = { which = HMO_insurgent_strength value = owner.HMO_global_insurgent_strength }
+			divide_variable = { which = HMO_insurgent_strength value = 100 }
+			ceiling_variable = HMO_insurgent_strength
+		}
+		# Start Event Chains
+		random_owned_planet = { # Should this be for every planet, with event chance increased by insurgent strength? Could be overwhelming if you have too many planets.
+			limit = {
+				has_modifier = HMO_insurgent_activity
+				NOT = { has_planet_flag = ongoing_insurgent_events }
+				#NOT = { has_modifier = HMO_insurgent_rumors } # Rumors will make an event happen anyway
+				is_occupied_flag = no
+				NOT = { num_pops = 0 }
+				# owner = { has_faction = HMO_insurgent } # Can only trigger if the insurgent faction exists
+				owner = { NOT = { has_country_flag = HMO_insurgents_suppressed } }
+			}
+			random_list = {
+				# Nothing
+				300 = {
+					modifier = {
+						factor = 2
+						owner = { num_owned_planets = 1 }
+					}
+					modifier = {
+						factor = 2
+						owner = { num_owned_planets < 4 }
+					}
+					# Nothing
+				}
+				40 = {
+					modifier = {
+						add = owner.trigger:num_owned_planets
+					}
+					planet_event = { id = HMO_origin.161 }
+				}
+				10 = {
+					planet_event = { id = HMO_origin.162 }
+				}
+				# Weapons Cache Found
+				#10 = {
+				#	planet_event = { id = HMO_origin.151 } # Weapons Cache Found
+				#}
+				# bombing
+				#10 = {
+				#	planet_event = { id = HMO_origin.152 } # Bombing
+				#	modifier = {
+				#		factor = 2
+				#		NOT = { owner = { num_owned_planets = 1 } }
+				#	}
+				#	modifier = {
+				#		factor = 0
+				#		OR = {
+				#			has_planet_flag = HMO_recently_bombed # No double bombing
+				#		}
+				#	}
+				#}
+				# Rumors of imminent Attack
+				#40 = {
+				#	planet_event = { id = HMO_origin.153 } # Rumors
+				#	modifier = {
+				#		factor = 0
+				#		owner = { num_owned_planets = 1 }
+				#	}
+				#	modifier = {
+				#		factor = 0
+				#		OR = {
+				#			has_planet_flag = HMO_recently_bombed # No double bombing
+				#			has_planet_flag = HMO_recently_attacked # No double attacking
+				#		}
+				#	}
+				#}
+				# Attack with no warning
+				#5 = {
+				#	planet_event = { id = HMO_origin.50 } # Attack
+				#	modifier = {
+				#		factor = 0
+				#		owner = { num_owned_planets < 4 }
+				#	}
+				#	modifier = {
+				#		factor = 0
+				#		OR = {
+				#			has_planet_flag = HMO_recently_attacked # No double attacking
+				#		}
+				#	}
+				#}
+				# Insurgent Base Found
+				#100 = {
+				#	modifier = {
+				#		factor = 0
+				#		OR = {
+				#			NOT = { has_modifier = HMO_insurgent_base } # Obviously this can only happen on planets with insurgency bases
+				#			is_occupied_flag = yes # Can't attack occupied planets
+				#			owner = { has_special_project = HMO_ATTACK_INSURGENCY_BASE } # So you won't have to deal with two timed projects at a time
+				#		}
+				#	}
+				#	planet_event = { id = HMO_origin.154 } # Insurgent Base Found. Enables timed project to remove it #HMO_origin.155 is the removal event that fires when completing the project
+				#}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = HMO_origin.2 #removes the modifier if you aren't an apocalyptic society or already defeated them
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			NOT = { From = { has_origin = origin_HMO_apocalypse } }
+			From = { has_country_flag = HMO_insurgents_defeated }
+		}
+		OR = {
+			has_modifier = HMO_insurgent_activity
+			has_modifier = HMO_insurgent_base
+			has_modifier = HMO_insurgent_control
+			has_modifier = HMO_insurgent_rumors
+			has_planet_flag = HMO_insurgent_invasion_planet
+			has_planet_flag = HMO_insurgent_control
+			has_planet_flag = HMO_insurgent_sneaky_invasion_planet
+			has_modifier = HMO_society_breakdown
+			has_modifier = HMO_major_society_breakdown
+			has_planet_flag = HMO_insurgent_revolt_planet
+			has_planet_flag = HMO_rioter_control
+			has_modifier = HMO_insurgent_stabilized
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { has_modifier = HMO_insurgent_activity }
+			remove_modifier = HMO_insurgent_activity
+		}
+		if = {
+			limit = { has_modifier = HMO_insurgent_base }
+			remove_modifier = HMO_insurgent_base
+		}
+		if = {
+			limit = { has_modifier = HMO_insurgent_control }
+			remove_modifier = HMO_insurgent_control
+		}
+		if = {
+			limit = { has_modifier = HMO_insurgent_rumors }
+			remove_modifier = HMO_insurgent_rumors
+		}
+		if = {
+			limit = { has_planet_flag = HMO_insurgent_invasion_planet }
+			remove_planet_flag = HMO_insurgent_invasion_planet
+		}
+		if = {
+			limit = { has_planet_flag = HMO_insurgent_control }
+			remove_planet_flag = HMO_insurgent_control
+		}
+		if = {
+			limit = { has_planet_flag = HMO_insurgent_sneaky_invasion_planet }
+			remove_planet_flag = HMO_insurgent_sneaky_invasion_planet
+		}
+		if = {
+			limit = { has_modifier = HMO_society_breakdown }
+			remove_modifier = HMO_society_breakdown
+		}
+		if = {
+			limit = { has_modifier = HMO_major_society_breakdown }
+			remove_modifier = HMO_major_society_breakdown
+		}
+		if = {
+			limit = { has_planet_flag = HMO_insurgent_revolt_planet }
+			remove_planet_flag = HMO_insurgent_revolt_planet
+		}
+		if = {
+			limit = { has_planet_flag = HMO_rioter_control }
+			remove_planet_flag = HMO_rioter_control
+		}
+		if = {
+			limit = { has_modifier = HMO_insurgent_stabilized }
+			remove_modifier = HMO_insurgent_stabilized
+		}
+	}
+}
+
+planet_event = {
+	id = HMO_origin.3 #removes insurgents when abandoning colonies. Not like you can, but in any case # Hey, it was useful after all! Used in cleanup
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_modifier = HMO_insurgent_activity
+			has_modifier = HMO_insurgent_base
+			has_modifier = HMO_insurgent_control
+			has_modifier = HMO_insurgent_rumors
+			has_planet_flag = HMO_insurgent_invasion_planet
+			has_planet_flag = HMO_insurgent_control
+			has_planet_flag = HMO_insurgent_sneaky_invasion_planet
+			has_modifier = HMO_society_breakdown
+			has_modifier = HMO_major_society_breakdown
+			has_planet_flag = HMO_insurgent_revolt_planet
+			has_planet_flag = HMO_rioter_control
+			has_modifier = HMO_insurgent_stabilized
+		}
+	}
+	immediate = {
+		if = {
+			limit = { has_modifier = HMO_insurgent_activity }
+			remove_modifier = HMO_insurgent_activity
+		}
+		if = {
+			limit = { has_modifier = HMO_insurgent_base }
+			remove_modifier = HMO_insurgent_base
+		}
+		if = {
+			limit = { has_modifier = HMO_insurgent_control }
+			remove_modifier = HMO_insurgent_control
+		}
+		if = {
+			limit = { has_modifier = HMO_insurgent_rumors }
+			remove_modifier = HMO_insurgent_rumors
+		}
+		if = {
+			limit = { has_planet_flag = HMO_insurgent_invasion_planet }
+			remove_planet_flag = HMO_insurgent_invasion_planet
+		}
+		if = {
+			limit = { has_planet_flag = HMO_insurgent_control }
+			remove_planet_flag = HMO_insurgent_control
+		}
+		if = {
+			limit = { has_planet_flag = HMO_insurgent_sneaky_invasion_planet }
+			remove_planet_flag = HMO_insurgent_sneaky_invasion_planet
+		}
+		if = {
+			limit = { has_modifier = HMO_society_breakdown }
+			remove_modifier =HMO_society_breakdown
+		}
+		if = {
+			limit = { has_modifier = HMO_major_society_breakdown }
+			remove_modifier =HMO_major_society_breakdown
+		}
+		if = {
+			limit = { has_planet_flag = HMO_insurgent_revolt_planet }
+			remove_planet_flag = HMO_insurgent_revolt_planet
+		}
+		if = {
+			limit = { has_planet_flag = HMO_rioter_control }
+			remove_planet_flag = HMO_rioter_control
+		}
+		if = {
+			limit = { has_modifier = HMO_insurgent_stabilized }
+			remove_modifier = HMO_insurgent_stabilized
+		}
+	}
+
+}
+
+# Insurgents are formed
+pop_faction_event = {
+	id = HMO_origin.4
+	title = HMO_origin.4.title
+	desc = {
+		trigger = {
+			success_text = {
+				text = HMO_origin.4.desc.insurgent
+				is_pop_faction_type = HMO_insurgent
+				NOT = { owner = { has_country_flag = HMO_insurgents_formed } }
+			}
+			success_text = {
+				text = HMO_origin.4.desc.new_insurgent
+				is_pop_faction_type = HMO_insurgent
+				owner = { has_country_flag = HMO_insurgents_formed }
+			}
+		}
+	}
+
+	picture = GFX_evt_open_revolt
+	show_sound = event_factions
+
+	is_triggered_only = yes
+
+	trigger = {
+		#NOT = {
+		#	owner = { has_country_flag = first_faction }
+		#}
+	}
+	
+	#immediate = {
+	#	save_global_event_target_as = HMO_insurgency_faction
+	#}
+
+	after = {
+		hidden_effect = {
+			owner = {
+				set_country_flag = first_faction
+				set_country_flag = HMO_insurgents_formed
+			}
+		}
+	}
+
+	option = {
+		name = OK
+		hidden_effect = {
+			owner = {
+				every_owned_planet = {
+					every_owned_pop = {
+						force_faction_evaluation = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# Loyalists are formed
+pop_faction_event = {
+	id = HMO_origin.5
+	title = HMO_origin.5.title
+	desc = {
+		trigger = {
+			success_text = {
+				text = HMO_origin.5.desc.loyalist
+				is_pop_faction_type = HMO_loyalist
+				NOT = { owner = { has_country_flag = HMO_loyalists_formed } }
+			}
+			success_text = {
+				text = HMO_origin.5.desc.new_loyalist
+				is_pop_faction_type = HMO_loyalist
+				owner = { has_country_flag = HMO_loyalists_formed }
+			}
+		}
+	}
+
+	picture = GFX_evt_salute
+	show_sound = event_factions
+
+	is_triggered_only = yes
+
+	trigger = {
+		#NOT = {
+		#	owner = { has_country_flag = first_faction }
+		#}
+	}
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			owner = {
+				set_country_flag = first_faction
+				set_country_flag = HMO_loyalists_formed
+			}
+		}
+	}
+
+	option = {
+		name = OK
+		hidden_effect = {
+			owner = {
+				every_owned_planet = {
+					every_owned_pop = {
+						force_faction_evaluation = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# Stabilized Tutorial
+planet_event = {
+	id = HMO_origin.6
+	title = HMO_origin.6.name
+	desc = "HMO_origin.6.desc"
+
+	picture = GFX_evt_salute
+	show_sound = event_factions
+
+	is_triggered_only = yes
+
+	#trigger = {
+	#	NOT = {
+	#		owner = { has_country_flag = HMO_insurgency_tutorial_stabilized }
+	#	}
+	#}
+	
+	immediate = {
+		owner = { set_country_flag = HMO_insurgency_tutorial_stabilized }
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+####################################
+# Insurgency Attack Events
+####################################
+
+# The Insurgency Attacks!
+planet_event = {
+	id = HMO_origin.50
+	title = "HMO_origin.50.name"
+	desc = HMO_origin.50.desc
+	picture = GFX_evt_ground_combat
+	show_sound = event_ground_battle
+	location = ROOT
+
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { has_origin = origin_HMO_apocalypse }
+		owner = { NOT = { has_country_flag = HMO_insurgents_defeated } }
+	}
+	
+	immediate = {
+		# create_HMO_insurgent_country = yes #makes sure the event targets are set and the country exists # No need to, the country cannot be destroyed
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		random_country = {
+			limit = { has_country_flag = HMO_insurgency@prev.owner }
+			save_event_target_as = insurgent_country
+		}
+		if = {
+			limit = {
+				check_variable = { which = HMO_insurgent_strength value > 0 }
+				#event_target:insurgent_country = {
+				#	#NOT = { has_country_flag = HMO_insurgency_weakened } # from HMO_origin.151
+				#}
+			}
+			set_planet_flag = HMO_insurgent_invasion_planet
+			set_timed_planet_flag = {
+				flag = HMO_recently_attacked
+				months = 36
+			}
+			event_target:insurgent_country = {
+				create_leader = {
+					class = commander
+					species = owner_main_species
+					name = random
+					skill = 3
+				}
+			}
+			while = {
+				count = HMO_insurgent_strength
+				create_army = {
+					name = "NAME_HMO_Insurgency_Army"
+					owner = event_target:insurgent_country
+					#species = event_target:owner_main_species
+					type = "HMO_insurgency_army"
+					leader = last_created_leader
+				}
+			}
+		}
+		#if = {
+		#	limit = {
+		#		event_target:insurgent_country = {
+		#			has_country_flag = HMO_insurgency_strengthened # from HMO_origin.1000
+		#		}
+		#	}
+		#	while = {
+		#		count = 4
+		#		create_army = {
+		#			name = "NAME_HMO_Insurgency_Army"
+		#			owner = event_target:insurgent_country
+		#			#species = event_target:owner_main_species
+		#			type = "HMO_insurgency_army"
+		#			leader = last_created_leader
+		#		}
+		#	}
+		#}
+		#if = {
+		#	limit = {
+		#		event_target:insurgent_country = {
+		#			has_country_flag = HMO_insurgency_weakened # from HMO_origin.151
+		#		}
+		#	}
+		#	while = {
+		#		count = 4
+		#		create_army = {
+		#			name = "NAME_HMO_Insurgency_Army"
+		#			owner = event_target:insurgent_country
+		#			#species = event_target:owner_main_species
+		#			type = "HMO_insurgency_army"
+		#			leader = last_created_leader
+		#		}
+		#	}
+		#}
+	}
+
+	option = {
+		name = colony.54.a
+		custom_tooltip = HMO_INSURGENCY_INVASION_TOOLTIP
+	}
+}
+
+# Victory
+country_event = {
+	id = HMO_origin.51
+	title = "HMO_origin.51.name"
+	desc = HMO_origin.51.desc
+	picture = 	GFX_evt_victorious_army
+	show_sound = event_default
+	location = FROMFROM
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROMFROM = { has_planet_flag = HMO_insurgent_invasion_planet }
+	}
+
+	immediate = {
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		FROMFROM = {
+			remove_planet_flag = HMO_insurgent_invasion_planet
+			remove_planet_flag = ongoing_insurgent_events
+		}
+	}
+
+	option = {
+		name = colony.56.a
+	}
+}
+
+# Defeat
+country_event = {
+	id = HMO_origin.52
+	title = "HMO_origin.52.name"
+	desc = "HMO_origin.52.desc"
+	picture = GFX_evt_surrender
+	show_sound = event_alien_signal
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		# has_origin = origin_HMO_apocalypse
+		FROMFROM = { has_planet_flag = HMO_insurgent_invasion_planet }
+		from = { is_country_type = HMO_insurgency }
+		NOT = { has_country_flag = HMO_insurgents_defeated }
+	}
+
+	immediate = {
+		save_event_target_as = HMO_insurgent_former_planet_owner
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		FROMFROM = {
+			remove_planet_flag = HMO_insurgent_invasion_planet
+			set_planet_flag = HMO_insurgent_control
+			save_event_target_as = conquered_planet
+			add_modifier = {
+				modifier = HMO_insurgent_base
+				days = -1
+			}
+			#set_owner = event_target:HMO_insurgent_country
+			# flip starbase
+			#solar_system = {
+			#	if = {
+			#		limit = { exists = starbase }
+			#		starbase = { set_owner = event_target:HMO_insurgent_country }
+			#	}
+			#}
+			planet_event = { id = HMO_origin.56 days = 360 random = 120 }
+		}
+		add_event_chain_counter = {
+			event_chain = "HMO_apocalypse_chain"
+			counter = "HMO_worlds_under_occupation"
+			amount = 1
+		}
+	}
+
+	option = {
+		name = "HMO_origin.52.a"
+	}
+}
+
+# The Insurgency Attacks Sneakily!
+planet_event = {
+	id = HMO_origin.53
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = { owner = { has_origin = origin_HMO_apocalypse } }
+
+	immediate = {
+		# create_HMO_insurgent_country = yes #makes sure the event targets are set and the country exists # No need to, the country cannot be destroyed
+		random_country = {
+			limit = { has_country_flag = HMO_insurgency@prev.owner }
+			save_event_target_as = insurgent_country
+		}
+		if = {
+			limit = {
+				check_variable = { which = HMO_insurgent_strength value > 0 }
+				#event_target:insurgent_country = {
+				#	NOT = { has_country_flag = HMO_insurgency_weakened } # from HMO_origin.151
+				#}
+			}
+			set_planet_flag = HMO_insurgent_sneaky_invasion_planet
+			event_target:insurgent_country = {
+				create_leader = {
+					class = commander
+					species = owner_main_species
+					name = random
+					skill = 5
+				}
+			}
+			while = {
+				count = HMO_insurgent_strength
+				create_army = {
+					name = "NAME_HMO_Insurgency_Army"
+					owner = event_target:insurgent_country
+					#species = event_target:owner_main_species
+					type = "HMO_insurgency_army"
+					leader = last_created_leader
+				}
+			}
+		}
+		#if = {
+		#	limit = {
+		#		event_target:insurgent_country = { has_country_flag = HMO_insurgency_weakened } # from HMO_origin.151
+		#	}
+		#	while = {
+		#		count = 8
+		#		create_army = {
+		#			name = "NAME_HMO_Insurgency_Army"
+		#			owner = event_target:insurgent_country
+		#			#species = event_target:owner_main_species
+		#			type = "HMO_insurgency_army"
+		#			leader = last_created_leader
+		#		}
+		#	}
+		#}
+	}
+}
+
+# Victory
+country_event = {
+	id = HMO_origin.54
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROMFROM = { has_planet_flag = HMO_insurgent_sneaky_invasion_planet }
+	}
+
+	immediate = {
+		FROMFROM = {
+			remove_planet_flag = HMO_insurgent_sneaky_invasion_planet
+			remove_planet_flag = ongoing_insurgent_events
+		}
+	}
+}
+
+# Defeat
+country_event = {
+	id = HMO_origin.55
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		# has_origin = origin_HMO_apocalypse
+		FROMFROM = { has_planet_flag = HMO_insurgent_sneaky_invasion_planet }
+		from = { is_country_type = HMO_insurgency }
+	}
+
+	immediate = {
+		save_event_target_as = HMO_insurgent_former_planet_owner
+		FROMFROM = {
+			remove_planet_flag = HMO_insurgent_sneaky_invasion_planet
+			set_planet_flag = HMO_insurgent_control
+			save_event_target_as = conquered_planet
+			add_modifier = {
+				modifier = HMO_insurgent_base
+				days = -1
+			}
+			planet_event = { id = HMO_origin.56 days = 360 random = 120 }
+		}
+		add_event_chain_counter = {
+			event_chain = "HMO_apocalypse_chain"
+			counter = "HMO_worlds_under_occupation"
+			amount = 1
+		}
+	}
+}
+
+# Society begins to break down
+planet_event = {
+	id = HMO_origin.56
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = HMO_insurgent_control
+	}
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		add_planet_devastation = 5
+		add_modifier = {
+			modifier = HMO_society_breakdown
+			days = 720
+		}
+		if = {
+			limit = {
+				num_pops > 2
+			}
+			add_blocker = {
+				type = d_tomb_world_ruins
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		planet_event = { id = HMO_origin.57 days = 360 random = 120 } # Major breakdown. After that, colony is destroyed
+	}
+}
+
+# Society begins to majorly break down
+planet_event = {
+	id = HMO_origin.57
+	title = "HMO_origin.57.name"
+	desc = HMO_origin.57.desc
+	picture = GFX_evt_burning_settlement
+	show_sound = event_planetary_riot
+	location = ROOT
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = HMO_insurgent_control
+	}
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		add_planet_devastation = 20
+		add_modifier = {
+			modifier = HMO_major_society_breakdown
+			days = 720
+		}
+		if = {
+			limit = { has_modifier = HMO_society_breakdown }
+			remove_modifier = HMO_society_breakdown
+		}
+		if = {
+			limit = {
+				num_pops > 10
+			}
+			add_blocker = {
+				type = d_tomb_world_ruins
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		if = {
+			limit = {
+				num_pops > 6
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		if = {
+			limit = {
+				num_pops > 2
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		planet_event = { id = HMO_origin.58 days = 360 random = 120 } # Colony is destroyed
+	}
+	
+	option = {
+		name = "HMO_origin.57.a"
+	}
+}
+
+# Colony is destroyed
+planet_event = {
+	id = HMO_origin.58
+	title = "HMO_origin.58.name"
+	desc = HMO_origin.58.desc
+	picture = GFX_evt_burning_settlement
+	show_sound = event_planetary_riot
+	location = ROOT
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = HMO_insurgent_control
+	}
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "HMO_apocalypse_chain"
+				counter = "HMO_worlds_under_occupation"
+				amount = -1
+			}
+			add_event_chain_counter = {
+				event_chain = "HMO_apocalypse_chain"
+				counter = "HMO_worlds_lost"
+				amount = 1
+			}
+		}
+		remove_planet_flag = HMO_insurgent_control
+		remove_planet_flag = ongoing_insurgent_events
+		add_planet_devastation = 100
+		if = {
+			limit = {
+				num_pops > 10
+			}
+			add_blocker = {
+				type = d_tomb_world_ruins
+			}
+		}
+		if = {
+			limit = {
+				num_pops > 6
+			}
+			add_blocker = {
+				type = d_tomb_world_ruins
+			}
+		}
+		destroy_colony = yes
+	}
+	
+	option = {
+		name = "HMO_origin.58.a"
+	}
+}
+
+# Victory
+country_event = {
+	id = HMO_origin.59
+	#title = "HMO_origin.59.name"
+	#desc = HMO_origin.59.desc
+	#picture = 	GFX_evt_victorious_army
+	#show_sound = event_default
+	#location = FROMFROM
+	#trackable = yes
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROMFROM = { has_planet_flag = HMO_insurgent_control }
+	}
+
+	immediate = {
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		add_event_chain_counter = {
+			event_chain = "HMO_apocalypse_chain"
+			counter = "HMO_worlds_under_occupation"
+			amount = -1
+		}
+		FROMFROM = {
+			remove_planet_flag = HMO_insurgent_control
+			remove_planet_flag = ongoing_insurgent_events
+			if = {
+				limit = { has_modifier = HMO_society_breakdown }
+				remove_modifier = HMO_society_breakdown
+			}
+			if = {
+				limit = { has_modifier = HMO_major_society_breakdown }
+				remove_modifier = HMO_major_society_breakdown
+			}
+		}
+		owner = {
+			create_message = {
+				type = HMO_PLANET_LIBERATED
+				localization = MESSAGE_HMO_LIBERATED_INSURGENCY_PLANET_TEXT
+				days = @toast_message_days
+				custom_toast_content_icon = GFX_HMO_green_flag
+				target = fromfromfrom
+				
+				variable = {
+					type = name
+					localization = PLANET
+					scope = fromfromfrom
+				}
+			}
+		}
+	}
+
+	#option = {
+	#	name = HMO_origin.59.a
+	#}
+}
+
+####################################
+# Insurgency Diplomacy
+####################################
+
+# Insurgency gatekeeper event
+# Via on_custom_diplomacy | this = target country (player); from = country being contacted
+country_event = {
+	id = HMO_origin.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { is_country_type = HMO_insurgency }
+		HMO_has_insurgency_event = no
+	}
+
+	immediate = {
+		if = {
+			limit = { this = { has_faction = HMO_insurgent } }
+			from = { save_event_target_as = insurgent_country }
+			from = {
+				root = { country_event = { id = HMO_origin.101 } } # Insurgency Main Menu
+			}
+		}
+		if = {
+			limit = { NOT = { this = { has_faction = HMO_insurgent } } }
+			from = { save_event_target_as = insurgent_country }
+			from = {
+				root = { country_event = { id = HMO_origin.102 } } # Insurgents Refuses To Speak
+			}
+		}
+	}
+}
+
+# Insurgency Main Menu
+country_event = {
+	id = HMO_origin.101
+	title = HMO_origin.101.name
+	desc = HMO_origin.101a.desc
+	desc = HMO_origin.101b.desc
+	desc = HMO_origin.101c.desc
+	desc = HMO_origin.101d.desc
+	desc = HMO_origin.101e.desc
+	desc = HMO_origin.101f.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	picture_event_data = {
+		portrait = event_target:insurgent_country
+		room = ethic_spaceship_room
+	}
+
+	trigger = { #for events which inherit from this one
+		OR = {
+			has_origin = origin_HMO_apocalypse
+		}
+	}
+	
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = {
+				has_valid_civic = civic_fanatic_purifiers
+			}
+			text = SCUM
+		}
+		name = {
+			trigger = {
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+			text = TASTY
+		}
+		name = {
+			trigger = {
+				has_valid_civic = civic_machine_terminator
+			}
+			text = EXTERMINATE
+		}
+		trigger = { is_homicidal = yes }
+	}
+	
+	#option = { # Peace Deal Offer
+	#	name = HMO_origin.101.c
+	#	custom_tooltip = HMO_origin.101.c.tooltip
+	#	trigger = { has_country_flag = HMO_insurgency_mid_game }
+	#	allow = {
+	#		custom_tooltip = {
+	#			fail_text = HMO_origin.101.c
+	#		}
+	#	}
+	#	#hidden_effect = {
+	#	#	country_event = { id = HMO_origin.103 }
+	#	#}
+	#}
+
+	option = {
+		name = HMO_origin.101.d
+		default_hide_option = yes
+		trigger = { is_homicidal = no }
+	}
+}
+
+# Insurgents Refuse To Speak
+country_event = {
+	id = HMO_origin.102
+	title = HMO_origin.102.name
+	desc = HMO_origin.102.desc
+
+	is_triggered_only = yes
+	picture = GFX_evt_open_revolt
+
+	trigger = { #for events which inherit from this one
+		OR = {
+			has_origin = origin_HMO_apocalypse
+		}
+	}
+
+	option = {
+		name = HMO_origin.101.d
+	}
+}
+
+####################################
+# Insurgency Random Planet Events
+####################################
+
+# Weapons Cache Found
+planet_event = {
+	id = HMO_origin.151
+	title = "HMO_origin.151.name"
+	desc = HMO_origin.151.desc
+	picture = GFX_evt_gunrunning
+	show_sound = event_default
+	location = ROOT
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = HMO_insurgent_activity
+		NOT = {
+			owner = {
+				has_country_flag = HMO_found_insurgency_weapons
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+			set_timed_country_flag = {
+				flag = HMO_found_insurgency_weapons
+				months = 24
+			}
+			set_timed_country_flag = {
+				flag = HMO_insurgency_weakened
+				months = 24
+			}
+			subtract_variable = { which = HMO_global_insurgent_strength value = 1 }
+			country_event = { id = HMO_origin.184 days = 720 }
+		}
+		#random_country = {
+		#	limit = { has_country_flag = HMO_insurgency@prev.owner }
+		#	set_timed_country_flag = {
+		#		flag = HMO_insurgency_weakened
+		#		months = 12
+		#	}
+		#}
+	}
+	
+	option = {
+		name = HMO_origin.151.a
+	}
+}
+
+# Bombing
+planet_event = {
+	id = HMO_origin.152
+	title = "HMO_origin.152.name"
+	desc = HMO_origin.152.desc
+	picture = GFX_evt_archaeologists_escaping
+	show_sound = event_super_explosion
+	location = ROOT
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = HMO_insurgent_activity
+		num_pops > 10
+	}
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		add_planet_devastation = 10
+		add_blocker = {
+			type = d_bomb_crater
+		}
+		if = {
+			limit = {
+				num_pops > 10
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		set_timed_planet_flag = {
+			flag = HMO_recently_bombed
+			months = 24
+		}
+	}
+	
+	option = {
+		name = HMO_origin.152.a
+	}
+}
+
+# Rumors of Imminent attack
+planet_event = {
+	id = HMO_origin.153
+	title = "HMO_origin.153.name"
+	desc = HMO_origin.153.desc
+	picture = GFX_evt_smugglers_in_bar
+	show_sound = event_default
+	location = ROOT
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = HMO_insurgent_activity
+	}
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		add_modifier = {
+			modifier = HMO_insurgent_rumors
+			days = 360
+		}
+		if = {
+			limit = {
+				has_modifier = HMO_insurgent_activity
+				# owner = { has_faction = HMO_insurgent } # Can only trigger if the insurgent faction exists
+			}
+			random_list = {
+				# Nothing
+				20 = {
+					# Nothing. The rumors were false
+				}
+				# They Attack!
+				50 = {
+					planet_event = { id = HMO_origin.50 days = 360 } # Insurgency Attacks
+				}
+				# They bomb the planet
+				30 = {
+					planet_event = { id = HMO_origin.152 days = 360 } # Bombing
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.153.a
+	}
+	option = {
+		name = HMO_origin.153.b
+	}
+}
+
+# Insurgent Base Found
+planet_event = {
+	id = HMO_origin.154
+	title = "HMO_origin.154.name"
+	desc = HMO_origin.154.desc
+	picture = GFX_evt_mysterious_signal
+	show_sound = event_default
+	location = ROOT
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = HMO_insurgent_base
+	}
+	
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.154.a
+		enable_special_project = {
+			name = HMO_ATTACK_INSURGENCY_BASE
+			location = this
+			owner = root
+		}
+	}
+	
+	option = {
+		name = HMO_origin.154.b
+	}
+}
+
+# Insurgent Base Destroyed
+planet_event = {
+	id = HMO_origin.155
+	title = "HMO_origin.155.name"
+	desc = {
+		trigger = {
+			success_text = {
+				text = HMO_origin.155.a.desc
+				this = { is_occupied_flag = no }
+			}
+			success_text = {
+				text = HMO_origin.155.b.desc
+				this = { is_occupied_flag = yes }
+			}
+		}
+	}
+	picture = GFX_evt_night_raid
+	show_sound = event_default
+	location = ROOT
+
+	is_triggered_only = yes
+
+	trigger = {
+		this = { has_modifier = HMO_insurgent_base }
+	}
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+			set_timed_country_flag = {
+				flag = HMO_insurgent_base_destroyed
+				months = 60
+			}
+			add_event_chain_counter = {
+				event_chain = "HMO_apocalypse_chain"
+				counter = "HMO_insurgent_bases_destroyed"
+				amount = 1
+			}
+		}
+		if = {
+			limit = {
+				this = { is_occupied_flag = no }
+				# owner = { has_faction = HMO_insurgent } # Can only trigger if the insurgent faction exists
+			}
+			this = { remove_modifier = HMO_insurgent_base }
+		}
+	}
+	
+	option = {
+		name = HMO_origin.155.a
+		trigger = {
+			this = { is_occupied_flag = no }
+		}
+	}
+	
+	option = {
+		trigger = {
+			this = { is_occupied_flag = yes }
+		}
+		name = HMO_origin.155.b
+	}
+}
+
+# Bad Events
+planet_event = {
+	id = HMO_origin.161
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_planet_flag = ongoing_insurgent_events }
+	}
+	
+	immediate = {
+		set_planet_flag = ongoing_insurgent_events
+		fire_on_action = { on_action = HMO_insurgency_bad_events }
+	}
+}
+
+# Good Events
+planet_event = {
+	id = HMO_origin.162
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_planet_flag = ongoing_insurgent_events }
+	}
+	
+	immediate = {
+		fire_on_action = { on_action = HMO_insurgency_good_events }
+	}
+	
+}
+
+# Increasing Propaganda (Startup)
+planet_event = {
+	id = HMO_origin.170
+	title = "HMO_origin.170.name"
+	desc = "HMO_origin.170.desc"
+	picture = GFX_evt_smugglers_in_bar
+	show_sound = event_default
+	location = THIS
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			NOT = { has_modifier = HMO_insurgent_propaganda }
+		}
+	}
+	
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		add_modifier = {
+			modifier = HMO_insurgent_propaganda
+			days = 1800
+			#multiplier = owner.HMO_global_insurgent_strength
+			clear_on_owner_change = yes
+		}
+	}
+	
+	option = {
+		name = HMO_origin.170.a
+		hidden_effect = {
+			random_list = {
+				1 = {
+					modifier = {
+						factor = 0
+						owner = { has_country_flag = HMO_protest_plot_happened }
+					}
+					owner = {
+						set_country_flag = HMO_protest_plot_happened
+					}
+					planet_event = { id = HMO_origin.171 days = 180 random = 180 }
+				} # Recruiting Escelates
+				2 = {
+					remove_planet_flag = ongoing_insurgent_events
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.170.b
+		trigger = {
+			owner = {
+				is_authoritarian = yes
+			}
+		}
+		add_modifier = {
+			modifier = HMO_authoritarian_propaganda
+			days = 1800
+		}
+		hidden_effect = {
+			random_list = {
+				1 = {
+					modifier = {
+						factor = 0
+						owner = { has_country_flag = HMO_protest_plot_happened }
+					}
+					owner = {
+						set_country_flag = HMO_protest_plot_happened
+					}
+					planet_event = { id = HMO_origin.171 days = 180 random = 180 }
+				} # Recruiting Escelates
+				4 = {
+					remove_planet_flag = ongoing_insurgent_events
+				}
+			}
+		}
+	}
+	
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = 5
+			owner = {
+				NOT = { has_country_flag = HMO_protest_plot_happened }
+			}
+		}
+	}
+}
+
+# Increasing Propaganda (Mass Recruitings)
+planet_event = {
+	id = HMO_origin.171
+	title = "HMO_origin.171.name"
+	desc = "HMO_origin.171.desc"
+	picture = GFX_evt_smugglers_in_bar
+	show_sound = event_default
+	location = THIS
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		planet_event = { id = HMO_origin.172 days = 150 random = 30 }
+	}
+	
+	option = {
+		name = HMO_origin.171.a
+	}
+}
+
+# Increasing Propaganda (Fate)
+planet_event = {
+	id = HMO_origin.172
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		random_list = {
+			100 = {
+				#planet_event = { id = HMO_origin.173 days = 180 random = 180 }
+				planet_event = { id = HMO_origin.50 } # Insurgency Attacks
+				modifier = {
+					add = trigger:planet_crime
+				}
+				modifier = {
+					add = HMO_insurgent_strength
+				}
+			}
+			0 = {
+				planet_event = { id = HMO_origin.174 } # Plot foiled
+				modifier = {
+					add = trigger:planet_stability
+				}
+			}
+		}
+	}
+}
+
+# Increasing Propaganda (Plot Foiled)
+planet_event = {
+	id = HMO_origin.174
+	title = "HMO_origin.174.name"
+	desc = "HMO_origin.174.desc"
+	picture = GFX_evt_surrender
+	show_sound = event_default
+	location = THIS
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = ongoing_insurgent_events
+	}
+	
+	immediate = {
+		remove_planet_flag = ongoing_insurgent_events
+		add_modifier = {
+			modifier = HMO_recent_plot_foiled
+			days = 1800
+		}
+	}
+	
+	option = {
+		name = HMO_origin.174.a
+	}
+}
+
+# Weapons Smuggling (Startup)
+planet_event = {
+	id = HMO_origin.175
+	title = "HMO_origin.175.name"
+	desc = "HMO_origin.175.desc"
+	picture = GFX_evt_ship_offloading_cargo
+	show_sound = event_default
+	location = THIS
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		planet_crime > 20
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = HMO_organized_crime
+			days = 1800
+			multiplier = trigger:planet_crime
+			clear_on_owner_change = yes
+		}
+		remove_planet_flag = ongoing_insurgent_events
+	}
+	
+	option = {
+		name = HMO_origin.175.a
+	}
+	
+	weight_multiplier = {
+		factor = 1
+	}
+}
+
+# Increasing Tensions (Gatekeeper)
+planet_event = {
+	id = HMO_origin.176
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		happiness_planet < 0.25
+	}
+	
+	immediate = {
+		remove_planet_flag = ongoing_insurgent_events # Remove now, because it won't remove if the next event doesn't trigger
+		planet_event = { id = HMO_origin.177 days = 360 random = 360 }
+	}
+}
+
+# Increasing Tensions
+planet_event = {
+	id = HMO_origin.177
+	title = "HMO_origin.177.name"
+	desc = "HMO_origin.177.desc"
+	picture = GFX_evt_civil_action
+	show_sound = event_default
+	location = THIS
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		happiness_planet < 0.25
+		NOT = { has_planet_flag = ongoing_insurgent_events } # If there's another event going on, don't trigger this event
+	}
+	
+	immediate = {
+		set_planet_flag = ongoing_insurgent_events # Since we removed it earlier, add it back now
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		add_modifier = {
+			modifier = HMO_increasing_tensions
+			days = 1800
+			clear_on_owner_change = yes
+		}
+		random_list = {
+			1 = {
+				planet_event = { id = HMO_origin.178 days = 360 } # protests
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.177.a
+	}
+	
+	weight_multiplier = {
+		factor = 1
+	}
+}
+
+# Protests
+planet_event = {
+	id = HMO_origin.178
+	title = "HMO_origin.178.name"
+	desc = "HMO_origin.178.desc"
+	picture = GFX_evt_civil_action
+	show_sound = event_default
+	location = THIS
+	
+	is_triggered_only = yes
+	
+	#trigger = {
+	#	happiness_planet < 0.25
+	#}
+	
+	immediate = {
+		hidden_effect = {
+			set_variable = { which = HMO_revolt_enforcers value = 0 }
+			set_variable = { which = HMO_revolt_insurgents value = 0 }
+		}
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		this = {
+			save_event_target_as = protest_planet
+		}
+		add_modifier = {
+			modifier = HMO_protests
+			days = 1800
+			clear_on_owner_change = yes
+		}
+		remove_modifier = HMO_increasing_tensions
+		hidden_effect = {
+			every_owned_pop = {
+				if = {
+					limit = {
+						OR ={
+							has_job = enforcer
+							has_job = telepath
+						}
+					}
+					event_target:protest_planet = {
+						change_variable = { which = HMO_revolt_enforcers value = 2 }
+					}
+				}
+				else_if = {
+					limit = {
+						member_of_faction = HMO_insurgent
+					}
+					event_target:protest_planet = {
+						change_variable = { which = HMO_revolt_insurgents value = 1 }
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.178.a
+		hidden_effect = {
+			random_list = {
+				1 = {
+					modifier = {
+						add = HMO_revolt_insurgents
+					}
+					planet_event = { id = HMO_origin.179 days = 30 } # Riots
+				}
+				1 = {
+					modifier = {
+						add = HMO_revolt_enforcers
+					}
+					planet_event = { id = HMO_origin.183 days = 30 } # Riots Quelled
+				}
+			}
+		}
+	}
+	
+	after = {
+		hidden_effect = {
+			clear_variable = HMO_revolt_insurgents
+			clear_variable = HMO_revolt_enforcers
+		}
+	}
+	
+	#option = {
+	#	name = HMO_origin.178.b
+	#	hidden_effect = {
+	#		random_list = {
+	#			1 = {
+	#				planet_event = { id = HMO_origin.179 days = 30 } # Riots
+	#			}
+	#		}
+	#	}
+	#}
+	
+	weight_multiplier = {
+		factor = 1
+	}
+}
+
+# Revolt!
+planet_event = {
+	id = HMO_origin.179
+	title = "HMO_origin.179.name"
+	desc = HMO_origin.179.desc
+	picture = GFX_evt_open_revolt
+	show_sound = event_ground_battle
+	location = ROOT
+
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { has_origin = origin_HMO_apocalypse }
+		owner = { NOT = { has_country_flag = HMO_insurgents_defeated } }
+	}
+	
+	immediate = {
+		# create_HMO_insurgent_country = yes #makes sure the event targets are set and the country exists # No need to, the country cannot be destroyed
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		random_country = {
+			limit = { has_country_flag = HMO_insurgency@prev.owner }
+			save_event_target_as = insurgent_country
+		}
+		#remove_planet_flag = ongoing_insurgent_events
+		set_planet_flag = HMO_insurgent_revolt_planet
+		set_timed_planet_flag = {
+			flag = HMO_recently_attacked
+			months = 36
+		}
+		remove_modifier = HMO_protests
+		while = {
+			count = trigger:num_pops
+			create_army = {
+				name = "NAME_HMO_Revolt_Army"
+				owner = event_target:insurgent_country
+				#species = event_target:owner_main_species
+				type = "HMO_revolt_army"
+				#leader = last_created_leader
+			}
+		}
+	}
+
+	option = {
+		name = colony.54.a
+		custom_tooltip = HMO_INSURGENCY_REVOLT_TOOLTIP
+	}
+}
+
+# Victory against Revolt
+country_event = {
+	id = HMO_origin.181
+	title = "HMO_origin.181.name"
+	desc = HMO_origin.181.desc
+	picture = 	GFX_evt_victorious_army
+	show_sound = event_default
+	location = FROMFROM
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROMFROM = { has_planet_flag = HMO_insurgent_revolt_planet }
+	}
+
+	immediate = {
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		FROMFROM = {
+			remove_planet_flag = HMO_insurgent_revolt_planet
+			remove_planet_flag = ongoing_insurgent_events
+		}
+	}
+
+	option = {
+		name = HMO_origin.181.a
+	}
+}
+
+# Defeat against Revolt
+country_event = {
+	id = HMO_origin.180
+	title = "HMO_origin.180.name"
+	desc = "HMO_origin.180.desc"
+	picture = GFX_evt_surrender
+	show_sound = event_alien_signal
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		# has_origin = origin_HMO_apocalypse
+		FROMFROM = { has_planet_flag = HMO_insurgent_revolt_planet }
+		from = { is_country_type = HMO_insurgency }
+	}
+
+	immediate = {
+		save_event_target_as = HMO_insurgent_former_planet_owner
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		FROMFROM = {
+			remove_planet_flag = HMO_insurgent_revolt_planet
+			set_planet_flag = HMO_rioter_control
+			save_event_target_as = conquered_planet
+		}
+	}
+
+	option = {
+		name = "HMO_origin.180.a"
+	}
+}
+
+# Victory
+country_event = {
+	id = HMO_origin.182
+	title = "HMO_origin.182.name"
+	desc = HMO_origin.182.desc
+	picture = 	GFX_evt_victorious_army
+	show_sound = event_default
+	location = FROMFROM
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROMFROM = { has_planet_flag = HMO_rioter_control }
+	}
+
+	immediate = {
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		FROMFROM = {
+			remove_planet_flag = HMO_rioter_control
+			remove_planet_flag = ongoing_insurgent_events
+		}
+	}
+
+	option = {
+		name = HMO_origin.182.a
+	}
+}
+
+# Protests Stopped
+planet_event = {
+	id = HMO_origin.183
+	title = "HMO_origin.183.name"
+	desc = "HMO_origin.183.desc"
+	picture = GFX_evt_salute
+	show_sound = event_default
+	location = THIS
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		remove_modifier = HMO_increasing_tensions
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		remove_planet_flag = ongoing_insurgent_events
+	}
+	
+	option = {
+		name = HMO_origin.183.a
+	}
+	
+	weight_multiplier = {
+		factor = 1
+	}
+}
+
+# Insurgents Regains Strength after their cache has been found
+country_event = {
+	id = HMO_origin.184
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	#trigger = {
+	#	has_modifier = HMO_insurgent_activity
+	#}
+
+	immediate = {
+		change_variable = { which = HMO_global_insurgent_strength value = 1 }
+	}
+}
+
+# Bombing
+planet_event = {
+	id = HMO_origin.185
+	title = "HMO_origin.185.name"
+	desc = {
+		trigger = {
+			switch = {
+				trigger = has_planet_flag
+				HMO_blocker = { text = HMO_origin.185.desc.blocker }
+				HMO_kill_pop = { text = HMO_origin.185.desc.pop }
+				HMO_infrastructure_damage = { text = HMO_origin.185.desc.ruined }
+			}
+		}
+	}
+	picture = GFX_evt_archaeologists_escaping
+	show_sound = event_super_explosion
+	location = ROOT
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = HMO_insurgent_activity
+		NOT = { has_planet_flag = HMO_recently_bombed }
+	}
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		random_list = {
+			4 = {
+				set_planet_flag = HMO_blocker
+			}
+			1 = {
+				set_planet_flag = HMO_kill_pop
+			}
+			2 = {
+				set_planet_flag = HMO_infrastructure_damage
+			}
+		}
+		set_timed_planet_flag = {
+			flag = HMO_recently_bombed
+			months = 24
+		}
+	}
+	
+	option = {
+		name = HMO_origin.185.a
+		trigger = {
+			has_planet_flag = HMO_blocker
+		}
+		add_planet_devastation = 25
+		custom_tooltip = "HMO_origin.185.a.tooltip"
+		hidden_effect = {
+			HMO_add_insurgency_junk = yes
+			HMO_add_insurgency_junk = yes
+			HMO_add_insurgency_junk = yes
+		}
+		#add_blocker = {
+		#	type = d_HMO_insurgency_new_junk
+		#}
+		#add_blocker = {
+		#	type = d_HMO_insurgency_new_junk
+		#}
+		#add_blocker = {
+		#	type = d_HMO_insurgency_new_junk
+		#}
+	}
+	
+	option = {
+		name = HMO_origin.185.b
+		trigger = {
+			has_planet_flag = HMO_kill_pop
+		}
+		add_planet_devastation = 10
+		add_blocker = {
+			type = d_HMO_insurgency_new_junk
+		}
+		if = {
+			limit = {
+				num_pops > 5
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		if = {
+			limit = {
+				num_pops > 2
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.185.c
+		custom_tooltip = HMO_origin.185.c.tooltip
+		trigger = {
+			has_planet_flag = HMO_infrastructure_damage
+		}
+		add_planet_devastation = 5
+		if = {
+			limit = {
+				num_buildings = {  type = any  value > 1  disabled = any  in_construction = no }
+			}
+			ruin_building = random_no_capital
+		}
+	}
+	
+	after = {
+		remove_planet_flag = HMO_blocker
+		remove_planet_flag = HMO_infrastructure_damage
+		remove_planet_flag = HMO_kill_pop
+		remove_planet_flag = ongoing_insurgent_events
+	}
+}
+
+# Envoy Killed Gatekeeper
+planet_event = {
+	id = HMO_origin.186
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			NOT = { has_country_flag = recent_envoy_event }
+			NOT = { has_country_flag = HMO_insurgents_killed_envoy }
+			has_origin = origin_HMO_apocalypse
+		}
+		is_capital = yes
+	}
+	
+	immediate = {
+		owner = {
+			save_event_target_as = country_with_insurgents
+		}
+		remove_planet_flag = ongoing_insurgent_events
+		if = {
+			limit = {
+				owner = {
+					NOT = { has_country_flag = recent_envoy_event }
+					any_relation = {
+						is_improving_relations_with = event_target:country_with_insurgents
+						any_envoy = {
+							has_envoy_task = {
+								task = improve_relations
+								target = event_target:country_with_insurgents
+							}
+						}
+						is_gestalt = no
+						NOT = { has_country_flag = recent_envoy_event }
+						has_embassy = event_target:country_with_insurgents
+					}
+				}
+			}
+			owner = {
+				country_event = { id = HMO_origin.187 }
+			}
+		}
+		else = {
+			planet_event = { id = HMO_origin.185 }
+		}
+	}
+}
+
+# Envoy Killed
+country_event = {
+	id = HMO_origin.187
+	title = HMO_origin.187.name
+	desc = HMO_origin.187.desc
+	picture = GFX_evt_crisis_declared
+	show_sound = event_assembly_fight
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			has_origin = origin_HMO_apocalypse
+			NOT = { has_country_flag = recent_envoy_event }
+			any_relation = {
+				is_improving_relations_with = event_target:country_with_insurgents
+				any_envoy = {
+					has_envoy_task = {
+						task = improve_relations
+						target = event_target:country_with_insurgents
+					}
+				}
+				is_gestalt = no
+				NOT = { has_country_flag = recent_envoy_event }
+				has_embassy = event_target:country_with_insurgents
+			}
+		}
+	}
+
+	immediate = {
+		set_country_flag = HMO_insurgents_killed_envoy
+		set_timed_country_flag = {
+			flag = recent_envoy_event
+			days = 5400
+		}
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		random_relation = {
+			limit = {
+				is_improving_relations_with = event_target:country_with_insurgents
+				any_envoy = {
+					has_envoy_task = {
+						task = improve_relations
+						target = event_target:country_with_insurgents
+					}
+				}
+				is_gestalt = no
+				NOT = { has_country_flag = recent_envoy_event }
+			}
+			save_event_target_as = envoy_source
+			random_envoy = {
+				limit = {
+					has_envoy_task = {
+						task = improve_relations
+						target = event_target:country_with_insurgents
+					}
+				}
+				save_event_target_as = event_envoy
+			}
+		}
+	}
+
+	option = {
+		name = HMO_origin.187.a
+
+		event_target:envoy_source = {
+			tooltip = {
+				add_opinion_modifier = {
+					who = event_target:country_with_insurgents
+					modifier = opinion_insurgents_kills_envoys
+				}
+			}
+			hidden_effect = {
+				country_event = { id = HMO_origin.188 days = 5 }
+				set_timed_country_flag = {
+					flag = recent_envoy_event
+					days = 5400
+				}
+			}
+		}
+
+		tooltip = {
+			if = {
+				limit = {
+					is_in_federation_with = event_target:envoy_source
+				}
+				federation = {
+					add_cohesion = -25
+				}
+			}
+			event_target:event_envoy = {
+				kill_leader = {
+					show_notification = no
+				}
+			}
+		}
+	}
+}
+
+# Envoy Killed In Insurgent Attack - envoy country
+country_event = {
+	id = HMO_origin.188
+	title = HMO_origin.188.name
+	desc = HMO_origin.188.desc
+	picture = GFX_evt_crisis_declared
+	show_sound = event_assembly_fight
+
+	is_triggered_only = yes
+
+	option = {
+		name = HMO_origin.188.a
+
+		add_opinion_modifier = {
+			who = event_target:country_with_insurgents
+			modifier = opinion_insurgents_kills_envoys
+		}
+		if = {
+			limit = {
+				is_in_federation_with = event_target:country_with_insurgents
+			}
+			federation = {
+				add_cohesion = -25
+			}
+		}
+		event_target:event_envoy = {
+			kill_leader = {
+				show_notification = yes
+			}
+		}
+	}
+}
+
+# Insurgents gains Strength every decade
+country_event = {
+	id = HMO_origin.189
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_HMO_apocalypse
+		NOT = { has_country_flag = HMO_insurgents_defeated }
+	}
+
+	immediate = {
+		change_variable = { which = HMO_global_insurgent_strength value = 1 }
+	}
+}
+
+# Governor Killed Gatekeeper
+planet_event = {
+	id = HMO_origin.190
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			NOT = { has_country_flag = HMO_insurgents_killed_governor }
+			NOT = { has_country_flag = HMO_ramped_up_security }
+			has_origin = origin_HMO_apocalypse
+		}
+		exists = leader
+	}
+	
+	immediate = {
+		remove_planet_flag = ongoing_insurgent_events
+		random_list = {
+			1 = { planet_event = { id = HMO_origin.193 } } # Leader Maimed
+			1 = { planet_event = { id = HMO_origin.192 } } # Leader Killed
+			1 = {
+				modifier = {
+					factor = 0
+					owner = {
+						has_country_flag = HMO_insurgent_assassination_plot_failed
+					}
+				}
+				planet_event = { id = HMO_origin.191 }
+			} # Leader Barely Escaped - Lets the event happen again
+		}
+	}
+}
+
+planet_event = {
+	id = HMO_origin.191
+	title = HMO_origin.191.name
+	desc = HMO_origin.191.desc
+	picture = GFX_evt_archaeologists_escaping
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+	location = root
+
+	immediate = {
+		owner = {
+			set_country_flag = HMO_insurgent_assassination_plot_failed
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		leader = {
+			save_event_target_as = HMO_targeted_leader
+		}
+	}
+
+	option = { # Ramp Up Security
+		name = HMO_origin.191.a
+		custom_tooltip = "HMO_origin.191.a.tooltip"
+		hidden_effect = {
+			owner = { set_country_flag = HMO_ramped_up_security }
+		}
+	}
+
+	option = { # Unfortunate
+		name = HMO_origin.191.b
+	}
+}
+
+planet_event = {
+	id = HMO_origin.192
+	title = HMO_origin.192.name
+	desc = HMO_origin.192.desc
+	picture = GFX_evt_news_room
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+	location = root
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		leader = {
+			save_event_target_as = HMO_targeted_leader
+		}
+	}
+
+	option = { # A Tragedy
+		name = HMO_origin.192.a
+		event_target:HMO_targeted_leader = {
+			kill_leader = {
+				show_notification = no
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = HMO_origin.193
+	title = HMO_origin.193.name
+	desc = HMO_origin.193.desc
+	picture = GFX_evt_news_room
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+	location = root
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		leader = {
+			save_event_target_as = HMO_targeted_leader
+		}
+	}
+
+	option = { # A Tragedy
+		name = HMO_origin.193.a
+		event_target:HMO_targeted_leader = {
+			add_trait = leader_trait_maimed
+		}
+	}
+}
+
+## Stolen Hydrogen Bomb
+
+# Starting event
+# Presents situation, asks to pick initial approach
+planet_event = {
+	id = HMO_origin.200
+	title = HMO_origin.200.name
+	desc = HMO_origin.200.desc
+	picture = GFX_evt_decryption
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		owner = {
+			has_origin = origin_HMO_apocalypse
+			NOT = { has_country_flag = HMO_hydrogen_bomb_happened }
+			has_technology = tech_missiles_2
+		}
+		num_pops > 20
+	}
+
+	immediate = {
+		set_planet_flag = HMO_stolen_bomb
+		HMO_update_enforcer_scientist_values = yes
+		owner = {
+			set_country_flag = HMO_hydrogen_bomb_happened
+		}
+		#add_modifier = {
+		#	modifier = HMO_fear_of_the_bomb
+		#	days = -1
+		#}
+	}
+
+	after = {
+		hidden_effect = {
+			planet_event = { id = HMO_origin.201 days = 15 }
+		}
+	}
+
+	option = { # Intensivise Search Efforts
+		name = HMO_origin.200.a
+		custom_tooltip = "HMO_origin.200.a.tooltip"
+		set_planet_flag = HMO_intensive_search_efforts
+	}
+
+	option = { # Use Statistic Research Methods
+		name = HMO_origin.200.b
+		custom_tooltip = "HMO_origin.200.b.tooltip"
+		set_planet_flag = HMO_use_statistics
+	}
+
+	option = { # Don't Worry, it'll sort itself out!
+		name = HMO_origin.200.c
+		custom_tooltip = "HMO_origin.200.c.tooltip"
+		set_planet_flag = HMO_no_search_efforts
+	}
+}
+
+# Follow-up that confirms the bomb has been stolen
+planet_event = {
+	id = HMO_origin.201
+	title = HMO_origin.201.name
+	desc = HMO_origin.201.desc
+	picture = GFX_evt_decryption
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+	location = root
+
+	trigger = {
+		has_planet_flag = HMO_stolen_bomb
+	}
+
+	immediate = {
+		save_event_target_as = bomb_planet
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+			start_situation = {
+				type = situation_HMO_stolen_bomb
+				target = event_target:bomb_planet
+				effect = {
+					save_event_target_as = new_situation
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HMO_origin.201.a
+		icon = {
+			icon = GFX_situation_approach_pop
+			icon_background = GFX_situation_approach_bg_green
+			text = set_situation_approach_icon_text
+		}
+	}
+
+	after = {
+		# Setting initial approach depending on the previous choice
+		if = {
+			limit = {
+				has_planet_flag = HMO_intensive_search_efforts
+			}
+			event_target:new_situation = {
+				set_situation_approach = HMO_intensive_search_efforts
+				add_situation_progress = 5
+			}
+		}
+		else_if = {
+			limit = {
+					has_planet_flag = HMO_use_statistics
+			}
+			event_target:new_situation = {
+				set_situation_approach = HMO_use_statistics
+				add_situation_progress = 5
+			}
+		}
+		else = {
+			event_target:new_situation = {
+				set_situation_approach = HMO_no_search_efforts
+			}
+		}
+
+		hidden_effect = {
+			# cleanup
+			remove_planet_flag = HMO_intensive_search_efforts
+			remove_planet_flag = HMO_use_statistics
+			remove_planet_flag = HMO_no_search_efforts
+
+			event_target:new_situation = {
+				set_situation_locked = no
+				situation_event = { id = HMO_origin.205 days = 720 random = 180 }
+				# after 2 - 2.5 years the bomb detonates
+			}
+		}
+	}
+}
+
+# Update the variables used to calculate progress every month
+situation_event = {
+	id = HMO_origin.202
+	hide_window = yes
+	is_triggered_only = yes
+	location = target
+
+	immediate = {
+		target = {
+			HMO_update_enforcer_scientist_values = yes
+		}
+	}
+}
+
+# Triggered by on_progress_complete
+situation_event = {
+	id = HMO_origin.203
+	title = HMO_origin.203.name
+	desc = HMO_origin.203.desc
+	picture = GFX_evt_surrender
+	is_triggered_only = yes
+	show_sound = event_default
+	situation = this
+	location = target
+
+	immediate = {
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			situation_event = { id = HMO_origin.204 }
+		}
+	}
+
+	option = {
+		name = HMO_origin.203.a
+		#target = {
+		#	remove_modifier = "HMO_fear_of_the_bomb"
+		#}
+		#hidden_effect = {
+		#	target = {
+		#		
+		#	}
+		#}
+	}
+}
+
+# Destroy Situation
+situation_event = {
+	id = HMO_origin.204
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		target = {
+			remove_planet_flag = ongoing_insurgent_events
+		}
+		destroy_situation = this
+	}
+}
+
+# Ending switch
+## The less you know, the more damage
+situation_event = {
+	id = HMO_origin.205
+	hide_window = yes
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	immediate = {
+		#target = {
+		#	remove_modifier = "HMO_fear_of_the_bomb"
+		#}
+		switch = {
+			trigger = current_stage
+			HMO_low_intel = { # Worst end: City Destroyed
+				situation_event = { id = HMO_origin.206 }
+			}
+			HMO_medium_intel = {  # Really Bad end: Some Survivors
+				situation_event = { id = HMO_origin.207 }
+			}
+			HMO_high_intel = { # Bad end: City Evacuated
+				situation_event = { id = HMO_origin.208 }
+			}
+		}
+	}
+}
+
+# Bad Ending = city Evacuated
+# If bomb detonates and intel is high
+situation_event = {
+	id = HMO_origin.208
+	title = HMO_origin.208.name
+	desc = HMO_origin.208.desc
+	picture = GFX_evt_nuclear_explosion
+	is_triggered_only = yes
+	show_sound = event_super_explosion
+	situation = this
+	location = target
+
+	immediate = {
+		target = {
+			save_event_target_as = bombed_planet
+		}
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			target = {
+				remove_planet_flag = ongoing_insurgent_events
+			}
+		}
+		destroy_situation = this
+	}
+
+	option = {
+		name = HMO_origin.208.a
+		event_target:bombed_planet = {
+			add_planet_devastation = 25
+			add_blocker = {
+				type = d_bomb_crater
+			}
+			add_blocker = {
+				type = d_HMO_insurgency_new_junk
+			}
+			add_blocker = {
+				type = d_HMO_insurgency_new_junk
+			}
+			set_timed_planet_flag = {
+				flag = HMO_recently_bombed
+				months = 24
+			}
+		}
+	}
+}
+
+# Worse Ending = city partially Evacuated
+# If bomb detonates and intel is medium
+situation_event = {
+	id = HMO_origin.207
+	title = HMO_origin.207.name
+	desc = HMO_origin.207.desc
+	picture = GFX_evt_nuclear_explosion
+	is_triggered_only = yes
+	show_sound = event_super_explosion
+	situation = this
+	location = target
+
+	immediate = {
+		target = {
+			save_event_target_as = bombed_planet
+		}
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			target = {
+				remove_planet_flag = ongoing_insurgent_events
+			}
+		}
+		destroy_situation = this
+	}
+
+	option = {
+		name = HMO_origin.207.a
+		event_target:bombed_planet = {
+			add_planet_devastation = 25
+			add_blocker = {
+				type = d_bomb_crater
+			}
+			add_blocker = {
+				type = d_HMO_insurgency_new_junk
+			}
+			add_blocker = {
+				type = d_HMO_insurgency_new_junk
+			}
+			if = {
+				limit = {
+					num_pops > 5
+				}
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+			if = {
+				limit = {
+					num_pops > 2
+				}
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+			set_timed_planet_flag = {
+				flag = HMO_recently_bombed
+				months = 24
+			}
+		}
+	}
+}
+
+# Worst Ending = City Destroyed
+# If bomb detonates and intel is low
+situation_event = {
+	id = HMO_origin.206
+	title = HMO_origin.206.name
+	desc = HMO_origin.206.desc
+	picture = GFX_evt_nuclear_explosion
+	is_triggered_only = yes
+	show_sound = event_super_explosion
+	situation = this
+	location = target
+
+	immediate = {
+		target = {
+			save_event_target_as = bombed_planet
+		}
+		owner = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			target = {
+				remove_planet_flag = ongoing_insurgent_events
+			}
+		}
+		destroy_situation = this
+	}
+
+	option = {
+		name = HMO_origin.206.a
+		event_target:bombed_planet = {
+			add_planet_devastation = 25
+			add_blocker = {
+				type = d_bomb_crater
+			}
+			add_blocker = {
+				type = d_HMO_insurgency_new_junk
+			}
+			add_blocker = {
+				type = d_HMO_insurgency_new_junk
+			}
+			if = {
+				limit = {
+					num_pops > 10
+				}
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+			if = {
+				limit = {
+					num_pops > 8
+				}
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+			if = {
+				limit = {
+					num_pops > 6
+				}
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+			if = {
+				limit = {
+					num_pops > 4
+				}
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+			if = {
+				limit = {
+					num_pops > 2
+				}
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+			set_timed_planet_flag = {
+				flag = HMO_recently_bombed
+				months = 24
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = HMO_origin.210
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { owner = { has_country_flag = HMO_insurgent_defector } }
+	}
+	
+	immediate = {
+		owner = {
+			country_event = { id= HMO_origin.211 }
+		}
+	}
+}
+
+# Insurgent Defector
+country_event = {
+	id = HMO_origin.211
+	title = "HMO_origin.211.name"
+	diplomatic_title = NAME_HMO_insurgent_defector
+	desc = "HMO_origin.211.desc"
+	show_sound = event_administrative_work
+	location = fromfrom # Change to capital
+	is_triggered_only = yes
+	picture = GFX_leader_recruitment_bg_renowned
+	event_window_type = leader_recruit
+	
+	#trigger = {
+	#	NOT = { has_country_flag = HMO_insurgent_defector }
+	#}
+
+	immediate = {
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		set_country_flag = HMO_insurgent_defector
+		# Save country species class as event target
+		#create_leader = {
+		#	class = admiral
+		#	species = owner_main_species
+		#	name = random
+		#	skill = 2
+		#	traits = {
+		#		trait = leader_trait_gale_speed
+		#		trait = leader_trait_aggressive
+		#		trait = leader_trait_eager_2
+		#	}
+		#}
+		HMO_leader_creator = {
+			
+			CLASS = commander
+			#NAME = NAME_HMO_insurgent_defector
+			LEVEL = 2
+			GENDER = male
+			IMMORTAL = no
+			ETHIC = egalitarian
+			DESC = HMO_defector_leader_desc
+			CATCH_PHRASE = HMO_defector_leader_catch_phrase
+		}
+		last_created_leader = {
+			#add_trait = leader_trait_glory_seeker
+			#add_trait = leader_trait_army_logistician_2
+			add_trait = leader_trait_general_insurgent
+			save_global_event_target_as = HMO_insurgent_defector
+			set_age = 36
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:HMO_insurgent_defector
+		room = ethic_spaceship_room
+	}
+
+	# Why do you want to join us?
+	option = {
+		name = "HMO_origin.211.a"
+		response_text = HMO_origin.211.a.response
+		is_dialog_only = yes
+	}
+	# What can you offer us?
+	option = {
+		name = "HMO_origin.211.b"
+		response_text = HMO_origin.211.b.response
+		is_dialog_only = yes
+	}
+	# How can we trust you?
+	option = {
+		name = HMO_origin.211.c
+		response_text = HMO_origin.211.c.response
+		is_dialog_only = yes
+	}
+	# Dismissed
+	option = {
+		name = HMO_origin.211.dismiss
+		custom_tooltip = HMO_origin.211.dismiss.tooltip
+		#tooltip = {
+		#	add_resource = {
+		#		unity = 200
+		#		influence = 50
+		#	}
+		#}
+		
+		tag = dismiss_leader
+		hidden_effect = {
+			ethic_leader_kill_effect = yes
+			#country_event = { id = ancrel.4038 days = 1 }
+		}
+	}
+	# Hire
+	option = {
+		allow = {
+			NOR = {
+				has_ethic = ethic_fanatic_xenophobe
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+		name = HMO_origin.211.hire
+		custom_tooltip = HMO_origin.211.hire.tooltip
+		tag = hire_leader
+		hidden_effect = {
+			hire_event_leader_effect = {
+				LEADER = HMO_insurgent_defector
+			}
+		}
+	}
+}
+
+####################################
+# Insurgency Mid Game Events
+####################################
+
+# Change to splitting country into two. Start war with special flag. When the war ends, depending on victory or status quo, get differing events. Add large negative opinion modifier between both countries. 
+
+# Rumors of Massive attack
+country_event = {
+	id = HMO_origin.500
+	title = "HMO_origin.500.name"
+	desc = HMO_origin.500.desc
+	picture = GFX_evt_smugglers_in_bar
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_HMO_apocalypse
+		NOT = { has_country_flag = HMO_insurgents_defeated }
+	}
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = HMO_insurgents_suppressed
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+			random_country = {
+				limit = { has_country_flag = HMO_insurgency@prev.owner }
+				set_timed_country_flag = {
+					flag = HMO_insurgency_strengthened
+					months = 120
+				}
+			}
+			change_variable = {
+				which = HMO_global_insurgent_strength
+				value = 10
+			}
+			country_event = { id = HMO_origin.501 days = 720 random = 1080 } # Insurgency attacks in 2 - 5 years
+		}
+	}
+	
+	option = {
+		name = HMO_origin.500.a
+	}
+}
+
+# Massive Attack gatekeeper
+country_event = {
+	id = HMO_origin.501
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_HMO_apocalypse
+		NOT = { has_country_flag = HMO_insurgents_defeated }
+		any_pop_faction = {
+			is_pop_faction_type = HMO_insurgent
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { 
+				any_owned_planet = {
+					solar_system = { # Check if any planets exists outside the capital system
+						NOT = { any_system_planet = { is_same_value = root.capital_scope } }
+					}
+				}
+			}
+			capital_scope = {
+				planet_event = { id = HMO_origin.502 }
+			}
+		}
+		else = {
+			country_event = { id = HMO_origin.501 days = 360 } # Reschedule for a year
+		}
+	}
+}
+
+####################################
+# Insurgency Massive Attack Events
+####################################
+
+# The Insurgency Attacks!
+planet_event = {
+	id = HMO_origin.502
+	title = "HMO_origin.502.name"
+	desc = HMO_origin.502.desc
+	picture = GFX_evt_ground_combat
+	show_sound = event_ground_battle
+	location = ROOT
+
+	is_triggered_only = yes
+	
+	immediate = {
+		# create_HMO_insurgent_country = yes #makes sure the event targets are set and the country exists # No need to, the country cannot be destroyed
+		owner = {
+			set_country_flag = HMO_insurgency_cannot_be_defeated
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		random_country = {
+			limit = { has_country_flag = HMO_insurgency@prev.owner }
+			save_event_target_as = insurgent_country
+		}
+		set_planet_flag = HMO_insurgent_final_invasion_planet
+		set_timed_planet_flag = {
+			flag = HMO_recently_attacked
+			months = 36
+		}
+		event_target:insurgent_country = {
+			create_leader = {
+				class = commander
+				species = owner_main_species
+				name = random
+				skill = 3
+			}
+		}
+		# Add some extra strength
+		change_variable = { which = HMO_insurgent_strength value = 20 }
+		while = {
+			count = HMO_insurgent_strength
+			create_army = {
+				name = "NAME_HMO_Insurgency_Army"
+				owner = event_target:insurgent_country
+				#species = event_target:owner_main_species
+				type = "HMO_insurgency_army"
+				leader = last_created_leader
+			}
+		}
+	}
+
+	option = {
+		name = HMO_origin.502.a
+		custom_tooltip = HMO_INSURGENCY_FINAL_INVASION_TOOLTIP
+	}
+}
+
+# Victory
+country_event = {
+	id = HMO_origin.503
+	title = "HMO_origin.503.name"
+	desc = HMO_origin.503.desc
+	picture = 	GFX_evt_victorious_army
+	show_sound = event_default
+	location = FROMFROM
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROMFROM = { has_planet_flag = HMO_insurgent_final_invasion_planet }
+	}
+
+	immediate = {
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		FROMFROM = {
+			remove_planet_flag = HMO_insurgent_final_invasion_planet
+			remove_planet_flag = ongoing_insurgent_events
+		}
+		set_country_flag = HMO_insurgency_colony
+	}
+
+	option = {
+		name = colony.56.a
+		hidden_effect = {
+			random_owned_planet = {
+				limit = {
+					is_capital = no
+					solar_system = { # never choose a planet in the capital system
+						NOT = { any_system_planet = { is_same_value = root.owner.capital_scope } }
+					}
+				}
+				planet_event = { id = HMO_origin.505 days = 5 }
+			}
+		}
+	}
+}
+
+# Defeat
+country_event = {
+	id = HMO_origin.504
+	title = "HMO_origin.504.name"
+	desc = "HMO_origin.504.desc"
+	picture = GFX_evt_surrender
+	show_sound = event_alien_signal
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		# has_origin = origin_HMO_apocalypse
+		FROMFROM = { has_planet_flag = HMO_insurgent_final_invasion_planet }
+		from = { is_country_type = HMO_insurgency }
+		NOT = { has_country_flag = HMO_insurgents_defeated }
+	}
+
+	immediate = {
+		save_event_target_as = HMO_insurgent_former_planet_owner
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+		FROMFROM = {
+			remove_planet_flag = HMO_insurgent_final_invasion_planet
+			save_event_target_as = conquered_planet
+			#add_modifier = {
+			#	modifier = HMO_insurgent_home_base
+			#	days = -1
+			#}
+			#set_owner = event_target:HMO_insurgent_country
+			# flip starbase
+			#solar_system = {
+			#	if = {
+			#		limit = { exists = starbase }
+			#		starbase = { set_owner = event_target:HMO_insurgent_country }
+			#	}
+			#}
+		}
+		set_country_flag = HMO_insurgency_capital
+	}
+
+	option = {
+		name = "HMO_origin.52.a"
+		hidden_effect = {
+			random_owned_planet = {
+				limit = {
+					is_capital = no
+					solar_system = { # Choose a planet that is not in the capital system to act as a failsafe
+						NOT = { any_system_planet = { is_same_value = root.owner.capital_scope } }
+					}
+				}
+				solar_system = {
+					set_star_flag = HMO_insurgency_immunity
+				}				
+			}
+			FROMFROM = {
+				planet_event = { id = HMO_origin.505 days = 5 }
+			}
+		}
+	}
+}
+
+# Insurgents launch a massive attack on capital. If conquered, the new empire will have the capital, otherwise a new planet is chosen. # Make this a gatekeeper that checks if you have more than 1 planet. If only has the capital, reschedule for later.
+#Insurgents attack all planets!
+#country_event = {
+#	id = HMO_origin.501
+#	title = "HMO_origin.501.name"
+#	desc = HMO_origin.501.desc
+#	picture = GFX_evt_open_revolt
+#	show_sound = event_ground_battle
+#
+#	is_triggered_only = yes
+#
+#	trigger = {
+#		owner = { has_origin = origin_HMO_apocalypse }
+#		# has_faction = HMO_insurgent # Can only trigger if the insurgent faction exists
+#	}
+#
+#	immediate = {
+#		random_pop_faction = {
+#			limit = { is_pop_faction_type = HMO_insurgent }
+#			save_event_target_as = insurgent_faction
+#		}
+#		every_owned_planet = {
+#			limit = {
+#				has_modifier = HMO_insurgent_activity
+#			}
+#			planet_event = { id = HMO_origin.53 } # Attack Sneakily
+#		}
+#		every_owned_planet = {
+#			limit = {
+#				has_modifier = HMO_insurgent_base
+#			}
+#			planet_event = { id = HMO_origin.53 } # Attack Sneakily. Insurgent bases gets extra troops
+#		}
+#		country_event = { id = HMO_origin.502 days = 720 random = 720 } # Find homebase after 2 - 4 years
+#	}
+#	
+#	option = {
+#		name = HMO_origin.501.a
+#	}
+#}
+
+planet_event = { #uprising
+	id = HMO_origin.505
+	title = HMO_origin.505.name
+	desc = {
+		trigger = {
+			owner = {
+				has_country_flag = HMO_insurgency_capital
+			}
+		}
+		text = HMO_origin.505.desc.capital
+	}
+	desc = {
+		trigger = {
+			owner = {
+				has_country_flag = HMO_insurgency_colony
+			}
+		}
+		text = HMO_origin.505.desc.colony
+	}
+	picture = GFX_evt_open_revolt
+	show_sound = event_ai_started
+	is_triggered_only = yes
+	force_open = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	immediate = {
+		
+		owner = {
+			save_event_target_as = HMO_original_empire
+			species = {
+				save_event_target_as = HMO_insurgency_species
+			}
+			# Destroy the insurgency enclave
+			random_country = {
+				limit = { has_country_flag = HMO_insurgency@prev }
+				destroy_country = yes
+			}
+		}
+		set_planet_flag = HMO_insurgent_start_planet@root.owner
+		# event lock all fleets to prevent exploits
+		owner = { every_controlled_fleet = { set_event_locked = yes } }
+		# Calculate percentage of insurgent pops
+		owner = {
+			# Determine insurgent Pop percentage of Empire.
+			export_trigger_value_to_variable = {
+				trigger = pop_percentage
+				parameters = {
+					limit = { member_of_faction = HMO_insurgent }
+				}
+				variable = HMO_var_country_insurgent_pops_percent
+			}
+
+			# Take percentage of insurgent pops and average it together with 0.5 to get Uprising strength (0.25 to 0.75).
+			change_variable = { which = HMO_var_country_insurgent_pops_percent value = 0.5 }
+			divide_variable = { which = HMO_var_country_insurgent_pops_percent value = 2 }
+		}
+
+		# find and flag planets
+		owner = {
+			effect_on_blob = {
+				center = root.solar_system
+				owned_planets_percentage = HMO_var_country_insurgent_pops_percent
+				planet_limit = {
+					OR = {
+						controller = { is_same_value = root.owner }
+						solar_system = {
+							exists = starbase
+							starbase = { owner = { is_same_value = root.owner } }
+						}
+					}
+					solar_system = { # never flip any planets in the capital system and not immune worlds
+						NOT = { any_system_planet = { is_same_value = root.owner.capital_scope } }
+						NOT = { has_star_flag = HMO_insurgency_immunity }
+					}
+					is_under_colonization = no
+				}
+				effect = {
+					set_star_flag = HMO_insurgency_system_flip
+				}
+			}
+			#clear_variable = HMO_var_country_insurgent_pops_percent
+		}
+		# create insurgency country
+		HMO_create_insurgency_real_country = yes
+		every_planet_army = {
+			remove_army = yes
+		}
+		event_target:HMO_insurgency_uprising = {
+			country_event = { id = HMO_origin.506 }
+		}
+	}
+	option = {
+		name = HMO_origin.505.a
+		custom_tooltip = HMO_origin.505.a.tooltip
+
+		hidden_effect = {
+			event_target:HMO_insurgency_uprising = {
+				add_modifier = {
+					modifier = HMO_insurgency_uprising_ai_buff
+					days = 1800
+				}
+			}
+		}
+	}
+
+	option = {
+		name = HMO_origin.505.b
+		trigger = {
+			event_target:HMO_original_empire = { is_ai = no }
+		}
+		custom_tooltip = HMO_origin.505.b.tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					event_target:HMO_original_empire = { num_owned_planets > 0 }
+				}
+				event_target:HMO_insurgency_uprising = {
+					set_player = event_target:HMO_original_empire
+					add_modifier = {
+						modifier = HMO_insurgency_uprising_player_buff
+						days = 1800
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			event_target:HMO_original_empire = {
+				every_controlled_fleet = {
+					set_event_locked = no
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = HMO_origin.506
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# saving uprising and host as event targets
+		save_event_target_as = HMO_insurgency_uprising
+		#from.owner = { save_event_target_as = HMO_original_empire } # Saved Earlier
+
+		# setting flags
+		set_country_flag = HMO_insurgency_uprising_country@from.owner
+		set_country_flag = HMO_insurgency_uprising_country
+		set_country_flag = suppress_vanilla_factions
+		set_relation_flag = {
+			who = event_target:HMO_original_empire
+			flag = HMO_insurgency_to_host_flag
+		}
+		event_target:HMO_original_empire = {
+			set_country_flag = HMO_insurgency_uprising_originator@root
+			set_country_flag = HMO_insurgency_uprising_originator
+			set_relation_flag = {
+				who = root
+				flag = HMO_host_to_insurgency_flag
+			}
+			# Clear Insurgents from Loyalist Empire
+			every_owned_planet = {
+				planet_event = { id = HMO_origin.3 } # Cleanup
+			}
+			set_country_flag = HMO_insurgents_suppressed
+		}
+
+		# setting graphical culture
+		set_graphical_culture = event_target:HMO_original_empire
+
+		# establish comms
+		every_country = {
+			limit = {
+				OR = {
+					has_communications = event_target:HMO_original_empire
+					intel_level = {
+						level > low
+						system = event_target:HMO_original_empire.capital_scope.solar_system
+					}
+					any_system = {
+						has_star_flag = HMO_insurgency_system_flip
+						prev = {
+							intel_level = {
+								level > low
+								system = prev
+							}
+						}
+					}
+				}
+			}
+			establish_communications_no_message = root
+			establish_contact = { who = root location = from }
+		}
+
+		# baseline resource stockpile
+		add_resource = {
+			energy = 20000
+			minerals = 20000
+			influence = 800
+			alloys = 10000
+			food = 10000 #just in case
+			consumer_goods = 5000 #just in case
+			rare_crystals = 1000
+			volatile_motes = 1000
+			exotic_gases = 1000
+			sr_dark_matter = 100
+		}
+		add_500_unity_per_year_passed = yes # scripted effect
+
+		# opinion modifier
+		add_opinion_modifier = {
+			who = event_target:HMO_original_empire
+			modifier = HMO_opinion_insurgency_originator
+		}
+
+		event_target:HMO_original_empire = {
+			add_opinion_modifier = {
+				who = root
+				modifier = HMO_opinion_insurgency_uprising
+			}
+		}
+
+		# clear new contact opinion modifier
+		if = {
+			limit = {
+				has_opinion_modifier = {
+					who = event_target:HMO_original_empire
+					modifier = opinion_new_contact
+				}
+			}
+			remove_opinion_modifier = {
+				who = event_target:HMO_original_empire
+				modifier = opinion_new_contact
+			}
+		}
+
+		# flip capital planet
+		from = {
+			# flip military stations
+			solar_system = {
+				every_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = { is_same_value = event_target:HMO_original_empire }
+						any_controlled_ship = { is_ship_class = shipclass_military_station }
+					}
+					set_owner = root
+				}
+			}
+			set_owner = root
+			set_controller = root
+			set_capital = yes
+
+			solar_system = {
+				if = {
+					limit = {
+						exists = starbase
+					}
+					starbase = {
+						set_owner = root
+						if = {
+							limit = { has_starbase_size = starbase_outpost }
+							set_starbase_size = starbase_starport
+							set_starbase_module = {
+								slot = 1
+								module = shipyard
+							}
+							set_starbase_module = {
+								slot = 2
+								module = shipyard
+							}
+						}
+						else_if = {
+							limit = {
+								NOT = { has_starbase_module = shipyard }
+							}
+							set_starbase_module = {
+								slot = 1
+								module = shipyard
+							}
+							set_starbase_module = {
+								slot = 2
+								module = shipyard
+							}
+						}
+					}
+				}
+				else = {
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						owner = root
+					}
+				}
+			}
+
+			while = {
+				#limit = { free_housing > 0 }
+				count = 10
+				create_pop = {
+					species = root
+				}
+			}
+
+			if = {
+				limit = {
+					count_owned_pop = {
+						count < 5
+						limit = { is_exact_same_species = root }
+					}
+				}
+				while = {
+					limit = {
+						count_owned_pop = {
+							count < 5
+							limit = { is_exact_same_species = root }
+						}
+					}
+					random_owned_pop = {
+						limit = { NOT = { is_exact_same_species = root } }
+						kill_pop = yes
+						prev = {
+							create_pop = {
+								species = root
+							}
+						}
+					}
+				}
+			}
+
+			# create armies just in case
+			if = {
+				limit = {
+					root = { is_synthetic_empire = no }
+				}
+				while = {
+					count = 3
+					create_army = {
+						owner = root
+						type = assault_army
+					}
+				}
+			}
+			
+			# create armies just in case
+			if = {
+				limit = {
+					root = { is_synthetic_empire = yes }
+				}
+				while = {
+					count = 3
+					create_army = {
+						owner = root
+						type = individual_machine_assault_1
+					}
+				}
+			}
+
+			# flip remaining flagged planets
+			while = {
+				count = 100
+				limit = {
+					any_system = {
+						has_star_flag = HMO_insurgency_system_flip
+						exists = starbase
+						starbase = {
+							owner = { is_same_value = event_target:HMO_original_empire }
+						}
+					}
+				}
+				random_system = {
+					limit = {
+						has_star_flag = HMO_insurgency_system_flip
+						exists = starbase
+						starbase = {
+							owner = { is_same_value = event_target:HMO_original_empire }
+						}
+					}
+					starbase = { set_owner = root }
+				}
+			}
+			event_target:HMO_original_empire = {
+				every_owned_planet = {
+					limit = {
+						solar_system = {
+							has_star_flag = HMO_insurgency_system_flip
+						}
+					}
+
+					# flip military stations
+					solar_system = {
+						every_fleet_in_system = {
+							limit = {
+								exists = owner
+								owner = { is_same_value = event_target:HMO_original_empire }
+								any_controlled_ship = { is_ship_class = shipclass_military_station }
+							}
+							set_owner = root
+						}
+					}
+
+					set_planet_flag = been_flipped
+					set_owner = root
+					set_controller = root
+
+					export_trigger_value_to_variable = {
+						trigger = free_housing
+						variable = housing_var
+					}
+					if = {
+						limit = {
+							OR = {
+								check_variable = {
+									which = housing_var
+									value < 2
+								}
+								check_variable = {
+									which = housing_var
+									value > 25
+								}
+							}
+						}
+						set_variable = {
+							which = housing_var
+							value = 15
+						}
+					}
+					while = {
+						count = housing_var
+						create_pop = {
+							species = root
+						}
+					}
+					clear_variable = housing_var
+
+					if = {
+						limit = {
+							count_owned_pop = {
+								count < 5
+								limit = { is_exact_same_species = root }
+							}
+						}
+						while = {
+							limit = {
+								count_owned_pop = {
+									count < 5
+									limit = { is_exact_same_species = root }
+								}
+							}
+							count = 5
+							random_owned_pop = {
+								limit = { NOT = { is_exact_same_species = root } }
+								kill_pop = yes
+								prev = {
+									create_pop = {
+										species = root
+									}
+								}
+							}
+						}
+					}
+
+					# create armies on planets
+					if = {
+						limit = {
+							root = { is_synthetic_empire = no }
+						}
+						while = {
+							count = 3
+							create_army = {
+								owner = root
+								type = assault_army
+							}
+						}
+					}
+					if = {
+						limit = {
+							root = { is_synthetic_empire = yes }
+						}
+						while = {
+							count = 3
+							create_army = {
+								owner = root
+								type = individual_machine_assault_1
+							}
+						}
+					}
+					if = {
+						limit = { is_under_colonization = yes }
+						destroy_colony = yes
+					}
+				}
+			}
+			every_system = {
+				limit = {
+					has_star_flag = HMO_insurgency_system_flip
+				}
+				remove_star_flag = HMO_insurgency_system_flip
+			}
+		}
+
+		# get host's technologies
+		copy_techs_from = {
+			target = event_target:HMO_original_empire
+			except = {
+				# Horizon Signal
+				tech_akx_worm_1
+				tech_akx_worm_2
+				tech_akx_worm_3
+			}
+		}
+		
+		# Change name to hosts insurgency faction
+		event_target:HMO_original_empire = {
+			random_pop_faction = {
+				limit = { is_pop_faction_type = HMO_insurgent }
+				save_event_target_as = insurgent_faction
+			}
+		}
+		set_name = event_target:insurgent_faction
+
+		# survey host's surveyed planets
+		every_galaxy_planet = {
+			limit = {
+				is_surveyed = {
+					who = event_target:HMO_original_empire
+					status = yes
+				}
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = root
+			}
+		}
+
+		# declare war on host
+		declare_war = {
+			target = event_target:HMO_original_empire
+			name = {
+				key = "NAME_HMO_Insurgency_Uprising_War"
+				variable_string = "[This.MainDefender.GetAdj]"
+			}
+			attacker_war_goal = "wg_HMO_insurgency_uprising"
+		}
+
+
+		# create fleets
+		if = {
+			limit = { is_militarist = yes }
+
+			# militarist fleets, 100% naval cap
+
+			create_fleet_from_naval_cap = 0.2
+			random_owned_planet = {
+				last_created_fleet = {
+					set_location = prev
+				}
+			}
+
+			reroll_random = yes
+			create_fleet_from_naval_cap = 0.3
+			random_owned_planet = {
+				last_created_fleet = {
+					set_location = prev
+				}
+			}
+
+			reroll_random = yes
+			create_fleet_from_naval_cap = 0.2
+			random_owned_planet = {
+				last_created_fleet = {
+					set_location = prev
+				}
+			}
+
+			reroll_random = yes
+			create_fleet_from_naval_cap = 0.3
+			random_owned_planet = {
+				last_created_fleet = {
+					set_location = prev
+				}
+			}
+		}
+		else = {
+			# regular fleets, 80% naval cap
+			create_fleet_from_naval_cap = 0.1
+			random_owned_planet = {
+				last_created_fleet = {
+					set_location = prev
+				}
+			}
+			reroll_random = yes
+			create_fleet_from_naval_cap = 0.3
+			random_owned_planet = {
+				last_created_fleet = {
+					set_location = prev
+				}
+			}
+			reroll_random = yes
+			create_fleet_from_naval_cap = 0.4
+			random_owned_planet = {
+				last_created_fleet = {
+					set_location = prev
+				}
+			}
+		}
+
+		#science
+		create_fleet = {
+			effect = {
+				set_owner = root
+
+				create_ship = {
+					name = random
+					random_existing_design = science
+				}
+
+				set_fleet_stance = evasive
+				set_location = root.capital_scope
+
+				owner = {
+					create_leader = {
+						class = scientist
+						sub_type = survey
+						name = random
+						species = owner_main_species
+					}
+				}
+				set_leader = last_created_leader
+			}
+		}
+
+		#constructor
+		create_fleet = {
+			effect = {
+				set_owner = root
+
+				create_ship = {
+					name = random
+					random_existing_design = constructor
+				}
+
+				set_fleet_stance = evasive
+				set_location = root.capital_scope
+			}
+		}
+
+		every_controlled_fleet = {
+			#limit = { event_locked = yes }
+			set_event_locked = no
+		}
+		every_playable_country = {
+			limit = {
+				has_communications = event_target:HMO_original_empire
+				NOR = {
+					is_same_value = root
+					is_same_value = event_target:HMO_original_empire
+				}
+			}
+			country_event = { id = HMO_origin.507 days = 5 }
+		}
+		observer_event = { id = HMO_origin.508 }
+	}
+}
+
+# Insurgency War begins notification
+country_event = {
+	id = HMO_origin.507
+	title = HMO_origin.507.name
+	desc = HMO_origin.507.desc
+	picture = GFX_evt_open_revolt
+	location = fromfrom
+	is_triggered_only = yes
+	show_sound = event_ground_battle
+
+	trigger = {
+		exists = event_target:HMO_original_empire
+		exists = event_target:HMO_insurgency_uprising
+		NOR = {
+			is_same_value = event_target:HMO_original_empire
+			is_same_value = event_target:HMO_insurgency_uprising
+		}
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+# Uprising Begins
+observer_event = {
+	id = HMO_origin.508
+	title = HMO_origin.507.name
+	desc = HMO_origin.507.desc
+	picture = GFX_evt_open_revolt
+	location = fromfrom
+	show_sound = event_ground_battle
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# Country Destroyed Notification Gatekeeper
+country_event = {
+	id = HMO_origin.509
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = synth_queen_victorious }
+		OR = {
+			has_origin = origin_HMO_insurgents
+			has_origin = origin_HMO_apocalypse
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				exists = from
+			}
+			from = {
+				save_global_event_target_as = destroyer_country
+			}
+		}
+		# If the insurgency or loyalists got destroyed by someone else, the other country gets their flags anyway
+		# after action.62
+		# setting flags
+		# If the insurgency got destroyed by someone else, the loyalist country gets their flags anyway
+		if = {
+			limit = {
+				has_country_flag = HMO_insurgency_uprising_country
+			}
+			every_playable_country = {
+				limit = {
+					has_origin = origin_HMO_apocalypse
+					NOT = { is_same_value = event_target:destroyer_country }
+					has_country_flag = HMO_insurgency_uprising_originator@prev
+				}
+				# Get appropriate flags, as well as a notification event
+				set_country_flag = HMO_insurgents_defeated
+				set_country_flag = HMO_insurgency_war_ended
+				country_event = { id = HMO_origin.655 days = 5 }
+			}
+		}
+		# If the loyalists got destroyed by someone else, the insurgent country gets their flags anyway
+		if = {
+			limit = {
+				has_country_flag = HMO_insurgency_uprising_originator
+			}
+			every_playable_country = {
+				limit = {
+					has_origin = origin_HMO_insurgents
+					NOT = { is_same_value = event_target:destroyer_country }
+					has_country_flag = HMO_insurgency_uprising_originator@prev
+				}
+				# Get appropriate flags, as well as a notification event
+				set_country_flag = HMO_insurgency_war_ended
+				country_event = { id = HMO_origin.650 days = 5 }
+			}
+		}
+		if = {
+			limit = {
+				is_subject = no
+				OR = {
+					is_country_type = default
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+				NOT = { has_country_flag = silence_destroy_event }
+			}
+			if = {
+				limit = {
+					is_country_type = default
+					any_war = {
+						using_war_goal = {
+							owner = root
+							type = wg_machine_uprising # Change to insurgency war
+						}
+					}
+				}
+				event_target:destroyer_country = {
+					if = {
+						limit = {
+							has_origin = origin_HMO_insurgents
+						}
+						country_event = { id = HMO_origin.510 }
+					}
+					else = {
+						country_event = { id = HMO_origin.511 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Insurgency wins by obliterating the loyalists
+country_event = {
+	id = HMO_origin.510
+	title = HMO_origin.510.name
+	desc = HMO_origin.510.desc
+	picture = GFX_evt_victorious_army
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+	}
+
+	immediate = {
+		observer_event = { id = HMO_origin.550 }
+	}
+
+	option = {
+		name = HMO_origin.510.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 120
+			min = 2000
+			max = 6000
+		}
+		add_monthly_resource_mult = {
+			resource = influence
+			value = 120
+			min = 200
+			max = 600
+		}
+		#custom_tooltip = "HMO_origin.510.a.tooltip"
+		hidden_effect = {
+			remove_country_flag = suppress_vanilla_factions
+			set_country_flag = HMO_insurgency_war_ended
+		}
+	}
+}
+
+# Loyalists wins by destroying Insurgents
+country_event = {
+	id = HMO_origin.511
+	title = HMO_origin.511.name
+	desc = HMO_origin.511.desc
+	picture = GFX_evt_unity_symbol
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+
+	trigger = {
+		is_country_type = default
+	}
+
+	immediate = {
+		observer_event = { id = HMO_origin.555 }
+	}
+
+	option = {
+		name = OK
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 120
+			min = 2000
+			max = 6000
+		}
+		add_monthly_resource_mult = {
+			resource = influence
+			value = 120
+			min = 200
+			max = 600
+		}
+		#custom_tooltip = HMO_origin.511.a.tooltip
+		hidden_effect = {
+			set_country_flag = HMO_insurgency_war_ended
+		}
+		# Start celebrations
+		country_event = { id = HMO_origin.591 days = 5 }
+	}
+}
+
+#Enable Attack Home Base Project
+#country_event = {
+#	id = HMO_origin.502
+#	title = "HMO_origin.502.name"
+#	desc = HMO_origin.502.desc
+#	picture = GFX_evt_space_station
+#	show_sound = event_default
+#	location = event_target:insurgency_home_base
+#
+#	is_triggered_only = yes
+#
+#	trigger = {
+#		owner = { has_origin = origin_HMO_apocalypse }
+#		# has_faction = HMO_insurgent # Can only trigger if the insurgent faction exists
+#	}
+#
+#	immediate = {
+#		random_pop_faction = {
+#			limit = { is_pop_faction_type = HMO_insurgent }
+#			save_event_target_as = insurgent_faction
+#		}
+#		random_planet_within_border = {
+#			limit = {
+#				is_planet_class = pc_barren
+#				# owner = { has_faction = HMO_insurgent } # Can only trigger if the insurgent faction exists
+#			}
+#			save_event_target_as = insurgency_home_base
+#			# Enable the Attack Insurgency Home Base Project. If it fails, the homebase will be found again after around 5 years
+#			enable_special_project = {
+#				name = HMO_ATTACK_INSURGENCY_HOME_BASE
+#				location = this
+#				owner = root
+#			}
+#		}
+#	}
+#	
+#	option = {
+#		name = HMO_origin.502.a
+#	}
+#}
+
+# Insurgency wins
+# Root = Winner Warleader
+# From = Loser Warleader
+# FromFrom = War
+country_event = {
+	id = HMO_origin.520
+	title = HMO_origin.520.name
+	desc = HMO_origin.520.desc
+	picture = GFX_evt_open_revolt
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		has_origin = origin_HMO_insurgents
+		NOT = {
+			has_country_flag = HMO_insurgency_war_ended
+		}
+		has_relation_flag = {
+			who = from
+			flag = HMO_insurgency_to_host_flag
+		}
+	}
+
+	immediate = {
+		save_event_target_as = HMO_insurgency_war_winner
+		from = { save_event_target_as = HMO_insurgency_war_loser }
+		every_playable_country = {
+			limit = { has_communications = root }
+			country_event = { id = HMO_origin.560 days = 5 }
+		}
+		observer_event = { id = HMO_origin.550 }
+	}
+
+	option = {
+		name = HMO_origin.520.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 120
+			min = 2000
+			max = 6000
+		}
+		add_monthly_resource_mult = {
+			resource = influence
+			value = 120
+			min = 200
+			max = 600
+		}
+		custom_tooltip = "HMO_origin.520.a.tooltip"
+		hidden_effect = {
+			set_country_flag = HMO_insurgency_war_ended
+			remove_country_flag = suppress_vanilla_factions
+		}
+	}
+}
+
+# Loyalists wins
+# Root = Winner Warleader
+# From = Loser Warleader
+# FromFrom = War
+country_event = {
+	id = HMO_origin.525
+	title = HMO_origin.525.name
+	desc = HMO_origin.525.desc
+	picture = GFX_evt_unity_symbol
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+
+	trigger = {
+		is_country_type = default
+		has_origin = origin_HMO_apocalypse
+		has_relation_flag = {
+			who = from
+			flag = HMO_host_to_insurgency_flag
+		}
+		NOT = {
+			has_country_flag = HMO_insurgency_war_ended
+		}
+	}
+
+	immediate = {
+		save_event_target_as = HMO_insurgency_war_winner
+		from = { save_event_target_as = HMO_insurgency_war_loser }
+		every_playable_country = {
+			limit = { has_communications = root }
+			country_event = { id = HMO_origin.565 days = 5 }
+		}
+		observer_event = { id = HMO_origin.555 }
+	}
+
+	option = {
+		name = OK
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 120
+			min = 2000
+			max = 6000
+		}
+		add_monthly_resource_mult = {
+			resource = influence
+			value = 120
+			min = 200
+			max = 600
+		}
+		custom_tooltip = HMO_origin.525.a.tooltip
+		hidden_effect = {
+			set_country_flag = HMO_insurgency_war_ended
+		}
+		# Start celebrations
+		country_event = { id = HMO_origin.591 days = 5 }
+	}
+}
+
+#################
+# Notifications #
+#################
+
+# Insurgents Win
+observer_event = {
+	id = HMO_origin.550
+	title = HMO_origin.560.name
+	desc = HMO_origin.560.desc
+	picture = GFX_evt_machine_sapience
+	location = fromfrom.capital_scope
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# Loyalists Win
+observer_event = {
+	id = HMO_origin.555
+	title = HMO_origin.565.name
+	desc = HMO_origin.565.desc
+	picture = GFX_evt_interior_battle
+	location = fromfrom
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# Insurgency War ends notification - Insurgency wins
+country_event = {
+	id = HMO_origin.560
+	title = HMO_origin.560.name
+	desc = HMO_origin.560.desc
+	picture = GFX_evt_open_revolt
+	location = fromfrom.capital_scope
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# Insurgency War ends notification - Loyalists win
+country_event = {
+	id = HMO_origin.565
+	title = HMO_origin.565.name
+	desc = HMO_origin.565.desc
+	picture = GFX_evt_victorious_army
+	location = fromfrom
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# Gatekeeper
+country_event = {
+	id = HMO_origin.570
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_origin = origin_HMO_apocalypse
+			has_origin = origin_HMO_insurgents
+		}
+		NOT = { has_country_flag = HMO_insurgency_war_ended }
+		From = {
+			OR = {
+				has_origin = origin_HMO_apocalypse
+				has_origin = origin_HMO_insurgents
+			}
+		}
+	}
+
+	immediate = {
+		save_event_target_as = HMO_white_peace_signer
+		from = { save_event_target_as = HMO_white_peace_reciever }
+		if = {
+			limit = { # Loyalists do status quo
+				has_relation_flag = {
+					who = from
+					flag = HMO_host_to_insurgency_flag
+				}
+				NOT = {
+					has_country_flag = HMO_insurgency_war_ended
+				}
+			}
+			set_country_flag = HMO_insurgency_war_ended
+			from = { set_country_flag = HMO_insurgency_war_ended }
+			country_event = { id = HMO_origin.575 days = 10 }
+			from = { country_event = { id = HMO_origin.580 days = 10 } }
+		}
+		else_if = {
+			limit = { # Insurgents do status quo
+				has_relation_flag = {
+					who = from
+					flag = HMO_insurgency_to_host_flag
+				}
+				NOT = {
+					has_country_flag = HMO_insurgency_war_ended
+				}
+			}
+			set_country_flag = HMO_insurgency_war_ended
+			from = { set_country_flag = HMO_insurgency_war_ended }
+			country_event = { id = HMO_origin.585 days = 10 }
+			from = { country_event = { id = HMO_origin.590 days = 10 } }
+		}
+	}
+}
+
+# Loyalists force status quo. Loyalist notification
+country_event = {
+	id = HMO_origin.575
+	title = HMO_origin.575.name
+	desc = HMO_origin.575.desc
+	picture = GFX_evt_unity_symbol
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+
+	option = {
+		name = OK
+		hidden_effect = {
+			remove_country_flag = suppress_vanilla_factions
+			set_country_flag = HMO_insurgents_defeated
+		}
+	}
+}
+
+# Loyalists force status quo. Insurgent notification
+country_event = {
+	id = HMO_origin.580
+	title = HMO_origin.580.name
+	desc = HMO_origin.580.desc
+	picture = GFX_evt_unity_symbol
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+
+	option = {
+		name = OK
+		hidden_effect = {
+			remove_country_flag = suppress_vanilla_factions
+		}
+	}
+}
+
+# Insurgents force status quo. Insurgent notification
+country_event = {
+	id = HMO_origin.585
+	title = HMO_origin.585.name
+	desc = HMO_origin.585.desc
+	picture = GFX_evt_unity_symbol
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+
+	option = {
+		name = OK
+		hidden_effect = {
+			remove_country_flag = suppress_vanilla_factions
+		}
+	}
+}
+
+# Insurgents force status quo. Loyalist notification
+country_event = {
+	id = HMO_origin.590
+	title = HMO_origin.590.name
+	desc = HMO_origin.590.desc
+	picture = GFX_evt_unity_symbol
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+
+	option = {
+		name = OK
+		hidden_effect = {
+			remove_country_flag = suppress_vanilla_factions
+			set_country_flag = HMO_insurgents_defeated
+		}
+	}
+}
+
+# Fate of the insurgency
+country_event = {
+	id = HMO_origin.591
+	title = "HMO_origin.591.name"
+	desc = HMO_origin.591.desc
+	picture = GFX_evt_arguing_senate
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_HMO_apocalypse
+	}
+
+	immediate = {
+		random_pop_faction = {
+			limit = { is_pop_faction_type = HMO_insurgent }
+			save_event_target_as = insurgent_faction
+		}
+	}
+	
+	# Cooporate
+	option = {
+		name = HMO_origin.591.a
+		custom_tooltip = HMO_origin.591.a.tooltip
+		set_country_flag = HMO_insurgents_defeated
+		remove_country_flag = suppress_vanilla_factions
+		if = {
+			limit = { num_owned_planets > 0 }
+			generate_parade_city = yes
+			start_situation = {
+				type = HMO_insurgency_celebration_opportunity
+				target = event_target:parade_city
+				effect = {
+					set_situation_flag = insurgents_spared
+					set_situation_flag = standard_unity_reward
+				}
+			}
+		}
+		end_event_chain = "HMO_apocalypse_chain"
+		hidden_effect = {
+			country_event = { id = HMO_origin.592 days = 360 } # Gain the Insurgency Reintegrated Modifier and flag
+		}
+	}
+	
+	# Imprison
+	option = {
+		name = HMO_origin.591.b
+		custom_tooltip = HMO_origin.591.b.tooltip
+		set_country_flag = HMO_insurgents_defeated
+		remove_country_flag = suppress_vanilla_factions
+		if = {
+			limit = { num_owned_planets > 0 }
+			generate_parade_city = yes
+			start_situation = {
+				type = HMO_insurgency_celebration_opportunity
+				target = event_target:parade_city
+				effect = {
+					set_situation_flag = insurgents_imprisoned
+					set_situation_flag = standard_unity_reward
+				}
+			}
+		}
+		end_event_chain = "HMO_apocalypse_chain"
+	}
+	
+	# Execute
+	option = {
+		name = HMO_origin.591.c
+		custom_tooltip = HMO_origin.591.c.tooltip
+		set_country_flag = HMO_insurgents_defeated
+		remove_country_flag = suppress_vanilla_factions
+		if = {
+			limit = { num_owned_planets > 0 }
+			generate_parade_city = yes
+			start_situation = {
+				type = HMO_insurgency_celebration_opportunity
+				target = event_target:parade_city
+				effect = {
+					set_situation_flag = insurgents_executed
+					set_situation_flag = standard_unity_reward
+				}
+			}
+		}
+		end_event_chain = "HMO_apocalypse_chain"
+	}
+}
+
+# Insurgents re-integrated They want to help
+country_event = {
+	id = HMO_origin.592
+	title = "HMO_origin.592.name"
+	desc = HMO_origin.592.desc
+	picture = GFX_evt_arguing_senate
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_HMO_apocalypse
+	}
+	
+	# Accepted
+	option = {
+		name = HMO_origin.592.a
+		hidden_effect = {
+			set_country_flag = HMO_insurgents_reintegrated
+		}
+	}
+	
+	# Declined
+	option = {
+		name = HMO_origin.592.b
+	}
+}
+
+# Insurgents Pleads forgiveness
+situation_event = {
+	id = HMO_origin.593
+	title = HMO_origin.593.name
+	desc = HMO_origin.593.desc
+	picture = 	GFX_evt_acquire_asset
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = insurgents_spared
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { # Accept them
+		name = HMO_origin.593.a
+		target = {
+			if = {
+				limit = {
+					any_owned_pop = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop = no
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop = no
+					}
+					root.target = {
+						create_pop = {
+							species = prev
+						}
+					}
+				}
+			}
+			else = {
+				random_owned_pop = {
+					root.target = {
+						create_pop = {
+							species = prev
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			weight = 10
+		}
+	}
+	option = { # Imprison Them
+		name = HMO_origin.593.b
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		increase_unity_celebration = yes
+	}
+}
+
+# Insurgents wishes to speak on TV
+situation_event = {
+	id = HMO_origin.594
+	title = HMO_origin.594.name
+	desc = HMO_origin.594.desc
+	picture = GFX_evt_news_room
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = insurgents_imprisoned
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { # Accept
+		name = HMO_origin.593.a
+		target.owner = {
+			add_modifier = { modifier = HMO_insurgent_apology }
+		}
+		ai_chance = {
+			weight = 10
+		}
+	}
+	option = { # Decline
+		name = HMO_origin.593.b
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		increase_unity_celebration = yes
+	}
+}
+
+# Monument
+situation_event = {
+	id = HMO_origin.595
+	title = HMO_origin.595.name
+	desc = HMO_origin.595.desc
+	picture = GFX_evt_huge_monument
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = insurgents_executed
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { # Accept
+		name = HMO_origin.595.a
+		target = {
+			add_deposit = d_HMO_insurgent_monument
+			last_added_deposit = {
+				set_deposit_flag = keep_deposit_on_terraform
+			}
+		}
+		ai_chance = {
+			weight = 10
+		}
+	}
+	option = { # Decline
+		name = HMO_origin.595.b
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		increase_unity_celebration = yes
+	}
+}
+
+situation_event = {
+	id = HMO_origin.596
+	title = HMO_origin.596.name
+	location = target
+	desc = {
+		trigger = {
+			switch = {
+				trigger = has_situation_flag
+				small_unity_reward = { text = HMO_origin.596.desc.small }
+				standard_unity_reward = { text = HMO_origin.596.desc.standard }
+				large_unity_reward = { text = HMO_origin.596.desc.large }
+			}
+		}
+	}
+	picture = GFX_evt_crisis_defeated
+	situation = this
+	is_triggered_only = yes
+	trigger = {
+		owner = { is_gestalt = no }
+	}
+	option = {
+		trigger = { has_situation_flag = small_unity_reward }
+		HMO_set_insurgency_celebration_modifier = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier2unityreward
+				min = @tier2unitymin
+				max = @tier2unitymax
+			}
+		}
+		name = situation.1005.a
+	}
+	option = {
+		trigger = { has_situation_flag = standard_unity_reward }
+		HMO_set_insurgency_celebration_modifier = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+		name = situation.1005.b
+	}
+	option = {
+		trigger = { has_situation_flag = large_unity_reward }
+		HMO_set_insurgency_celebration_modifier = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier4unityreward
+				min = @tier4unitymin
+				max = @tier4unitymax
+			}
+		}
+		name = situation.1005.c
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+# Insurgents are defeated by unity!
+
+# Insurgent Cleanup
+country_event = {
+	id = HMO_origin.600
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_origin = origin_HMO_apocalypse }
+		# has_faction = HMO_insurgent # Can only trigger if the insurgent faction exists
+	}
+
+	immediate = {
+		every_owned_planet = {
+			planet_event = { id = HMO_origin.3 } # Cleanup
+		}
+		country_event = { id = HMO_origin.601 } # Fate of the insurgency
+	}
+}
+
+# the decline of the insurgency
+country_event = {
+	id = HMO_origin.601
+	title = "HMO_origin.601.name"
+	desc = HMO_origin.601.desc
+	picture = GFX_evt_crisis_defeated
+	show_sound = event_default
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_HMO_apocalypse
+		#NOT = { has_faction = HMO_insurgent } # Can only trigger if the insurgent faction does not exist
+	}
+
+	immediate = {
+		# This even should only trigger if the faction is destroyed
+		#random_pop_faction = {
+		#	limit = { is_pop_faction_type = HMO_insurgent }
+		#	save_event_target_as = insurgent_faction
+		#}
+		random_country = {
+			limit = { has_country_flag = HMO_insurgency@prev.owner }
+			destroy_country = yes
+		}
+	}
+	
+	# Celebrate!
+	option = {
+		name = HMO_origin.601.a
+		custom_tooltip = HMO_origin.601.a.tooltip
+		set_country_flag = HMO_insurgents_defeated
+		set_country_flag = HMO_insurgents_unified
+		remove_country_flag = suppress_vanilla_factions
+		if = {
+			limit = { num_owned_planets > 0 }
+			generate_parade_city = yes
+			start_situation = {
+				type = HMO_insurgency_celebration_opportunity
+				target = event_target:parade_city
+				effect = {
+					set_situation_flag = insurgents_united
+					set_situation_flag = standard_unity_reward
+				}
+			}
+		}
+		end_event_chain = "HMO_apocalypse_chain"
+	}
+}
+
+# Someone else destroys the loyalists
+country_event = {
+	id = HMO_origin.650
+	title = HMO_origin.650.name
+	desc = HMO_origin.650.desc
+	picture = GFX_evt_unity_symbol
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+
+	option = {
+		name = HMO_origin.650.a
+		hidden_effect = {
+			remove_country_flag = suppress_vanilla_factions
+		}
+	}
+}
+
+# Someone else destroys the Insurgents
+country_event = {
+	id = HMO_origin.655
+	title = HMO_origin.655.name
+	desc = HMO_origin.655.desc
+	picture = GFX_evt_unity_symbol
+	is_triggered_only = yes
+	show_sound = event_mystic_reveal
+
+	option = {
+		name = OK
+		hidden_effect = {
+			remove_country_flag = suppress_vanilla_factions
+		}
+	}
+}
+
+# Reward Events
+
+# New Leaders Get Insurgency Training Trait
+country_event = {
+	id = HMO_origin.701
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		from = {
+			owner = {
+				OR = {
+					has_country_flag = HMO_insurgents_reintegrated
+					has_origin = origin_HMO_insurgents
+				}
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			if = {
+				limit = { leader_class = commander }
+				random_list = {
+					60 = {
+						add_trait = leader_trait_admiral_insurgent
+					}
+					20 = {
+						add_trait = leader_trait_general_insurgent
+					}
+					160 = {
+						modifier = {
+							factor = 0
+							owner = { has_origin = origin_HMO_insurgents }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+####################################
+# Banished Threat
+####################################
+
+# Starting Event gatekeeper
+country_event = {
+	id = HMO_origin.2000
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			# Ancient Caches
+			20 = {
+				country_event = { id = HMO_origin.2001 days = 360 random = 180 }
+			}
+			# Determine Isolation Time
+			10 = {
+				country_event = { id = HMO_origin.2100 days = 360 random = 180 }
+			}
+			# Old Colony
+			#10 = {
+			#	country_event = { id = HMO_origin.2001 days = 360 random = 180 }
+			#}
+			# No starting event
+			69 = { set_country_flag = HMO_banished_threat_starting_event }
+		}
+	}
+}
+
+####################################
+# Ancient Caches
+####################################
+
+# Ancient Caches of Stuff
+country_event = {
+	id = HMO_origin.2001
+	title = "HMO_origin.2001.name"
+	desc = "HMO_origin.2001.desc"
+	picture = GFX_evt_satellite_in_orbit
+	show_sound = event_sensor_ping
+	event_chain = HMO_ancient_caches_chain
+
+	trigger = {
+		is_ai = no
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = HMO_banished_threat_starting_event
+		capital_scope = { save_event_target_as = capital }
+		begin_event_chain = {
+			event_chain = "HMO_ancient_caches_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			random_system = {
+				limit = {
+					distance = {
+						source = event_target:capital
+						use_bypasses = no
+						min_jumps = 2
+						max_jumps = 6
+					}
+					NOR = {
+						exists = space_owner
+						has_star_flag = hostile_system
+					}
+				}
+				save_event_target_as = cache_system_1
+				set_star_flag = HMO_cache_system_1
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "abandoned_starbase_01_object"
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = HMO_cache_ambient_object
+				}
+			}
+			random_system = {
+				limit = {
+					distance = {
+						source = event_target:capital
+						use_bypasses = no
+						min_jumps = 2
+						max_jumps = 6
+					}
+					NOR = {
+						exists = space_owner
+						has_star_flag = HMO_cache_system_1
+						has_star_flag = hostile_system
+					}
+				}
+				save_event_target_as = cache_system_2
+				set_star_flag = HMO_cache_system_2
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "abandoned_starbase_01_object"
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = HMO_cache_ambient_object
+				}
+			}
+			random_system = {
+				limit = {
+					distance = {
+						source = event_target:capital
+						use_bypasses = no
+						min_jumps = 2
+						max_jumps = 6
+					}
+					NOR = {
+						exists = space_owner
+						has_star_flag = HMO_cache_system_1
+						has_star_flag = HMO_cache_system_2
+						has_star_flag = hostile_system
+					}
+				}
+				save_event_target_as = cache_system_3
+				set_star_flag = HMO_cache_system_3
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "abandoned_starbase_01_object"
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = HMO_cache_ambient_object
+				}
+			}
+			random_system = {
+				limit = {
+					distance = {
+						source = event_target:capital
+						use_bypasses = no
+						min_jumps = 2
+						max_jumps = 6
+					}
+					NOR = {
+						exists = space_owner
+						has_star_flag = HMO_cache_system_1
+						has_star_flag = HMO_cache_system_2
+						has_star_flag = HMO_cache_system_3
+						has_star_flag = hostile_system
+					}
+				}
+				save_event_target_as = cache_system_4
+				set_star_flag = HMO_cache_system_4
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = solar_system
+				}
+				create_ambient_object = {
+					type = "abandoned_starbase_01_object"
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = HMO_cache_ambient_object
+				}
+			}
+			create_point_of_interest = {
+				id = HMO_cache_search_poi.1
+				name = "HMO_cache_search_1_poi"
+				desc = "HMO_cache_search_1_poi_desc"
+				event_chain = "HMO_ancient_caches_chain"
+				location = event_target:cache_system_1
+			}
+			create_point_of_interest = {
+				id = HMO_cache_search_poi.2
+				name = "HMO_cache_search_2_poi"
+				desc = "HMO_cache_search_1_poi_desc"
+				event_chain = "HMO_ancient_caches_chain"
+				location = event_target:cache_system_2
+			}
+			create_point_of_interest = {
+				id = HMO_cache_search_poi.3
+				name = "HMO_cache_search_3_poi"
+				desc = "HMO_cache_search_1_poi_desc"
+				event_chain = "HMO_ancient_caches_chain"
+				location = event_target:cache_system_3
+			}
+			create_point_of_interest = {
+				id = HMO_cache_search_poi.4
+				name = "HMO_cache_search_4_poi"
+				desc = "HMO_cache_search_1_poi_desc"
+				event_chain = "HMO_ancient_caches_chain"
+				location = event_target:cache_system_4
+			}
+		}
+	}
+
+	option = {
+		name = "HMO_origin.2001.a"
+		custom_tooltip = HMO_origin.2001.a.tooltip
+	}
+}
+
+# Entering Cache System (HIDDEN)
+fleet_event = {
+	id = HMO_origin.2002
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			has_event_chain = "HMO_ancient_caches_chain"
+			FROM = {
+				OR = {
+					is_point_of_interest = {
+						id = HMO_cache_search_poi.1
+						event_chain = HMO_ancient_caches_chain
+						owner = root.owner
+					}
+					is_point_of_interest = {
+						id = HMO_cache_search_poi.2
+						event_chain = HMO_ancient_caches_chain
+						owner = root.owner
+					}
+					is_point_of_interest = {
+						id = HMO_cache_search_poi.3
+						event_chain = HMO_ancient_caches_chain
+						owner = root.owner
+					}
+					is_point_of_interest = {
+						id = HMO_cache_search_poi.4
+						event_chain = HMO_ancient_caches_chain
+						owner = root.owner
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { FROM = { has_star_flag = HMO_cache_system_1 } }
+			FROM = { remove_star_flag = HMO_cache_system_1 }
+			owner = { remove_point_of_interest = HMO_cache_search_poi.1 }
+		}
+		if = {
+			limit = { FROM = { has_star_flag = HMO_cache_system_2 } }
+			FROM = { remove_star_flag = HMO_cache_system_2 }
+			owner = { remove_point_of_interest = HMO_cache_search_poi.2 }
+		}
+		if = {
+			limit = { FROM = { has_star_flag = HMO_cache_system_3 } }
+			FROM = { remove_star_flag = HMO_cache_system_3 }
+			owner = { remove_point_of_interest = HMO_cache_search_poi.3 }
+		}
+		if = {
+			limit = { FROM = { has_star_flag = HMO_cache_system_4 } }
+			FROM = { remove_star_flag = HMO_cache_system_4 }
+			owner = { remove_point_of_interest = HMO_cache_search_poi.4 }
+		}
+		random_controlled_ship = {
+			random_list = {
+				20 = { # Ancient Cache Discovered
+					ship_event = { id = HMO_origin.2003 }
+				}
+			}
+		}
+	}
+}
+
+# Ancient Cache Discovered
+ship_event = {
+	id = HMO_origin.2003
+	title = "HMO_origin.2003.name"
+	desc = "HMO_origin.2003.desc"
+	picture = GFX_evt_ruined_system
+	show_sound = event_mystic_reveal
+	location = event_target:cache_location
+	trackable = yes
+	event_chain = HMO_ancient_caches_chain
+
+	is_triggered_only = yes
+
+	immediate = {
+		fleet = {
+			solar_system = {
+				random_system_ambient_object = {
+					limit = { has_ambient_object_flag = HMO_cache_ambient_object }
+					save_event_target_as = cache_location
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "HMO_origin.2003.a"
+		custom_tooltip = HMO_origin.2003.a.tooltip
+		hidden_effect = {
+			event_target:cache_location = {
+				enable_special_project = {
+					name = "HMO_RECOVER_CACHE_PROJECT"
+					location = this
+					owner = root.owner
+				}
+				set_ambient_object_flag = HMO_cache_project
+			}
+		}
+	}
+}
+
+# Ancient Cache Recovered (Hidden)
+ship_event = {
+	id = HMO_origin.2004
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			20 = { # Military Tech Cache
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = HMO_military_cache_found }
+				}
+				ship_event = { id = HMO_origin.2005 }
+			}
+			20 = { # Science Tech Cache
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = HMO_science_cache_found }
+				}
+				ship_event = { id = HMO_origin.2006 }
+			}
+			20 = { # Alloy Cache
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = HMO_alloy_cache_found }
+				}
+				ship_event = { id = HMO_origin.2007 }
+			}
+			20 = { # information Cache
+				modifier = {
+					factor = 0
+					owner = { has_country_flag = HMO_information_cache_found }
+				}
+				ship_event = { id = HMO_origin.2008 }
+			}
+		}
+	}
+}
+
+# Military Cache Recovered
+ship_event = {
+	id = HMO_origin.2005
+	title = "HMO_origin.2005.name"
+	desc = "HMO_origin.2005.desc"
+	picture = GFX_evt_ruined_system
+	show_sound = event_airlock
+	location = fromfrom
+	event_chain = HMO_ancient_caches_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = "EXCELLENT"
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "HMO_ancient_caches_chain"
+				counter = "HMO_caches_collected"
+				amount = 1
+			}
+		}
+		owner = {
+			set_country_flag = HMO_military_cache_found
+			if = {
+				limit = {
+					has_technology = tech_lasers_5
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier2researchreward
+					min = @tier2researchmin
+					max = @tier2researchmax
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_lasers_4
+				}
+				give_technology = { tech = tech_lasers_5 message = yes }
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_lasers_3
+				}
+				give_technology = { tech = tech_lasers_4 message = yes }
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_lasers_2
+				}
+				give_technology = { tech = tech_lasers_3 message = yes }
+			}
+			else = {
+				give_technology = { tech = tech_lasers_2 message = yes }
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = { id = HMO_origin.2049 } # Check if chain is finished
+				abort_special_project = {
+					type = HMO_RECOVER_CACHE_PROJECT
+					location = fromfromfrom
+				}
+			}
+		}
+	}
+}
+
+# Science Cache Recovered
+ship_event = {
+	id = HMO_origin.2006
+	title = "HMO_origin.2006.name"
+	desc = "HMO_origin.2006.desc"
+	picture = GFX_evt_ruined_system
+	show_sound = event_airlock
+	location = fromfrom
+	event_chain = HMO_ancient_caches_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = "EXCELLENT"
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "HMO_ancient_caches_chain"
+				counter = "HMO_caches_collected"
+				amount = 1
+			}
+		}
+		owner = {
+			set_country_flag = HMO_science_cache_found
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = { id = HMO_origin.2049 } # Check if chain is finished
+				abort_special_project = {
+					type = HMO_RECOVER_CACHE_PROJECT
+					location = fromfromfrom
+				}
+			}
+		}
+	}
+}
+
+# Alloy Cache Recovered
+ship_event = {
+	id = HMO_origin.2007
+	title = "HMO_origin.2007.name"
+	desc = "HMO_origin.2007.desc"
+	picture = GFX_evt_ruined_system
+	show_sound = event_airlock
+	location = fromfrom
+	event_chain = HMO_ancient_caches_chain
+
+	is_triggered_only = yes
+
+	option = {
+		name = "EXCELLENT"
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "HMO_ancient_caches_chain"
+				counter = "HMO_caches_collected"
+				amount = 1
+			}
+		}
+		owner = {
+			set_country_flag = HMO_alloy_cache_found
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier1materialreward
+				min = @tier1materialmin
+				max = @tier1materialmax
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = { id = HMO_origin.2049 } # Check if chain is finished
+				abort_special_project = {
+					type = HMO_RECOVER_CACHE_PROJECT
+					location = fromfromfrom
+				}
+			}
+		}
+	}
+}
+
+# Information Cache Recovered
+ship_event = {
+	id = HMO_origin.2008
+	title = "HMO_origin.2008.name"
+	desc = "HMO_origin.2008.desc"
+	picture = GFX_evt_ruined_system
+	show_sound = event_airlock
+	location = fromfrom
+	event_chain = HMO_ancient_caches_chain
+
+	is_triggered_only = yes
+	
+	immediate = {
+		owner = {
+			capital_scope = { save_event_target_as = capital }
+		}
+	}
+
+	option = {
+		name = "EXCELLENT"
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "HMO_ancient_caches_chain"
+				counter = "HMO_caches_collected"
+				amount = 1
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier1unityreward
+				min = @tier1unitymin
+				max = @tier1unitymax
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = { id = HMO_origin.2049 } # Check if chain is finished
+				abort_special_project = {
+					type = HMO_RECOVER_CACHE_PROJECT
+					location = fromfromfrom
+				}
+			}
+		}
+	}
+}
+
+# Caches Collected
+country_event = {
+	id = HMO_origin.2049
+	title = "HMO_origin.2049.name"
+	desc = "HMO_origin.2049.desc"
+	picture = GFX_evt_ruined_system
+	show_sound = event_administrative_work
+	event_chain = HMO_ancient_caches_chain
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_event_chain_counter = {
+			event_chain = "HMO_ancient_caches_chain"
+			counter = "HMO_caches_collected"
+		}
+		NOT = { has_country_flag = HMO_completed_ancient_caches }
+	}
+
+	immediate = {
+		set_country_flag = HMO_completed_ancient_caches
+	}
+
+	option = {
+		name = "EXCELLENT"
+		end_event_chain = "HMO_ancient_caches_chain"
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier2unityreward
+			min = @tier2unitymin
+			max = @tier2unitymax
+		}
+		add_monthly_resource_mult = {
+			resource = energy
+			value = @tier1materialreward
+			min = @tier1materialmin
+			max = @tier1materialmax
+		}
+	}
+}
+
+####################################
+# Ancient Rivals
+####################################
+
+# Ancient Rivals
+country_event = {
+	id = HMO_origin.2050
+	title = "HMO_origin.2050.name"
+	desc = "HMO_origin.2050.desc"
+	picture = GFX_evt_satellite_in_orbit
+	show_sound = event_sensor_ping
+
+	trigger = {
+		is_ai = no
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = HMO_banished_threat_starting_event
+		capital_scope = { save_event_target_as = capital }
+		#begin_event_chain = {
+		#	event_chain = "HMO_ancient_rivals_chain"
+		#	target = ROOT
+		#}
+		hidden_effect = {
+			random_country = {
+				limit = { has_origin = origin_remnants }
+				save_event_target_as = ancient_rival
+				set_country_flag = HMO_ancient_rival@prev
+			}
+		}
+	}
+
+	option = {
+		name = "HMO_origin.2050.a"
+		custom_tooltip = HMO_origin.2050.a.tooltip
+	}
+}
+
+####################################
+# Determine Isolation Time
+####################################
+
+# Determine Isolation Time
+country_event = {
+	id = HMO_origin.2100
+	title = "HMO_origin.2100.name"
+	desc = "HMO_origin.2100.desc"
+	picture = GFX_evt_clocks
+	show_sound = event_sensor_ping
+	event_chain = HMO_isolation_time_chain
+
+	trigger = {
+		is_ai = no
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = HMO_banished_threat_starting_event
+		capital_scope = { save_event_target_as = capital }
+		begin_event_chain = {
+			event_chain = "HMO_isolation_time_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			closest_system = {
+				limit = {
+					distance = {
+						source = event_target:capital
+						use_bypasses = no
+						min_jumps = 2
+						max_jumps = 40
+					}
+					NOR = {
+						exists = space_owner
+						has_star_flag = hostile_system
+					}
+					OR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_pulsar
+						is_star_class = sc_neutron_star
+						is_star_class = sc_m_giant
+						is_star_class = sc_t
+					}
+				}
+				save_event_target_as = HMO_black_hole_system_1
+				set_star_flag = HMO_black_hole_system_1
+			}
+			closest_system = {
+				limit = {
+					distance = {
+						source = event_target:capital
+						use_bypasses = no
+						min_jumps = 5
+						max_jumps = 40
+					}
+					NOR = {
+						exists = space_owner
+						has_star_flag = hostile_system
+						has_star_flag = HMO_black_hole_system_1
+					}
+					OR = {
+						AND = {
+							event_target:HMO_black_hole_system_1 = { NOT = { is_star_class = sc_black_hole } }
+							is_star_class = sc_black_hole
+						}
+						AND = {
+							event_target:HMO_black_hole_system_1 = { NOT = { is_star_class = sc_pulsar } }
+							is_star_class = sc_pulsar
+						}
+						AND = {
+							event_target:HMO_black_hole_system_1 = { NOT = { is_star_class = sc_neutron_star } }
+							is_star_class = sc_neutron_star
+						}
+						AND = {
+							event_target:HMO_black_hole_system_1 = { NOT = { is_star_class = sc_m_giant } }
+							is_star_class = sc_m_giant
+						}
+						AND = {
+							event_target:HMO_black_hole_system_1 = { NOT = { is_star_class = sc_t } }
+							is_star_class = sc_t
+						}
+					}
+				}
+				save_event_target_as = HMO_black_hole_system_2
+				set_star_flag = HMO_black_hole_system_2
+			}
+			
+			closest_system = {
+				limit = {
+					distance = {
+						source = event_target:capital
+						use_bypasses = no
+						min_jumps = 2
+						max_jumps = 40
+					}
+					NOR = {
+						exists = space_owner
+						has_star_flag = hostile_system
+						has_star_flag = HMO_black_hole_system_1
+						has_star_flag = HMO_black_hole_system_2
+					}
+					OR = {
+						AND = {
+							is_star_class = sc_black_hole
+							NOR = {
+								event_target:HMO_black_hole_system_1 = {
+									is_star_class = sc_black_hole
+								}
+								event_target:HMO_black_hole_system_2 = {
+									is_star_class = sc_black_hole
+								}
+							}
+						}
+						AND = {
+							is_star_class = sc_pulsar
+							OR = {
+								event_target:HMO_black_hole_system_1 = {
+									is_star_class = sc_black_hole
+								}
+								event_target:HMO_black_hole_system_2 = {
+									is_star_class = sc_black_hole
+								}
+							}
+							NOR = {
+								event_target:HMO_black_hole_system_1 = {
+									is_star_class = sc_pulsar
+								}
+								event_target:HMO_black_hole_system_2 = {
+									is_star_class = sc_pulsar
+								}
+							}
+						}
+						AND = {
+							is_star_class = sc_neutron_star
+							OR = {
+								event_target:HMO_black_hole_system_1 = {
+									is_star_class = sc_black_hole
+								}
+								event_target:HMO_black_hole_system_2 = {
+									is_star_class = sc_black_hole
+								}
+							}
+							NOR = {
+								event_target:HMO_black_hole_system_1 = {
+									is_star_class = sc_neutron_star
+								}
+								event_target:HMO_black_hole_system_2 = {
+									is_star_class = sc_neutron_star
+								}
+							}
+						}
+						AND = {
+							is_star_class = sc_m_giant
+							OR = {
+								event_target:HMO_black_hole_system_1 = {
+									is_star_class = sc_black_hole
+								}
+								event_target:HMO_black_hole_system_2 = {
+									is_star_class = sc_black_hole
+								}
+							}
+							NOR = {
+								event_target:HMO_black_hole_system_1 = {
+									is_star_class = sc_m_giant
+								}
+								event_target:HMO_black_hole_system_2 = {
+									is_star_class = sc_m_giant
+								}
+							}
+						}
+						AND = {
+							is_star_class = sc_t
+							OR = {
+								event_target:HMO_black_hole_system_1 = {
+									is_star_class = sc_black_hole
+								}
+								event_target:HMO_black_hole_system_2 = {
+									is_star_class = sc_black_hole
+								}
+							}
+							NOR = {
+								event_target:HMO_black_hole_system_1 = {
+									is_star_class = sc_t
+								}
+								event_target:HMO_black_hole_system_2 = {
+									is_star_class = sc_t
+								}
+							}
+						}
+					}
+				}
+				save_event_target_as = HMO_black_hole_system_3
+				set_star_flag = HMO_black_hole_system_3
+			}
+			create_point_of_interest = {
+				id = HMO_isolation_time_poi.1
+				name = "HMO_isolation_time_1_poi"
+				desc = "HMO_isolation_time_1_poi_desc"
+				event_chain = "HMO_isolation_time_chain"
+				location = event_target:HMO_black_hole_system_1
+			}
+			create_point_of_interest = {
+				id = HMO_isolation_time_poi.2
+				name = "HMO_isolation_time_2_poi"
+				desc = "HMO_isolation_time_1_poi_desc"
+				event_chain = "HMO_isolation_time_chain"
+				location = event_target:HMO_black_hole_system_2
+			}
+			create_point_of_interest = {
+				id = HMO_isolation_time_poi.3
+				name = "HMO_isolation_time_3_poi"
+				desc = "HMO_isolation_time_1_poi_desc"
+				event_chain = "HMO_isolation_time_chain"
+				location = event_target:HMO_black_hole_system_3
+			}
+		}
+	}
+
+	option = {
+		name = "HMO_origin.2100.a"
+		custom_tooltip = HMO_origin.2100.a.tooltip
+	}
+}
+
+# Entering Black Hole System (HIDDEN)
+fleet_event = {
+	id = HMO_origin.2101
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			has_event_chain = "HMO_isolation_time_chain"
+			FROM = {
+				OR = {
+					is_point_of_interest = {
+						id = HMO_isolation_time_poi.1
+						event_chain = HMO_isolation_time_chain
+						owner = root.owner
+					}
+					is_point_of_interest = {
+						id = HMO_isolation_time_poi.2
+						event_chain = HMO_isolation_time_chain
+						owner = root.owner
+					}
+					is_point_of_interest = {
+						id = HMO_isolation_time_poi.3
+						event_chain = HMO_isolation_time_chain
+						owner = root.owner
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		FROM = {
+			save_event_target_as = HMO_isolation_star_system
+		}
+		if = {
+			limit = { FROM = { has_star_flag = HMO_black_hole_system_1 } }
+			FROM = { remove_star_flag = HMO_black_hole_system_1 }
+			owner = { remove_point_of_interest = HMO_isolation_time_poi.1 }
+		}
+		if = {
+			limit = { FROM = { has_star_flag = HMO_black_hole_system_2 } }
+			FROM = { remove_star_flag = HMO_black_hole_system_2 }
+			owner = { remove_point_of_interest = HMO_isolation_time_poi.2 }
+		}
+		if = {
+			limit = { FROM = { has_star_flag = HMO_black_hole_system_3 } }
+			FROM = { remove_star_flag = HMO_black_hole_system_3 }
+			owner = { remove_point_of_interest = HMO_isolation_time_poi.3 }
+		}
+		random_controlled_ship = {
+			random_list = {
+				20 = { # Black Hole Discovered
+					ship_event = { id = HMO_origin.2102 }
+				}
+			}
+		}
+	}
+}
+
+# Black Hole Discovered
+ship_event = {
+	id = HMO_origin.2102
+	title = "HMO_origin.2102.name"
+	desc = {
+		trigger = {
+			hidden:event_target:HMO_isolation_star_system = {
+				switch = {
+					trigger = is_star_class
+					sc_black_hole = { text = HMO_origin.2102.desc.black_hole }
+					sc_pulsar = { text = HMO_origin.2102.desc.pulsar }
+					sc_neutron_star = { text = HMO_origin.2102.desc.neutron_star }
+					sc_m_giant = { text = HMO_origin.2102.desc.red_giant }
+					sc_t = { text = HMO_origin.2102.desc.brown_dwarf }
+					default = { text = HMO_origin.2102.desc.default }
+				}
+			}
+		}
+	}
+	picture = {
+		trigger = {
+			event_target:HMO_isolation_star_system = { is_star_class = sc_black_hole }
+		}
+		picture = GFX_evt_black_hole
+	}
+	picture = {
+		trigger = {
+			event_target:HMO_isolation_star_system = { is_star_class = sc_pulsar }
+		}
+		picture = GFX_evt_star_pulsar
+	}
+	picture = {
+		trigger = {
+			event_target:HMO_isolation_star_system = { is_star_class = sc_neutron_star }
+		}
+		picture = GFX_evt_star_neutron
+	}
+	picture = {
+		trigger = {
+			event_target:HMO_isolation_star_system = { is_star_class = sc_m_giant }
+		}
+		picture = GFX_evt_HMO_red_star
+	}
+	picture = {
+		trigger = {
+			event_target:HMO_isolation_star_system = { is_star_class = sc_t }
+		}
+		picture = GFX_evt_clocks
+	}
+	picture = {
+		trigger = {
+			event_target:HMO_isolation_star_system = {
+				NOR = {
+					is_star_class = sc_black_hole
+					is_star_class = sc_pulsar
+					is_star_class = sc_neutron_star
+					is_star_class = sc_m_giant
+					is_star_class = sc_t
+				}
+			}
+		}
+		picture = GFX_evt_clocks
+	}
+	show_sound = event_mystic_reveal
+	location = FromFromFrom
+	trackable = yes
+	event_chain = HMO_isolation_time_chain
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "OK"
+		owner = {
+			add_event_chain_counter = {
+				event_chain = "HMO_isolation_time_chain"
+				counter = "HMO_black_holes_discovered"
+				amount = 1
+			}
+			hidden_effect = {
+				owner = {
+					country_event = { id = HMO_origin.2103 } # Check if chain is finished
+				}
+			}
+		}
+	}
+}
+
+# Systems Entered
+country_event = {
+	id = HMO_origin.2103
+	title = "HMO_origin.2103.name"
+	desc = "HMO_origin.2103.desc"
+	picture = GFX_evt_ruined_system
+	show_sound = event_administrative_work
+	event_chain = HMO_isolation_time_chain
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_event_chain_counter = {
+			event_chain = "HMO_isolation_time_chain"
+			counter = "HMO_black_holes_discovered"
+		}
+		NOT = { has_country_flag = HMO_completed_isolation_time }
+	}
+
+	immediate = {
+		set_country_flag = HMO_completed_isolation_time
+	}
+
+	option = {
+		name = "EXCELLENT"
+		end_event_chain = "HMO_isolation_time_chain"
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier2unityreward
+			min = @tier2unitymin
+			max = @tier2unitymax
+		}
+	}
+}
+
+# Banished Earth
+
+### Add the unshield venus and mars special projects
+country_event = {
+	id = HMO_origin.2150
+	title = "HMO_origin.2150.name"
+	desc = "HMO_origin.2150.desc"
+	picture = GFX_evt_shielded_planet
+	is_triggered_only = yes
+	
+	trigger = {
+		any_system_within_border = {
+			has_star_flag = HMO_banished_sol
+		}
+	}
+	
+	immediate = {
+		every_planet_within_border = {
+			limit = {
+				has_planet_flag = HMO_shielded_venus
+			}
+			save_event_target_as = HMO_shielded_venus
+		}
+		every_planet_within_border = {
+			limit = {
+				has_planet_flag = HMO_shielded_mars
+			}
+			save_event_target_as = HMO_shielded_mars
+		}
+	}
+	
+	option = {
+		name = HMO_origin.2150.a
+		custom_tooltip = HMO_origin.2150.a.tooltip
+		event_target:HMO_shielded_venus = {
+			enable_special_project = {
+				name = "HMO_TAKE_DOWN_BANISHED_SHIELD_VENUS"
+				location = this
+				owner = root
+			}
+		}
+		event_target:HMO_shielded_mars = {
+			enable_special_project = {
+				name = "HMO_TAKE_DOWN_BANISHED_SHIELD_MARS"
+				location = this
+				owner = root
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.2150.b
+		add_resource = { unity = 40 }
+	}
+}
+
+### deshield completed (Venus)
+# try fromfrom if doesn't work
+ship_event = {
+	id = HMO_origin.2151
+	title = "HMO_origin.2151.name"
+	desc = HMO_origin.2151.desc
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = HMO_origin.2151.a
+		custom_tooltip = HMO_origin.2151.a.tooltip
+		hidden_effect = {
+			fromfrom = {
+				clear_planet_modifiers = yes
+				change_pc = {
+					class = pc_toxic
+					inherit_entity = yes
+				}
+				reset_planet = yes
+				set_planet_flag = toxic_terraforming_candidate
+				add_modifier = {
+					modifier = toxic_terraforming_candidate
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+### deshield completed (Mars)
+# try fromfrom if doesn't work
+ship_event = {
+	id = HMO_origin.2152
+	title = "HMO_origin.2152.name"
+	desc = HMO_origin.2152.desc
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = HMO_origin.2152.a
+		custom_tooltip = HMO_origin.2152.a.tooltip
+		hidden_effect = {
+			fromfrom = {
+				clear_planet_modifiers = yes
+				change_pc = {
+					class = pc_barren
+					inherit_entity = yes
+				}
+				reset_planet = yes
+				add_modifier = {
+					modifier = "terraforming_candidate"
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+####################
+# Shielded Systems #
+####################
+
+# Entering Banished Threat System
+ship_event = {
+	id = HMO_origin.2200
+	title = HMO_origin.2200.name
+	# Banished Threat Desc
+	desc = {
+		text = HMO_origin.2200.desc.a
+		trigger = {
+			owner = { HMO_is_banished_threat = yes }
+		}
+	}
+
+	# Non Threat Desc
+	desc = {
+		text = HMO_origin.2200.desc.b
+		trigger = {
+			NOT = { owner = { HMO_is_banished_threat = yes } }
+		}
+	}
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_default
+	location = FROM
+	trackable = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = HMO_banished_threat_system
+			any_system_planet = {
+				is_planet_class = pc_shielded
+				OR = {
+					has_planet_flag = HMO_shielded_colony
+					has_planet_flag = HMO_shielded_colony_fail
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.2200.a
+		custom_tooltip = HMO_origin.2200.a.tooltip
+		trigger = {
+			owner = {
+				HMO_is_banished_threat = yes
+			}
+		}
+		from = {
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_shielded
+					has_planet_flag = HMO_shielded_colony
+				}
+				enable_special_project = {
+					name = "HMO_TAKE_DOWN_BANISHED_SHIELD"
+					location = this
+					owner = root
+				}
+			}
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_shielded
+					has_planet_flag = HMO_shielded_colony_fail
+				}
+				enable_special_project = {
+					name = "HMO_TAKE_DOWN_BANISHED_SHIELD_FAIL"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.2200.b
+		custom_tooltip = HMO_origin.2200.b.tooltip
+		trigger = {
+			owner = {
+				HMO_is_banished_threat = no
+			}
+		}
+		from = {
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_shielded
+					has_planet_flag = HMO_shielded_colony
+				}
+				enable_special_project = {
+					name = "HMO_TAKE_DOWN_BANISHED_SHIELD"
+					location = this
+					owner = root
+				}
+			}
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_shielded
+					has_planet_flag = HMO_shielded_colony_fail
+				}
+				enable_special_project = {
+					name = "HMO_TAKE_DOWN_BANISHED_SHIELD_FAIL"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+	
+	option = {
+		trigger = {
+			owner = {
+				HMO_is_banished_threat = no
+			}
+		}
+		name = HMO_origin.2200.c
+		custom_tooltip = HMO_origin.2200.c.tooltip
+	}
+}
+
+### banished threat non-garaunteed deshield completed
+# try fromfrom if doesn't work
+ship_event = {
+	id = HMO_origin.2201
+	title = "HMO_origin.2201.name"
+	desc = {
+		trigger = {
+			text = HMO_origin.2201.desc
+			text = newline
+			success_text = {
+				text = HMO_origin.2201.a
+				fromfrom =  { is_planet_class = pc_barren }
+			}
+			success_text = {
+				text = HMO_origin.2201.b
+				fromfrom = { is_planet_class = pc_broken }
+				owner = { HMO_is_banished_threat = yes }
+			}
+			success_text = {
+				text = HMO_origin.2201.b.nonthreat
+				fromfrom = { is_planet_class = pc_broken }
+				owner = { HMO_is_banished_threat = no }
+			}
+			success_text = {
+				text = HMO_origin.2201.c
+				fromfrom =  { is_planet_class = pc_nuked }
+				owner = { HMO_is_banished_threat = yes }
+			}
+			success_text = {
+				text = HMO_origin.2201.c.nonthreat
+				fromfrom =  { is_planet_class = pc_nuked }
+				owner = { HMO_is_banished_threat = no }
+			}
+			success_text = {
+				text = newline
+				text = HMO_origin.2201.d
+				fromfrom = { has_modifier = HMO_surviving_infrastructure }
+				owner = { HMO_is_banished_threat = yes }
+			}
+			success_text = {
+				text = newline
+				text = HMO_origin.2201.d.nonthreat
+				fromfrom = { has_modifier = HMO_surviving_infrastructure }
+				owner = { HMO_is_banished_threat = no }
+			}
+			success_text = {
+				text = newline
+				text = HMO_origin.2201.e
+				fromfrom = { has_modifier = terraforming_candidate }
+			}
+		}
+	}
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			# barren
+			20 = {
+				fromfrom = {
+					clear_planet_modifiers = yes
+					change_pc = pc_barren
+					reset_planet = yes
+				}
+			}
+			# broken
+			20 = {
+				fromfrom = {
+					clear_planet_modifiers = yes
+					change_pc = pc_broken
+					reset_planet = yes
+				}
+			}
+			# tomb
+			1 = {
+				fromfrom = {
+					clear_planet_modifiers = yes
+					change_pc = pc_nuked
+					reset_planet = yes
+				}
+			}
+		}
+		random_list = {
+			# Modifier
+			30 = {
+				modifier = {
+					factor = 0
+					NOT = { fromfrom = { is_planet_class = pc_nuked } }
+				}
+				fromfrom = {
+					add_modifier = { modifier = HMO_surviving_infrastructure days = -1 }
+				}
+			}
+			# Modifier
+			10 = {
+				modifier = {
+					factor = 0
+					NOT = { fromfrom = { is_planet_class = pc_barren } }
+				}
+				fromfrom = {
+					add_modifier = { modifier = terraforming_candidate days = -1 }
+				}
+			}
+			# nothing
+			70 = {
+				fromfrom = {
+					clear_planet_modifiers = yes
+				}
+			}
+		}
+		fromfrom = { remove_planet_flag = HMO_shielded_colony_fail }
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+### deshield completed
+# try fromfrom if doesn't work
+ship_event = {
+	id = HMO_origin.2202
+	title = "HMO_origin.2201.name"
+	desc = {
+		trigger = {
+			success_text = {
+				text = HMO_origin.2202.desc
+				owner = { HMO_is_banished_threat = yes }
+			}
+			success_text = {
+				text = HMO_origin.2202.desc.default
+				owner = { HMO_is_banished_threat = no }
+			}
+		}
+	}
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = FASCINATING
+		hidden_effect = {
+			fromfrom = {
+				clear_planet_modifiers = yes
+				change_pc = pc_nuked
+				reset_planet = yes
+				remove_planet_flag = HMO_shielded_colony
+			}
+		}
+	}
+}
+
+#############
+# Unvaulted #
+#############
+
+planet_event = {
+	id = HMO_origin.3000
+	title = "HMO_origin.3000.name"
+	desc = "HMO_origin.3000.desc"
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = HMO_origin.3000.a
+		icon = {
+			icon = GFX_situation_approach_unity
+			icon_background = GFX_situation_approach_bg_green
+			text = set_situation_approach_icon_text
+		}
+		owner = {
+			start_situation = {
+				type = HMO_unvaulted_situation
+				target = prev
+				effect = {
+					save_event_target_as = new_situation
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				set_country_flag = HMO_terraforming_approach
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.3000.b
+		icon = {
+			icon = GFX_situation_approach_this_is_fine
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+		owner = {
+			start_situation = {
+				type = HMO_unvaulted_situation
+				target = prev
+				effect = {
+					save_event_target_as = new_situation
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				set_country_flag = HMO_colonization_approach
+			}
+		}
+	}
+	
+	after = {
+		hidden_effect ={
+			owner = {
+				switch = {
+					trigger = has_country_flag
+					HMO_terraforming_approach = {
+						event_target:new_situation = {
+							set_situation_approach = HMO_approach_terraform
+						}
+						remove_country_flag = HMO_terraforming_approach
+					}
+					HMO_colonization_approach = {
+						event_target:new_situation = {
+							set_situation_approach = HMO_approach_colonize
+						}
+						remove_country_flag = HMO_colonization_approach
+					}
+					default = {
+						event_target:new_situation = {
+							set_situation_approach = HMO_approach_terraform
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# On survey planet
+ship_event = {
+	id = HMO_origin.3001
+	title = "HMO_origin.3001.name"
+	desc = {
+		text = HMO_origin.3001.desc.a # Reached situation breakpoint # We need to find a planet with similar biosphere to the one we want to terraform ours into
+		trigger = {
+			owner = {
+				has_country_flag = HMO_reached_situation_unvaulted_breakpoint
+			}
+		}
+	}
+	desc = {
+		text = HMO_origin.3001.desc.b # Reached situation breakpoint # We need to find a planet with similar biosphere to the one we want to terraform ours into
+		trigger = {
+			owner = {
+				NOT = { has_country_flag = HMO_reached_situation_unvaulted_breakpoint }
+			}
+		}
+	}
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			has_origin = origin_HMO_unvaulted
+			NOT = { has_country_flag = HMO_found_biosphere }
+			ideal_planet_class = prev.from
+		}
+	}
+	
+	immediate = {
+		owner = {
+			set_country_flag = HMO_found_biosphere
+			if = {
+				limit = {
+					any_situation = {
+						has_situation_flag = HMO_needs_biosphere
+					}
+				}
+				random_situation = {
+					limit = {
+						is_situation_type = HMO_unvaulted_situation
+					}
+					remove_situation_flag = HMO_needs_biosphere
+				}
+			}
+		}
+		from = {
+			save_event_target_as = HMO_biosphere_planet
+		}
+	}
+	
+	option = {
+		name = "INCREDIBLE"
+	}
+}
+
+# Inform the player about needing biosphere
+situation_event = {
+	id = HMO_origin.3002
+	title = "HMO_origin.3002.name"
+	desc = "HMO_origin.3002.desc"
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { NOT = { has_country_flag = HMO_found_biosphere } }
+	}
+	
+	option = {
+		name = "OK"
+	}
+	
+}
+
+# The terraforming process has allowed for agriculture on our homeworld. Further terraforming will increase our agricultural capabilities # Also say "If we further want to improve our planet, we need to invest heavily into research to unlock terraforming tools"
+planet_event = {
+	id = HMO_origin.3003
+	title = "HMO_origin.3003.name"
+	desc = "HMO_origin.3003.desc"
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "OK"
+		add_deposit = d_bountiful_plains
+	}
+}
+
+# Completing terraforming 1
+country_event = {
+	id = HMO_origin.3004
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_unvaulted
+		last_increased_tech = tech_terrestrial_sculpting
+		any_situation = {
+			has_situation_flag = HMO_needs_terraforming_tech_1
+		}
+	}
+	
+	immediate = {
+		random_situation = {
+			limit = {
+				is_situation_type = HMO_unvaulted_situation
+			}
+			remove_situation_flag = HMO_needs_terraforming_tech_1
+		}
+	}
+}
+
+# Completing terraforming 2
+country_event = {
+	id = HMO_origin.3005
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_unvaulted
+		last_increased_tech = tech_ecological_adaptation
+		any_situation = {
+			has_situation_flag = HMO_needs_terraforming_tech_2
+		}
+	}
+	
+	immediate = {
+		random_situation = {
+			limit = {
+				is_situation_type = HMO_unvaulted_situation
+			}
+			remove_situation_flag = HMO_needs_terraforming_tech_2
+		}
+	}
+}
+
+# Completing terraforming 3
+country_event = {
+	id = HMO_origin.3006
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_unvaulted
+		last_increased_tech = tech_climate_restoration
+		any_situation = {
+			has_situation_flag = HMO_needs_terraforming_tech_3
+		}
+	}
+	
+	immediate = {
+		random_situation = {
+			limit = {
+				is_situation_type = HMO_unvaulted_situation
+			}
+			remove_situation_flag = HMO_needs_terraforming_tech_3
+		}
+	}
+}
+
+# Inform the player about needing biosphere
+situation_event = {
+	id = HMO_origin.3007
+	title = "HMO_origin.3007.name"
+	desc = {
+		text = HMO_origin.3007.desc.a # Reached situation breakpoint # We need to find a planet with similar biosphere to the one we want to terraform ours into
+		trigger = {
+			owner = {
+				has_country_flag = HMO_reached_situation_unvaulted_breakpoint
+			}
+		}
+	}
+	desc = {
+		text = HMO_origin.3007.desc.b # Reached situation breakpoint # We need to find a planet with similar biosphere to the one we want to terraform ours into
+		trigger = {
+			owner = {
+				NOT = { has_country_flag = HMO_reached_situation_unvaulted_breakpoint }
+			}
+		}
+	}
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_mystic_reveal
+	location = FROM
+	is_triggered_only = yes
+	
+	trigger = {
+		has_situation_flag = HMO_needs_biosphere
+		owner = {
+			NOT = { has_country_flag = HMO_found_biosphere }
+			any_owned_planet = {
+				is_homeworld = no
+				owner = { ideal_planet_class = prev }
+			}
+		}
+	}
+	
+	immediate = {
+		owner = {
+			set_country_flag = HMO_found_biosphere
+		}
+		remove_situation_flag = HMO_needs_biosphere
+		owner = {
+			random_owned_planet = {
+				limit = {
+					is_homeworld = no
+					owner = { ideal_planet_class = prev }
+				}
+				save_event_target_as = HMO_biosphere_planet
+			}
+		}
+	}
+	
+	option = {
+		name = "OK"
+	}
+}
+
+# Restoration Project Completed
+planet_event = {
+	id = HMO_origin.3100
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		remove_planet_flag = legendary_leader_planet # Allow terraforming
+		save_event_target_as = HMO_unvaulted_planet
+		owner = {
+			save_event_target_as = HMO_unvaulted_empire
+		}
+		HMO_change_to_ideal_planet_class = {
+			TARGET_SPECIES = event_target:HMO_unvaulted_empire
+			TARGET_PLANET = event_target:HMO_unvaulted_planet
+		}
+	}
+}
+
+situation_event = {
+	id = HMO_origin.3500
+	title = "HMO_origin.3500.name"
+	desc = "HMO_origin.3500.desc"
+	location = target
+	picture = GFX_evt_crisis_defeated
+	situation = this
+	is_triggered_only = yes
+
+	option = {
+		name = HMO_origin.3500.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+			add_modifier = {
+				modifier = HMO_unvaulted_reward_modifier
+				days = -1
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+####################################
+# Cataclysm Engine
+####################################
+
+####################################
+# Interstellar Scrapyard
+####################################
+
+####################################
+# Codekeepers
+####################################
+
+####################################
+# After The Apocalypse
+####################################
+
+####################################
+# ATA: Zcom: What to do now?
+####################################
+
+# Exposition about the two groups and the resproject
+country_event = {
+	id = HMO_origin.7001
+	title = "HMO_origin.7001.name"
+	desc = "HMO_origin.7001.desc"
+	picture = GFX_evt_hive_mind
+	show_sound = event_yellow_alert
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_zombies
+	}
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { NOT = { exists = event_target:HMO_Zombie_Country } }
+				create_country = {
+					name = "NAME_Zombie_Country_Name"
+					type = faction
+					flag = {
+						icon = {
+							category = "toxoid"
+							file = "toxoid_03.dds"
+						}
+						background= {
+							category = "backgrounds"
+							file = "00_solid.dds"
+						}
+						colors={
+							"black"
+							"black"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						establish_communications_no_message = root.owner
+						set_country_flag = HMO_zombie_plague
+						save_global_event_target_as = HMO_Zombie_Country
+					}
+				}
+				capital_scope = {
+					while = {
+						count = 6
+						create_army = {
+							name = "NAME_HMO_Zombie_Army_Name_1"
+							owner = event_target:HMO_Zombie_Country
+							type = HMO_zombie_army
+						}
+					}
+					random_list = {
+						10 = {
+							set_planet_flag = HMO_target_city
+							modifier = {
+								factor = value:HMO_num_city_districts
+								always = yes
+							}
+						}
+						10 = {
+							set_planet_flag = HMO_target_industrial
+							modifier = {
+								factor = value:HMO_num_industrial_districts
+								always = yes
+							}
+						}
+						10 = {
+							set_planet_flag = HMO_target_farming
+							modifier = {
+								factor = value:HMO_num_farming_districts
+								always = yes
+							}
+						}
+						10 = {
+							set_planet_flag = HMO_target_generator
+							modifier = {
+								factor = value:HMO_num_generator_districts
+								always = yes
+							}
+						}
+						10 = {
+							set_planet_flag = HMO_target_mining
+							modifier = {
+								factor = value:HMO_num_mining_districts
+								always = yes
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	# We should get rid of these defiled creatures
+	option = {
+		name = "HMO_origin.7001.a"
+	}
+}
+
+# Snow took the planet
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+# on_planet_defenders_lose
+country_event = {
+	id = HMO_origin.7010
+	title = HMO_origin.7010.name
+	desc = {
+		trigger = {
+			hidden:fromfrom = {
+				switch = {
+					trigger = has_planet_flag
+					HMO_target_city = { text = HMO_origin.7010.desc.city }
+					HMO_target_industrial = { text = HMO_origin.7010.desc.industrial }
+					HMO_target_generator = { text = HMO_origin.7010.desc.generator }
+					HMO_target_farming = { text = HMO_origin.7010.desc.farm }
+					HMO_target_mining = { text = HMO_origin.7010.desc.mining }
+					default = { text = "HMO_origin.7010.desc.city" }
+				}
+			}
+		}
+	}
+	picture = GFX_evt_undertaker
+	show_sound = event_bad_omen
+	location = fromfrom
+	show_sound = event_dangerous_animals
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_country_flag = HMO_zombie_plague }
+		NOT = { has_country_flag = HMO_zombies_intro_event }
+	}
+
+	immediate = {
+		from = { save_event_target_as = HMO_zombie_country }
+		fromfrom = {
+			switch = {
+				trigger = has_planet_flag
+				HMO_target_city = { remove_district = district_city }
+				HMO_target_industrial = { remove_district = district_industrial }
+				HMO_target_generator = { remove_district = district_generator }
+				HMO_target_farming = { remove_district = district_farming }
+				HMO_target_mining = { remove_district = district_mining }
+			}
+			switch = {
+				trigger = has_planet_flag
+				HMO_target_city = { HMO_create_zombie_town = yes }
+				HMO_target_industrial = { add_blocker = { type = d_HMO_zombie_factory blocked_deposit = none } }
+				HMO_target_generator = { add_blocker = { type = d_HMO_zombie_generator blocked_deposit = none } }
+				HMO_target_farming = { add_blocker = { type = d_HMO_zombie_farm blocked_deposit = none } }
+				HMO_target_mining = { add_blocker = { type = d_HMO_zombie_mine blocked_deposit = none } }
+			}
+			if = {
+				limit = {
+					OR = {
+						has_planet_flag = HMO_target_city
+						has_planet_flag = HMO_target_industrial
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						is_robot_pop = no
+						NOT = { pop_has_trait = trait_zombie }
+					}
+					kill_pop = yes
+				}
+			}
+			random_owned_pop = {
+				limit = {
+					is_robot_pop = no
+					NOT = { pop_has_trait = trait_zombie }
+				}
+				kill_pop = yes
+			}
+		}
+		fromfrom = {
+			every_ground_combat_attacker = {
+				limit = { army_type = HMO_zombie_army }
+				remove_army = yes
+			}
+		}
+	}
+
+	option = {
+		name = HMO_origin.7010.a
+		custom_tooltip = HMO_origin.7010.tt
+		hidden_effect = {
+			set_country_flag = HMO_zombies_intro_event
+			set_timed_country_flag = {
+				flag = HMO_zombie_protection
+				days = 2700
+			}
+			#set_timed_country_flag = {
+			#	flag = HMO_zombie_attack_unlikely
+			#	days = 5400
+			#}
+		}
+	}
+	
+	after = {
+		fromfrom = {
+			switch = {
+				trigger = has_planet_flag
+				HMO_target_city = { remove_planet_flag = HMO_target_city }
+				HMO_target_industrial = { remove_planet_flag = HMO_target_industrial }
+				HMO_target_generator = { remove_planet_flag = HMO_target_generator }
+				HMO_target_farming = { remove_planet_flag = HMO_target_farming }
+				HMO_target_mining = { remove_planet_flag = HMO_target_mining }
+			}
+		}
+	}
+}
+
+# Snow took the planet
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+# on_planet_defenders_lose
+country_event = {
+	id = HMO_origin.7020
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_country_flag = HMO_zombie_plague }
+	}
+
+	immediate = {
+		fromfrom = {
+			switch = {
+				trigger = has_planet_flag
+				HMO_target_city = { remove_planet_flag = HMO_target_city }
+				HMO_target_industrial = { remove_planet_flag = HMO_target_industrial }
+				HMO_target_generator = { remove_planet_flag = HMO_target_generator }
+				HMO_target_farming = { remove_planet_flag = HMO_target_farming }
+				HMO_target_mining = { remove_planet_flag = HMO_target_mining }
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = HMO_zombies_intro_event } }
+				set_country_flag = HMO_zombies_intro_event
+				set_timed_country_flag = {
+					flag = HMO_zombie_protection
+					days = 1800
+				}
+				#set_timed_country_flag = {
+				#	flag = HMO_zombie_attack_unlikely
+				#	days = 3600
+				#}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = HMO_origin.7500
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_zombies
+		has_country_flag = HMO_zombies_intro_event
+		NOR = {
+			has_country_flag = HMO_zombie_protection
+			has_country_flag = HMO_zombie_ascension_protection
+		}
+		home_planet = {
+			NOR = {
+				has_planet_flag = HMO_target_city
+				has_planet_flag = HMO_target_industrial
+				has_planet_flag = HMO_target_farming
+				has_planet_flag = HMO_target_mining
+				has_planet_flag = HMO_target_generator
+			}
+			exists = owner
+			owner = {
+				is_same_empire = root
+			}
+		}
+	}
+	
+	immediate = {
+		random_list = {
+			25 = {
+				#modifier = {
+				#	factor = 0
+				#	has_country_flag = HMO_zombie_attack_cooldown
+				#}
+				#modifier = {
+				#	factor = 0.2
+				#	has_country_flag = HMO_zombie_attack_very_unlikely
+				#}
+				#modifier = {
+				#	factor = 0.5
+				#	has_country_flag = HMO_zombie_attack_unlikely
+				#}
+				#modifier = {
+				#	factor = 3
+				#	NOT = { has_country_flag = HMO_zombie_attack_likely_inverse }
+				#}
+				#set_timed_country_flag = {
+				#	flag = HMO_zombie_attack_cooldown
+				#	months = 2
+				#}
+				#set_timed_country_flag = {
+				#	flag = HMO_zombie_attack_very_unlikely
+				#	months = 24
+				#}
+				#set_timed_country_flag = {
+				#	flag = HMO_zombie_attack_unlikely
+				#	months = 36
+				#}
+				#set_timed_country_flag = {
+				#	flag = HMO_zombie_attack_likely_inverse
+				#	months = 60
+				#}
+				country_event = { id = HMO_origin.7510 days = 5 random = 20 }
+			}
+			5 = { }
+		}
+	}
+}
+
+country_event = {
+	id = HMO_origin.7510
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_zombies
+		has_country_flag = HMO_zombies_intro_event
+		NOT = { has_country_flag = HMO_zombie_protection }
+		home_planet = {
+			NOR = {
+				has_planet_flag = HMO_target_city
+				has_planet_flag = HMO_target_industrial
+				has_planet_flag = HMO_target_farming
+				has_planet_flag = HMO_target_mining
+				has_planet_flag = HMO_target_generator
+			}
+			exists = owner
+			owner = {
+				is_same_empire = root
+			}
+		}
+	}
+	
+	immediate = {
+		HMO_create_zombie_country = yes
+		home_planet = {
+			set_variable_to_random_value = { which = HMO_zombie_strength min = value:HMO_min_zombie_armies max = value:HMO_max_zombie_armies rounded = yes }
+			random_list = {
+				10 = {
+					set_planet_flag = HMO_target_city
+					modifier = {
+						factor = value:HMO_num_city_districts
+						always = yes
+					}
+				}
+				10 = {
+					set_planet_flag = HMO_target_industrial
+					modifier = {
+						factor = value:HMO_num_industrial_districts
+						always = yes
+					}
+				}
+				10 = {
+					set_planet_flag = HMO_target_farming
+					modifier = {
+						factor = value:HMO_num_farming_districts
+						always = yes
+					}
+				}
+				10 = {
+					set_planet_flag = HMO_target_generator
+					modifier = {
+						factor = value:HMO_num_generator_districts
+						always = yes
+					}
+				}
+				10 = {
+					set_planet_flag = HMO_target_mining
+					modifier = {
+						factor = value:HMO_num_mining_districts
+						always = yes
+					}
+				}
+			}
+			while = {
+				count = HMO_zombie_strength
+				create_army = {
+					name = "NAME_HMO_Zombie_Army_Name_1"
+					owner = event_target:HMO_Zombie_Country
+					type = HMO_zombie_army
+				}
+			}
+		}
+	}
+}
+
+# Snow took the planet
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+# on_planet_defenders_lose
+country_event = {
+	id = HMO_origin.7550
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_country_flag = HMO_zombie_plague }
+		has_country_flag = HMO_zombies_intro_event
+		NOT = { has_country_flag = HMO_zombie_protection }
+	}
+
+	immediate = {
+		from = { save_event_target_as = HMO_zombie_country }
+		fromfrom = {
+			switch = {
+				trigger = has_planet_flag
+				HMO_target_city = { remove_district = district_city }
+				HMO_target_industrial = { remove_district = district_industrial }
+				HMO_target_generator = { remove_district = district_generator }
+				HMO_target_farming = { remove_district = district_farming }
+				HMO_target_mining = { remove_district = district_mining }
+			}
+			switch = {
+				trigger = has_planet_flag
+				HMO_target_city = { HMO_create_zombie_town = yes }
+				HMO_target_industrial = { add_blocker = { type = d_HMO_zombie_factory blocked_deposit = none } }
+				HMO_target_generator = { add_blocker = { type = d_HMO_zombie_generator blocked_deposit = none } }
+				HMO_target_farming = { add_blocker = { type = d_HMO_zombie_farm blocked_deposit = none } }
+				HMO_target_mining = { add_blocker = { type = d_HMO_zombie_mine blocked_deposit = none } }
+			}
+			if = {
+				limit = {
+					OR = {
+						has_planet_flag = HMO_target_city
+						has_planet_flag = HMO_target_industrial
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						is_robot_pop = no
+						NOT = { pop_has_trait = trait_zombie }
+					}
+					kill_pop = yes
+				}
+			}
+			random_owned_pop = {
+				limit = {
+					is_robot_pop = no
+					NOT = { pop_has_trait = trait_zombie }
+				}
+				kill_pop = yes
+			}
+		}
+		fromfrom = {
+			every_ground_combat_attacker = {
+				limit = { army_type = HMO_zombie_army }
+				remove_army = yes
+			}
+			create_message = {
+				type = HMO_MESSAGE_TYPE_ZOMBIES_WON
+				localization = HMO_MESSAGE_ZOMBIES_WON
+				days = 30
+				target = this
+				variable = {
+					type = name
+					localization = DEPOSIT
+					scope = last_added_deposit
+				}
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+	
+	after = {
+		fromfrom = {
+			switch = {
+				trigger = has_planet_flag
+				HMO_target_city = { remove_planet_flag = HMO_target_city }
+				HMO_target_industrial = { remove_planet_flag = HMO_target_industrial }
+				HMO_target_generator = { remove_planet_flag = HMO_target_generator }
+				HMO_target_farming = { remove_planet_flag = HMO_target_farming }
+				HMO_target_mining = { remove_planet_flag = HMO_target_mining }
+			}
+		}
+	}
+}
+
+#planet_event = {
+#	id = HMO_origin.7001
+#	hide_window = yes
+#	is_triggered_only = yes
+#	
+#	trigger = {
+#		owner = {
+#			has_origin = origin_HMO_zombies
+#			NOT = {
+#				has_country_flag = HMO_colonized_first_world
+#			}
+#		}
+#	}
+#	
+#	immediate = {
+#		owner = {
+#			random_country = {
+#				limit = { has_country_flag = HMO_resproject_country@prev }
+#				save_event_target_as = HMO_resproject_country
+#			}
+#		}
+#		save_event_target_as = HMO_resproject_candidate_world
+#		owner = {
+#			set_country_flag = HMO_colonized_first_world
+#			country_event = { id = HMO_origin.7002 days = 5 }
+#		}
+#	}
+#}
+
+# Upon colonizing a new world, the two groups asks to get control of the new planet for their own purposes. Zcom to have a zombie-free planet, The Resurrection Project to have a safe place to experiment. Choosing Zcom establishes a zcom base on the planet, and applies forced purge on all zombie pops on the planet. Choosing The Resurrection Project adds a Resurrection Project Laboratory that adds worker jobs only able to be filled by zombies (Experiment). Choosing any sets the factions leader as a permanent governor.
+#country_event = {
+#	id = HMO_origin.7002
+#	title = "HMO_origin.7002.name"
+#	desc = {
+#		trigger = {
+#			switch = {
+#				trigger = has_country_flag
+#				HMO_resproject_denied_twice = { text = HMO_origin.7002.desc.denied_twice }
+#				HMO_resproject_denied_once = { text = HMO_origin.7002.desc.denied_once }
+#				default = { text = HMO_origin.7002.desc	}
+#			}
+#		}
+#	}
+#	picture = GFX_evt_victorious_army
+#	is_triggered_only = yes
+#	
+#	trigger = {
+#		NOT = {
+#			has_country_flag = HMO_resproject_denied_thrice
+#		}
+#	}
+#	
+#	immediate = {
+#		owner = {
+#			random_owned_leader = {
+#				limit = { has_leader_flag = HMO_resproject_leader }
+#				save_event_target_as = HMO_resproject_leader
+#			}
+#			#random_owned_leader = {
+#			#	limit = { has_leader_flag = HMO_zcom_leader }
+#			#	save_event_target_as = HMO_zcom_leader
+#			#}
+#		}
+#	}
+#	
+#	# We can't give away a whole world
+#	option = {
+#		name = {
+#			trigger = {
+#				has_country_flag = HMO_resproject_denied_twice
+#			}
+#			text = HMO_origin.7002.desc.denied_twice.a
+#		}
+#		name = {
+#			trigger = {
+#				NOT = { has_country_flag = HMO_resproject_denied_twice }
+#				has_country_flag = HMO_resproject_denied_once
+#			}
+#			text = HMO_origin.7002.desc.denied_once.a
+#		}
+#		name = {
+#			trigger = {
+#				NOR = {
+#					has_country_flag = HMO_resproject_denied_twice
+#					has_country_flag = HMO_resproject_denied_once
+#				}
+#			}
+#			text = HMO_origin.7002.desc.a
+#		}
+#		hidden_effect = {
+#			if = {
+#				limit = {
+#					NOT = {
+#						has_country_flag = HMO_resproject_denied_once
+#					}
+#				}
+#				set_country_flag = HMO_resproject_denied_once
+#				remove_country_flag = HMO_colonized_first_world
+#			}
+#			else_if = {
+#				limit = {
+#					NOT = {
+#						has_country_flag = HMO_resproject_denied_twice
+#					}
+#				}
+#				set_country_flag = HMO_resproject_denied_twice
+#				remove_country_flag = HMO_colonized_first_world
+#			}
+#			else = {
+#				set_country_flag = HMO_resproject_denied_thrice
+#			}
+#		}
+#	}
+#	
+#	# The Resurrection Project needs a place to carry out their experiments.
+#	option = {
+#		name = {
+#			trigger = {
+#				has_country_flag = HMO_resproject_denied_twice
+#			}
+#			text = HMO_origin.7002.desc.denied_twice.b
+#		}
+#		name = {
+#			trigger = {
+#				NOT = { has_country_flag = HMO_resproject_denied_twice }
+#				has_country_flag = HMO_resproject_denied_once
+#			}
+#			text = HMO_origin.7002.desc.denied_once.b
+#		}
+#		name = {
+#			trigger = {
+#				NOR = {
+#					has_country_flag = HMO_resproject_denied_twice
+#					has_country_flag = HMO_resproject_denied_once
+#				}
+#			}
+#			text = HMO_origin.7002.desc.b
+#		}
+#		event_target:HMO_resproject_candidate_world = {
+#			assign_leader = event_target:HMO_resproject_leader
+#			# Create building
+#			add_building = HMO_building_resproject_outpost
+#		}
+#		hidden_effect = {
+#			owner = {
+#				set_country_flag = HMO_gave_resproject_world
+#			}
+#			# scope to the resproject country, then to their situation, then change target to the new planet. Remember to change target to capital if capital is changed or the resproject colony is lost
+#			random_country = {
+#				limit = { has_country_flag = HMO_resproject@prev }
+#				random_situation = {
+#					limit = { is_situation_type = HMO_resproject_situation }
+#					
+#				}
+#			}
+#		}
+#	}
+#}
+
+planet_event = {
+	id = HMO_origin.8100
+	title = "HMO_origin.8100.name"
+	desc = "HMO_origin.8100.desc"
+	picture = GFX_evt_big_landing_ship
+	show_sound = event_dangerous_animals
+	location = FROM
+
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = HMO_origin.8100.a
+		icon = {
+			icon = GFX_situation_approach_HMO_magnifying_glass
+			icon_background = GFX_situation_approach_bg_green
+			text = set_situation_approach_icon_text
+		}
+		owner = {
+			start_situation = {
+				type = HMO_wildworld_exploration_situation
+				target = prev
+				effect = {
+					save_event_target_as = new_situation
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				set_country_flag = HMO_explore_approach
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.8100.b
+		icon = {
+			icon = GFX_situation_approach_unity
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+		owner = {
+			start_situation = {
+				type = HMO_wildworld_exploration_situation
+				target = prev
+				effect = {
+					save_event_target_as = new_situation
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				set_country_flag = HMO_slow_explore_approach
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.8100.c
+		icon = {
+			icon = GFX_situation_approach_shrug
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+		owner = {
+			start_situation = {
+				type = HMO_wildworld_exploration_situation
+				target = prev
+				effect = {
+					save_event_target_as = new_situation
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				set_country_flag = HMO_no_explore_approach
+			}
+		}
+	}
+	
+	after = {
+		hidden_effect ={
+			owner = {
+				switch = {
+					trigger = has_country_flag
+					HMO_explore_approach = {
+						event_target:new_situation = {
+							set_situation_approach = HMO_approach_explore
+						}
+						remove_country_flag = HMO_explore_approach
+					}
+					HMO_slow_explore_approach = {
+						event_target:new_situation = {
+							set_situation_approach = HMO_approach_slow_explore
+						}
+						remove_country_flag = HMO_slow_explore_approach
+					}
+					HMO_no_explore_approach = {
+						event_target:new_situation = {
+							set_situation_approach = HMO_approach_no_explore
+						}
+						remove_country_flag = HMO_no_explore_approach
+					}
+					default = {
+						event_target:new_situation = {
+							set_situation_approach = HMO_approach_slow_explore
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+# Monthly Variable Increase
+situation_event = {
+	id = HMO_origin.8300
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		#switch = {
+		#	trigger = current_situation_approach
+		#	HMO_approach_explore = {
+		#		change_variable = {
+		#			which = HMO_wildword_progress
+		#			value = 80
+		#		}
+		#	}
+		#	HMO_approach_slow_explore = {
+		#		change_variable = {
+		#			which = HMO_wildword_progress
+		#			value = 40
+		#		}
+		#	}
+		#	HMO_approach_no_explore = {
+		#		change_variable = {
+		#			which = HMO_wildword_progress
+		#			value = 4
+		#		}
+		#	}
+		#}
+		#if = {
+		#	limit = {
+		#		check_variable = {
+		#			which = "HMO_wildword_progress"
+		#			value >= 800
+		#		}
+		#	}
+		#	change_variable = {
+		#		which = "HMO_wildword_progress"
+		#		value = -800
+		#	}
+		#	
+		#}
+		while = {
+			count = value:HMO_wildworld_blockers_to_clear
+			target = {
+				random_deposit = {
+					limit = { has_deposit_flag = HMO_unexplored_wildworld_blocker }
+					HMO_apply_deposit_flag_to_planet = yes
+					clear_blocker = yes
+				}
+			}
+		}
+	}	
+}
+
+situation_event = {
+	id = HMO_origin.8400
+	title = HMO_origin.8400.name
+	desc = HMO_origin.8400.desc
+	location = target
+	picture = GFX_evt_ruined_system
+	situation = this
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_situation_flag = HMO_wildworld_keppler_cleanup_happened }
+		situation_progress >= 200
+	}
+	
+	immediate = {
+		set_situation_flag = HMO_wildworld_keppler_cleanup_happened
+	}
+	
+	option = {
+		name = HMO_origin.8400.a
+		begin_event_chain = {
+			event_chain = "HMO_wildworld_keppler_chain"
+			target = target
+		}
+		hidden_effect = {
+			target = {
+				enable_special_project = {
+					name = "HMO_WILDWORLD_CLEANUP_PROJECT"
+					location = this
+					owner = root.owner
+				}
+			}
+		}
+	}
+}
+
+# Keppler Cage Removed
+ship_event = {
+	id = HMO_origin.8450
+	title = HMO_origin.8450.name
+	desc = {
+		trigger = {
+			text = HMO_origin.8450.desc.common
+			text = newline
+			success_text = {
+				text = HMO_origin.8450.desc.situation
+				owner = { any_situation = { is_situation_type = HMO_wildworld_exploration_situation } }
+			}
+		}
+	}
+	picture = GFX_evt_ruined_system
+	show_sound = event_celebration
+	location = fromfrom
+	event_chain = HMO_wildworld_keppler_chain
+
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = "EXCELLENT"
+		owner = {
+			home_planet = {
+				remove_modifier = HMO_keppler_cage_scrap
+			}
+			if = {
+				limit = { has_modifier = HMO_keppler_cage_country }
+				remove_modifier = HMO_keppler_cage_country
+			}
+		}
+		if = {
+			limit = { owner = { any_situation = { is_situation_type = HMO_wildworld_exploration_situation } } }
+			custom_tooltip = HMO_origin.8450.tt
+			hidden_effect ={
+				owner = {
+					random_situation = {
+						limit = { is_situation_type = HMO_wildworld_exploration_situation }
+						set_situation_flag = HMO_keppler_cage_cleaned_up
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				abort_special_project = {
+					type = HMO_WILDWORLD_CLEANUP_PROJECT
+					location = fromfrom
+				}
+				home_planet = {
+					solar_system = {
+						every_system_ambient_object = {
+							limit = { has_ambient_object_flag = HMO_wildworld_ambient_object }
+							destroy_ambient_object = this
+						}
+						create_ambient_object = {
+							type = "HMO_probe_swarm_object"
+							location = prev
+							use_3d_location = yes
+						}
+					}
+				}
+			}
+		}
+		owner = { end_event_chain = "HMO_wildworld_keppler_chain" }
+	}
+}
+
+situation_event = {
+	id = HMO_origin.8475
+	title = HMO_origin.8475.name
+	desc = HMO_origin.8475.desc
+	desc = {
+		trigger = {
+			text = HMO_origin.8475.desc
+			success_text = {
+				text = HMO_origin.8475.desc.notech
+				owner =  { NOT = { has_technology = tech_dense_jungle } }
+			}
+			success_text = {
+				text = HMO_origin.8475.desc.tech
+				owner =  { has_technology = tech_dense_jungle }
+			}
+		}
+	}
+	show_sound = event_laboratory_sound
+	location = target
+	picture = GFX_evt_aggressive_flora
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			has_situation_flag = HMO_8475_happened
+		}
+		target = {
+			count_deposits = {
+				type = d_dense_jungle
+				count > 6
+			}
+		}
+	}
+	
+	immediate = {
+		set_situation_flag = HMO_8475_happened
+	}
+	
+	option = {
+		name = HMO_origin.8475.a
+		owner = {
+			if = {
+				limit = {
+					is_ai = no
+					NOT = { has_technology = tech_dense_jungle }
+				}
+				add_tech_progress = { tech = tech_dense_jungle progress = 0.75 }
+			}
+			else_if = {
+				limit = {
+					is_ai = yes
+					NOT = { has_technology = tech_dense_jungle }
+				}
+				give_technology = { tech = tech_dense_jungle }
+			}
+		}
+		custom_tooltip = HMO_origin.8475.tooltip
+	}
+}
+
+# Restoration Project Completed
+planet_event = {
+	id = HMO_origin.8500
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		remove_planet_flag = legendary_leader_planet # Allow terraforming
+		every_deposit = {
+			limit = { has_deposit_flag = HMO_unexplored_wildworld_blocker }
+			clear_blocker = yes
+		}
+	}
+}
+
+situation_event = {
+	id = HMO_origin.8501
+	title = "HMO_origin.8501.name"
+	desc = "HMO_origin.8501.desc"
+	location = target
+	picture = GFX_evt_crisis_defeated
+	show_sound = event_mystic_reveal
+	situation = this
+	is_triggered_only = yes
+
+	option = {
+		name = EXCELLENT
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+# Keppler Cage country modifier is removed once the first world has been colonized, since the modifier is there because carrying enough people to colonize a planet into space is costly when done on a world with a keppler cage, but now you have one without
+planet_event = {
+	id = HMO_origin.8601
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			has_origin = origin_HMO_wildworld
+			has_modifier = HMO_keppler_cage_country
+		}
+	}
+	
+	immediate = {
+		owner = {
+			country_event = { id = HMO_origin.8602 days = 90 random = 30 }
+		}
+	}
+}
+
+# Keppler Cage country modifier is removed once the first world has been colonized, since the modifier is there because carrying enough people to colonize a planet into space is costly when done on a world with a keppler cage, but now you have one without
+country_event = {
+	id = HMO_origin.8602
+	title = HMO_origin.8602.name
+	desc = HMO_origin.8602.desc
+	show_sound = event_default
+	picture = GFX_evt_big_landing_ship
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_wildworld
+		has_modifier = HMO_keppler_cage_country
+	}
+	
+	option = {
+		name = EXCELLENT
+		remove_modifier = HMO_keppler_cage_country
+	}
+}
+
+planet_event = {
+	id = HMO_origin.8700
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = HMO_dense_jungle
+	}
+	
+	immediate = {
+		add_deposit = d_dense_jungle
+		remove_planet_flag = HMO_dense_jungle
+	}
+}
+
+planet_event = {
+	id = HMO_origin.8701
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_planet_flag = HMO_idyllic_valley
+			has_planet_flag = HMO_old_ruins
+			has_planet_flag = HMO_werediran_tower
+		}
+	}
+	
+	immediate = {
+		switch = {
+			trigger = has_planet_flag
+			HMO_idyllic_valley = { add_deposit = HMO_d_idyllic_valley }
+			HMO_old_ruins = { add_deposit = HMO_d_old_ruins }
+			HMO_werediran_tower = { add_deposit = HMO_d_werediran_tower }
+		}
+		switch = {
+			trigger = has_planet_flag
+			HMO_idyllic_valley = { remove_planet_flag = HMO_idyllic_valley }
+			HMO_old_ruins = { remove_planet_flag = HMO_old_ruins }
+			HMO_werediran_tower = { remove_planet_flag = HMO_werediran_tower }
+		}
+		create_message = {
+			type = HMO_MESSAGE_TYPE_DEPOSIT_FOUND
+			localization = HMO_MESSAGE_DEPOSIT_FOUND
+			days = 30
+			target = this
+			variable = {
+				type = name
+				localization = PLANET
+				scope = this
+			}
+			variable = {
+				type = name
+				localization = DEPOSIT
+				scope = last_added_deposit
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = HMO_origin.8702
+	title = HMO_origin.8702.name
+	desc = HMO_origin.8702.desc
+	show_sound = event_mystic_reveal
+	location = this
+	picture = GFX_evt_acquire_asset
+	is_triggered_only = yes
+	
+	specimen = HMO_ancient_idol
+	
+	trigger = {
+		has_planet_flag = HMO_ancient_idol
+	}
+	
+	immediate = {
+		remove_planet_flag = HMO_ancient_idol
+	}
+	
+	option = {
+		name = INTRIGUING
+	}
+}
+
+planet_event = {
+	id = HMO_origin.8703
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = HMO_isolated_village
+	}
+	
+	immediate = {
+		remove_planet_flag = HMO_isolated_village
+		add_blocker = {
+			type = d_HMO_isolated_village
+			blocked_deposit = none
+		}
+		if = {
+			limit = { owner = { has_country_flag = HMO_found_isolated_village } }
+			create_message = {
+				type = HMO_MESSAGE_TYPE_DEPOSIT_FOUND
+				localization = HMO_MESSAGE_DEPOSIT_FOUND
+				days = 30
+				target = this
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+				variable = {
+					type = name
+					localization = DEPOSIT
+					scope = last_added_deposit
+				}
+			}
+		}
+		else = {
+			owner = {
+				set_country_flag = HMO_found_isolated_village
+				country_event = { id = HMO_origin.8704 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = HMO_origin.8704
+	title = HMO_origin.8704.name
+	desc = HMO_origin.8704.desc
+	show_sound = event_mystic_reveal
+	location = this
+	picture = GFX_evt_alien_cavemen
+	is_triggered_only = yes
+	
+	option = {
+		name = INTRIGUING
+	}
+}
+
+planet_event = {
+	id = HMO_origin.8705
+	title = HMO_origin.8705.name
+	desc = HMO_origin.8705.desc
+	show_sound = event_mystic_reveal
+	location = this
+	picture = GFX_evt_HMO_waterfall
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = HMO_waterfall
+	}
+	
+	option = {
+		name = INTRIGUING
+		add_deposit = d_rushing_waterfalls
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 3
+				min = 500
+				max = 6000
+			}
+		}
+		hidden_effect = {
+			remove_planet_flag = HMO_waterfall
+		}
+	}
+}
+
+country_event = {
+	id = HMO_origin.9000
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_planned_obsolescence
+		has_ascension_perk = ap_synthetic_age
+		NOT = { has_country_flag = HMO_planned_obsolescence_situation_swap_done }
+	}
+	
+	immediate = {
+		set_country_flag = HMO_planned_obsolescence_situation_swap_done
+		random_situation = {
+			limit = {
+				is_situation_type = situation_transformation
+			}
+			destroy_situation = this
+		}
+		start_situation = {
+			type = HMO_situation_planned_obsolescence
+			target = root
+		}
+	}
+}
+
+# TRANSFORMATION STAGE 1
+# Fired by: situation stage on_first_enter
+situation_event = {
+	id = HMO_origin.9050
+	title = "HMO_origin.9050.name"
+	desc = "HMO_origin.9050.desc"
+	picture = GFX_evt_machine_sapience
+	show_sound = event_laboratory_sound
+	situation = this
+	is_triggered_only = yes
+
+	immediate = {
+		set_situation_flag = situation_transformation_pause
+	}
+
+	option = {
+		name = OK
+	}
+
+	after = {
+		remove_situation_flag = situation_transformation_pause
+	}
+}
+
+# Fired by: situation on_monthly
+situation_event = { # Nanite Study
+	id = HMO_origin.9100
+	title = "HMO_origin.9100.name"
+	desc = "HMO_origin.9100.desc"
+	picture = GFX_evt_mysterious_signal
+	show_sound = event_alien_signal
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_situation_flag = HMO_planned_obselescence_9100_happened }
+		situation_progress >= 250
+	}
+
+	immediate = {
+		set_situation_flag = situation_transformation_pause
+		set_situation_flag = HMO_planned_obselescence_9100_happened
+	}
+
+	option = {
+		name = OK
+	}
+
+	after = {
+		remove_situation_flag = situation_transformation_pause
+	}
+}
+
+# Fired by: situation on_monthly
+situation_event = { # Nanite Study
+	id = HMO_origin.9150
+	title = "HMO_origin.9150.name"
+	desc = "HMO_origin.9150.desc"
+	picture = GFX_evt_mining_operations
+	show_sound = event_sensor_ping
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_situation_flag = HMO_planned_obselescence_9150_happened }
+		situation_progress >= 350
+	}
+
+	immediate = {
+		set_situation_flag = situation_transformation_pause
+		set_situation_flag = HMO_planned_obselescence_9150_happened
+	}
+
+	option = {
+		name = OK
+		hidden_effect = {
+			situation_event = { id = HMO_origin.9200 days = 10 }
+		}
+	}
+
+	after = {
+		remove_situation_flag = situation_transformation_pause
+	}
+}
+
+# Fired by: situation on_monthly
+situation_event = { # Nanite Study
+	id = HMO_origin.9200
+	title = "HMO_origin.9200.name"
+	desc = "HMO_origin.9200.desc"
+	picture = GFX_evt_mysterious_signal
+	show_sound = event_alien_signal
+	situation = this
+	is_triggered_only = yes
+
+	immediate = {
+		set_situation_flag = situation_transformation_pause
+		set_situation_flag = HMO_planned_obselescence_9200_happened
+	}
+
+	option = {
+		name = INTRIGUING
+		owner = {
+			home_planet = {
+				save_event_target_as = HMO_planned_obsolescence_homeworld
+				create_archaeological_site = site_HMO_planned_obselescence
+			}
+			set_country_flag = HMO_Planned_Obsolescence_arcsite@event_target:HMO_planned_obsolescence_homeworld
+		}
+	}
+
+	after = {
+		remove_situation_flag = situation_transformation_pause
+	}
+}
+
+# Fired by: situation on_monthly
+situation_event = { # Nanite Study
+	id = HMO_origin.9250
+	title = "HMO_origin.9250.name"
+	desc = "HMO_origin.9250.desc"
+	picture = GFX_evt_machine_sapience
+	show_sound = event_default
+	situation = this
+	is_triggered_only = yes
+
+	immediate = {
+		set_situation_flag = situation_transformation_pause
+		set_situation_flag = HMO_planned_obselescence_9250_happened
+	}
+
+	option = {
+		name = HMO_origin.9250.a
+		custom_tooltip = HMO_origin.9250.a.tt
+		hidden_effect = {
+			owner = {
+				set_country_flag = synth_assimilation
+			}
+		}
+	}
+	
+	option = {
+		name = HMO_origin.9250.b
+		owner = {
+			add_modifier = {
+				modifier = HMO_planned_obsolescence_frozen_creators
+				days = -1
+			}
+		}
+	}
+
+	after = {
+		remove_situation_flag = situation_transformation_pause
+	}
+}
+
+# Fired by: situation on_progress_complete
+situation_event = { # Final Event
+	id = HMO_origin.9300
+	title = "HMO_origin.9300.name"
+	desc = {
+		trigger = {
+			owner = { has_country_flag = HMO_planned_obselescence_forgave_creators }
+		}
+		text = "HMO_origin.9300.desc.forgiven"
+	}
+	desc = {
+		trigger = {
+			owner = { NOT = { has_country_flag = HMO_planned_obselescence_forgave_creators } }
+		}
+		text = "HMO_origin.9300.desc.frozen"
+	}
+	picture = GFX_evt_machine_sapience
+	show_sound = event_laboratory_sound
+	situation = this
+	is_triggered_only = yes
+
+	option = {
+		name = "machine_age.4005.a.modularity"
+		owner = {
+			if = {
+				limit = {
+					num_tradition_categories < @max_tradition_trees
+				}
+				custom_tooltip = "HMO_origin.9300.a.tt"
+				set_country_flag = modularity_traditions_unlocked
+				add_tradition = tr_modularity_adopt
+			}
+			modify_species = {
+				species = owner_main_species
+				remove_trait = HMO_trait_planned_obsolescence
+				add_trait = HMO_trait_planned_immortality
+			}
+			change_dominant_species = {
+				species = last_created_species
+				change_all = yes
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	after = {
+		destroy_situation = this
+	}
+}

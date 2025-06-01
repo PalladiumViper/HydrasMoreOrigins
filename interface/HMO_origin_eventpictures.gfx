@@ -1,0 +1,68 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_HMO_origin_banished_threat"
+		texturefile = "gfx/event_pictures/origins/HMO_origin_banished_threat.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_scavengers"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_scavengers.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_apocalypse"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_apocalypse.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_unvaulted"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_unvaulted.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_codekeepers"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_codekeepers.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_cataclysm_engine"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_cataclysm_engine.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_scrapyard"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_scrapyard.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_unlimited_potential"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_unlimited_potential.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_zombies"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_zombies.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_wildworld"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_wildworld.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_dyson_swarm"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_dyson_swarm.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_bioweapon"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_bioweapon.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_origin_HMO_planned_obsolescence"
+		texturefile = "gfx/event_pictures/origins/origin_HMO_planned_obsolescence.dds"
+		alwaystransparent = yes
+	}
+}

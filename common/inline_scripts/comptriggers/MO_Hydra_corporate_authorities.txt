@@ -1,0 +1,15 @@
+$GATE$ = {
+	$VALUE$ = auth_corporate
+	inline_script = {
+		script = integrated/MO_Hydra_bug_corporate_authorities_$HAS_BUG$
+		VALUE = $VALUE$
+	}
+	inline_script = {
+		script = integrated/MO_Hydra_fun_corporate_authorities_$HAS_FUN$
+		VALUE = $VALUE$
+	}
+	inline_script = {
+		script = integrated/MO_Hydra_mca_corporate_authorities_$HAS_MCA$
+		VALUE = $VALUE$
+	}
+}

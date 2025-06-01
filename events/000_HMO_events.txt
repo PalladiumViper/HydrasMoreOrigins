@@ -1,0 +1,179 @@
+##########################
+#
+# Special Events. 000 is supposed to make it fire before default/vanilla events
+#
+##########################
+
+namespace = HMO_special_event
+
+########################
+## LEADER DEATH
+
+# Launch correct death event for certain leaders
+# This = Country
+# From = Leader
+country_event = {
+	id = HMO_special_event.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		has_country_flag = HMO_encryption_authority
+		has_authority = auth_corporate
+		exists = from
+		from = {
+			is_pool_leader = no
+			NOT = { leader_class = envoy }
+			leader_years_of_service >= 2
+			#NOT = {
+			#	has_leader_flag = leader_death_events_blocked
+			#}
+			or = {
+				has_skill >= 2
+				is_ruler = yes
+				has_leader_flag = renowned_leader
+				has_leader_flag = legendary_leader
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			80 = { # Do nothing
+				# Having one of these traits increase the chance of destruction
+				modifier = {
+					factor = 2
+					from = {
+						OR = { # remember to include the armchair commander!
+							has_trait = leader_trait_unyielding
+							has_trait = leader_trait_unyielding
+						}
+					}
+				}
+				# Armchair commanders always resurrect
+				modifier = {
+					factor = 0
+					from = {
+						OR = {
+							has_trait = leader_trait_restrained
+							has_trait = leader_trait_restrained_2
+						}
+					}
+				}
+			}
+			10 = { # Funeral event
+				# Rulers are less likely to be saved
+				modifier = {
+					factor = 2
+					from = { is_ruler = no }
+				}
+				# Only synthetic leaders!
+				modifier = {
+					factor = 0
+					from = { NOT = { has_trait = leader_trait_synthetic } }
+				}
+				modifier = {
+					factor = 2
+					has_edict = HMO_corporate_backup
+				}
+				if = {
+					limit = { from = { NOT = { has_leader_flag = leader_death_events_blocked } } }
+					from = {
+						set_leader_flag = leader_death_events_blocked
+						set_leader_flag = HMO_remove_events_death_block
+					}
+				}
+				
+				# Make a clone since the original is going to be deleted before any followup event is triggered.
+				create_country = {
+					name = "NAME_dead_leader_country"
+					type = faction
+					auto_delete = yes
+				}
+				last_created_country = {
+					save_event_target_as = HMO_dead_leader_holder
+					clone_leader = {
+						target = from
+						effect = {
+							save_event_target_as = HMO_dead_leader_clone
+						}
+					}
+				}
+				last_created_leader = {
+					set_owner = root
+					# This is a hack to make the leader not be added to player country.
+					# We must kill the leader once the event chain is done
+					exile_leader_as = HMO_dead_leader_clone_exile
+					set_years_served = from # Copy years served from the original
+					if = {
+						limit = {
+							from = { is_immortal = yes }
+						}
+						set_leader_flag = HMO_immortal_leader
+					}
+					else = {
+						set_immortal = yes
+					}
+				}
+
+				if = {
+					limit = {
+						is_gestalt = no
+					}
+					from = { set_leader_flag = use_unspecific_death_reason }
+					country_event = { id = HMO_special_event.2 days = 10 scopes = { from = event_target:HMO_dead_leader_clone } }
+				}
+			}
+		}
+	}
+}
+
+# Death of great leader
+# This = Country
+# From = Leader
+country_event = {
+	id = HMO_special_event.2
+	title = "HMO_special_event.2.name"
+	desc = "HMO_special_event.2.desc"
+	picture = GFX_evt_synth_situation
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:HMO_dead_leader_holder = {
+			return_leader_from_exile = HMO_dead_leader_clone_exile
+		}
+		clone_leader = {
+			target = event_target:HMO_dead_leader_clone
+			effect = {
+				if = {
+					limit = { has_leader_flag = HMO_immortal_leader }
+					set_immortal = yes
+				}
+				if = {
+					limit = {
+						has_leader_flag = HMO_remove_events_death_block
+						has_leader_flag = leader_death_events_blocked
+					}
+					remove_leader_flag = leader_death_events_blocked
+					remove_leader_flag = HMO_remove_events_death_block
+				}
+			}
+		}
+		last_created_leader = {
+			set_age = 1
+			exile_leader_as = HMO_rescued_leader
+		}
+	}
+
+	# Return to office
+	option = {
+		name = HMO_special_event.2.a
+		return_leader_from_exile = HMO_rescued_leader
+	}
+	
+	after = {
+		# Clean up the clone since we aren't using it anymore
+		from = { kill_leader = { show_notification = no } }
+	}
+}

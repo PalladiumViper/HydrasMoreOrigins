@@ -1,0 +1,4 @@
+inline_script = {
+	script = bug_branch/MO_Hydra_ascension_600_events_triggers_$HAS_MOD$
+	AUTHORITY = $AUTHORITY$
+}

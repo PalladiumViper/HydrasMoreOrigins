@@ -1,0 +1,6 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_HMO_imperial_perfection"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_HMO_imperial_perfection.dds"
+	}
+}

@@ -1,0 +1,166 @@
+- Finish the rest of the authority icons
+
+- Martial Law Ruler Localization
+
+- Save ruler upon creating empire, make commander leader and assign it to country scope, then if martial law is not kept, create the saved leader and reassign it on country scope during the 15xx events. Remember to destroy saved leader if not used, so no memory leak. Leader should get skill levels equal to the commander leader that held the position until then.
+- Remember to make concept for the above and include it in the tooltip.
+
+- Cybernetic Situation Event Weight
+
+- Remake the intro event
+
+- Make some event or include in existing event the liberation of cities (automatically clear zombie town blockers)
+
+Zombie attacks
+
+Random zombie attacks (Stops once you pick an ascension path)
+
+Overwrite of Psionic and Genetic ascension perks
+
+Insurgency convert some events into toasts or one-time-events-that-then-become-toasts (Remember to copy to Forgotten History)
+- Liberating a planet from the insurgency is now a toast
+
+- After The Apocalypse More Zombie Blockers (Especially for HMO_origin.7010)
+
+- Cybernetic Zombie Authorities give the zombie strain bombardment stance which spawn zombie armies when pops are killed. Contrary to the zombie armies on the homeworld, these stay when the original army is defeated (They are of the zombie plague country type, so the bombarder will have to kill them to get the planet.)
+
+Periodic Zombie Attack Concept
+
+Martial Law Election Correction (Say it uses a dictatorial election)
+
+Keystone Bonus for Special Authorities:
+ - Cyber Zombies:
+   - Zombie Bombardment
+   - Zombie Pops From Purge # Ressurrect pops as Zombie Pops
+ Cyber Weaponry:
+   - Gain Weaponry Trait
+   One for each government:
+   - Unlock New Army Type (All)
+   # Mercenary Shop (Holding for corporate that adds soldiers and defense armies)
+   
+ 
+ Synth Martial Law:
+ 
+ Synth Encryption:
+	- Democratic (Cloaking Concealment Edict)
+	- Oligarchic (Assembly Overclock Edict)
+	- Dictatorial (Just Stats)
+	- Imperial (Leader Perfection Agenda)
+	- Corporate (Mind Backup Edict)
+
+- Missing Authority Swaps
+
+- Ramshackle Laboratories After The Apocalypse Starter Building
+
+- Jury-Rigged Infrastructure Concept for After The Apocalypse
+
+#################################
+# Not Going To Do At The Moment #
+#################################
+
+Final Event Localization for Bug Branch Authorities
+
+Start Event Localization for Bug Branch Authorities
+
+Authority Swaps for Bug Branch Authorities
+
+Unique Bonuses for Bug Branch Authorities
+
+
+
+
+
+
+
+#############
+# Wildworld #
+#############
+
+Wildworld Lore:
+Your people start in a world in which the world is overgrown
+Your world is encased in a keppler cage [scrappted]:(Either made of asteroids or scrap depending on storyline)
+
+- Keppler Cage planetary modifier (Extreme Resettlement Cost)
+- Keppler Cage Empire Modifier (Extreme Colony Ship Cost): Is removed upon gaining a new colony
+- Wildworld Exploration Situation
+- Wildworld Exploration Situation Approach Icons
+- Wildworld Unexplored Jungle Blockers (Superdense Jungle?)
+- Wildworld Exploration Events
+[scrapped] Wildworld Strange Laboratory Storyline
+[scrapped] Wildworld Ancient Religion Storyline
+[scrapped] Wildworld Werediran Signal Storyline
+
+
+
+####################################
+# Last things to do before release #
+####################################
+
+- Fix Wildworld blockers not doing anything when cleared (Should be fixed)
+- Wildworld intro event should mention the keppler cage
+- Keppler Cage debris should be different angles
+- Make it so that Zombie Armies actually spawn
+- After The Apocalypse Overwrites
+- Fix unemployment for both origins (Fixed Specialist Unemployed Pops)
+	For After The Apocalypse, add soldiers-per-pop to Bastian of Survival
+	For Wildworld, decrease initial pops and add a planetary modifier called
+	
+#Make special projects pop up from time to time that allow you to attack zombies (Possibly: Delete all defending armies first, that way an attack on the zombies can be simulated with army transports)
+#On completing the special projects, the armies in orbit that did the project land (if possible) and zombie armies are spawned.
+#Then if zombies lose, delete the targeted deposit (Is targeted from project creation to make it make sense that they are picking a specific target. Farm deposits spawn less zombies, cities more etc.)
+#If zombies win, do nothing except delete the zombie armies
+
+[Done] >>> Make Authority concepts like the base game <<<
+
+Playtest both origins
+
+##############
+# 20/02/2025 #
+##############
+
+- Make Planned Obsolescence
+- Make one of: Bioweapon, Scrapyard (Or don't)
+
+#################################################
+# Make Sure All Prior Things Have Been Finished #
+#################################################
+
+############
+# Pictures #
+############
+
+Front Page: Insurgency and Unvaulted
+Second Page: Born of Necessity and Wildworld (TrueWolves Origins)
+Third Page: After The Apocalypse and Planned Obsolescence (Original Origins)
+Fourth Page: Banished Threat and Scavengers (Forgotten History Origins)
+Fifth Page: Unlimited Potential
+
+###############
+# Description #
+###############
+
+Are you searching for more origins?
+Do you want more variety when creating your empire?
+Or perhaps you just want more ways to start on a tomb world?
+
+If you answered yes to any of those questions, then you have come to the right place!
+In Hydra's More Origins you will find 9 new and old modded origins, all painstakingly crafted by yours truly!
+The origins are a mix of different types, including some made for roleplay, others for those who like a good story origin, and lets not forget the fun new strategies you may or may not be able to use!
+The length of the origins and their mechanical complexity vary greatly, but all have been made the best I can, with a focus on staying true to the vanilla feel of an unmodded game. That is to say, I tried to make these in line with vanilla origins.
+All of the origins have a unique icons and come with concepts (blue text that makes popups).
+3 of the origins come from another mod of mine, Forgotten History, though they have recieved updates so they are up to par with the rest of the origins in this mod.
+
+[h3] Translations [/h3]
+
+[h3] Overwrites [/h3]
+This mod overwrites the Psionic and Genetic ascension perks, as well as the has_ascension_situation_ongoing scripted trigger.
+
+[h3] Inbuilt Compatibility [/h3]
+Ethics and Civics: Bug Branch
+After The Apocalypse is intended to work with the authorities from Bug Branch, and while most of the code/script is already done, I still need to write all the localisation.
+Forgotten History
+You can safely enable both this mod and Forgotten History. I have made sure no origins are duplicated if both are active at the same time.
+
+[h3] Thanks To [/h3]
+Special Thanks to TrueWolves who designed the Born of Necessity and Wildworld origins.
+Also special thanks to Azurian for helping me refine origin ideas, as well as MaxiundMicky for providing feedback during development.

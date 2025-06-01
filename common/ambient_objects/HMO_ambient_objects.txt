@@ -1,0 +1,15 @@
+# Small Debris Field
+ambient_object = {
+	name = "HMO_kessler_cage_object"
+	entity = "HMO_kessler_cage_entity"
+	selectable = no
+	show_name = no
+}
+
+# Only Probes
+ambient_object = {
+	name = "HMO_probe_swarm_object"
+	entity = "HMO_probe_swarm_entity"
+	selectable = no
+	show_name = no
+}

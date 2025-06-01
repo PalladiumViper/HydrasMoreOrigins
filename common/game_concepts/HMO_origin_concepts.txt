@@ -1,0 +1,228 @@
+# Insurgency
+
+concept_HMO_pc_city = {
+	icon = "gfx/interface/icons/concepts/planet_classes/pc_city.dds"
+}
+
+concept_HMO_city_ruins = {
+	icon = "gfx/interface/icons/deposits/d_city_ruins.dds"
+}
+
+concept_HMO_insurgency_junk = {
+	icon = "gfx/interface/icons/deposits/d_nanite_corpses.dds"
+}
+
+concept_HMO_loyalists = {
+	icon = "gfx/interface/icons/concepts/concept_factions.dds"
+}
+
+concept_HMO_insurgents = {
+	icon = "gfx/interface/icons/concepts/concept_factions.dds"
+}
+
+concept_HMO_insurgency = {
+	alias = { concept_HMO_destabilize }
+}
+
+concept_HMO_insurgent_trait = {
+	icon = "gfx/interface/icons/concepts/HMO_insurgent_leader_concept.dds"
+}
+
+concept_HMO_insurgency_infrastructure = {
+	icon = "gfx/interface/icons/building_icon.dds"
+}
+
+# Banished Threat
+
+concept_HMO_pc_shielded = {
+	icon = "gfx/interface/icons/concepts/planet_classes/pc_nuked.dds"
+	alias = { concept_HMO_deteriorating_shields }
+}
+
+concept_HMO_survivor = {
+	icon = "gfx/interface/icons/traits/HMO_trait_ancient_organism.dds"
+}
+
+concept_HMO_robot_survivor = {
+	icon = "gfx/interface/icons/traits/HMO_trait_ancient_configuration.dds"
+}
+
+# Scavengers
+
+concept_HMO_scavengers_arcsite = {
+	icon = "gfx/interface/archaeology/icon_archaeology.dds"
+}
+
+concept_HMO_scavengers_deposit = {
+	icon = "gfx/interface/icons/deposits/d_HMO_crashed_ship.dds"
+	alias = { concept_HMO_scavengers_deposit_deposit }
+}
+
+concept_HMO_researcher = {
+	icon = "gfx/interface/icons/jobs/job_researcher.dds"
+}
+
+concept_HMO_scrap_miners = {
+	icon = "gfx/interface/icons/jobs/job_miner.dds"
+}
+
+# Unvaulted
+concept_HMO_restoration_project = {
+	icon = "gfx/interface/icons/origins/origin_HMO_unvaulted.dds"
+}
+
+concept_HMO_unvaulted_vault = {
+	icon = "gfx/interface/icons/deposits/d_bunker_door.dds"
+}
+
+## Cataclysm Engine
+#concept_HMO_cataclysm_engine_megastructure = {
+#	icon = "gfx/interface/icons/megastructures/crisis_sphere_ruined.dds"
+#}
+#
+## Interstellar Scrapyard
+#concept_HMO_debris_fields = {
+#}
+
+# Unlimited Potential
+concept_HMO_terraforming_candidates = {
+	icon = "gfx/interface/icons/concepts/HMO_terraforming_concept.dds"
+}
+
+concept_HMO_tech_climate_restoration = {
+	icon = "gfx/interface/icons/technologies/tech_climate_restoration.dds"
+}
+
+# Codekeepers
+
+# Zombies
+
+concept_HMO_zombie_trait = {
+	icon = "gfx/interface/icons/traits/trait_zombie.dds"
+	alias = { concept_HMO_zombies_zombies }
+}
+
+concept_HMO_zombie_bombardment_stance = {
+	icon =  "gfx/interface/icons/concepts/HMO_zombie_bombardment_concept.dds"
+}
+
+concept_HMO_edict_oligarchic_overclock = {
+	icon =  "gfx/interface/icons/concepts/concept_edicts.dds"
+	tooltip_override = "edict:HMO_oligarchic_overclock"
+}
+
+concept_HMO_edict_democratic_concealment = {
+	icon =  "gfx/interface/icons/concepts/concept_edicts.dds"
+	tooltip_override = "edict:HMO_democratic_concealment"
+}
+
+concept_HMO_edict_democratic_concealment_cloaking = {
+	icon =  "gfx/interface/icons/concepts/concept_edicts.dds"
+	tooltip_override = "edict:HMO_democratic_concealment_cloaking"
+}
+
+concept_HMO_edict_corporate_backup = {
+	icon =  "gfx/interface/icons/concepts/concept_edicts.dds"
+	tooltip_override = "edict:HMO_corporate_backup"
+}
+
+concept_HMO_agenda_imperial_perfection = {
+	icon = "gfx/interface/icons/agenda.dds"
+}
+
+concept_HMO_zombie_armies = {
+	icon = "gfx/interface/icons/origins/origin_HMO_zombies.dds"
+}
+
+#concept_HMO_encryption_agenda = {
+#	icon = ""
+#}
+
+concept_HMO_zcom_building = {
+	icon = "gfx/interface/icons/buildings/HMO_building_zcom_headquarters.dds"
+	tooltip_override = "building:HMO_building_zcom_headquarters"
+}
+
+concept_HMO_resproject_outpost = {
+	icon = "gfx/interface/icons/buildings/HMO_building_resproject_outpost.dds"
+	tooltip_override = "building:HMO_building_resproject_outpost"
+}
+
+concept_HMO_zombie_blockers = {
+	icon = "gfx/interface/icons/deposits/d_metal_boneyard.dds"
+}
+
+concept_HMO_zombies_infrastructure = {
+	icon = "gfx/interface/icons/building_icon.dds"
+}
+
+concept_HMO_martial_law_authorities = {
+	icon = "gfx/interface/icons/governments/authorities/MO_auth_undetermined_martial_law.dds"
+}
+
+# Wildworld
+
+concept_HMO_blockers = {
+	icon = "gfx/interface/icons/text_icons/text_icon_tile_blocker.dds"
+}
+
+concept_HMO_keppler_mod = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_ruined_system.dds"
+}
+
+concept_HMO_pc_tropical = {
+	icon = "gfx/interface/icons/concepts/planet_classes/pc_tropical.dds"
+}
+
+concept_HMO_pc_wet_superhabitable = {
+	icon = "gfx/interface/icons/concepts/planet_classes/pc_wet_superhabitable.dds"
+}
+
+concept_HMO_wildworld_exploration = {
+	icon = "gfx/interface/icons/origins/origin_HMO_wildworld.dds"
+}
+
+# Born of Necessity
+concept_HMO_pc_m = {
+	icon = "gfx/interface/icons/concepts/planet_classes/pc_type_m.dds"
+}
+
+concept_HMO_dyson_swarm = {
+	icon = "gfx/interface/icons/technologies/tech_dyson_swarm.dds"
+}
+
+concept_HMO_dyson_swarm_tech = {
+	icon = "gfx/interface/icons/technologies/tech_dyson_swarm.dds"
+}
+
+# for Wiirlak, but why not have them ready here"
+concept_HMO_pc_black_hole = {
+	icon = "gfx/interface/icons/concepts/planet_classes/pc_black_hole.dds"
+}
+
+# for Wiirlak, but why not have them ready here"
+concept_HMO_pc_alpine = {
+	icon = "gfx/interface/icons/concepts/planet_classes/pc_alpine.dds"
+}
+
+#concept_HMO_starless_trait = {
+#	icon = "gfx/interface/icons/traits/wiirlak_ac_trait_starless.dds"
+#}
+
+########################
+# Planned Obsolescence #
+########################
+
+concept_HMO_planned_obsolescence = {
+	icon =  "gfx/interface/icons/traits/HMO_trait_planned_obsolescence.dds"
+	tooltip_override = "trait:HMO_trait_planned_obsolescence"
+}
+
+concept_HMO_trait_robot_history_researchbot = {
+	icon =  "gfx/interface/icons/traits/trait_robot_history_researchbot.dds"
+	tooltip_override = "trait:trait_robot_history_researchbot"
+}
+
+concept_HMO_modularity_ascension = {
+	icon =  "gfx/interface/icons/traditions/tree_icons/tradition_icon_modularity.dds"
+}

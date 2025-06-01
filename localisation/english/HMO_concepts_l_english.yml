@@ -1,0 +1,317 @@
+﻿l_english:
+
+ ### Concepts
+ # Use §K for headers and §I for highlights in Concepts
+
+ # Insurgency
+ concept_HMO_pc_city: "$pc_city$"
+ concept_HMO_pc_city_desc: "- Base Habitability: §Y100%§!\n- uses special £district£ §IArcology Districts§!\n\n§L$HMO_pc_apocalyptic_city_desc$§!"
+
+ concept_HMO_insurgency_junk: "$d_HMO_insurgency_junk$"
+ concept_HMO_insurgency_junk_desc: "- Time to Clear:\n$tt$- £time£ 360 §IDays§!\n- Cost to Clear:\n$tt$- 250 $i_energy$\n- $MOD_PLANET_MAX_DISTRICTS_ADD$: §R-2§!\n- On Clearing:\n$tt$- 300 $i_minerals$\n$tt$- 50 $i_alloys$\n\n§L$d_HMO_insurgency_junk_desc$§!"
+ 
+ concept_HMO_city_ruins: "$d_city_ruins$"
+ concept_HMO_city_ruins_desc: "- Time to Clear:\n$tt$- £time£ 360 §IDays§!\n- Cost to Clear:\n$tt$- 1200 $i_energy$\n- $MOD_PLANET_MAX_DISTRICTS_ADD$: §R-2§!\n\n§L$d_city_ruins_desc$§!"
+ 
+ concept_HMO_loyalists: "Loyalists"
+ concept_HMO_loyalists_desc: "Loyalists are the part of your population that support your rule. £pop£ §IPops§! with high happiness are more likely to become loyalists."
+ 
+ concept_HMO_insurgents: "Insurgents"
+ concept_HMO_insurgents_desc: "Insurgents are the part of your population that does not support your rule. £pop£ §IPops§! with low happiness are more likely to support ['concept_HMO_insurgency']."
+ 
+ concept_HMO_insurgency: "The Insurgency"
+ concept_HMO_insurgency_desc: "The §YInsurgency§! is a rebel group that oppose your control over the empire.\n\n§YInsurgents§! will sabotage your infrastructure and attack your planets with §YArmies§!\n\nPlanets captured by §YInsurgents§! will break down over time, eventually experiencing a societal collapse."
+ 
+ concept_HMO_destabilize: "Destabilize"
+ 
+ concept_HMO_insurgent_trait: "Insurgent Leader"
+ concept_HMO_insurgent_trait_desc: "$FLEET_EFFECTS_TXT$:$TABBED_NEW_LINE$- $MOD_SHIP_SPEED_MULT$: §G+10%§!$TABBED_NEW_LINE$- $MOD_SHIP_FIRE_RATE_MULT$: §G+20%§!\n\n§L$leader_trait_admiral_insurgent_desc$§!"
+ 
+ concept_HMO_insurgency_infrastructure: "Advanced Infrastructure"
+ concept_HMO_insurgency_infrastructure_desc: "Additional Starting Buildings:$TABBED_NEW_LINE$- ['concept_HMO_hydroponics_farm', £building£ $building_hydroponics_farm$]$TABBED_NEW_LINE$- ['concept_HMO_factory', £building£ $building_factory_1$]$TABBED_NEW_LINE$- ['concept_HMO_foundry', £building£ $building_foundry_1$]$TABBED_NEW_LINE$- ['concept_HMO_precinct_house', £building£ $building_precinct_house$]"
+ 
+ concept_HMO_hydroponics_farm: "$building_hydroponics_farm$"
+ concept_HMO_hydroponics_farm_desc: "- £mod_job_farmer_add£ ['concept_farmer', $job_farmer$] Jobs: §G+3§!\n\n§L$building_hydroponics_farm_desc$§!"
+ 
+ concept_HMO_factory: "$building_factory_1$"
+ concept_HMO_factory_desc: "- £mod_job_artisan_add£ ['concept_artisan', $job_artisan$] Jobs: §G+2§!\n\n§L$building_factory_1_desc$§!"
+ 
+ concept_HMO_foundry: "$building_foundry_1$"
+ concept_HMO_foundry_desc: "- £mod_job_foundry_add£ ['concept_foundry', $job_foundry$] Jobs: §G+2§!\n\n§LThe $job_foundry_plural$ working in these foundries produce high-quality alloys.§!"
+ 
+ concept_HMO_precinct_house: "$building_precinct_house$"
+ concept_HMO_precinct_house_desc: "- £mod_job_enforcer_add£ ['concept_HMO_enforcer', $job_enforcer$] Jobs: §G+2§!\n\n§L$building_precinct_house_desc$§!"
+ 
+ concept_HMO_enforcer: "$job_enforcer_plural$"
+ concept_HMO_enforcer_desc: "$job_enforcer_plural$ produce $i_unity$ and reduce £crime£ §ICrime§!.\n\n§L$job_enforcer_desc$§!"
+ 
+ # Strategic Resource Techs
+ concept_HMO_rare_crystals: "$tech_mine_rare_crystals$"
+ concept_HMO_rare_crystals_desc: "- §HExploit Resource:§! £rare_crystals£\n\n§L$tech_mine_rare_crystals_desc$§!"
+ # $i_unlocks_building$ $building_crystal_mines$
+ 
+ concept_HMO_exotic_gases: "$tech_mine_exotic_gases$"
+ concept_HMO_exotic_gases_desc: "- §HExploit Resource:§! £exotic_gases£\n\n§L$tech_mine_exotic_gases_desc$§!"
+ # $i_unlocks_building$ $building_gas_extractors$
+ 
+ concept_HMO_volatile_motes: "$tech_mine_volatile_motes$"
+ concept_HMO_volatile_motes_desc: "- §HExploit Resource:§! £volatile_motes£\n\n§L$tech_mine_volatile_motes_desc$§!"
+ # $i_unlocks_building$ $building_mote_harvesters$
+ 
+ # Banished Threat
+ concept_HMO_pc_shielded: "Shielded World"
+ concept_HMO_pc_shielded_desc: "§L$pc_shielded_desc_orig$§!"
+ 
+ concept_HMO_deteriorating_shields: "Deteriorating Shields"
+ 
+ concept_HMO_survivor: "$HMO_trait_ancient_organism$"
+ concept_HMO_survivor_desc: "- Tomb World Habitability: §G+70%§!\n- Leader Lifespan: §G+10§! Years\n\n§L$HMO_trait_ancient_organism_desc$§!"
+
+ concept_HMO_robot_survivor: "$HMO_trait_ancient_configuration$"
+ concept_HMO_robot_survivor_desc: "- Tomb World Habitability: §G+70%§!\n- Leader Lifespan: §G+10§! Years\n\n§L$HMO_trait_ancient_configuration_desc$§!"
+ 
+ # Scavengers
+ concept_HMO_scavengers_arcsite: "$site_HMO_scavengers_ship$"
+ concept_HMO_scavengers_arcsite_desc: "§L$site_HMO_scavengers_ship_intro$§!"
+ concept_HMO_scavengers_deposit: "$d_HMO_crashed_ship$"
+ concept_HMO_scavengers_deposit_desc: "- £mod_planet_amenities_add£ §H$PLANET_AMENITIES_TITLE$§!: §G+10§!\n- £job_researcher£ ['concept_HMO_researcher', $job_researcherl$] Jobs: §G+3§!\n- £job_HMO_scrap_miner_scavenger£ ['concept_HMO_scrap_miners', $job_HMO_scrap_miner_scavenger$] Jobs: §G+3§!\n- £engineering_research£: §G+3§!"
+ concept_HMO_scavengers_deposit_deposit: "Deposit"
+ 
+ concept_HMO_researcher: "$job_researcher_plural$"
+ concept_HMO_researcher_desc: "$job_researcher_plural$ are jobs that turn $i_consumer_goods$ into ['concept_technologies', £physics£ £engineering£ Research Points]."
+ 
+ concept_HMO_scrap_miners: "$job_HMO_scrap_miner_scavenger_plural$"
+ concept_HMO_scrap_miners_desc: "$job_HMO_scrap_miner_scavenger_plural$ are jobs that produce $i_minerals$ and $i_alloys$.\n\n§L$job_HMO_scrap_miner_scavenger_desc$§!"
+ 
+ # Unvaulted
+ concept_HMO_restoration_project: "$HMO_unvaulted_situation$"
+ concept_HMO_restoration_project_desc: "Gradually improves the habitability of the planet until finished, at which point the planet is terraformed into your species §YIdeal Planet Class§!."
+ 
+ concept_HMO_unvaulted_vault: "$d_HMO_unvaulted_vault$"
+ concept_HMO_unvaulted_vault_desc: "- £mod_pop_environment_tolerance£ §H$pop_environment_tolerance$§!: §G+20%§!\n\n§L$d_HMO_unvaulted_vault_desc$§!"
+ 
+ # Cataclysm engine
+ concept_HMO_cataclysm_engine_megastructure: "Habitable Aetherophasic Engine"
+ concept_HMO_cataclysm_engine_megastructure_desc: "- Base Habitability: §Y100%§!\n- uses special £district£ §IDistricts§!\n- Must be repaired before use\n\n§LA doomsday machine long since broken down by disuse, it still drives reactions in its host star that could easily spiral out of control if not maintained.§!"
+ 
+ # Interstellar Scrapyard
+
+ # Unlimited Potential
+ concept_HMO_terraforming_candidates: "Terraforming Candidates"
+ concept_HMO_terraforming_candidates_desc: "§YTerraforming Candidates§! may be terraformed once the £society£ ['concept_HMO_tech_climate_restoration'] technology has been researched."
+ 
+ concept_HMO_tech_climate_restoration: "$tech_climate_restoration$"
+ concept_HMO_tech_climate_restoration_desc: "§HUnlocks Feature:§! Climate Restoration\nAllows us to terraform ecologically devastated worlds.\n\n§L$tech_climate_restoration_desc$§!"
+ 
+ # Codekeepers
+ 
+ # After The Apocalypse
+ 
+ concept_HMO_zombie_trait: "$trait_zombie$"
+ concept_HMO_zombie_trait_desc: "$TRAIT_ZOMBIE_EFFECT$\n\n§L$trait_zombie_desc$§!"
+ concept_HMO_zombies_zombies: "Zombies"
+ 
+ concept_HMO_zcom_building: "$HMO_building_zcom_headquarters$"
+ #concept_HMO_zcom_building_desc: "$HMO_building_zcom_headquarters_desc$"
+ 
+ concept_HMO_resproject_outpost: "$MO_building_resproject_outpost$"
+ #concept_HMO_resproject_outpost_desc: ""
+ 
+ #concept_HMO_encryption_agenda: ""
+ #concept_HMO_encryption_agenda_desc: ""
+ 
+ concept_HMO_zombie_armies: "Zombie Hordes"
+ concept_HMO_zombie_armies_desc: "Zombie hordes are hostile armies that can infest your districts to create ['concept_HMO_zombie_blockers'] if not repelled."
+ 
+ concept_HMO_edict_oligarchic_overclock: "$edict_HMO_oligarchic_overclock$"
+ 
+ concept_HMO_edict_corporate_backup: "$edict_HMO_corporate_backup$"
+ 
+ concept_HMO_edict_democratic_concealment: "$edict_HMO_democratic_concealment$"
+ 
+ concept_HMO_edict_democratic_concealment_cloaking: "$edict_HMO_democratic_concealment_cloaking$"
+ 
+ concept_HMO_agenda_imperial_perfection: "$council_agenda_agenda_HMO_imperial_perfection_name$"
+ concept_HMO_agenda_imperial_perfection_desc: "$agenda_HMO_imperial_perfection_effect$\n\n§L$council_agenda_agenda_HMO_imperial_perfection_name_desc$§!"
+ 
+ concept_HMO_zombie_bombardment_stance: "$HMO_zombie_bombardment$"
+ concept_HMO_zombie_bombardment_stance_desc: "$HMO_zombie_bombardment_desc$"
+ 
+ concept_HMO_zombie_blockers: "£blocker£ Infested Ruins"
+ concept_HMO_zombie_blockers_desc: "Infested Blockers can only be cleared through story events or after completing an ascension path.\n\n§LEmpty monuments to the old world. Now only the undead make use of the decrepit ruins.§!"
+ 
+ concept_HMO_zombies_infrastructure: "Jury-Rigged Infrastructure"
+ concept_HMO_zombies_infrastructure_desc: "- ['concept_HMO_zcom_building', £building£ $HMO_building_zcom_headquarters$]$NEW_LINE$- ['concept_HMO_resproject_outpost', £building£ $HMO_building_resproject_outpost$]"
+
+ concept_HMO_martial_law_authorities: "Martial Law"
+ concept_HMO_martial_law_authorities_desc: "Normal Authorities replaced with Martial Law:$TABBED_NEW_LINE$- ['concept_MO_auth_democratic_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_oligarchic_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_dictatorial_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_imperial_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_corporate_martial_law']\n\n§LMartial Law has been imposed upon this society to prevent societial collapse.§!"
+ # Use scripted loc to make the bugged authorities appear dynamically # [HMO_GetBuggedAuthoritiesConcept]
+ concept_HMO_bugged_martial_law_authorities_desc: "$TABBED_NEW_LINE$- ['concept_MO_auth_bugged_corporate_democratic_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_bugged_corporate_imperial_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_bugged_direct_democratic_martial_law']"
+ 
+ HMO_NO_TEXT: ""
+ 
+ concept_HMO_auth_democratic: "$concept_auth_democratic$"
+ concept_HMO_auth_oligarchic: "$concept_auth_oligarchic$"
+ concept_HMO_auth_dictatorial: "$concept_auth_dictatorial$"
+ concept_HMO_auth_imperial: "$concept_auth_imperial$"
+ concept_HMO_auth_corporate: "$concept_auth_corporate$"
+ 
+ concept_MO_auth_democratic_martial_law: "$MO_auth_democratic_martial_law$"
+ concept_MO_auth_democratic_martial_law_desc: "$MO_auth_democratic_martial_law_desc$"
+ 
+ concept_MO_auth_oligarchic_martial_law: "$MO_auth_oligarchic_martial_law$"
+ concept_MO_auth_oligarchic_martial_law_desc: "$MO_auth_oligarchic_martial_law_desc$"
+ 
+ concept_MO_auth_dictatorial_martial_law: "$MO_auth_dictatorial_martial_law$"
+ concept_MO_auth_dictatorial_martial_law_desc: "$MO_auth_dictatorial_martial_law_desc$"
+ 
+ concept_MO_auth_imperial_martial_law: "$MO_auth_imperial_martial_law$"
+ concept_MO_auth_imperial_martial_law_desc: "$MO_auth_imperial_martial_law_desc$"
+ 
+ concept_MO_auth_corporate_martial_law: "$MO_auth_corporate_martial_law$"
+ concept_MO_auth_corporate_martial_law_desc: "$MO_auth_corporate_martial_law_desc$"
+ 
+ # Bugged Authorities
+ 
+ concept_MO_auth_bugged_direct_democratic_martial_law: "$MO_auth_bugged_direct_democratic_martial_law$"
+ concept_MO_auth_bugged_direct_democratic_martial_law_desc: "$MO_auth_bugged_direct_democratic_martial_law_desc$"
+ 
+ concept_MO_auth_bugged_corporate_democratic_martial_law: "$MO_auth_bugged_corporate_democratic_martial_law$"
+ concept_MO_auth_bugged_corporate_democratic_martial_law_desc: "$MO_auth_bugged_corporate_democratic_martial_law_desc$"
+ 
+ concept_MO_auth_bugged_corporate_imperial_martial_law: "$MO_auth_bugged_corporate_imperial_martial_law$"
+ concept_MO_auth_bugged_corporate_imperial_martial_law_desc: "$MO_auth_bugged_corporate_imperial_martial_law_desc$"
+ 
+ # Encryption Authorities
+ 
+ concept_MO_auth_democratic_encryption: "Democratic Concealment"
+ concept_MO_auth_democratic_encryption_desc: "§L$MO_auth_democratic_encryption_desc$§!"
+ 
+ concept_MO_auth_oligarchic_encryption: "Oligarchic Vanguard"
+ concept_MO_auth_oligarchic_encryption_desc: "§L$MO_auth_oligarchic_encryption_desc$§!"
+ 
+ concept_MO_auth_dictatorial_encryption: "Dictatorial Isolation"
+ concept_MO_auth_dictatorial_encryption_desc: "§L$MO_auth_dictatorial_encryption_desc$§!"
+ 
+ concept_MO_auth_imperial_encryption: "Imperial Enigma"
+ concept_MO_auth_imperial_encryption_desc: "§L$MO_auth_imperial_encryption_desc$§!"
+ 
+ concept_MO_auth_corporate_encryption: "Corporate Security"
+ concept_MO_auth_corporate_encryption_desc: "§L$MO_auth_corporate_encryption_desc$§!"
+ 
+ # Bugged Authorities
+ 
+ concept_MO_auth_bugged_corporate_democratic_encryption: "Democracy of Secrecy"
+ concept_MO_auth_bugged_corporate_democratic_encryption_desc: "§L$MO_auth_bugged_corporate_democratic_encryption_desc$§!"
+ 
+ concept_MO_auth_bugged_corporate_imperial_encryption: "Democracy of Secrecy"
+ concept_MO_auth_bugged_corporate_imperial_encryption_desc: "§L$MO_auth_bugged_corporate_imperial_encryption_desc$§!"
+ 
+ concept_MO_auth_bugged_direct_democratic_encryption: "Democracy of Secrecy"
+ concept_MO_auth_bugged_direct_democratic_encryption_desc: "§L$MO_auth_bugged_direct_democratic_encryption_desc$§!"
+
+ # Weaponry Authorities
+ 
+ concept_MO_auth_democratic_weaponry: "Democratic Armament"
+ concept_MO_auth_democratic_weaponry_desc: "§L$MO_auth_democratic_weaponry_desc$§!"
+ 
+ concept_MO_auth_oligarchic_weaponry: "Oligarchic Crackdown"
+ concept_MO_auth_oligarchic_weaponry_desc: "§L$MO_auth_oligarchic_weaponry_desc$§!"
+ 
+ concept_MO_auth_dictatorial_weaponry: "Dictatorial Suppression"
+ concept_MO_auth_dictatorial_weaponry_desc: "§L$MO_auth_dictatorial_weaponry_desc$§!"
+ 
+ concept_MO_auth_imperial_weaponry: "Imperial Militia"
+ concept_MO_auth_imperial_weaponry_desc: "§L$MO_auth_imperial_weaponry_desc$§!"
+ 
+ concept_MO_auth_corporate_weaponry: "Corporate Mercenaries"
+ concept_MO_auth_corporate_weaponry_desc: "§L$MO_auth_corporate_weaponry_desc$§!"
+ 
+ # Bugged Authorities
+ 
+ concept_MO_auth_bugged_corporate_democratic_weaponry: "Democracy of Secrecy"
+ concept_MO_auth_bugged_corporate_democratic_weaponry_desc: "§L$MO_auth_bugged_corporate_democratic_weaponry_desc$§!"
+ 
+ concept_MO_auth_bugged_corporate_imperial_weaponry: "Democracy of Secrecy"
+ concept_MO_auth_bugged_corporate_imperial_weaponry_desc: "§L$MO_auth_bugged_corporate_imperial_weaponry_desc$§!"
+ 
+ concept_MO_auth_bugged_direct_democratic_weaponry: "Democracy of Secrecy"
+ concept_MO_auth_bugged_direct_democratic_weaponry_desc: "§L$MO_auth_bugged_direct_democratic_weaponry_desc$§!"
+
+ # Zombie Authorities
+ 
+ concept_MO_auth_democratic_zombie: "Democratic Resurrection"
+ concept_MO_auth_democratic_zombie_desc: "§L$MO_auth_dezombie_desc$§!"
+ 
+ concept_MO_auth_oligarchic_zombie: "Oligarchic Cyberdeath"
+ concept_MO_auth_oligarchic_zombie_desc: "§L$MO_auth_olzombie_desc$§!"
+ 
+ concept_MO_auth_dictatorial_zombie: "Dictatorial Control"
+ concept_MO_auth_dictatorial_zombie_desc: "§L$MO_auth_diczombie_desc$§!"
+ 
+ concept_MO_auth_imperial_zombie: "Imperial Loyalty"
+ concept_MO_auth_imperial_zombie_desc: "§L$MO_auth_zombie_desc$§!"
+ 
+ concept_MO_auth_corporate_zombie: "Corporate Postmortem"
+ concept_MO_auth_corporate_zombie_desc: "§L$MO_auth_czombie_desc$§!"
+ 
+ # Bugged Authorities
+ 
+ concept_MO_auth_bugged_corporate_democratic_zombie: "Democracy of Secrecy"
+ concept_MO_auth_bugged_corporate_democratic_zombie_desc: "§L$MO_auth_bugged_corporate_dezombie_desc$§!"
+ 
+ concept_MO_auth_bugged_corporate_imperial_zombie: "Democracy of Secrecy"
+ concept_MO_auth_bugged_corporate_imperial_zombie_desc: "§L$MO_auth_bugged_corporate_zombie_desc$§!"
+ 
+ concept_MO_auth_bugged_direct_democratic_zombie: "Democracy of Secrecy"
+ concept_MO_auth_bugged_direct_democratic_zombie_desc: "§L$MO_auth_bugged_direct_dezombie_desc$§!"
+
+ # $HMO_zombie_town_tooltip$\n\n
+ # ['concept_HMO_zcom_building']
+ 
+ # Wild World
+ concept_HMO_blockers: "Blockers"
+ concept_HMO_blockers_desc: "Blockers are deposits that restrict the amount of districts you can build, but can be cleared for a cost to unlock planetary features."
+ 
+ concept_HMO_keppler_mod: "$HMO_keppler_cage_scrap$"
+ concept_HMO_keppler_mod_desc: "- $MOD_PLANET_RESETTLEMENT_UNEMPLOYED_MULT$: §R-90%§!\n- $MOD_POP_RESETTLEMENT_COST_MULT$: §R+400%§!\n- $mod_shipclass_colonizer_build_cost_mult$: §R+100%§!\n\n§L$HMO_keppler_cage_scrap_desc$§!"
+ 
+ concept_HMO_pc_tropical: "$pc_tropical$"
+ concept_HMO_pc_tropical_desc: "§L$pc_tropical_desc$§!"
+ 
+ concept_HMO_pc_wet_superhabitable: "Wet Superhabitable World"
+ concept_HMO_pc_wet_superhabitable_desc: "§LA wet, rocky super-terrestrial world, this planet has a dense nitrogen-oxygen atmosphere. It is a perfect cradle for evolving life, with average temperatures around 25 degrees Celsius and shallow ocean basins. Still, the heavy gravity is a struggle for those unaccustomed to it.§!"
+ 
+ concept_HMO_wildworld_exploration: "Homeworld Exploration"
+ concept_HMO_wildworld_exploration_desc: "§LWhat hides inside the jungles of our homeworld has long been shrouded in mystery, but now we take up the torch and illuminate the uknown.§!"
+ 
+ # Born of Necessity
+ concept_HMO_dyson_swarm: "$dyson_swarm_1$"
+ concept_HMO_dyson_swarm_desc: "§EEffects:§!$NEW_LINE$$dyson_swarm_1_mod_tooltip$\n\n§L$tech_dyson_swarm_desc$§!"
+ 
+ concept_HMO_dyson_swarm_tech: "$tech_dyson_swarm$"
+ concept_HMO_dyson_swarm_tech_desc: "§IUnlocks Megastructure:§! $dyson_swarm_3$ $DOUBLE_NEW_LINE$§L$tech_dyson_swarm_desc$§!"
+ 
+ concept_HMO_pc_m: "$pc_m_star$"
+ concept_HMO_pc_m_desc: "§L$pc_m_star_desc$§!"
+ 
+ # for Wiirlak, but why not have them ready here"
+ concept_HMO_pc_black_hole: "$pc_black_hole$"
+ concept_HMO_pc_black_hole_desc: "§L$pc_black_hole_desc$§!"
+
+ concept_HMO_pc_alpine: "$pc_alpine$"
+ concept_HMO_pc_alpine_desc: "§L$pc_alpine_desc$§!"
+
+ #concept_HMO_starless_trait: "$wiirlak_ac_trait_starless$"
+ #concept_HMO_survivor_desc: "- Habitability: §R-10%§!\n- $mod_planet_jobs_minerals_produces_mult$: §G+10%§!\n -$mod_planet_jobs_physics_produces_mult$: §G+20%§!\n\n§L$wiirlak_ac_trait_starless_desc$§!"
+ 
+ ########################
+ # Planned Obsolescence #
+ ########################
+ 
+ 
+ concept_HMO_planned_obsolescence: "$HMO_trait_planned_obsolescence$"
+ concept_HMO_trait_robot_history_researchbot: "$trait_robot_history_researchbot$"
+ 
+ concept_HMO_modularity_ascension: "Modular Ascension"
+ concept_HMO_modularity_ascension_desc: "$tradition_modularity_desc$"

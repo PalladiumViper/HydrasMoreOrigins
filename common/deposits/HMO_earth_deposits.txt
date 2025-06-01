@@ -1,0 +1,217 @@
+## Possible Deposit Variables ##
+# resources, resource and amount
+# potential trigger (planet scope)
+# blocked_modifier - applied to planet
+# planet_modifier - applied to planet always
+# station = station class in orbit to gather
+
+@high = 16
+@med = 8
+@low = 4
+
+@high_rare = 2
+@med_rare = 1
+@low_rare = 0.5
+
+# Earth Deposits
+d_HMO_banished_scandinavian_reclamation_sector = {
+	is_for_colonizable = yes
+	icon = d_radioactive_wasteland
+
+	planet_modifier = {
+		district_farming_max = 3
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 3
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_banished_saharan_irrigation_project = {
+	is_for_colonizable = yes
+	icon = d_radioactive_wasteland
+
+	planet_modifier = {
+		district_farming_max = 2
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 2
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_banished_delhi_sprawl = {
+	is_for_colonizable = yes
+	icon = d_central_spire
+
+	planet_modifier = {
+		district_generator_max = 2
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 2
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_banished_boswash_metropolitan_axis = {
+	is_for_colonizable = yes
+	icon = d_nanite_corpses
+
+	planet_modifier = {
+		district_generator_max = 3
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 3
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_banished_pearl_river_agglomerate = {
+	is_for_colonizable = yes
+	icon = d_ruins_medium
+
+	planet_modifier = {
+		district_generator_max = 3
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 3
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_banished_mauritanian_security_zone = {
+	is_for_colonizable = yes
+	icon = d_quarantine_zone
+
+	planet_modifier = {
+		district_mining_max = 1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_HMO_banished_great_albertan_crater = {
+	is_for_colonizable = yes
+	icon = d_crater
+
+	planet_modifier = {
+		district_mining_max = 3
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 3
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+# Blockers
+d_HMO_banished_great_pacific_garbage_patch = {
+	icon = d_boggy_fens
+	time = 120
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	use_weights_for_blocker_swap_types = no
+
+	blocker_swap_types = {
+		d_pacific_algae_tracts
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
+
+d_HMO_banished_failing_infrastructure_earth = {
+	icon = d_metal_boneyard
+	time = 120
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	use_weights_for_blocker_swap_types = no
+
+	blocker_swap_types = {
+		d_HMO_banished_delhi_sprawl
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}

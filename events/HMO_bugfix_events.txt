@@ -1,0 +1,147 @@
+#########################################
+#
+# HMO's Game Start Events
+#
+#########################################
+
+namespace = HMO_fix
+
+#########################################
+
+# Game Start
+country_event = {
+	id = HMO_fix.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_system = {
+			limit = {
+				Or = {
+					is_point_of_interest = { id = HMO_cache_search_poi.1 event_chain = HMO_isolation_time_chain owner = root }
+					is_point_of_interest = { id = HMO_cache_search_poi.2 event_chain = HMO_isolation_time_chain owner = root }
+					is_point_of_interest = { id = HMO_cache_search_poi.3 event_chain = HMO_isolation_time_chain owner = root }
+					is_point_of_interest = { id = HMO_cache_search_poi.4 event_chain = HMO_isolation_time_chain owner = root }
+				}
+			}
+			if = {
+				limit = {
+					is_point_of_interest = { id = HMO_cache_search_poi.1 event_chain = HMO_isolation_time_chain owner = root }
+				}
+				root = {
+					remove_point_of_interest = HMO_cache_search_poi.1
+					add_event_chain_counter = {
+						event_chain = "HMO_isolation_time_chain"
+						counter = "HMO_black_holes_discovered"
+						amount = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					is_point_of_interest = { id = HMO_cache_search_poi.2 event_chain = HMO_isolation_time_chain owner = root }
+				}
+				root = {
+					remove_point_of_interest = HMO_cache_search_poi.2
+					add_event_chain_counter = {
+						event_chain = "HMO_isolation_time_chain"
+						counter = "HMO_black_holes_discovered"
+						amount = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					is_point_of_interest = { id = HMO_cache_search_poi.3 event_chain = HMO_isolation_time_chain owner = root }
+				}
+				root = {
+					remove_point_of_interest = HMO_cache_search_poi.3
+					add_event_chain_counter = {
+						event_chain = "HMO_isolation_time_chain"
+						counter = "HMO_black_holes_discovered"
+						amount = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					is_point_of_interest = { id = HMO_cache_search_poi.4 event_chain = HMO_isolation_time_chain owner = root }
+				}
+				root = {
+					remove_point_of_interest = HMO_cache_search_poi.4
+					add_event_chain_counter = {
+						event_chain = "HMO_isolation_time_chain"
+						counter = "HMO_black_holes_discovered"
+						amount = 1
+					}
+				}
+			}
+		}
+		country_event = { id = HMO_origin.2103 } # Check if chain is finished
+	}
+}
+
+# Completing terraforming 2
+country_event = {
+	id = HMO_fix.2
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_unvaulted
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_technology = tech_ecological_adaptation
+			}
+			random_situation = {
+				limit = {
+					is_situation_type = HMO_unvaulted_situation
+				}
+				remove_situation_flag = HMO_needs_terraforming_tech_2
+			}
+		}
+		if = {
+			limit = {
+				has_technology = tech_climate_restoration
+			}
+			random_situation = {
+				limit = {
+					is_situation_type = HMO_unvaulted_situation
+				}
+				remove_situation_flag = HMO_needs_terraforming_tech_2
+			}
+		}
+	}
+}
+
+# Fix Zombies Attacking After Ascension
+country_event = {
+	id = HMO_fix.3
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_unvaulted
+	}
+	
+	immediate = {
+		set_country_flag = HMO_zombie_ascension_protection
+	}
+}
+
+# Fix Zombies Attacking After Ascension
+country_event = {
+	id = HMO_fix.4
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_HMO_zombies
+	}
+	
+	immediate = {
+		advanced_authority_refresh = yes
+	}
+}

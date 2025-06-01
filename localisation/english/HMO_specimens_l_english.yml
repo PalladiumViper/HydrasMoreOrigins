@@ -1,0 +1,7 @@
+﻿l_english:
+
+# Wildworld Specimens
+
+ HMO_ancient_idol: "Ancient Idol"
+ HMO_ancient_idol_desc_short: "A rock wreathed in vines from [This.GetName]"
+ HMO_ancient_idol_desc_details: "This simplistic idol is believed to have been revered by a primitive tribe of [owner.species.GetAdj] precursors."

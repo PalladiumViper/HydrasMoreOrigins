@@ -1,0 +1,6 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_specimen_HMO_ancient_idol"
+		texturefile = "gfx/interface/icons/specimens/HMO_ancient_idol.dds"
+	}
+}

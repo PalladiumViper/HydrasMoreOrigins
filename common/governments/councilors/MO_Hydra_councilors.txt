@@ -1,0 +1,105 @@
+councilor_ruler_MO_Hydra_corporate_martial_ruler = {
+	leader_class = { scientist commander official }
+	possible = { always = no }
+	icon = "GFX_icon_councilor_ruler"
+	modifier = {
+		job_soldier_stability_add = 1
+		country_edict_fund_add = 2
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_ruler_MO_Hydra_democratic_martial_ruler = {
+	leader_class = { scientist commander official }
+	possible = { always = no }
+	icon = "GFX_icon_councilor_ruler"
+	modifier = {
+		job_soldier_stability_add = 1
+		country_edict_fund_add = 2
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_ruler_MO_Hydra_oligarchic_martial_ruler = {
+	leader_class = { scientist commander official }
+	possible = { always = no }
+	icon = "GFX_icon_councilor_ruler"
+	modifier = {
+		job_soldier_stability_add = 1
+		country_edict_fund_add = 2
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_ruler_MO_Hydra_dictatorial_martial_ruler = {
+	leader_class = { scientist commander official }
+	possible = { always = no }
+	icon = "GFX_icon_councilor_ruler"
+	modifier = {
+		job_soldier_stability_add = 2
+		country_edict_fund_add = 4
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_ruler_MO_Hydra_imperial_martial_ruler = {
+	leader_class = { scientist commander official }
+	possible = { always = no }
+	icon = "GFX_icon_councilor_ruler"
+	modifier = {
+		job_soldier_stability_add = 1
+		country_edict_fund_add = 2
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+### Bug Branch ###
+
+councilor_ruler_MO_Hydra_direct_democratic_martial_ruler = {
+	leader_class = { scientist commander official }
+	possible = { always = no }
+	icon = "GFX_icon_councilor_ruler"
+	modifier = {
+		job_soldier_stability_add = 1
+		country_edict_fund_add = 2
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_ruler_MO_Hydra_corporate_democratic_martial_ruler = {
+	leader_class = { scientist commander official }
+	possible = { always = no }
+	icon = "GFX_icon_councilor_ruler"
+	modifier = {
+		job_soldier_stability_add = 1
+		country_edict_fund_add = 2
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
+
+councilor_ruler_MO_Hydra_corporate_imperial_martial_ruler = {
+	leader_class = { scientist commander official }
+	possible = { always = no }
+	icon = "GFX_icon_councilor_ruler"
+	modifier = {
+		job_soldier_stability_add = 1
+		country_edict_fund_add = 2
+	}
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}

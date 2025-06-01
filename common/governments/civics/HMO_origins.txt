@@ -1,0 +1,792 @@
+# Banished Threat
+HMO_origin_banished_threat = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/HMO_origin_banished_threat.dds"
+	picture = GFX_HMO_origin_banished_threat
+	flags = { custom_start_screen starting_event Story7 }
+	max_once_global = yes
+
+	initializers = { HMO_banished_threat_start HMO_banished_threat_sol_start }
+
+	starting_colony = pc_nuked
+
+	playable = {
+		OR = {
+			host_has_dlc = "Utopia"
+			host_has_dlc = "Synthetic Dawn Story Pack"
+		}
+		has_forgotten_history_active = no
+	}
+	# Forgot this earlier
+	ai_playable = {
+		OR = {
+			has_utopia = yes
+			has_synthetic_dawn = yes
+		}
+	}
+	
+	potential = {
+		species_archetype = { NOT = { value = MACHINE } }
+	}
+	
+	possible = {
+		species_archetype = { NOT = { value = MACHINE } }
+		civics = {
+			OR = {
+				text = HMO_civic_tooltip_genocidal
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_terminator
+			}
+			inline_script = {
+				script = comptriggers/MO_Hydra_toggle
+				HAS_MOD = @has_mc_hydra
+				INLINE = MO_MC_Hydra_banished_threat
+			}
+			# value = civic_organic_zealots
+		}
+	}
+
+	description = HMO_origin_banished_threat_effects
+
+	traits = {
+		trait = HMO_trait_ancient_organism
+	}
+
+	advanced_start = yes
+	blocks_random_machine_empire_generation	= yes
+
+	random_weight = {
+		base = 5
+	}
+}
+
+# Banished Threat for Machines
+HMO_origin_banished_threat_machines = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/HMO_origin_banished_threat.dds"
+	picture = GFX_HMO_origin_banished_threat
+	flags = { custom_start_screen starting_event Story7 }
+	max_once_global = yes
+
+	initializers = { HMO_banished_threat_start HMO_banished_threat_sol_start }
+
+	starting_colony = pc_nuked
+
+	playable = {
+		OR = {
+			host_has_dlc = "Utopia"
+			host_has_dlc = "Synthetic Dawn Story Pack"
+		}
+		has_forgotten_history_active = no
+	}
+	# Forgot this earlier
+	ai_playable = {
+		OR = {
+			has_utopia = yes
+			has_synthetic_dawn = yes
+		}
+	}
+
+	potential = {
+		species_archetype = { value = MACHINE }
+	}
+
+	possible = {
+		species_archetype = { value = MACHINE }
+		civics = {
+			OR = {
+				text = HMO_civic_tooltip_genocidal
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_terminator
+			}
+			inline_script = {
+				script = comptriggers/MO_Hydra_toggle
+				HAS_MOD = @has_mc_hydra
+				INLINE = MO_MC_Hydra_banished_threat_machines
+			}
+			# value = civic_organic_zealots
+		}
+	}
+
+	description = HMO_origin_banished_threat_machines_effects
+
+	traits = {
+		trait = HMO_trait_ancient_configuration
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 5
+	}
+}
+
+# Crashed Ship Origin
+origin_HMO_scavengers = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_HMO_scavengers.dds"
+	picture = GFX_origin_HMO_scavengers
+	flags = { custom_start_screen Story5 }
+
+	playable = {
+		has_forgotten_history_active = no
+	}
+	
+	potential = {
+		always = yes
+	}
+	
+	description = origin_HMO_scavengers_effects
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 5
+	}
+}
+
+# Insurgency
+origin_HMO_apocalypse = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_HMO_apocalypse.dds"
+	picture = GFX_origin_HMO_apocalypse
+	flags = { custom_start_screen suppress_vanilla_factions starting_event }
+	max_once_global = yes
+
+	starting_colony = HMO_pc_apocalyptic_city
+
+	playable = {
+		has_forgotten_history_active = no
+	}
+	
+	potential = {
+		always = yes
+	}
+	
+	possible = {
+		species_archetype = {
+			NOT = { value = LITHOID }
+		}
+		ethics = {
+			NOR = {
+				value = ethic_gestalt_consciousness # more of a nuclear apocalypse-type I think. Not sure, but it certainly doesn't fit with gestalts no matter what type of apocalypse. Should be split factions kind of, a bit like GWTB
+				#value = ethic_xenophobe
+				value = ethic_fanatic_pacifist
+			}
+		}
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_guided
+				value = civic_guided_sapience
+				value = civic_corporate_guided_sapience
+				value = civic_hive_guided_sapience
+				value = civic_machine_guided_sapience
+			}
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_parliamentary_system
+				value = civic_agrarian_idyll
+				value = civic_environmentalist
+				value = civic_environmental_architects
+				value = civic_environmental_architects_megacorp
+				value = civic_idyllic_bloom
+			}
+			inline_script = {
+				script = comptriggers/MO_Hydra_toggle
+				HAS_MOD = @has_mc_hydra
+				INLINE = MO_MC_Hydra_insurgency
+			}
+		}
+	}
+
+	description = "origin_HMO_apocalypse_effects"
+	negative_description = "origin_HMO_apocalypse_negative_effects"
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+origin_HMO_insurgents = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_HMO_apocalypse.dds"
+	picture = GFX_origin_HMO_apocalypse
+	flags = { custom_start_screen suppress_vanilla_factions }
+
+	starting_colony = HMO_pc_apocalyptic_city
+
+	playable = {
+		always = no
+	}
+
+	possible = {
+	}
+	
+	modifier = {
+		country_commander_cap_add = 3
+	}
+
+	description = "origin_HMO_insurgents_effects"
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+# Unvaulted
+origin_HMO_unvaulted = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_HMO_unvaulted.dds"
+	picture = GFX_origin_HMO_unvaulted
+	flags = { custom_start_screen starting_event }
+
+	starting_colony = pc_nuked
+
+	playable = {
+		always = yes
+	}
+
+	possible = {
+		species_archetype = {
+			NOR = {
+				value = LITHOID
+				value = MACHINE
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness #
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_agrarian_idyll
+				value = civic_environmentalist
+			}
+			NOR = { # No Uplifters
+				text = civic_tooltip_not_guided
+				value = civic_guided_sapience
+				value = civic_corporate_guided_sapience
+				value = civic_hive_guided_sapience
+				value = civic_machine_guided_sapience
+			}
+			NOR = {
+				# Or low tech starts
+				text = civic_tooltip_not_eager_explorers
+				value = civic_eager_explorers
+				value = civic_privatized_exploration
+				value = civic_hive_stargazers
+				value = civic_machine_exploration_protocol
+			}
+			inline_script = {
+				script = comptriggers/MO_Hydra_toggle
+				HAS_MOD = @has_mc_hydra
+				INLINE = MO_MC_Hydra_unvaulted
+			}
+		}
+	}
+
+	description = "origin_HMO_unvaulted_effects"
+	#negative_description = "origin_HMO_codekeepers_negative_effects"
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 1
+	}
+}
+
+# Cataclysm Engine
+# This empire's home system once belonged to an empire intent on destroying the universe # Throughout history we've noticed strange phenomena affect our sun. Such occourances were not common, though they did happen more frequently over time. It wasn't until the invention of the telescope we truly began understanding the truth. A gigantic voidborne structure drawing power from our sun for some inscrutable purpose. Now with our newest space drive technology we can finally study it more closely.
+# Start with a ruined crisis sphere in your home system. Start with an archeology site on the crisis sphere. Once completed, you find out that it might melt down at some point in the future. You gain the option to upgrade (repair) it. Once repaired it becomes a planet with special districts. The districts help prevent it from melting down and its jobs generates dark matter and energy. Failure to keep it stable causes it to explode, annihilating all systems in a 5-system radius.
+#origin_HMO_cataclysm_engine = {
+#	is_origin = yes
+#	icon = "gfx/interface/icons/origins/origin_HMO_cataclysm_engine.dds"
+#	picture = GFX_origin_HMO_cataclysm_engine
+#	flags = { custom_start_screen }
+#	max_once_global = yes
+#
+#	playable = {
+#		always = no
+#	}
+#
+#	possible = {
+#		civics = {
+#			NOR = {
+#				# Or low tech starts
+#				text = civic_tooltip_not_eager_explorers
+#				value = civic_eager_explorers
+#				value = civic_privatized_exploration
+#				value = civic_hive_stargazers
+#				value = civic_machine_exploration_protocol
+#			}
+#		}
+#	}
+#
+#	description = "origin_HMO_cataclysm_engine_effects"
+#	#negative_description = "origin_HMO_cataclysm_engine_negative_effects"
+#
+#	advanced_start = yes
+#
+#	random_weight = {
+#		base = 0
+#	}
+#}
+
+# Intergalactic Scrapyard
+# This empires home system was once a battlefield for multiple warring empires. # During our ascension to the stars we found that we were not the first in our home system. Thousands, no millions of ship graves litter the void. # Story: Multiple warring empires fought in this system, and then designated it a demilitarized zone, resulting in no clean-up or scavenging efforts.
+# Start in a system full of ruined ships, some with archeological sites.
+#origin_HMO_scrapyard = {
+#	is_origin = yes
+#	icon = "gfx/interface/icons/origins/origin_HMO_scrapyard.dds"
+#	picture = GFX_origin_HMO_scrapyard
+#	flags = { custom_start_screen }
+#	max_once_global = yes
+#
+#	playable = {
+#		always = no
+#	}
+#
+#	possible = {
+#		civics = {
+#			NOR = {
+#				# Or low tech starts
+#				text = civic_tooltip_not_eager_explorers
+#				value = civic_eager_explorers
+#				value = civic_privatized_exploration
+#				value = civic_hive_stargazers
+#				value = civic_machine_exploration_protocol
+#			}
+#		}
+#	}
+#
+#	description = "origin_HMO_scrapyard_effects"
+#	#negative_description = "origin_HMO_scrapyard_negative_effects"
+#
+#	advanced_start = yes
+#
+#	random_weight = {
+#		base = 0
+#	}
+#}
+
+# Unlimited Potential
+# Basic origin that starts you off in a system with terraforming candidates, many rare resource deposits as well as some nice-looking effects in the home system
+origin_HMO_unlimited_potential = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_HMO_unlimited_potential.dds"
+	picture = GFX_origin_HMO_unlimited_potential
+	#flags = { custom_start_screen }
+	max_once_global = yes
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		always = yes
+	}
+
+	description = "origin_HMO_unlimited_potential_effects"
+	#negative_description = "origin_HMO_unlimited_potential_negative_effects"
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+# Irrigation Project # Too similar to unvaulted? Or focus on the large-scale farming?
+# Start on a desert world. Start with a situation that adds more farming districts
+
+# Seperated Cluster
+# Your starting cluster is seperated from the rest of the hyperlane network
+
+# Scrapyard
+# The natural order
+# Start on a junk world. Mining districts on the junk world give scrap miner jobs. Farming districts are replaced with scavenger districts, which give scavenger jobs (engineering research = consumer goods production).
+
+# Cargo Cult
+# This empire worships consumption. The act of producing stuff is glorified throughout all facets of life.
+# Consumer goods can be stacked in a consumer goods tower that gives benefits to various stuff.
+
+# Murders in the Night
+# Throughout history a mysterious force has killed off people during the night.
+# Pops may randomly die, increasing in frequency over time.
+
+# Space Trash
+# Early on in our empires history, we launched many satelites and space stations into orbit, disregarding the safety issues it created;
+# Empires homeworld is surrounded by a scrap cage.
+
+# Codekeepers
+# Origin with unique factions that wants to enforce very specific rules. In return, they give amazing resource output.
+# If the factions are displeased for too long then massive penalties will be given
+
+#origin_HMO_codekeepers = {
+#	is_origin = yes
+#	icon = "gfx/interface/icons/origins/origin_HMO_codekeepers.dds"
+#	picture = GFX_origin_HMO_codekeepers
+#	flags = { custom_start_screen suppress_vanilla_factions }
+#	max_once_global = yes
+#
+#	playable = {
+#		always = yes
+#	}
+#
+#	possible = {
+#		ethics = {
+#			NOT = {
+#				value = ethic_gestalt_consciousness #
+#			}
+#		}
+#		civics = {
+#			NOR = {
+#				value = civic_fanatic_purifiers
+#			}
+#		}
+#	}
+#
+#	description = "origin_HMO_codekeepers_effects"
+#	#negative_description = "origin_HMO_unvaulted_negative_effects"
+#
+#	advanced_start = yes
+#
+#	random_weight = {
+#		base = 0
+#	}
+#}
+
+# Containment Procedures / Doomsday Keepers
+# This empire's government is actually a front for a specialized organization that keep a doomsday engine / Anomalous object capable of destroying their world in a secure and secret location.
+# Effects: Start with a special habitat (Not a habitat, but a planet with habitat entity) that uses special districts. These Include: Research Districts (Anomaly Researcher Jobs), Containment Districts (Containment Specialists) and Intelligence Districts (Intelligence Officer)
+
+# Gateway to the other side
+# This empire has constructed a gateway to realms beyond.
+
+# After the Apocalypse
+# This empire experience a zombie apocalypse. After they contained the threat there's now billions of undead husks shambling about. Luckily they are good for grueling manual labor.
+# Effects: Start with 2/3 of your pops being zombies. Your species has the infected trait. If any of your pops without the zombie trait die in any way they revive as zombies. Zombies do not further revive.
+# Story Event Chain: Zcom wants to take additional measures to keep zombie population in check. Can either cull part or all of them, destroy corpses on death, or research more in zombie management.
+# Zcom then finds that zombies have some higher brain activity and may be restored
+# There's two "factions" (Not actual factions). 1: Zcom, led by a commander. Is responsible for eradicating enough zombies to reestablish society. 2. The Resurrection Project, led by a scientist. Is responsible for making the zombies usable for manual labor.
+# The two fight for funding, and throughout the early game you get to decide who gets it. As you progress through the event chain, stuff happens.
+# Choosing Zcom will gradually decrease the number of zombies, and will stop the resurrection of pops. At the end, all zombies will be killed and you get bonuses to soldier jobs.
+# Choosing the resurrection project will make zombies stick around, eventually letting all species of pops be zombified.
+# MUST be militarist or materialist, but not both. Depending on which one you choose the one behind the zombie virus is the ethic you chose (If you're a materialist the resurrection project was the cause, and if militarist its the zcom)
+# Idea for events: The Resurrection Project sets up a base in one of your border systems to experiment, and when zcom hears about some of their experiments they send a fleet (Belonging to a dummy country) that you can attack to interrupt them. Else a fleet of dummy ships from the Resurrection Project will engage them in battle at their base. The fleet functions like fear of the dark's fleet. If zcom is defeated or interrupted they will become angry. If zcom is successful the Resurrection Projects progress will be set back massively and they will demand zcom be punished and their research legalized.
+origin_HMO_zombies = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_HMO_zombies.dds"
+	picture = GFX_origin_HMO_zombies
+	flags = { custom_start_screen }
+	max_once_global = yes
+
+	playable = {
+		#always = no
+		has_machine_age_dlc = yes
+	}
+	
+	possible = {
+		ethics = {
+			NOT = { value = ethic_gestalt_consciousness }
+		}
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_death_cult
+				value = civic_death_cult
+				value = civic_death_cult_corporate
+			}
+			NOR = {
+				text = civic_tooltip_not_guided
+				value = civic_guided_sapience
+				value = civic_corporate_guided_sapience
+				value = civic_hive_guided_sapience
+				value = civic_machine_guided_sapience
+			}
+			NOR = {
+				text = civic_tooltip_not_natural_design
+				value = civic_natural_design
+				value = civic_hive_natural_design
+			}
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_reanimated_armies
+				value = civic_permanent_employment
+				value = civic_parliamentary_system
+			}
+			inline_script = {
+				script = comptriggers/MO_Hydra_toggle
+				HAS_MOD = @has_mc_hydra
+				INLINE = MO_MC_Hydra_unvaulted
+			}
+		}
+		species_archetype = {
+			NOT = {
+				value = MACHINE
+			}
+		}
+	}
+	
+	#possible = {
+	#	OR = {
+	#		AND = {
+	#			ethics = {
+	#				OR = {
+	#					text = HMO_civic_tooltip_mutually_exclusive_materialist_or_militarist
+	#					value = ethic_fanatic_militarist
+	#					value = ethic_fanatic_materialist
+	#				}
+	#			}
+	#		}
+	#		AND = {
+	#			ethics = {
+	#				value = ethic_militarist
+	#				NOT = { value = ethic_materialist }
+	#			}
+	#		}
+	#		AND = {
+	#			ethics = {
+	#				NOT = { value = ethic_militarist }
+	#				value = ethic_materialist
+	#			}
+	#		}
+	#	}
+	#	civics = {
+	#		NOR = {
+	#			value = civic_fanatic_purifiers
+	#			value = civic_reanimated_armies
+	#			value = civic_permanent_employment
+	#		}
+	#	}
+	#}
+
+	description = "origin_HMO_zombies_effects"
+	negative_description = "origin_HMO_zombies_negative_effects"
+	blocks_random_machine_empire_generation	= yes
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+# Wildworld
+# By TrueWolves
+origin_HMO_wildworld = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_HMO_wildworld.dds"
+	picture = GFX_origin_HMO_wildworld
+	flags = { custom_start_screen }
+	max_once_global = yes
+	
+	#starting_colony = pc_tropical
+	#habitability_preference = pc_tropical
+	
+	inline_script = {
+		script = comptriggers/MO_Hydra_double_toggle
+		HAS_MOD = @has_planetary_diversity
+		INLINE = MO_PD_Hydra_wildworld
+	}
+	
+	playable = {
+		always = yes
+	}
+
+	possible = {
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_relentless_industrialists
+				value = civic_relentless_industrialists
+				value = civic_corporate_relentless_industrialists
+			}
+			NOR = {
+				text = civic_tooltip_not_guided
+				value = civic_guided_sapience
+				value = civic_corporate_guided_sapience
+				value = civic_hive_guided_sapience
+				value = civic_machine_guided_sapience
+			}
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+			NOR = {
+				value = civic_environmental_architects
+				value = civic_environmental_architects_megacorp
+				value = civic_private_prospectors
+				#value = civic_environmentalist
+			}
+		}
+	}
+
+	#description = "origin_HMO_wildworld_effects" # Description in the toggled inline
+	negative_description = "origin_HMO_wildworld_negative_effects"
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 5
+	}
+}
+
+# Wonders of the Past
+# By TrueWolves
+origin_HMO_dyson_swarm = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_HMO_dyson_swarm.dds"
+	picture = GFX_origin_HMO_dyson_swarm
+	max_once_global = yes
+	flags = { custom_start_screen }
+
+	initializers = { custom_starting_init_05 custom_starting_init_06 sol_system_initializer deneb_system titawin_init }
+
+	playable = {
+		has_machine_age_dlc = yes
+	}
+
+	possible = {
+		civics = {
+			NOR = {
+				# No low tech starts
+				text = civic_tooltip_not_eager_explorers
+				value = civic_eager_explorers
+				value = civic_privatized_exploration
+				value = civic_hive_stargazers
+				value = civic_machine_exploration_protocol
+			}
+		}
+	}
+
+	description = "origin_HMO_dyson_swarm_effects"
+	negative_description = "origin_HMO_dyson_swarm_negative_effects"
+
+	modifier = {
+		country_megastructure_build_cap_add = 1
+		dyson_swarm_limit_add = 1
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 2
+	}
+}
+
+# Start on a broken habitat (Name of planet type is derelict spacestation) with multiple blockers. Does not use normal habitat districts, instead has: Hydroponic Districts (+3 Farmer Jobs), Laboratory Districts (+3 Researcher Jobs)
+# Industrial Districts (+2 Foundry Worker Jobs, +1 Artisan Jobs), Reactor District (+3 Technician Jobs), 
+
+#origin_HMO_bioweapon = {
+#	is_origin = yes
+#	icon = "gfx/interface/icons/origins/origin_HMO_bioweapon.dds"
+#	picture = GFX_origin_HMO_bioweapon
+#	max_once_global = yes
+#
+#	starting_colony = pc_nuked
+#
+#	playable = {
+#		always = no
+#		#host_has_dlc = "Apocalypse"
+#	}
+#
+#	possible = {
+#		species_archetype = {
+#			NOR = {
+#				value = MACHINE
+#				value = LITHOID
+#			}
+#		}
+#		species_class = {
+#			NOR = {
+#				value = FUN
+#				value = PLANT
+#			}
+#		}
+#		civics = {
+#			NOT = {
+#				value = civic_agrarian_idyll
+#			}
+#			NOR = {
+#				text = civic_tooltip_not_anglers
+#				value = civic_anglers
+#				value = civic_corporate_anglers
+#				value = civic_machine_anglers
+#				value = civic_corporate_machine_anglers
+#			}
+#		}
+#	}
+#
+#	description = "origin_tooltip_post_apocalyptic_effects"
+#
+#	traits = {
+#		trait = trait_HMO_bioweapon
+#	}
+#
+#	advanced_start = yes
+#	blocks_random_machine_empire_generation	= yes
+#
+#	random_weight = {
+#		base = 5
+#	}
+#}
+
+# Planned Obsolescence
+origin_HMO_planned_obsolescence = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_HMO_planned_obsolescence.dds"
+	picture = GFX_origin_HMO_planned_obsolescence
+	flags = { custom_start_screen starting_event }
+	max_once_global = yes
+
+	playable = {
+		has_machine_age_dlc = yes
+	}
+	# Forgot this earlier
+	ai_playable = {
+		has_machine_age_dlc = yes
+	}
+
+	possible = {
+		species_archetype = { value = MACHINE }
+		ethics = {
+			NOT = { value = ethic_gestalt_consciousness }
+		}
+		civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+			}
+			NOR = {
+				text = civic_tooltip_not_guided
+				value = civic_guided_sapience
+				value = civic_corporate_guided_sapience
+				value = civic_hive_guided_sapience
+				value = civic_machine_guided_sapience
+			}
+			inline_script = {
+				script = comptriggers/MO_Hydra_toggle
+				HAS_MOD = @has_mc_hydra
+				INLINE = MO_MC_Hydra_planned_obsolescence
+			}
+			# value = civic_organic_zealots
+		}
+	}
+
+	description = origin_HMO_planned_obsolescence_effects
+
+	traits = {
+		trait = HMO_trait_planned_obsolescence
+		trait = trait_robot_history_researchbot
+	}
+
+	advanced_start = no
+
+	random_weight = {
+		base = 5
+	}
+}

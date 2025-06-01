@@ -1,0 +1,624 @@
+﻿l_english:
+ ### EVENTS ###
+ MO_Hydra.HMO_ascension.social_consequences.tt: "Influences the ongoing §YSynthetic Society Shift§!.\n\n" # Standard tooltip to indicate that the Physical/Virtual focus variables has changed
+
+ HMO_synthshock_chain: "A New Chapter"
+ HMO_synthshock_chain_title: "A New Chapter"
+ HMO_synthshock_chain_desc: "With the plague gone, our society needs to readjust to a return to normalcy. With our chosen path to salvation landing us in new bodies and changing our lives forever, the society from before the apocalypse may be lost forever, though our hope for the future has never been higher."
+
+# Liberation events
+ HMO_ascension.440.name: "Reclamation Day"
+ HMO_ascension.440.desc: "With a fully synthezised army, we are finally ready to remove the infected from our cities. While we cannot bring them back from their undeath, they do not pose a threat to us anymore due to our inorganic nature, leaving the cleanup as quite an easy task."
+ HMO_ascension.440.a: "Ok"
+
+# FIRST EVENT #
+# DEMOCRATIC
+ HMO_ascension.505.name: "$HMO_synthshock_chain$"
+ HMO_ascension.505.desc: "Thanks to the efforts of our temporary government, the consciousness of every citizen has been transferred into digital form, finally ending the threat of the plague that has held our civilization in its grip for so long. Yet, with this new advent of our civilization comes new challenges and opportunities.\n\nNow with our society stabilizing, most of the soldiers that upheld the martial law imposed by the [HMO_Get_zcom_name] are no longer needed, yet our people have become used to them, finding a sense of security in their presence."
+ HMO_ascension.505.b: "Keep our military presence high." # Zcom Choice (Zcom choices are martial law choices)
+ HMO_ascension.505.b.tt: "Emphasis on military and stability."
+ HMO_ascension.505.a: "Divert their funding to civilian purposes."
+ HMO_ascension.505.a.tt: "Emphasis on peace and harmony."
+ #HMO_ascension.505.a: "Divert their funding to civilian purposes."
+ #HMO_ascension.505.a.tt: "Emphasis on democracy and industry."
+
+# OLIGARCHIC
+ HMO_ascension.510.name: "$HMO_synthshock_chain$"
+ HMO_ascension.510.desc: "Now that no citizens are left susceptible to the plague, our society can finally go back to how it once was. Yet, at the same time everything is changed.\n\nOur new synthetic bodies provide us with unparalleled security, impervious to disease and most damages that would have been deadly before the apocalypse, though in its place new threats manifest.\n\nA new batch of newly constructed, curated citizens could allow for an unwavering loyalty among our police force. Alternatively the [HMO_Get_zcom_name] could be integrated into our new security forces, allowing us to draw from their vast experience gained during the martial law."
+ HMO_ascension.510.a: "Ensure maximum loyalty among our enforcers." # Encryption Choice
+ HMO_ascension.510.a.tt: "Emphasis on enforcers and pop assembly."
+ HMO_ascension.510.b: "Integrate the [HMO_Get_zcom_name]." # Zcom Choice
+ HMO_ascension.510.b.tt: "Emphasis on soldiers and stability."
+
+# DICTATORIAL
+ HMO_ascension.515.name: "$HMO_synthshock_chain$"
+ HMO_ascension.515.desc: "With the last of our citizen's consciousness having been transfered into a new synthetic body, the plague that almost brought our civilization to an end is gone. With our new improved bodies, our options are limitless, enabling many new options for maintaining the fragile stability.\n\nDigital censoring could ensure that our citizens aren't tempted by the lies of foreign governments, potentially ridding our society of such heinous acts as disloyalty.\n\nAlternatively, keeping the martial law in place for some time could make it easier to solidify power."
+ HMO_ascension.515.a: "Replace our prisons with identity engineers."
+ HMO_ascension.515.a.tt: "Emphasis on government ethics and war exhaustion."
+ HMO_ascension.515.b: "Maintain the martial law." # Zcom Choice
+ HMO_ascension.515.b.tt: "Emphasis on soldiers and stability."
+
+ #Small modifications to the software of dissident citizens could entirely rid our society of such heinous acts as disloyalty, ensuring maximum loyalty among our population
+
+# IMPERIAL
+ HMO_ascension.520.name: "$HMO_synthshock_chain$"
+ HMO_ascension.520.desc: "With the advent of a new dawn in our empire's history, we have never had a brighter future ahead of us.\n\nOur new synthetic bodies allow for more control of the creation of new citizens, allowing for the perfection of the digital mind. Alternatively we could meld the military and its weaponry in synthetic harmony, allowing for unparalleled security."
+ #rapid replication and copying of our best and most loyal subjects. Alternatively we could focus on the improvement of the robotic bodies of our civilian populace."
+ HMO_ascension.520.b: "Make more of our best and brightest." # Zcom Choice
+ HMO_ascension.520.b.tt: "Emphasis on leaders."
+ HMO_ascension.520.a: "Upgrade our military."
+ HMO_ascension.520.a.tt: "Emphasis on soldiers and stability."
+
+# CORPORATE
+ HMO_ascension.525.name: "$HMO_synthshock_chain$"
+ HMO_ascension.525.desc: "Now every citizen has been provided with a synthetic body, it is finally time to abandon the unprofitable reality of martial law.\n\nHowever, such large changes in the daily lives of our costumers may not be all that benificial for the economy, requiring us to step with care.\n\nPerhaps a slower, more profitable course of action would be more appropriate."
+ HMO_ascension.525.a: "We need new product lines NOW!"
+ HMO_ascension.525.a.tt: "Emphasis on research and intel."
+ HMO_ascension.525.b: "Charge for early access to normal laws." # Zcom Choice
+ HMO_ascension.525.b.tt: "Emphasis on soldiers and stability."
+ 
+ # DEMOCRATIC CORPORATE (Bug)
+ HMO_ascension.530.name: "$HMO_synthshock_chain$"
+ HMO_ascension.530.desc: "Now every citizen has been provided with a synthetic body, it is finally time to abandon the unprofitable reality of martial law.\n\nHowever, such large changes in the daily lives of our costumers may not be all that benificial for the economy, requiring us to step with care.\n\nPerhaps a slower, more profitable course of action would be more appropriate."
+ HMO_ascension.530.a: "Our citizens needs their freedom back."
+ HMO_ascension.530.a.tt: "Emphasis on goods and trade."
+ HMO_ascension.530.b: "Charge for early access to normal laws."
+ HMO_ascension.530.b.tt: "Emphasis on profit and stability."
+ 
+ # IMPERIAL CORPORATE (Bug)
+ HMO_ascension.535.name: "$HMO_synthshock_chain$"
+ HMO_ascension.535.desc: "Now every citizen has been provided with a synthetic body, it is finally time to abandon the unprofitable reality of martial law.\n\nHowever, such large changes in the daily lives of our costumers may not be all that benificial for the economy, requiring us to step with care.\n\nPerhaps a slower, more profitable course of action would be more appropriate."
+ HMO_ascension.535.a: "Our citizens needs their freedom back."
+ HMO_ascension.535.a.tt: "Emphasis on goods and trade."
+ HMO_ascension.535.b: "Charge for early access to normal laws."
+ HMO_ascension.535.b.tt: "Emphasis on profit and stability."
+ 
+ # DIRECT DEMOCRACY (Bug)
+ HMO_ascension.540.name: "$HMO_synthshock_chain$"
+ HMO_ascension.540.desc: "With the last of our population having been transfered to new bodies, impervious to most forms of damage, our focus can once again go back to what it was before the apocalypse.\n\nWith the danger of the plague being a thing of the past, we could use our new synthetic bodies to greatly bolster our freedom, allowing for citizens to connect directly to the cloud and vote in real-time as new laws are proposed.\n\nHowever, not all agree with this path forward, arguing that the ease of replication could be used to influence votes by creating consiousnesses with predetermined personalities that are inclined to vote for specific issues."
+ HMO_ascension.540.a: "Our citizens needs their freedom back." # Direct democracies have no Zcom choice
+ HMO_ascension.540.a.tt: "Emphasis on unity and happiness."
+ HMO_ascension.540.b: "Limit identity creation to certified assemblers only." # Direct democracies have no Zcom option
+ HMO_ascension.540.b.tt: "Emphasis on stability."
+
+
+
+
+
+
+
+
+
+
+
+# The event pool events should be about the Zcom being accused of engineering the virus?
+# Or about the Zcom grabbing power
+
+ #HMO_ascension.610.name: "Viral Samples"
+ #HMO_ascension.610.desc: "With the eradication of the plague due to no viable hosts existing, our researchers has expressed interest in the preservation of the plague strain so we can continue to study it in controlled environments. Others yet call for the destruction of its genome in its entirety, citing the risk of it escaping or malicious groups releasing it from its containment.\n\nWhile our new bodies make us safe from further infection, it could still mutate and spread to other species, causing rapid ecosystem collapse on any planet it is released on."
+ #HMO_ascension.610.a: "We need to study it"
+ #HMO_ascension.610.b: "Preserve its genome in a time capsule"
+ #HMO_ascension.610.c: "Destroy all remaining samples"
+ #
+ #HMO_ascension.620.name: "Preserved Loved Ones"
+ #HMO_ascension.620.desc: "Investigations after citizens of a small outback village reported that strange noises could be heard from their neighbors house has led to the discovery of several zombies trapped in their basement.\n\nThe zombies have been identified as reanimated relatives of the owner of the basement they were found in, kept there to ensure they were not killed by soldiers.\n\nWhile the plague is no threat anymore, we cannot let any traces of it remain on any of our worlds."
+ #HMO_ascension.620.a: "They are but empty husks. Destroy them"
+ #HMO_ascension.620.b: ""
+ #HMO_ascension.620.c: ""
+ #
+ #HMO_ascension.630.name: "Zoonotic Shift"
+ 
+ ### Part 1: The Virus ###
+ 
+ HMO_ascension.610.name: "Digital Zombies"
+ HMO_ascension.610.desc: "The digital transfer our citizens have undergone has not been without its issues. A group of independent researchers showcased a way to hack synthetic minds during an exhibiton. Though cumbersome, slow and easily detected and requiring very specific conditions, it does mean that it is theoretically possible to lose control of ones own digitized mind.\n\nSecurity experts have determined that it is impracticable for a foreign empire and malicious groups alike to conduct an attack using such method and thus un-practicable, though the fear the stunt generated is an unfortunate reality we have to acknowledge."
+ HMO_ascension.610.a: "The panic will blow over."
+ HMO_ascension.610.b: "Invest in personal encryption programs." # Encryption Choice
+ HMO_ascension.610.c: "Shut down any rumors." # Martial Law choice
+ 
+ HMO_ascension.620.name: "Altered Minds"
+ HMO_ascension.620.desc: "While most of our population lived in fear of contracting the plague during the apocalypse, a few lucky individuals were immune. Or so we thought. New studies conducted on the influence of the synthesization process on the mind has uncovered a disturbing discovery: Those who contracted the disease, but were either immune or was transfered into a synthetic body in time have abnormal subprocesses running as part of their personality matrix.\n\nThe news of this has caused fear that the plague did not fully die when we transfered our minds to our new bodies, but instead adapted and could erupt into a new pandemic at any time.\n\nWhile these fears are unfounded, the effect it has on our population is noticable, and many officials call for the strenghening of our digital security, or even the extreme option of completely severing any over-the-air connections from and to our synthetic bodies."
+ HMO_ascension.620.a: "People will forget."
+ HMO_ascension.620.b: "Limit over-the-air connections." # Encryption Choice
+ HMO_ascension.620.c: "Confine the affected to isolated cities." # Martial Law Choice
+ HMO_ascension.620.d: "Correct the erranious subrutines." # Authoritarian
+ 
+ # Consequences
+ HMO_zombie_panic: "Zombie Panic"
+ HMO_zombie_panic_desc: "A recent discovery have convinced many citizens that a second apocalypse may be coming."
+ 
+ HMO_personal_encryption: "Personal Encryption"
+ HMO_personal_encryption_desc: "All citizens have been provided with powerful encryption software for their personality matrix and memory conflux, protecting their identity and control of their own mind from malignant forces."
+ 
+ HMO_squashed_rumors: "Shutdown Rumors"
+ HMO_squashed_rumors_desc: "There's no remains of the plague. All traces of it has been remove. All traces of it has been removed. ALL traces of it has been removed."
+ 
+ HMO_limited_ota: "Limited OTA connections"
+ 
+ d_HMO_isolated_city: "Isolated City"
+ d_HMO_isolated_city_desc: "This city has been isolated from the rest of the empire both physically and digitally. The residents have formed a curious culture that's a mix of the socity from before the apocalypse and the one during the apocalypse."
+ 
+ ### Part 2: Malware ###
+ 
+ HMO_ascension.810.name: "Backdoor"
+ HMO_ascension.810.desc: "So far, our digital minds have been our own to use, but is that really the optimal way forward? A panel of security experts from the [HMO_Get_zcom_name] have proposed a backdoor to be installed in all citizen's personality matrix software, allowing our enforcers and soldiers to access the memories and thoughts of any potential rule-breakers and prevent criminality and insurrection before it can even happen."
+ HMO_ascension.810.a: "Our citizens minds are private property." # Encryption Choice
+ HMO_ascension.810.b: "We do not need such a thing."
+ HMO_ascension.810.c: "A wonderful idea!" # Martial Law Choice
+ 
+ # Cannot happen if you chose 820.c but did not instate the backdoor
+ # Can only happen if 820 and 830 has fired
+ HMO_ascension.820.name: "A New Plague"
+ HMO_ascension.820.desc: "In spite of our new mechanical bodies, we're not as resistant to diseases as we thought. Being compromised of chips and electronic components, our synthetic bodies are nothing more than glorified supercomputers in which our minds are stored."
+ HMO_ascension.820.desc.end: "While the program it executes when contracted is mostly harmless, simply inserting a character from a popular tv show into every memory of the victim's childhood, more dangerous ones could emerge and wreak havoc on our population."
+ HMO_ascension.820.desc.a: "$$HMO_ascension.820.desc$\n\nWhile the perpetrators have been caught with the help of our backdoor initiative, the virus they created has escaped into the public web from which it will be impossible to purge.$HMO_ascension.820.desc.end$" # If the backdoor has been instated, but 620.c was not chosen
+ HMO_ascension.820.desc.b: "$HMO_ascension.820.desc$\n\nAs such, they are susceptible to digital viruses, of which we have just discovered the first specifically targeting our digitized minds. Who made it is as of yet unknown, and by now the damage has already been done, the virus now in circulation among our population from where it will be impossible to purge.\n\n$HMO_ascension.820.desc.end$" # If you did not choose 620.c and did not instate the backdoor
+ HMO_ascension.820.desc.c: "$HMO_ascension.820.desc$\n\nAs such, they are susceptible to digital viruses, of which we have just discovered the first specifically targeting our digitized minds. While we have caught the perpetrators, we were not fast enough to prevent them from releasing their virus, which managed to infect a number of civilians before we updated our firewall program to block its spread.\n\n$HMO_ascension.820.desc.end$" # If you chose 620.c and instated the backdoor
+ HMO_ascension.820.desc.d: "$HMO_ascension.820.desc$\n\nAs such, they are susceptible to digital viruses, of which we have just discovered the first specifically targeting our digitized minds, though fortunately very few civilian were infected as our government-mandated firewall proved to be able to prevent all but the most dim-witted among from installing the compromised files in which the virus was distributed.\n\n$HMO_ascension.820.desc.end$"
+ HMO_ascension.820.a: "Mandate firewalls for all citizens." # Encryption choice, cannot be chosen if 620.c was chosen
+ HMO_ascension.820.b: "People should be more careful about what they download." # a and b are only available if 620.c was not chosen
+ HMO_ascension.820.c: "We were lucky this time." # Only option if 620.c was chosen
+ 
+ # Modifiers
+ HMO_backdoor: "Backdoor to the Mind"
+ HMO_virus_in_circulation: "Memory Virus"
+ HMO_mandated_firewalls: "Mind Firewalls"
+ 
+ ### FINAL EVENT ###
+ 
+ # DEMOCRATIC
+ 
+ HMO_ascension.1505.name: "Transition of Power"
+ HMO_ascension.1505.desc.normal: "Now with our society finally stabilizing, the time for the transition of power draws near. For long has most functions of our government been delegated to the [HMO_Get_zcom_name]. However, knowing that our new synthetic bodies are as susceptible to diseases as the plague that almost eradicated our species, loosening our grip on the populace could prove disastrous.\n\nPerhaps keeping the martial law in place is not such a bad idea? Alternatively, investing heavily in encryption and digital security could allow us to continue enjoying the freedom of digital existence without fear of a digital version of the apocalypse."
+ HMO_ascension.1505.desc.zcom: "With normalcy returning, as much as it can with our recent transition to synthetic bodies, the time has come for a transition of power from the [HMO_Get_zcom_name] that is no longer needed.\n\nYet, perhaps we are too fast? Despite the plague's eradication, we are no less endangered by epedemics of similar properties, the only difference being that everything is now digital. Perhaps the [HMO_Get_zcom_name] is still needed?"
+ HMO_ascension.1505.desc.encryption: "We are not a society of fearmongers, yet one should be careful to not be too naive. The universe is dangerous, and at some point we will inevitably encounter others who might wish us harm. Despite our critics claims that we are going too far, it wouldn't hurt to be prepared, would it?"
+ HMO_ascension.1505.c: "The fear is unfounded."
+ HMO_ascension.1505.c.tt: "$change_auth_tt$ ['concept_HMO_auth_democratic']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1505.b: "Invest in digital security."
+ HMO_ascension.1505.b.tt: "$change_auth_tt$ ['concept_MO_auth_democratic_encryption']\n$unlock_edict_HMO_democratic_concealment$$HMO_reinstate_old_ruler$"
+ HMO_ascension.1505.a: "We will uphold the martial law."
+ HMO_ascension.1505.a.tt: "$keep_auth_tt$ ['concept_MO_auth_democratic_martial_law']"
+ 
+ # Oligarchic
+ HMO_ascension.1510.name: "Transition of Power"
+ HMO_ascension.1510.desc.normal: "For long has the [HMO_Get_zcom_name] been the governing body of our civilization, though now that their purpose has been fulfilled, it is time for them to relenquish that power.\nYet, some among us argue that the threat has not yet passed. Digital versions of the plague are not stories made up, but plausible and frightening. It might be for the best to have them be the face of our government, even if the real council will be the ones pulling all the strings.\n\nShould we choose to go forth with our return to our old ways, it may be wise to invest in domestic security as to quell the fear of the masses."
+ HMO_ascension.1510.desc.zcom: "Instability and chaos has held our society in its grip for long, and even now with the plague being nothing more than a harmless curiosity to us, we have in no way returned to the happy days we wished for.\nPerhaps the time for change is not yet to come?"
+ HMO_ascension.1510.desc.encryption: "Enemies from both within and without threaten us daily. If not the plague, another entity will seek to exploit the flaws of our society, machinery or even our own bodies.\nWe simply cannot leave ourselves unguarded any more lest we invite parasites into our home."
+ HMO_ascension.1510.c: "The fear is unfounded."
+ HMO_ascension.1510.c.tt: "$change_auth_tt$ ['concept_HMO_auth_oligarchic']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1510.b: "We need better security measures."
+ HMO_ascension.1510.b.tt: "$change_auth_tt$ ['concept_MO_auth_oligarchic_encryption']\n$unlock_edict_HMO_oligarchic_overclock$$HMO_reinstate_old_ruler$"
+ HMO_ascension.1510.a: "We will uphold the martial law."
+ HMO_ascension.1510.a.tt: "$keep_auth_tt$ ['concept_MO_auth_oligarchic_martial_law']"
+ 
+ # Dictatorial
+ HMO_ascension.1515.name: "Transition of Power"
+ HMO_ascension.1515.desc.normal: "Now that our citizens have had time to adjust to the synthetic life it is time for the [HMO_Get_zcom_name] to return power to those best fit to lead our civilization on our new digital journey. Yet, we are still at risk. Foreign actors and insurrectionists could silently spread their influence among our population, hidden deep within their code. Perhaps keeping the martial law in place would not be such a bad idea? Alternatively, isolating our synthetic minds from outside forces would allow us to maintain security from threats, both real and idealogical."
+ HMO_ascension.1515.desc.zcom: "With our society at the dawn of a new era comes the time for change. A change that has been long awaited. Yet, instability and fear has plagued our society ever since our synthesization, with many loud voices discontent with the changes we have forced upon our civilization.\n\nPerhaps now is not the time for change after all."
+ HMO_ascension.1515.desc.encryption: "With our population no longer at threat from the plague, we are no longer in need of the brave soldiers of the [HMO_Get_zcom_name] who kept us apart and isolated from those who had fallen. Yet new dangers lurk around every corner, and in light of recent discoveries about the flaws of our synthetic bodies it has become apparent that we may need similar insitutions to safeguard us against those who would seek to exploit them."
+ HMO_ascension.1515.c: "The fear is unfounded."
+ HMO_ascension.1515.c.tt: "$change_auth_tt$ ['concept_HMO_auth_dictatorial']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1515.b: "Digital isolation holds the answer."
+ HMO_ascension.1515.b.tt: "$change_auth_tt$ ['concept_MO_auth_dictatorial_encryption']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1515.a: "We will uphold the martial law."
+ HMO_ascension.1515.a.tt: "$keep_auth_tt$ ['concept_MO_auth_dictatorial_martial_law']"
+ 
+ HMO_ascension.1520.name: "Transition of Power"
+ HMO_ascension.1520.desc.normal: "It is a momentous day, with the royalty soon to step back into power. Festive parades all around [capital_scope.GetName] speak volumes of how long this moment has been awaited.\n\nYet, a dark cloud hangs over the crowds. The safety we had been promised seem as far away as before our synthesization.\n\nShould we use the gift of synthesization to produce perfect minds to act as guardians of our new utopia?\n\nOr should the current safeguards be held in place indefinitely?"
+ HMO_ascension.1520.desc.zcom: "Long awaited, the return of the royal bloodline looms near. Very soon, the [HMO_Get_zcom_name] will end the martial law that has been in place ever since the apocalypse, yet our people are not sure. Fear course through our society, like vira in the veins, speading like a wildfire.\n\nPerhaps now is the time for the royal family to realize their time is over?"
+ HMO_ascension.1520.desc.encryption: "With power returned to the true rulers of the [Species.GetAdj] empire, we look towards the future, hopeful that we may prosper under their guidance.\n\nYet we know that it alone may not be enough. New bright minds are needed to combat future adversaries that could threaten our new perfect existence."
+ #New technologies to protect our digital minds are needed, so that we may continue to serve the [This.GetName]."
+ HMO_ascension.1520.c: "The fear is unfounded."
+ HMO_ascension.1520.c.tt: "$change_auth_tt$ ['concept_HMO_auth_imperial']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1520.b: "We need new heroes."
+ HMO_ascension.1520.b.tt: "$change_auth_tt$ ['concept_MO_auth_imperial_encryption']\n$unlock_agenda_HMO_imperial_perfection$$HMO_reinstate_old_ruler$"
+ HMO_ascension.1520.a: "We will uphold the martial law."
+ HMO_ascension.1520.a.tt: "$keep_auth_tt$ ['concept_MO_auth_imperial_martial_law']"
+
+ HMO_ascension.1525.name: "Transition of Power"
+ HMO_ascension.1525.desc.normal: "Even though our customers are safe once more, they have not realized they can return to their usual spending habits, without which a return to our old business model may not work.\n\nWhile martial law is not very profitable, at least it is stable.\n\nAlternatively, we could tweak our commercials to focus on personal safety programs to potentially quell their fear and help them return to a consumerist mindset."
+ #To prevent this, we could continue with the martial law, even though it is far from profitable\n\nAlternatively, investing in personal encryption programs and even more powerful firewalls could potentially quell their fear and help them return to a consumerist mindset."
+ HMO_ascension.1525.desc.zcom: "Despite our victory agains the plague, we still have not recovered. Fear and unbased rumors will make large changes to our current business model risky.\n\nDespite everything we have done to reinvigorate our economy, keeping the martial law indefinitely may be the only option to prevent a collapse of our whole economy."
+ HMO_ascension.1525.desc.encryption: "Profits await!\nOur synthesization has brought not only a sense of victory and hope with it, but the fear of digital viruses and malicious hackers has created a huge demand for personal protection programs, and who are we to deny our customers their desires?"
+ HMO_ascension.1525.c: "The fear is unfounded."
+ HMO_ascension.1525.c.tt: "$change_auth_tt$ ['concept_HMO_auth_corporate']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1525.b: "Launch a new security program product line."
+ HMO_ascension.1525.b.tt: "$change_auth_tt$ ['concept_MO_auth_corporate_encryption']\n$unlock_edict_HMO_corporate_backup$$HMO_reinstate_old_ruler$"
+ HMO_ascension.1525.a: "We will uphold the martial law."
+ HMO_ascension.1525.a.tt: "$keep_auth_tt$ ['concept_MO_auth_corporate_martial_law']"
+
+ HMO_ascension.1530.name: "Transition of Power"
+ HMO_ascension.1530.desc.normal: ""
+ HMO_ascension.1530.desc.zcom: ""
+ HMO_ascension.1530.desc.encryption: ""
+ HMO_ascension.1530.c: "The fear is unfounded."
+ HMO_ascension.1530.c.tt: "$change_auth_tt$ ['concept_HMO_auth_democratic']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1530.b: "Invest in digital security."
+ HMO_ascension.1530.b.tt: "$change_auth_tt$ ['concept_MO_auth_democratic_encryption']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1530.a: "We will uphold the martial law."
+ HMO_ascension.1530.a.tt: "$keep_auth_tt$ ['concept_MO_auth_democratic_martial_law']"
+ 
+ HMO_ascension.1535.name: "Transition of Power"
+ HMO_ascension.1535.desc.normal: ""
+ HMO_ascension.1535.desc.zcom: ""
+ HMO_ascension.1535.desc.encryption: ""
+ HMO_ascension.1535.c: "The fear is unfounded."
+ HMO_ascension.1535.c.tt: "$change_auth_tt$ ['concept_HMO_auth_democratic']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1535.b: "Invest in digital security."
+ HMO_ascension.1535.b.tt: "$change_auth_tt$ ['concept_MO_auth_democratic_encryption']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1535.a: "We will uphold the martial law."
+ HMO_ascension.1535.a.tt: "$keep_auth_tt$ ['concept_MO_auth_democratic_martial_law']"
+ 
+ HMO_ascension.1540.name: "Transition of Power"
+ HMO_ascension.1540.desc.normal: ""
+ HMO_ascension.1540.desc.zcom: ""
+ HMO_ascension.1540.desc.encryption: ""
+ HMO_ascension.1540.c: "The fear is unfounded."
+ HMO_ascension.1540.c.tt: "$change_auth_tt$ ['concept_HMO_auth_democratic']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1540.b: "Invest in digital security."
+ HMO_ascension.1540.b.tt: "$change_auth_tt$ ['concept_MO_auth_democratic_encryption']$HMO_reinstate_old_ruler$"
+ HMO_ascension.1540.a: "We will uphold the martial law."
+ HMO_ascension.1540.a.tt: "$keep_auth_tt$ ['concept_MO_auth_democratic_martial_law']"
+
+# FINAL EVENT #
+ HMO_ascension_virtual_trait: "\n[owner.species.GetNamePlural] Gain Trait: §Y$trait_robot_digital_1$§!\nLeaders have the §Y$leader_trait_HMO_ascensionetic$§! trait replaced with the §Y$leader_trait_virtual$§! trait"
+ HMO_ascension_physical_traits: "\nUnlocks §YAdvanced§! Traits for Species Modification"
+
+
+### SOCIETAL EFFECTS EVENT CHAIN END ###
+
+### Cybernetic Situation ###
+
+# CYBERIZATION STAGE 1 (Firepower)
+# Change to: New breakthroughs in advanced cybernetic implants can help us combat the zombies
+ HMO_cyber.100.name: "Controlling the Future" # Stage 1 - Start event
+ HMO_cyber.100.desc: "Cybernetic implants has long been seen as a possible solution to defeating the plague once and for all. Augmented soldiers and a cyberized populace will be more reselient, able to deal with the horrors of our world.\n\nSoon we will rid our world of this plague."
+ HMO_cyber.100.a: "It is time for an upgrade."
+
+# Change to: Civilians are concerned they cannot fight back against zombies. Should we prioritize defense (civilians), Offense (Soldiers) or mixed?
+ HMO_cyber.105.name: "Self Defense"
+ HMO_cyber.105.desc: "Many self-proclaimed security experts have grown adamant that all of our planned cybernetic weapons should be provided to every citizens instead of our most advanced implants being restricted to military use only.\n\nThey argue that by providing the average citizens with the best zombie-slaying weaponry, the chance of outbreaks will be greatly decreased due to anyone being able to respond to any breaches of our safety perimeters instead of having to alert local [Owner.HMO_Get_zcom_name] authorities."
+ HMO_cyber.105.a: "That would be foolish."
+ #HMO_cyber.105.a.tt: "§Y$situation_cyberization$§! situation modifier unchanged."
+ HMO_cyber.105.b: "Give access to select weaponized implants."
+ HMO_cyber.105.b.tt: "§Y$situation_cyberization$§! situation modifier updated:\n§GAdded:§! Defense Army Damage§G+5%§!"
+ HMO_cyber.105.c: "Provide all with our best."
+ HMO_cyber.105.c.tt: "§Y$situation_cyberization$§! situation modifier updated:\n§GAdded:§!\n- Defense Army Damage§G+25%§!\n- Monthly Alloys: §R-10%§!"
+ HMO_cyber.105.c.megacorp: "If they have credits to spare."
+
+# Stage 1 Choice - Firepower
+ HMO_cyber.120.name: "Priorities"
+ HMO_cyber.120.desc: "Reclemation day is soon upon us. Yet there are things we must decide.\n\nWhile the [Owner.HMO_Get_zcom_name] has pushed for further increasing the firepower our implants will give us, others have proposed reducing it as to limit the destruction of what is considered heritage sites and historical buildings long thought unreclaimable."
+ HMO_cyber.120.a: "Maximum Firepower."
+ HMO_cyber.120.a.tt: "$situation_cyberization_triggered_modifier$$HMO_maximum_firepower_effects$"
+ HMO_cyber.120.b: "We must also think of rebuilding..."
+ HMO_cyber.120.b.tt: "$situation_cyberization_triggered_modifier$$HMO_rebuilders_effects$"
+ HMO_cyber.120.c: "Make sure our history is not damaged."
+
+ HMO_maximum_firepower_effects: "Defense Army Damage: §G+25%§!\nArmy Collateral Damage: §Y+33%§!"
+ HMO_rebuilders_effects: "Clear Blocker Cost: §G-10%§!\nCity District Build Speed: §G+25%§!"
+ #£unity£ Unity from £pops£ Jobs: §G+10%§!"
+
+# Stage 1 Problem - 
+ HMO_cyber.130.name: "Cybernetic Dominance"
+ HMO_cyber.130.desc: "With the soon-to-begin introduction of cybernetically enhanced soldiers, many prominent behavioral researchers and psychologists have warned of an uprise of arrogance and egomania among our protectors.\n\nWhile at the moment most of these utterances are in jest, the concern is that it could evolve to genuine beliefs of being elavated above those with lesser implants."
+
+ HMO_cyber.130.a: "But they ARE their betters..."
+ HMO_cyber.130.b: "Discipline them."
+ HMO_cyber.130.c: "Who cares what they say?"
+
+ HMO_soldiers_are_better: "Martial Arrogance"
+ HMO_unhappy_soldiers: "Disciplined Soldiers"
+
+# CYBERIZATION STAGE 2
+ HMO_cyber.200.name: "Augmentation Centers"
+ HMO_cyber.200.desc: "With plans drawn up comes the time for the execution.\n\nAs the acting government, the [Owner.HMO_Get_zcom_name] will be responsible for producing and distributing cybernetic augments.\n\nThough before they can start their work, the [Owner.HMO_Get_zcom_name] need at least one $building_augmentation_center$ to act as a hub for cybernetic development."
+ HMO_cyber.200.a: "Let us get started."
+ HMO_cyber.200.a.tt: "§RAction required:§!\nBuild an $building_augmentation_center$ to resume the §Y$situation_cyberization$§! situation.\n\nEach $building_augmentation_center$ provides §G+2§! $job_augmentor$ jobs.\n\n$job_augmentor_research_effect_desc$"
+
+ HMO_cyber.205.name: "Pilot Projects" # Stage 2 - Start event
+ HMO_cyber.205.desc.shared: "The time has come for more widespread pilot projects. These require continuous support and will only be available on planets with an $building_augmentation_center$, but our learnings will give immediate benefits, even to those not part of the project."
+ HMO_cyber.205.desc: "Small tests conducted by the [Owner.HMO_Get_zcom_name]'s research projects have confirmed that mechanical augmentations improve survivability dramatically among those deployed in infected cities.\n\n$HMO_cyber.205.desc.shared$"
+ # a is only available if any planet does not have the augmentation center
+ HMO_cyber.205.a: "Expand the initiative!"
+ HMO_cyber.205.a.tt: "$building_augmentation_center$ Build Speed: +50%"
+ HMO_cyber.205.b: "We should include civilians in this project"
+ HMO_cyber.205.b.tt: "Resources From £pop£ Jobs: §G+5%§! with $building_augmentation_center$"
+
+ HMO_augment_center_initiative: "$building_augmentation_center$ Expansion Initiative"
+
+ # Stage 2 Random Events
+ HMO_cyber.210.name: "Battle Injury"
+ HMO_cyber.210.desc: "During a reclamation of a particularly infested city, one of our operatives was injured by a victim of the plague.\n\nActing quickly, the commanding officer of the squadron performed an amputation of the affected limb.\nAfter returning back to their secure base, the medical team stationed there performed a most impressive piece of work as they replaced the missing limb with a fully cybernetic version.\n\nFollowing the spread of these news, a substantial portion of our forces have stated their willingness to part with parts of their own body for similar augments."
+ HMO_cyber.210.a: "The sooner, the better."
+ HMO_cyber.210.a.tt: "§Y$situation_cyberization$§! situation progress speed for §Y1§! year: §G+25%§!"
+ HMO_cyber.210.b: "We should only do full replacements when absolutely necessary."
+ #HMO_cyber.210.b.tt: "§Y$situation_cyberization$§! situation progress speed for §Y1§! year: §R-25%§!"
+ 
+ HMO_full_replacements_tt: "Cybernetic Limb Replacements"
+ 
+# Stage 2 Opportunities - Test Results and Rival Sector
+ HMO_cyber.220.name: "Innovative Implants"
+ HMO_cyber.220.desc: "With the [Owner.HMO_Get_zcom_name]'s pilot project performing beyond our expectations, so has our innovations in the field of cybernetics.\n\nNew brain-interfacing implants allows for users to use tools and weapons alike in ways more efficient than ever before, such as using thought alone to fire weapons or align shots.\n\nWhile this promising technology is currently in the testing phase, it is expected to roll out for a limited number of project participants.\n\nThe question, however, is who should first get access to this groundbreaking technology."
+ HMO_cyber.220.a: "Our scientists could use it."
+ HMO_cyber.220.b: "Focus on strengthening the army."
+ HMO_cyber.220.c: "Our civilian constructors will have the best use for it."
+
+ HMO_civilian_focus: "Civilian Implants"
+ HMO_army_focus: "Weapon Implants"
+ HMO_scientist_focus: "Research Implants"
+
+# Stage 2 Challenges - Test Results and Rival Sector
+ HMO_cyber.230.name: "Faulty Logic"
+ HMO_cyber.230.desc: "An attempt at reclaiming a town has ended in tragedy.\nOutfitted with the latest new implants, a squadron of highly trained soldiers nevertheless found themselves overwhelmed by a host of undead who ambushed them on the streets of the city center.\n\nAnalysis from their last message transmission show that their heat-detecting implants interfered with their natural senses, causing the cold plague-ridden corpses to be almost invisible to the unfortunate soldiers.\n\nThis has caused reluctance towards the use of experimental implants, hampering our data-collection necessary for continued innovation."
+ HMO_cyber.230.a: "Their fear will blow over."
+ HMO_cyber.230.a.tt: "§Y$situation_cyberization$§! situation progress speed for §Y6§! months: §R-50%§!"
+ HMO_cyber.230.b: "They do not have a choice."
+ HMO_cyber.230.c: "Mandate extra tests in controlled conditions before field tests."
+ HMO_cyber.230.c.tt: "§Y$situation_cyberization$§! situation progress speed: §R-10%§!"
+
+ HMO_230_slowdown_tt: "Implant Fear"
+ HMO_230_permanent_slowdown_tt: "Extra Tests"
+ HMO_unhappy_soldiers_230: "Forced Implants"
+
+# CYBERIZATION STAGE 3
+ HMO_cyber.300.name: "Rollout" # Stage 3 - Start event
+ HMO_cyber.300.desc: "All across our territory, in every major urban center, we have stockpiled mechanical implants for our [Owner.Species.GetName] population. Designed by the [Owner.HMO_Get_zcom_name]'s $job_augmentor_plural$, these devices promise to greatly enhance our biological forms.\n\nThe day is finally here to cast off our past and embrace a cybernetic future free from the plague."
+ HMO_cyber.300.a: "Cyberize."
+ HMO_cyber.300.a.tt: "Leaders Gain Trait: §Y$leader_trait_cyborg$§!\nPops Gain Trait: §Y$trait_cybernetic$§!\n\n$job_augmentor_growth_effect_desc$\n\nAugmentation speed depends on the situation approach and the number of $building_augmentation_center$ buildings."
+ 
+# Stage 3 Challenges - Treatment of Non-Cyborgs
+ #HMO_cyber.310.name: ""
+ #HMO_cyber.310.desc: ""
+ #HMO_cyber.310.a: "Issue Permits."
+ #HMO_cyber.310.b: "All in time."
+ 
+# Stage 3 Opportunities - Treatment of Non-Cyborgs
+ HMO_cyber.320.name: "Historical Sites"
+ HMO_cyber.320.desc: "With reclamation day not far into the future comes the question on what should be done with the ruins of our past civilization. While spacefaring has made living space somewhat of a non-issue, the waste of space in the heart of our empire is surely something that could impact our industry well into the future.\nYet the news of the old cities potentially being modernised once reclaimed has caused a schism in our society, with some claiming doing so would be to erase our past."
+ HMO_cyber.320.a: "Why cling onto the horrors of the past?"
+ HMO_cyber.320.b: "We must preserve our history."
+
+ # Reclamation Day
+ # The End of the End
+ HMO_cyber.405.name: "Reclamation Day"
+ HMO_cyber.405.desc: "With a fully ciberized army, we stand ready to take on the plague. No longer will we be hiding behind walls.\n\nThe [Owner.HMO_Get_zcom_name] has already deployed several squadrons of highly trained soldiers to several of the last infected cities, and it is expected that within a year we'll be able to proclaim our victory."
+ HMO_cyber.405.a: "Today we reclaim what is ours!"
+ 
+ # Stage 4 Opportunity
+ HMO_cyber.410.name: "A Business Venture"
+ HMO_cyber.410.desc: "With the sweeping success of our cybernetics for the purposes of combating the plague, a number of corporations and other organizations have come forth with propositions regarding the reconstruction and renovation of our old cities once they have been cleared out of the plague-ridden husks currently inhabiting them.\n\nWhile the cities in question have not yet even been liberated from the undead, it is only a matter of time, and until then then money from issuing permits and land grants could boost our economy and give us a head start into our our new era of cybernetic prosperity."
+ HMO_cyber.410.a: "Issue Permits."
+ HMO_cyber.410.b: "All in time."
+ 
+ HMO_zombie_city_permits: "Early Construction Permits"
+
+# Start the event chain for advanced government
+ HMO_cyber.21.name: "An Augmented Population" # Situation 1 - Last event
+ HMO_cyber.21.desc: "Today marks a turning point for our society. We are now able to augment our bodies with fully-integrated machine parts.\n\nThe process was not without difficulty, the transition far from easy. But whatever may have been lost along the way, our new existence offers endless possibilities."
+ HMO_cyber.21.a: "We will be stronger."
+ HMO_cyber.21.a.start: "§Y$building_augmentation_center$§! modifier added:$TABBED_NEW_LINE$"
+ HMO_cyber.21.a.end: "Unlocks Full Effects of Traditions: §Y$tradition_cybernetics$§!"
+ HMO_cyber.21.a.tt: "$HMO_cyber.21.a.start$$cyber_control_government_effects$\n$HMO_cyber.21.a.end$"
+
+### Cybernetic ###
+# The situation happens after the first tests have been conducted and a few cities have been cleared.
+
+# Note: Change it to that the reclamation day is now, and that we now enter a new era
+
+# FIRST EVENT #
+# DEMOCRATIC
+ HMO_cyber.505.name: "Future Shock"
+ HMO_cyber.505.desc: "With the augmentation of our people we stand ready to tackle our ever-present adversary. Already has augmented soldiers from the [HMO_Get_zcom_name] cleared out several large cities, allowing civilians to move back in and make use of the decrepit ruins of the past.\n\nYet, even though our old civilization's ruins have been reclaimed, our way of life has not. Cybernetic perfection could open doors we had never considered before.\n\nAlready has it been proposed to continue the innovation of integrated weaponry to include even more devastating tools of destruction.\n\nAlternatively we could focus on improving brain-interfacing to further cement our implants as extensions of our body."
+ HMO_cyber.505.a: "We should continue our weapons research."
+ HMO_cyber.505.a.tt: "Emphasis on armies and soldiers."
+ HMO_cyber.505.b: "We must invest in brain-interfacing."
+ HMO_cyber.505.b.tt: "Emphasis on workers."
+
+# OLIGARCHIC
+ HMO_cyber.510.name: "Power Restructured"
+ HMO_cyber.510.desc: "As our augmentation program draws to an end, so does our long-standing quest for a liberated homeworld. Already has several cities been cleared out by [HMO_Get_zcom_name] operatives, allowing us to start planning how to best make use of the new opportunities afforded by a cybernetically-enhanced populus.\n\nProponents for a heavily militarized policing system has pushed for increasingly dangerous implants to be used by our enforcers to control the masses.\n\nAlternatively we could use the powerful capabilities of brain implants to push our workforce to new heights."
+ HMO_cyber.510.a: "Our enforcers deserve the best."
+ HMO_cyber.510.a.tt: "Emphasis on enforcers and soldiers."
+ HMO_cyber.510.b: "Push our workers till they break."
+ HMO_cyber.510.b.tt: "Emphasis on workers and increased production."
+
+# DICTATORIAL
+ HMO_cyber.515.name: "Crowd Controlled"
+ HMO_cyber.515.desc: "With a now cyberized population we stand stronger than ever before. Already has augmented soldiers of the [HMO_Get_zcom_name] vanquished the undead from several cities, allowing us to make use of them once they have been repaired and retrofitted with the newest technological advancements.\n\nWith this newfound prosperity, all that is left is to continue steering our cybernetic journey in the direction we want to take it in.\n\nOf the most promising are fully integrated weapon systems that could help project our power on the masses.\n\nAlternatively the further development of brain-implants could almost entirely rid us of dissident voices."
+ HMO_cyber.515.a: "Invest in weapons research."
+ HMO_cyber.515.a.tt: "Emphasis on soldiers and empire stability."
+ HMO_cyber.515.b: "Develop brain-implants."
+ HMO_cyber.515.b.tt: "Emphasis on worker production."
+
+# IMPERIAL
+ HMO_cyber.520.name: "Future Shock"
+ HMO_cyber.520.desc: "With all of our citizens having recieved their mandated implants, we need not fear the plague. Already has their influence been reduced to almost nothing as [HMO_Get_zcom_name] operatives continue to remove them from our cities.\n\nNow all that is left to do before power is returned is to choose what our first decree should be.\n\nShould the focus of our cybernetic future be on the empowering of our armed forces, or should we rather use our implants to further integrate with our technology through brain-interfacing cybernetics?"
+ HMO_cyber.520.a: "Our soldiers need the best of the best."
+ HMO_cyber.520.a.tt: "Emphasis on soldiers and armies."
+ HMO_cyber.520.b: "We must become one with our technology."
+ HMO_cyber.520.b.tt: "Emphasis on production and workers."
+
+# CORPORATE
+ HMO_cyber.525.name: "Implants Incorporated"
+ HMO_cyber.525.desc: "With the last of our costumers finally having bought the mandated implants, our future looks brighter than ever. Already has the [HMO_Get_zcom_name] cleared most infested cities, allowing for the restoration of the real estate within.\n\nThough innovation in the field of cyberwares are far from over. Profitable ventures await, and our research divisions have come up with two promising paths for our next product line.\n\nExpanding our current product line of heavy integrated weaponry is the safest option.\n\nAlternatively we could focus on implants integrated with the brain, a far riskier but potentially more profitable path."
+ HMO_cyber.525.a: "Expand our current catalogue of weaponry."
+ HMO_cyber.525.a.tt: "Emphasis on soldiers and naval strength."
+ HMO_cyber.525.b: "Prototype new brain implants."
+ HMO_cyber.525.b.tt: "Emphasis on productivity."
+ 
+ ### Bugged Authorities ### - Not finished yet
+ 
+# DIRECT DEMOCRATIC
+ HMO_cyber.530.name: "Future Shock"
+ HMO_cyber.530.desc: "With the augmentation of our people we stand ready to tackle our ever-present adversary. Already has augmented soldiers from the [HMO_Get_zcom_name] cleared out several large cities, allowing civilians to move back in and make use of the decrepit ruins of the past.\n\nYet, even though our old civilization's ruins have been reclaimed, our way of life has not. Cybernetic perfection could open doors we had never considered before.\n\nAlready has it been proposed to continue the innovation of integrated weaponry to include even more devastating tools of destruction. Alternatively we could focus on improving brain-interfacing to further cement our implants as extensions of our body."
+ HMO_cyber.530.a: "We should continue our weapons research."
+ HMO_cyber.530.a.tt: "Emphasis on armies and soldiers."
+ HMO_cyber.530.b: "We must invest in brain-interfacing."
+ HMO_cyber.530.b.tt: "Emphasis on workers."
+ 
+# CORPORATE DEMOCRATIC
+ HMO_cyber.535.name: "Future Shock"
+ HMO_cyber.535.desc: "With the augmentation of our people we stand ready to tackle our ever-present adversary. Already has augmented soldiers from the [HMO_Get_zcom_name] cleared out several large cities, allowing civilians to move back in and make use of the decrepit ruins of the past.\n\nYet, even though our old civilization's ruins have been reclaimed, our way of life has not. Cybernetic perfection could open doors we had never considered before.\n\nAlready has it been proposed to continue the innovation of integrated weaponry to include even more devastating tools of destruction. Alternatively we could focus on improving brain-interfacing to further cement our implants as extensions of our body."
+ HMO_cyber.535.a: "We should continue our weapons research."
+ HMO_cyber.535.a.tt: "Emphasis on armies and soldiers."
+ HMO_cyber.535.b: "We must invest in brain-interfacing."
+ HMO_cyber.535.b.tt: "Emphasis on workers."
+ 
+# CORPORATE IMPERIAL
+ HMO_cyber.540.name: "Future Shock"
+ HMO_cyber.540.desc: "With the augmentation of our people we stand ready to tackle our ever-present adversary. Already has augmented soldiers from the [HMO_Get_zcom_name] cleared out several large cities, allowing civilians to move back in and make use of the decrepit ruins of the past.\n\nYet, even though our old civilization's ruins have been reclaimed, our way of life has not. Cybernetic perfection could open doors we had never considered before.\n\nAlready has it been proposed to continue the innovation of integrated weaponry to include even more devastating tools of destruction. Alternatively we could focus on improving brain-interfacing to further cement our implants as extensions of our body."
+ HMO_cyber.540.a: "We should continue our weapons research."
+ HMO_cyber.540.a.tt: "Emphasis on armies and soldiers."
+ HMO_cyber.540.b: "We must invest in brain-interfacing."
+ HMO_cyber.540.b.tt: "Emphasis on workers."
+ 
+ # Event Pool 1 (New technologies | Random Events that do not mean much) (mention brain-interfacing)
+ HMO_cyber.610.name: "Cybernetic Husks"
+ HMO_cyber.610.desc: "With the liberation of our last cities, a large economic boom has begun on [Owner.capital_scope.GetName] as new constructions and renovated ruins alike has enabled business opportunities for our people.\nHowever, with such large demand for a workforce, some seek out shortcuts.\n\nNew implants directly interfacing with the brain has allowed for the employer to exert control of the implant owner, allowing for shutting off memory collection and emotional responses for the duration of the workday.\n\nNow some are warning about the implications of this, likening the new technology to the plague and how it created husks of our people."
+ HMO_cyber.610.a: "Baseless Slander"
+ HMO_cyber.610.b: "Only the owner should have access to their own mind."
+ HMO_cyber.610.c: "Could be useful for our armies."
+ 
+ # Event Pool 2 (While testing on dead bodies, one of them reanimated and something happened.)
+ HMO_cyber.810.name: "Sloppy Augmentation"
+ HMO_cyber.810.desc: "During a routine augmentation job wherein a number of subjects was to have one half of their brains replaced with a cybernetic version, a tragedy occoured. Having used parts from previous costumers since deceased, the augmentor neglected sanitizing the cybernetics before implanting them in new costumers, resulting in the lobotomization of those who had recieved the implants.\nDespite the tragedy, researchers on the scene noted that despite the loss of higher brain functions, those affected were still able to continue responding to simple commands due to the integration of their new implants."
+ HMO_cyber.810.a: "Perhaps it could also work on the husks?"
+ HMO_cyber.810.b: "De-authorize that augmentor!" # Random augmentor loses their job / is demoted
+ HMO_cyber.810.c: "Use their bodies for target practice."
+ 
+ HMO_cyber.820.name: "Tragedic Opportunity"
+ HMO_cyber.820.desc: "A number of construction workers recovering material from ruins of a newly reclaimed city was ambushed by plague-ridden husks.\n\nHaving been trapped in the basement of a house by survivors of the initial outbreak, the construction workers inadvertently released them when they breached the locked door to gain access to the room they were in.\n\nDespite being equipped with state of the art cybernetic implants, several workers were infected and subsequently died and reanimated.\n\nNotably, however, their implants still responded to pings, enabling the chief of the crew to take manual control of their bodies to prevent further tragedy."
+ HMO_cyber.820.a: "Perhaps those husks could be of use after all?"
+ HMO_cyber.820.b: "Dispose of all those infected."
+ 
+ HMO_cyber_reject_special_authority: "We have no need for such dangerous technology"
+ 
+ HMO_cyber_weaponry_benefits: "\n$HMO_ascension_weaponry_trait$\n$HMO_unlock_cyberweaponry_army$"
+ 
+ HMO_cyber.1505.name: "A New Dawn"
+ HMO_cyber.1505.desc.weaponry: "Our society has always trended towards freedom of weaponry. When the plague came, it was only through guns we survived, every [This.GetSpeciesNamePlural] a weapon in [From.GetSpeciesHandName].\nAnd now, at the last step of our journey for the liberation of our homeworld, we have reached the apex of perfection."
+ HMO_cyber.1505.desc.zombie: "New breakthroughs in cyberware shows promising results for controlling bodies whose brains are no longer functioning, whether that be from the plague or other means. By using already dead people for our most dangerous work could greatly benefit us and reduce the risk our workers take on their job.\nWithout their insticts, the victims of the plague pose no threat to us, and thus injecting the dying and dead with it could paradoxically save lives."
+ HMO_cyber.1505.desc.normal: "With the liberation of our homeworld finally nearing, we stand at a crossroad. New research has unlocked the potential to turn our enemy into an ally.\nWhile many are sceptical of the safety of doing so, cybernetically enhanced zombies could be remotely controlled to reduce the stress on our workers who could leave the most dangerous of work to those already dead.\n\nYet doing so would end our journey on a dull note, a quest forever unfulfilled."
+ # Weaponry Choice
+ HMO_cyber.1505.a: "Let us become our weapons."
+ HMO_cyber.1505.a.zombies: "The dead are good only for target practice."
+ HMO_cyber.1505.a.tt: "$change_auth_tt$ ['concept_MO_auth_democratic_weaponry']$HMO_cyber_weaponry_benefits$$HMO_reinstate_old_ruler$"
+ # Zombie Choice
+ HMO_cyber.1505.b: "Let the dead serve us."
+ HMO_cyber.1505.b.tt: "$change_auth_tt$ ['concept_MO_auth_democratic_zombie']$HMO_reinstate_old_ruler$"
+ # Normal Choice
+ HMO_cyber.1505.c: "$HMO_cyber_reject_special_authority$"
+ HMO_cyber.1505.c.tt: "$change_auth_tt$ ['concept_HMO_auth_democratic']$HMO_reinstate_old_ruler$"
+ 
+ HMO_cyber.1510.name: "A New Era"
+ HMO_cyber.1510.desc.weaponry: "We have always relied on power to maintain control, and in the age of cybernetics that is no less true.\nNew and destructive weaponry integrated directly into their bodies will allow our enforcers to crack down on any dissident movements, as well as foreign threats."
+ HMO_cyber.1510.desc.zombie: "Recent innovative cyberware have enabled the complete control of a subject's body once interlinked with a brain. While this procedure is invasive and usually renders the subject lobotomized, this is of no issue if the subject in question is but a shambling corpse.\n\nBy using the plague strain's enigmatic properties to keep the body in an undead state, we can continue having them work for our their superiors long after they have departed this world."
+ HMO_cyber.1510.desc.normal: "With our cities liberated from the plague soon at [From.GetSpeciesHandName], we have a unique opportunity to leverage the plague strain to our advantage. Reanimated corpses can be dangerous, but they are by no means useless when under control of invasive cybernetic brain-interfacing.\n\nWhile this would mean the plague is not eradicated as we had once hoped, it could help boost our suffering economy, allowing for a quicker return to normalcy."
+ # Weaponry Choice
+ HMO_cyber.1510.a: "Those with the biggest stick are king."
+ HMO_cyber.1510.a.zombies: "All we need are test targets for our weapon developers."
+ HMO_cyber.1510.a.tt: "$change_auth_tt$ ['concept_MO_auth_oligarchic_weaponry']$HMO_cyber_weaponry_benefits$$HMO_reinstate_old_ruler$"
+ # Zombie Choice
+ HMO_cyber.1510.b: "Let the dead continue serving their superiors."
+ HMO_cyber.1510.b.tt: "$change_auth_tt$ ['concept_MO_auth_oligarchic_zombie']$HMO_reinstate_old_ruler$"
+ # Normal Choice
+ HMO_cyber.1510.c: "$HMO_cyber_reject_special_authority$"
+ HMO_cyber.1510.c.tt: "$change_auth_tt$ ['concept_HMO_auth_oligarchic']$HMO_reinstate_old_ruler$"
+ 
+ HMO_cyber.1515.name: "Society Stabilized"
+ HMO_cyber.1515.desc.weaponry: "With our newest breakthroughs regarding cybernetic weaponry, we have at long last eradicated the last traces of the plague.\nWith this new power, we can make sure nothing like that ever happens again, and that any threat to our society will be dealt with accordinly.\n\nAt last we are free from the plague, and our citizens can rest assured that they will remain safe from harm as long as they follow our glorious §Y[Ruler.GetTitle]§! blindly!"
+ HMO_cyber.1515.desc.zombie: "Our new forays into making a puppet of our nemesis has yielded great results! By utilizing cybernetics, we can control those infected, even as their body rots, kept alive solely by machinery and the enigmatic properties of the virus."
+ HMO_cyber.1515.desc.normal: "With our society finaly stabilizing, new questions need to be asked. For long the people has been content with following the strong, scared into submission by the plague, though soon that might work no longer.\nThe most obvious solution is to equip our enforcers with newest and deadliest tools that our cybernetic technologies allow.\nAlternatively we could use our implants to control dissident citizens. With a small injection of the plague strain we wouldn't even have to relenquish control after they expire."
+ # Weaponry Choice
+ HMO_cyber.1515.a: "A gun in the back will ensure loyalty."
+ HMO_cyber.1515.a.zombies: "Our enforcers need an upgrade."
+ HMO_cyber.1515.a.tt: "$change_auth_tt$ ['concept_MO_auth_dictatorial_weaponry']$HMO_cyber_weaponry_benefits$$HMO_reinstate_old_ruler$"
+ # Zombie Choice
+ HMO_cyber.1515.b: "Let the dead continue serving their betters."
+ HMO_cyber.1515.b.tt: "$change_auth_tt$ ['concept_MO_auth_dictatorial_zombie']$HMO_reinstate_old_ruler$"
+ # Normal Choice
+ HMO_cyber.1515.c: "$HMO_cyber_reject_special_authority$"
+ HMO_cyber.1515.c.tt: "$change_auth_tt$ ['concept_HMO_auth_dictatorial']$HMO_reinstate_old_ruler$"
+ 
+ HMO_cyber.1520.name: "Destiny Crossroads"
+ HMO_cyber.1520.desc.weaponry: "At this point we're confident in our ability to stay ahead in the galactic arms race. By merging ourselves with our weapons, we will be able to answer any threat with a show of force unrivalled by all others."
+ HMO_cyber.1520.desc.zombie: "By implanting specialized cybernetic brain-interfacing technologies in the brain of subjects reanimated by the plague strain we can keep the body under control.\n\nA new dawn for our civilization has begun, one where our subjects serve the [This.GetRulerTitle] until death and beyond!"
+ HMO_cyber.1520.desc.normal: "The newest developments in the field of cybernetics have led to two promising options for our future.\n\nThe first is to continue iterating on our integrated weapon designs.\n\nThe other is to continue research on brain-implants and their potential in conjucture with the plague strain."
+ # Weaponry Choice
+ HMO_cyber.1520.a: "Innovation is key." # It is our destiny
+ HMO_cyber.1520.a.zombies: "Weapons are the safest."
+ HMO_cyber.1520.a.tt: "$change_auth_tt$ ['concept_MO_auth_imperial_weaponry']$HMO_cyber_weaponry_benefits$$HMO_reinstate_old_ruler$"
+ # Zombie Choice
+ HMO_cyber.1520.b: "The dead shall serve the [This.GetRulerTitle]."
+ HMO_cyber.1520.b.tt: "$change_auth_tt$ ['concept_MO_auth_imperial_zombie']$HMO_cyber_weaponry_benefits$$HMO_reinstate_old_ruler$"
+ # Normal Choice
+ HMO_cyber.1520.c: "$HMO_cyber_reject_special_authority$"
+ HMO_cyber.1520.c.tt: "$change_auth_tt$ ['concept_HMO_auth_imperial']$HMO_reinstate_old_ruler$"
+ 
+ HMO_cyber.1525.name: "New Product Line"
+ HMO_cyber.1525.desc.weaponry: "Our customers crave the biggest and baddest artillary our store can offer, and we oblige.\n\nWith our R&D fully focused on weapon innovation we will be able to satisfy their demand for even bigger guns, directly integrated into their bodies."
+ HMO_cyber.1525.desc.zombie: "How we could overlook the profitable nature of the plague is unbelievable. Combined with cybernetics, the husks can work all day and night, without demanding any wage or other silly concepts such as breaks.\n\nOur company has always sought out a way to keep expenses down, and surely our citizens will be happy to know they can continue to pay off their debts even after they die."
+ HMO_cyber.1525.desc.normal: "With our corporation on the cusp of greatness, we must nevertheless make a choice that could have grave consequences for our bottom line in the coming years.\nWhile both profitable, we cannot focus on both the development of weaponry for personal defense and offense while also exploiting the once-feared plague to continue the employment of our citizens post-mortem.\n\nAs such, we must choose what we believe to give us the most money in the long run."
+ # Weaponry Choice
+ HMO_cyber.1525.a: "Unbelievable profits await!"
+ HMO_cyber.1525.a.zombies: "Weaponry production is the safest route."
+ HMO_cyber.1525.a.tt: "$change_auth_tt$ ['concept_MO_auth_corporate_weaponry']$HMO_cyber_weaponry_benefits$$HMO_reinstate_old_ruler$"
+ # Zombie Choice
+ HMO_cyber.1525.b: "The debt must be paid off."
+ HMO_cyber.1525.b.tt: "$change_auth_tt$ ['concept_MO_auth_corporate_zombie']$HMO_unlock_zombie_bombardment$$HMO_reinstate_old_ruler$"
+ # Normal Choice
+ HMO_cyber.1525.c: "$HMO_cyber_reject_special_authority$"
+ HMO_cyber.1525.c.tt: "$change_auth_tt$ ['concept_HMO_auth_corporate']$HMO_reinstate_old_ruler$"
+ 
+ HMO_cyber.1530.name: ""
+ HMO_cyber.1530.desc.weaponry: ""
+ HMO_cyber.1530.desc.zombie: ""
+ HMO_cyber.1530.desc.normal: ""
+ # Weaponry Choice
+ HMO_cyber.1530.a: ""
+ HMO_cyber.1530.a.zombies: ""
+ HMO_cyber.1530.a.tt: ""
+ # Zombie Choice
+ HMO_cyber.1530.b: ""
+ HMO_cyber.1530.b.tt: ""
+ # Normal Choice
+ HMO_cyber.1530.c: "$HMO_cyber_reject_special_authority$"
+ HMO_cyber.1530.c.tt: ""
+ 
+ HMO_cyber.1535.name: ""
+ HMO_cyber.1535.desc.weaponry: ""
+ HMO_cyber.1535.desc.zombie: ""
+ HMO_cyber.1535.desc.normal: ""
+ # Weaponry Choice
+ HMO_cyber.1535.a: ""
+ HMO_cyber.1535.a.zombies: ""
+ HMO_cyber.1535.a.tt: ""
+ # Zombie Choice
+ HMO_cyber.1535.b: ""
+ HMO_cyber.1535.b.tt: ""
+ # Normal Choice
+ HMO_cyber.1535.c: "$HMO_cyber_reject_special_authority$"
+ HMO_cyber.1535.c.tt: ""
+ 
+ HMO_cyber.1540.name: ""
+ HMO_cyber.1540.desc.weaponry: ""
+ HMO_cyber.1540.desc.zombie: ""
+ HMO_cyber.1540.desc.normal: ""
+ # Weaponry Choice
+ HMO_cyber.1540.a: ""
+ HMO_cyber.1540.a.zombies: ""
+ HMO_cyber.1540.a.tt: ""
+ # Zombie Choice
+ HMO_cyber.1540.b: ""
+ HMO_cyber.1540.b.tt: ""
+ # Normal Choice
+ HMO_cyber.1540.c: "$HMO_cyber_reject_special_authority$"
+ HMO_cyber.1540.c.tt: ""
+ 
+ #HMO_ascension_zombie_pops: "\n Gain 5 Zombified [owner.species.GetName] Pops"
+ 
+ #HMO_ascension_encryption_operation: ""
+ 
+ HMO_reinstate_old_ruler: "\nReinstate our old ruler as our ruler."
+ #[HMO_ruler@this.GetName]

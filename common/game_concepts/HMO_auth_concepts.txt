@@ -1,0 +1,194 @@
+concept_HMO_auth_democratic = {
+	icon =  "gfx/interface/icons/governments/authorities/auth_democratic_35x35.dds"
+	tooltip_override = "authority:auth_democratic:"
+}
+
+concept_HMO_auth_oligarchic = {
+	icon =  "gfx/interface/icons/governments/authorities/auth_oligarchic_35x35.dds"
+	tooltip_override = "authority:auth_oligarchic:"
+}
+
+concept_HMO_auth_dictatorial = {
+	icon =  "gfx/interface/icons/governments/authorities/auth_dictatorial_35x35.dds"
+	tooltip_override = "authority:auth_dictatorial:"
+}
+
+concept_HMO_auth_imperial = {
+	icon =  "gfx/interface/icons/governments/authorities/auth_imperial_35x35.dds"
+	tooltip_override = "authority:auth_imperial:"
+}
+
+concept_HMO_auth_corporate = {
+	icon =  "gfx/interface/icons/governments/authorities/auth_corporate_35x35.dds"
+	tooltip_override = "authority:auth_corporate:"
+}
+
+# Martial Law Authorities
+
+concept_MO_auth_democratic_martial_law = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_democratic_martial_law_35x35.dds"
+	tooltip_override = "authority:auth_democratic:MO_auth_democratic_martial_law"
+}
+
+concept_MO_auth_oligarchic_martial_law = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_oligarchic_martial_law_35x35.dds"
+	tooltip_override = "authority:auth_oligarchic:MO_auth_oligarchic_martial_law"
+}
+
+concept_MO_auth_dictatorial_martial_law = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_dictatorial_martial_law_35x35.dds"
+	tooltip_override = "authority:auth_dictatorial:MO_auth_dictatorial_martial_law"
+}
+
+concept_MO_auth_imperial_martial_law = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_imperial_martial_law_35x35.dds"
+	tooltip_override = "authority:auth_imperial:MO_auth_imperial_martial_law"
+}
+
+concept_MO_auth_corporate_martial_law = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_corporate_martial_law_35x35.dds"
+	tooltip_override = "authority:auth_corporate:MO_auth_corporate_martial_law"
+}
+
+#########################
+# Ascension Authorities #
+#########################
+
+## Encryption Authorities
+
+
+concept_MO_auth_democratic_encryption = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_democratic_encryption_35x35.dds"
+	tooltip_override = "authority:auth_democratic:MO_auth_democratic_encryption"
+}
+
+concept_MO_auth_oligarchic_encryption = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_oligarchic_encryption_35x35.dds"
+	tooltip_override = "authority:auth_oligarchic:MO_auth_oligarchic_encryption"
+}
+
+concept_MO_auth_dictatorial_encryption = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_dictatorial_encryption_35x35.dds"
+	tooltip_override = "authority:auth_dictatorial:MO_auth_dictatorial_encryption"
+}
+
+concept_MO_auth_imperial_encryption = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_imperial_encryption_35x35.dds"
+	tooltip_override = "authority:auth_imperial:MO_auth_imperial_encryption"
+}
+
+concept_MO_auth_corporate_encryption = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_corporate_encryption_35x35.dds"
+	tooltip_override = "authority:auth_corporate:MO_auth_corporate_encryption"
+}
+
+### Bugged ###
+
+concept_MO_auth_bugged_direct_democratic_encryption = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_direct_democratic_encryption_35x35.dds"
+}
+
+concept_MO_auth_bugged_corporate_democratic_encryption = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_corporate_democratic_encryption_35x35.dds"
+}
+
+concept_MO_auth_bugged_corporate_imperial_encryption = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_corporate_imperial_encryption_35x35.dds"
+}
+
+# Bugged Authorities
+
+concept_MO_auth_bugged_direct_democratic_martial_law = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_direct_democratic_martial_law_35x35.dds"
+}
+
+concept_MO_auth_bugged_corporate_imperial_martial_law = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_corporate_imperial_martial_law_35x35.dds"
+}
+
+concept_MO_auth_bugged_corporate_democratic_martial_law = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_corporate_democratic_martial_law_35x35.dds"
+}
+
+## Weaponry Authorities
+
+
+concept_MO_auth_democratic_weaponry = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_democratic_weaponry_35x35.dds"
+	tooltip_override = "authority:auth_democratic:MO_auth_democratic_weaponry"
+}
+
+concept_MO_auth_oligarchic_weaponry = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_oligarchic_weaponry_35x35.dds"
+	tooltip_override = "authority:auth_oligarchic:MO_auth_oligarchic_weaponry"
+}
+
+concept_MO_auth_dictatorial_weaponry = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_dictatorial_weaponry_35x35.dds"
+	tooltip_override = "authority:auth_dictatorial:MO_auth_dictatorial_weaponry"
+}
+
+concept_MO_auth_imperial_weaponry = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_imperial_weaponry_35x35.dds"
+	tooltip_override = "authority:auth_imperial:MO_auth_imperial_weaponry"
+}
+
+concept_MO_auth_corporate_weaponry = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_corporate_weaponry_35x35.dds"
+	tooltip_override = "authority:auth_corporate:MO_auth_corporate_weaponry"
+}
+
+### Bugged ###
+
+concept_MO_auth_bugged_direct_democratic_weaponry = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_direct_democratic_weaponry_35x35.dds"
+}
+
+concept_MO_auth_bugged_corporate_democratic_weaponry = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_corporate_democratic_weaponry_35x35.dds"
+}
+
+concept_MO_auth_bugged_corporate_imperial_weaponry = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_corporate_imperial_weaponry_35x35.dds"
+}
+
+## Zombie Authorities ###
+
+concept_MO_auth_democratic_zombie = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_democratic_zombie_35x35.dds"
+	tooltip_override = "authority:auth_democratic:MO_auth_democratic_zombie"
+}
+
+concept_MO_auth_oligarchic_zombie = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_oligarchic_zombie_35x35.dds"
+	tooltip_override = "authority:auth_oligarchic:MO_auth_oligarchic_zombie"
+}
+
+concept_MO_auth_dictatorial_zombie = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_dictatorial_zombie_35x35.dds"
+	tooltip_override = "authority:auth_dictatorial:MO_auth_dictatorial_zombie"
+}
+
+concept_MO_auth_imperial_zombie = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_imperial_zombie_35x35.dds"
+	tooltip_override = "authority:auth_imperial:MO_auth_imperial_zombie"
+}
+
+concept_MO_auth_corporate_zombie = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_corporate_zombie_35x35.dds"
+	tooltip_override = "authority:auth_corporate:MO_auth_corporate_zombie"
+}
+
+### Bugged ###
+
+concept_MO_auth_bugged_direct_democratic_zombie = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_direct_democratic_zombie_35x35.dds"
+}
+
+concept_MO_auth_bugged_corporate_democratic_zombie = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_corporate_democratic_zombie_35x35.dds"
+}
+
+concept_MO_auth_bugged_corporate_imperial_zombie = {
+	icon = "gfx/interface/icons/governments/authorities/small_auth_icons/MO_auth_bugged_corporate_imperial_zombie_35x35.dds"
+}

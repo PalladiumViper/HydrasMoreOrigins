@@ -1,0 +1,4 @@
+inline_script = {
+	script = MO_Hydra_arbitrary_$HAS_MOD$
+	CODE = $CODE$
+}

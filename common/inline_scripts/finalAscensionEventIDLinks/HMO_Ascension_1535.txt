@@ -1,0 +1,4 @@
+inline_script = {
+	script = finalAscensionEventIDLinks/HMO_Hydra_Ascension_BUG_$HAS_BUG$
+	AUTHORITY = auth_bugged_corporate_democratic
+}

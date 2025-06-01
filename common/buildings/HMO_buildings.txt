@@ -1,0 +1,483 @@
+#############
+# Zcom
+#############
+
+HMO_building_zcom_headquarters = {
+	can_build = no
+	can_demolish = yes
+	can_be_ruined = no
+
+	category = army
+
+	empire_limit = {
+		base = 1
+	}
+
+	base_buildtime = @b0_time
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	potential = {
+		exists = owner
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+		owner = {
+			has_origin = origin_HMO_zombies
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				NOT = { has_origin = origin_HMO_zombies }
+			}
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 6
+		planet_amenities_add = -4
+		defense_armies_add = 4
+		job_soldier_add = @b2_jobs
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	triggered_desc = {
+		text = job_soldier_effect_desc
+	}
+}
+
+HMO_building_resproject_outpost = {
+	can_build = no
+	can_demolish = yes
+	can_be_ruined = no
+
+	category = army
+
+	empire_limit = {
+		base = 1
+	}
+
+	base_buildtime = @b0_time
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	potential = {
+		exists = owner
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+		owner = {
+			has_origin = origin_HMO_zombies
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				NOT = { has_origin = origin_HMO_zombies }
+			}
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+	
+	planet_modifier = {
+		job_researcher_add = @b1_jobs
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	
+	triggered_desc = {
+		text = job_researcher_effect_desc
+	}
+}
+
+#HMO_building_consciousness_storage = {
+#	can_build = no
+#	can_demolish = yes
+#	can_be_ruined = no
+#
+#	category = army
+#
+#	empire_limit = {
+#		base = 1
+#	}
+#
+#	base_buildtime = @b0_time
+#
+#	resources = {
+#		category = planet_buildings
+#		cost = {
+#			minerals = @b1_minerals
+#		}
+#		upkeep = {
+#			energy = 1
+#		}
+#	}
+#
+#	potential = {
+#		exists = owner
+#		NOR = {
+#			has_modifier = resort_colony
+#			has_modifier = slave_colony
+#		}
+#		owner = {
+#			has_origin = origin_HMO_zombies
+#		}
+#	}
+#
+#	destroy_trigger = {
+#		exists = owner
+#		OR = {
+#			owner = {
+#				NOT = { has_origin = origin_HMO_zombies }
+#			}
+#			has_modifier = resort_colony
+#			has_modifier = slave_colony
+#		}
+#	}
+#	
+#	planet_modifier = {
+#		job_researcher_add = @b1_jobs
+#	}
+#
+#	resources = {
+#		category = planet_buildings
+#		cost = {
+#			minerals = @b1_minerals
+#		}
+#		upkeep = {
+#			energy = 1
+#		}
+#	}
+#	
+#	triggered_desc = {
+#		text = job_researcher_effect_desc
+#	}
+#}
+
+#HMO_building_zcom_headquarters = {
+#	base_buildtime = @b1_time
+#
+#	category = government
+#	
+#	position_priority = 50
+#	
+#	can_demolish = no
+#	
+#	base_cap_amount = 1
+#	empire_limit = {
+#		base = 1
+#		modifier = {
+#			mult = -1
+#			has_country_flag = HMO_zcom_embraced
+#		}
+#	}
+#
+#	potential = {
+#		NOR = {
+#			has_modifier = resort_colony
+#			has_modifier = slave_colony
+#			has_building = HMO_building_zcom_headquarters
+#		}
+#		exists = owner
+#		owner = {
+#			has_origin = origin_HMO_zombies
+#			NOT = { has_country_flag = HMO_zombies_embraced }
+#		}
+#	}
+#	
+#	allow = {
+#		exists = owner
+#		has_upgraded_capital = yes
+#		hidden_trigger = {
+#			owner = { has_origin = origin_HMO_zombies }
+#		}
+#		custom_tooltip = {
+#			fail_text = HMO_zcom_disbanded
+#			owner = { has_country_flag = HMO_zombies_embraced }
+#		}
+#	}
+#	
+#	convert_to = {
+#		building_stronghold
+#	}
+#
+#	destroy_trigger = {
+#		exists = owner
+#		OR = {
+#			has_modifier = slave_colony
+#		}
+#	}
+#	
+#	planet_modifier = {
+#		job_researcher_add = 2
+#		job_soldier_add = 2
+#	}
+#	
+#	triggered_planet_modifier = {
+#		potential = {
+#			exists = owner
+#			owner = { has_country_flag = HMO_zcom_embraced }
+#		}
+#		modifier = {
+#			job_soldier_add = 2
+#		}
+#	}
+#	
+#	resources = {
+#		category = planet_buildings
+#
+#		# Base cost
+#		cost = {
+#			minerals = 500
+#		}
+#		# Base upkeep
+#		upkeep = {
+#			energy = 2
+#		}
+#	}
+#
+#	triggered_desc = {
+#		text = job_researcher_effect_desc
+#	}
+#
+#	triggered_desc = {
+#		text = job_soldier_effect_desc
+#	}
+#}
+#
+## Building on capital
+#HMO_building_resproject_outpost = {
+#	base_buildtime = @b1_time
+#
+#	category = research
+#	
+#	position_priority = 50
+#	
+#	can_demolish = no
+#	
+#	base_cap_amount = 1
+#	empire_limit = {
+#		base = 1
+#		modifier = {
+#			mult = -1
+#			has_country_flag = HMO_resproject_embraced
+#		}
+#	}
+#
+#	potential = {
+#		NOR = {
+#			has_modifier = resort_colony
+#			has_modifier = slave_colony
+#			has_building = HMO_building_resproject_headquarters
+#		}
+#		exists = owner
+#		owner = {
+#			has_origin = origin_HMO_zombies
+#			NOT = { has_country_flag = HMO_zcom_embraced }
+#		}
+#	}
+#	
+#	allow = {
+#		exists = owner
+#		has_upgraded_capital = yes
+#		hidden_trigger = {
+#			owner = { has_origin = origin_HMO_zombies }
+#		}
+#		custom_tooltip = {
+#			fail_text = HMO_resproject_disbanded
+#			owner = { has_country_flag = HMO_resproject_disbanded }
+#		}
+#	}
+#	
+#	convert_to = {
+#		building_research_lab_1
+#	}
+#
+#	destroy_trigger = {
+#		exists = owner
+#		OR = {
+#			has_modifier = slave_colony
+#		}
+#	}
+#	
+#	planet_modifier = {
+#		job_researcher_add = 2
+#	}
+#	
+#	triggered_planet_modifier = {
+#		potential = {
+#			exists = owner
+#			owner = { has_country_flag = HMO_resproject_studying_zombies }
+#		}
+#		modifier = {
+#			job_HMO_zombie_subject_add = 1
+#		}
+#	}
+#	
+#	resources = {
+#		category = planet_buildings
+#
+#		# Base cost
+#		cost = {
+#			minerals = 500
+#		}
+#		# Base upkeep
+#		upkeep = {
+#			energy = 2
+#		}
+#	}
+#
+#	triggered_desc = {
+#		text = job_researcher_effect_desc
+#	}
+#	
+#	triggered_desc = {
+#		text = job_HMO_zombie_subject_effect_desc
+#		owner = { has_country_flag = HMO_resproject_studying_zombies }
+#	}
+#}
+#
+## Building on resproject world-lab
+#HMO_building_resproject_headquarters = {
+#	base_buildtime = @b1_time
+#
+#	category = research
+#	
+#	position_priority = 50
+#	
+#	can_demolish = no
+#	
+#	base_cap_amount = 1
+#	empire_limit = {
+#		base = 1
+#		modifier = {
+#			mult = -1
+#			has_country_flag = HMO_resproject_embraced
+#		}
+#	}
+#
+#	potential = {
+#		NOR = {
+#			has_modifier = resort_colony
+#			has_modifier = slave_colony
+#			has_building = HMO_building_resproject_headquarters
+#		}
+#		exists = owner
+#		owner = {
+#			has_origin = origin_HMO_zombies
+#			NOT = { has_country_flag = HMO_zcom_embraced }
+#		}
+#	}
+#	
+#	allow = {
+#		exists = owner
+#		has_upgraded_capital = yes
+#		hidden_trigger = {
+#			owner = { has_origin = origin_HMO_zombies }
+#		}
+#		custom_tooltip = {
+#			fail_text = HMO_resproject_disbanded
+#			owner = { has_country_flag = HMO_resproject_disbanded }
+#		}
+#	}
+#	
+#	convert_to = {
+#		building_research_lab_1
+#	}
+#
+#	destroy_trigger = {
+#		exists = owner
+#		OR = {
+#			has_modifier = slave_colony
+#		}
+#	}
+#	
+#	planet_modifier = {
+#		job_researcher_add = 2
+#	}
+#	
+#	triggered_planet_modifier = {
+#		potential = {
+#			exists = owner
+#			owner = { has_country_flag = HMO_resproject_embraced }
+#		}
+#		modifier = {
+#			job_soldier_add = 2
+#		}
+#	}
+#	
+#	triggered_planet_modifier = {
+#		potential = {
+#			exists = owner
+#			owner = { has_country_flag = HMO_resproject_studying_zombies }
+#		}
+#		modifier = {
+#			job_HMO_zombie_subject_add = 1
+#		}
+#	}
+#	
+#	resources = {
+#		category = planet_buildings
+#
+#		# Base cost
+#		cost = {
+#			minerals = 500
+#		}
+#		# Base upkeep
+#		upkeep = {
+#			energy = 2
+#		}
+#	}
+#
+#	triggered_desc = {
+#		text = job_researcher_effect_desc
+#	}
+#	
+#	triggered_desc = {
+#		text = job_HMO_zombie_subject_effect_desc
+#		owner = { has_country_flag = HMO_resproject_studying_zombies }
+#	}
+#}

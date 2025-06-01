@@ -1,0 +1,133 @@
+######################
+# HMO ARC SITES
+######################
+
+###################
+# ORIGIN ARC SITES
+###################
+# i.e. spawned via on_survey
+
+# Scavengers Crashed Ship
+site_HMO_scavengers_ship = {
+	desc = "site_HMO_scavengers_ship_intro"
+	picture = GFX_evt_relic_shipyard
+	stages = 6
+	weight = 0 #set via initialiser
+	max_instances = 999
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+	}
+	visible = {
+		default_site_visible_trigger = yes
+	}
+
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}
+
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_E1
+		event = HMO_arcsite.25
+	}
+
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_E2
+		event = HMO_arcsite.26
+	}
+
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_E3
+		event = HMO_arcsite.27
+	}
+
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_E4
+		event = HMO_arcsite.33
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_E5
+		event = HMO_arcsite.34
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_E6
+		event = HMO_arcsite.35
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = all_random_events }
+		}
+	}
+}
+
+site_HMO_planned_obselescence = {
+	desc = "site_HMO_planned_obselescence_intro"
+	picture = GFX_evt_discovered_hidden_door
+	stages = 6
+	weight = 0 #set via initialiser
+	max_instances = 999
+	allow = {
+		exists = leader
+		leader = { leader_class = scientist }
+		hidden_trigger = {
+			owner = {
+				has_country_flag = HMO_Planned_Obsolescence_arcsite@from.planet
+			}
+		}
+	}
+	visible = {
+		has_country_flag = HMO_Planned_Obsolescence_arcsite@from.planet
+		default_site_visible_trigger = yes
+	}
+
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}
+
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_E1
+		event = HMO_arcsite.100
+	}
+
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_E2
+		event = HMO_arcsite.105
+	}
+
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_E3
+		event = HMO_arcsite.110
+	}
+
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_E4
+		event = HMO_arcsite.115
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_E5
+		event = HMO_arcsite.120
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_E6
+		event = HMO_arcsite.125
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = all_random_events }
+		}
+	}
+}

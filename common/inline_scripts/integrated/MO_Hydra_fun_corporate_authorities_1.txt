@@ -1,0 +1,1 @@
+	$VALUE$ = auth_corporate_imperial

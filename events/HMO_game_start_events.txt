@@ -1,0 +1,1228 @@
+#########################################
+#
+# HMO's Game Start Events
+#
+#########################################
+
+namespace = HMO_game_start
+
+#########################################
+
+# Game Start
+event = {
+	id = HMO_game_start.9999
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		set_global_flag = hydras_more_origins_installed
+	}
+}
+
+# add deposits to banished threat homeworld
+planet_event = {
+	id = HMO_game_start.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_planet_flag = banished_planet }
+			HMO_generate_banished_threat_start_deposits_and_blockers = yes
+			generate_start_buildings_and_districts = yes
+			generate_start_pops = yes
+			generate_home_planet_final_pass = yes
+		}
+		if = {
+			limit = { has_planet_flag = banished_earth }
+			HMO_generate_generate_banished_earth_deposits_and_blockers = yes
+			generate_start_buildings_and_districts = yes
+			generate_start_pops = yes
+			generate_home_planet_final_pass = yes
+		}
+	}
+}
+
+# add digsite and feature to scavengers
+planet_event = {
+	id = HMO_game_start.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+ 			limit = { owner = { has_origin = origin_HMO_scavengers } }
+			create_archaeological_site = site_HMO_scavengers_ship
+			add_deposit = d_HMO_crashed_ship
+			last_added_deposit = {
+				set_deposit_flag = keep_deposit_on_terraform
+			}
+			
+		}
+	}
+}
+
+# Apocalypse Set Up
+country_event = {
+	id = HMO_game_start.3
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			has_origin = origin_HMO_apocalypse
+		}
+	}
+	
+	immediate = {
+		give_technology = { tech = tech_hydroponics message = no }
+		add_research_option = tech_mine_rare_crystals
+		add_research_option = tech_mine_exotic_gases
+		add_research_option = tech_mine_volatile_motes
+		#add_tech_progress = { tech = tech_mine_rare_crystals progress = 0.5 }
+		#add_tech_progress = { tech = tech_mine_exotic_gases progress = 0.5 }
+		#add_tech_progress = { tech = tech_mine_volatile_motes progress = 0.5 }
+		capital_scope = {
+			set_planet_size = 25
+			clear_deposits = yes
+			remove_all_districts = yes
+			
+			change_pc = pc_city
+			set_planet_entity = {
+				entity = "city_planet_entity"
+				graphical_culture = owner
+			}
+			if = {
+				limit = { owner = { is_gestalt = no } }
+				add_building = building_factory_1
+			}
+			if = {
+				limit = { owner = { is_gestalt = yes } }
+				add_building = building_hydroponics_farm
+			}
+			
+			add_deposit = d_HMO_insurgency_junk
+			add_deposit = d_HMO_insurgency_junk
+			add_deposit = d_HMO_insurgency_junk
+			add_deposit = d_HMO_insurgency_junk
+			add_deposit = d_HMO_insurgency_junk
+			
+			add_deposit = d_city_ruins
+			add_deposit = d_city_ruins
+			
+			add_district = district_arcology_housing
+			add_district = district_arcology_housing
+			
+			add_building = building_foundry_1
+			add_building = building_precinct_house # Need this to keep unemployment down and stability up, while not giving too many resources
+			add_building = building_hydroponics_farm
+			add_building = building_hydroponics_farm
+			# Add Special Buildings
+			if = {
+				limit = {
+					owner = {
+						is_spiritualist = yes
+						OR = {
+							has_valid_civic = civic_death_cult
+							has_valid_civic = civic_death_cult_corporate
+						}
+					}
+				}
+				add_building = building_sacrificial_temple_1
+			}
+			#Aug Bazaar if enough space
+			if = {
+				limit = {
+					owner = {
+						has_valid_civic = civic_augmentation_bazaars
+					}
+					free_building_slots > 0
+				}
+				add_building = building_augmentation_bazaars
+			}
+			
+			# Pharma State
+			if = {
+				limit = {
+					owner = {
+						has_valid_civic = civic_private_healthcare_corporate
+					}
+				}
+				add_building = building_clinic
+			}
+
+			# Permanent Employment
+			if = {
+				limit = {
+					owner = {
+						has_valid_civic = civic_permanent_employment
+					}
+					free_building_slots > 0
+				}
+				add_building = building_posthumous_employment_center
+			}
+
+			# Relentless Industrialists
+			if = {
+				limit = {
+					owner = {
+						is_relentless_industrialist_empire = yes
+					}
+					free_building_slots > 0
+				}
+				add_building = building_coordinated_fulfillment_center_1
+			}
+			
+			if = {
+				limit = {
+					owner = { is_individual_machine = yes }
+				}
+				add_building = building_machine_assembly_plant
+			}
+			
+			### Mod Buildings ###
+			
+			#inline_script = {
+            #script = comptriggers/MO_Hydra_arbitrary
+			#	CODE = "
+			#		if = {
+			#			limit = { MC_Hydra_has_selection_process = yes }
+			#			
+			#		}
+			#	"
+			#	HAS_MOD = @has_mc_hydra
+			#}
+		}
+	}
+}
+
+# Create Insurgent country and establish communications
+country_event = {
+	id = HMO_game_start.4
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_origin = origin_HMO_apocalypse }
+		# has_faction = HMO_insurgent # Can only trigger if the insurgent faction exists
+	}
+
+	immediate = {
+		begin_event_chain = {
+			event_chain = "HMO_apocalypse_chain"
+			target = ROOT
+		}
+		set_variable = {
+			which = HMO_global_insurgent_strength
+			value = 6
+		}
+		owner = { species =  { save_event_target_as = insurgent_owner_species } }
+		set_country_flag = HMO_insurgent_owner@owner
+		create_HMO_insurgent_country = yes
+	}
+}
+
+### Hidden Game Start Event
+event = {
+	id = HMO_game_start.5
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				HMO_is_banished_threat = yes
+			}
+			country_event = { id = HMO_origin.2150 days = 60 random = 60 } # Sol Deshielding Project
+			country_event = { id = HMO_origin.2000 days = 360 random = 60 } # Country story events for banished threat
+		}
+		every_playable_country = {
+			limit = { has_origin = origin_HMO_apocalypse }
+			country_event = { id = HMO_game_start.6 }
+		}
+		# Dyson Swarm Start
+		every_playable_country = {
+			limit = {
+				has_origin = origin_HMO_dyson_swarm
+			}
+			HMO_dyson_swarm_start_effect = yes
+		}
+		every_playable_country = {
+			limit = {
+				has_origin = origin_HMO_wildworld
+			}
+			HMO_reduce_start_pops = {
+				START_POP_REDUCTION_COUNT = 10
+			}
+		}
+		every_playable_country = {
+			limit = {
+				has_origin = origin_HMO_zombies
+			}
+			HMO_reduce_start_pops = {
+				START_POP_REDUCTION_COUNT = 6
+			}
+		}
+	}
+}
+
+# Give insurgency starting colonisables a strategic resource deposit
+country_event = {
+	id = HMO_game_start.6
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_origin = origin_HMO_apocalypse
+	}
+
+	immediate = {
+		capital_scope.solar_system = {
+			closest_system = {
+				limit = { has_star_flag = neighbor_t1_first_colony }
+				max_steps = 3
+				random_system_planet = {
+					limit = {
+						is_colonizable = yes
+						is_colony = no
+						has_planet_flag = prescripted_ideal
+					}
+					add_deposit = d_dust_caverns
+					random_list = {
+						1 = { add_deposit = d_bubbling_swamp }
+						1 = { add_deposit = d_crystalline_caverns }
+					}
+				}
+			}
+			closest_system = {
+				limit = { has_star_flag = neighbor_t2_second_colony }
+				max_steps = 6
+				random_system_planet = {
+					limit = {
+						is_colonizable = yes
+						is_colony = no
+						has_planet_flag = prescripted_ideal
+					}
+					random_list = {
+						1 = { add_deposit = d_dust_caverns }
+						1 = { add_deposit = d_bubbling_swamp }
+						1 = { add_deposit = d_crystalline_caverns }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Unvaulted Setup
+country_event = {
+	id = HMO_game_start.7
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			has_origin = origin_HMO_unvaulted
+		}
+	}
+	
+	immediate = {
+		add_resource = { food = 5000 }
+		add_resource = { consumer_goods = 400 }
+		capital_scope = {
+			clear_deposits = yes
+			HMO_generate_unvaulted_start_deposits_and_blockers = yes
+			
+			while = {
+				limit = {
+					has_district = district_farming
+				}
+				remove_district = district_farming
+				add_district = district_mining
+			}
+			
+			add_building = building_resource_silo
+			set_planet_flag = legendary_leader_planet # Too unstable to terraform
+			planet_event = { id = HMO_origin.3000 days = 15 }
+		}
+	}
+}
+
+# After The Apocalypse Setup
+country_event = {
+	id = HMO_game_start.8
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			has_origin = origin_HMO_zombies
+		}
+	}
+	
+	immediate = {
+		capital_scope = {
+			#while = {
+			#	count = 16
+			#	random_owned_pop = {
+			#		limit = {
+			#			OR = {
+			#				has_job = clerk
+			#				has_job = technician
+			#				has_job = miner
+			#				has_job = farmer
+			#			}
+			#			is_robotic_species = no
+			#			NOT = {
+			#				has_trait = trait_zombie
+			#			}
+			#		}
+			#		modify_species = {
+			#			species = this
+			#			add_trait = trait_zombie
+			#			add_traits_at_start_of_list = yes
+			#		}
+			#	}
+			#}
+			set_planet_size = 24
+			clear_blockers = yes
+			while = {
+				count = 7
+				add_blocker = {
+					type = d_HMO_zombie_town_1
+					blocked_deposit = none
+				}
+				last_added_deposit = {
+					set_deposit_flag = keep_deposit_on_terraform
+				}
+			}
+			while = {
+				count = 2
+				add_blocker = {
+					type = d_HMO_zombie_town_3
+					blocked_deposit = none
+				}
+				last_added_deposit = {
+					set_deposit_flag = keep_deposit_on_terraform
+				}
+			}
+			add_blocker = {
+				type = d_HMO_zombie_town_2
+				blocked_deposit = none
+			}
+			while = {
+				count = 1
+				add_blocker = {
+					type = d_HMO_zombie_factory
+					blocked_deposit = none
+				}
+				last_added_deposit = {
+					set_deposit_flag = keep_deposit_on_terraform
+				}
+			}
+			while = {
+				count = 1
+				add_blocker = {
+					type = d_HMO_zombie_farm
+					blocked_deposit = none
+				}
+				last_added_deposit = {
+					set_deposit_flag = keep_deposit_on_terraform
+				}
+			}
+			if = {
+				limit = {
+					has_building = building_research_lab_1
+				}
+				remove_building = building_research_lab_1
+			}
+			if = {
+				limit = {
+					has_building = building_bureaucratic_1
+				}
+				remove_building = building_bureaucratic_1
+			}
+			if = {
+				limit = {
+					has_building = building_temple
+				}
+				remove_building = building_temple
+			}
+			if = {
+				limit = {
+					has_building = building_commercial_zone
+				}
+				remove_building = building_commercial_zone
+			}
+			add_building = HMO_building_zcom_headquarters
+			add_building = HMO_building_resproject_outpost
+			
+			HMO_fix_start_pops = yes
+		}
+		# Set flags for names for both factions
+		ruler = {
+			save_global_event_target_as = HMO_ruler@prev
+		}
+		event_target:HMO_ruler@this = {
+			unassign_leader = this
+			exile_leader_as = HMO_original_leader@prev
+		}
+		
+		create_leader = {
+			name = random
+			species = root
+			class = commander
+			skill = 2
+			can_manually_change_location = yes
+			can_assign_to_council = yes
+			randomize_traits = yes
+			
+			custom_description = HMO_zcom_commander_desc # Optional.
+			custom_catch_phrase = HMO_zcom_commander_catchphrase # Optional.
+			skip_background_generation = yes # Optional, default = no. Disables random generation of a background.
+			background_planet = capital_scope # Optional. Used as the home planet of the leader.
+			background_job = commanding_officer # Optional.
+			background_ethic = ethic_militarist # Optional.
+		}
+
+		last_created_leader = {
+			save_event_target_as = HMO_zcom_leader
+		}
+		
+		assign_leader = event_target:HMO_zcom_leader
+		
+		random_list = {
+			5 = { set_country_flag = HMO_zcom_name_zcom }
+			10 = { set_country_flag = HMO_zcom_name_vanguard }
+			5 = { set_country_flag = HMO_zcom_name_operation_resurrection }
+		}
+		
+		country_event = { id = HMO_origin.7001 days = 360 random = 360 }
+		
+		# Create hidden leaders for each faction
+		#create_leader = {
+		#	name = random
+		#	species = root
+		#	class = scientist
+		#	skill = 5 # The leader skill level, minimum LEADER_SKILL_MIN and maximum LEADER_MAX_SKILL_CAP.
+		#	#set_age = 25
+		#	#traits = { <level> = <key> <level> = <key> } # The traits of the leader, i.e. "1 = leader_trait_bureaucrat".
+		#
+		#	#gender = random # Optional, default = random.
+		#	event_leader = yes # Optional, default = no. Sets if this is a event leader or not. Is checked through is_event_leader.
+		#	immortal = no # Optional, default = no.
+		#	hide_age = no # Optional, default = no.
+		#	can_manually_change_location = no
+		#	can_assign_to_council = no
+		#	hide_leader = yes
+		#	randomize_traits = no
+		#	leader_age_min = 21
+		#	leader_age_max = 26
+		#	#effect = { <effect> } # Optional. Scripted effect(s) that are run on the leader after it has been created.
+		#
+		#	custom_description = HMO_zombies_scientist_desc # Optional.
+		#	#custom_catch_phrase = <string> # Optional.
+		#	skip_background_generation = yes # Optional, default = no. Disables random generation of a background.
+		#	background_planet = root.capital_scope # Optional. Used as the home planet of the leader.
+		#	background_job = researcher # Optional.
+		#	background_ethic = ethic_materialist # Optional.
+		#}
+		#last_created_leader = {
+		#	add_trait_no_notify = leader_trait_intellectual
+		#	add_trait_no_notify = subclass_scientist_governor
+		#	set_leader_flag = HMO_resproject_leader
+		#	set_leader_flag = HHM_cant_be_hostage
+		#}
+		# Set funding / support variables for the two factions
+		#set_variable = { which = HMO_zcom_support value = 50 }
+		#set_variable = { which = HMO_resproject_support value = 50 }
+		# Figure out who's behind the zombie plague
+		#if = {
+		#	limit = {
+		#		has_ethic = ethic_fanatic_materialist
+		#	}
+		#	set_country_flag = HMO_resproject_fault
+		#}
+		#else_if = {
+		#	limit = {
+		#		has_ethic = ethic_fanatic_militarist
+		#	}
+		#	set_country_flag = HMO_zcom_fault
+		#}
+		#else_if = {
+		#	limit = {
+		#		has_ethic = ethic_materialist
+		#	}
+		#	set_country_flag = HMO_resproject_fault
+		#}
+		#else_if = {
+		#	limit = {
+		#		has_ethic = ethic_militarist
+		#	}
+		#	set_country_flag = HMO_zcom_fault
+		#}
+		# Just in case
+		#else = {
+		#	set_country_flag = HMO_resproject_fault
+		#}
+		#owner = { species =  { save_event_target_as = resproject_owner_species } }
+		#create_HMO_resproject_country = yes
+		#set_country_flag = HMO_resproject_owner@last_created_country
+		#capital_scope = {
+		#	save_event_target_as = HMO_zombie_capital
+		#}
+		#last_created_country = {
+		#	start_situation = {
+		#		type = situation_HMO_resproject
+		#		target = event_target:HMO_zombie_capital
+		#	}
+		#}
+		#country_event = { id = HMO_origin.7000 days = 15 } # Zcom setup
+	}
+}
+
+# Wild World Setup
+country_event = {
+	id = HMO_game_start.9
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			has_origin = origin_HMO_wildworld
+		}
+	}
+	
+	immediate = {
+		
+		add_modifier = {
+			modifier = HMO_keppler_cage_country
+			days = -1
+		}
+		
+		#switch = {
+		#	trigger = has_ethic
+		#	ethic_fanatic_materialist = { capital_scope = { set_country_flag = HMO_wildworld_temple_story } }
+		#	ethic_fanatic_spiritualist = { capital_scope = { set_country_flag = HMO_wildworld_lab_story } }
+		#	default = {
+		#		random_list = {
+		#			10 = {
+		#				modifier = {
+		#					factor = 0
+		#					is_materialist = yes
+		#				}
+		#				capital_scope = { set_country_flag = HMO_wildworld_lab_story }
+		#			}
+		#			10 = {
+		#				modifier = {
+		#					factor = 0
+		#					is_spiritualist = yes
+		#				}
+		#				capital_scope = { set_country_flag = HMO_wildworld_temple_story }
+		#			}
+		#			1 = {
+		#				modifier = {
+		#					factor = 2
+		#					is_xenophile = no
+		#				}
+		#				capital_scope = { set_country_flag = HMO_wildworld_werediran_story }
+		#			}
+		#		}
+		#	}
+		#}
+		
+		capital_scope = {
+			set_planet_size = 35
+			clear_blockers = yes
+			remove_all_districts = yes
+			set_planet_flag = legendary_leader_planet
+			save_event_target_as = HMO_wildworld_planet
+			add_modifier = {
+				modifier = HMO_keppler_cage_scrap
+				days = -1
+			}
+			
+			if = {
+				limit = {
+					has_building = building_commercial_zone
+				}
+				remove_building = building_commercial_zone
+			}
+			
+			#while = {
+			#	limit = {
+			#		free_district_slots > 1
+			#		#num_free_districts = {
+			#		#	type = district_city
+			#		#	value > 1
+			#		#}
+			#	}
+			#	add_deposit = random_blocker
+			#}
+			#if = {
+			#	limit = {
+			#		free_district_slots > 0
+			#		is_wet = yes
+			#	}
+			#	add_deposit = d_dense_jungle
+			#}
+			#else_if = {
+			#	limit = {
+			#		free_district_slots > 0
+			#		is_cold = yes
+			#	}
+			#	add_deposit = d_massive_glacier
+			#}
+			#else_if = {
+			#	limit = {
+			#		free_district_slots > 0
+			#		is_dry = yes
+			#	}
+			#	add_deposit = d_quicksand_basin
+			#}
+			#else_if = {
+			#	limit = {
+			#		free_district_slots > 0
+			#		is_planet_class = pc_nuked
+			#	}
+			#	add_deposit = d_radioactive_wasteland
+			#}
+			#else_if = {
+			#	limit = {
+			#		free_district_slots > 0
+			#	}
+			#	add_deposit = d_failing_infrastructure
+			#}
+			
+			
+			
+			while = {
+				count = 29
+				add_blocker = {
+					type = HMO_wildworld_unexplored_jungle
+					blocked_deposit = none
+				}
+				last_added_deposit = {
+					set_deposit_flag = keep_deposit_on_terraform
+					set_deposit_flag = HMO_unexplored_wildworld_blocker
+					random_list = {
+						40 = { set_deposit_flag = HMO_dense_jungle }
+						5 = {
+							random_list = {
+								10 = {
+									modifier = {
+										factor = 0
+										planet = {
+											any_deposit = {
+												OR = {
+													has_deposit_flag = HMO_idyllic_valley
+													has_deposit_flag = HMO_old_ruins
+													has_deposit_flag = HMO_werediran_tower
+												}
+											}
+										}
+									}
+									random_list = {
+										10 = { set_deposit_flag = HMO_idyllic_valley }
+										8 = { set_deposit_flag = HMO_old_ruins }
+										2 = { set_deposit_flag = HMO_werediran_tower }
+									}
+								}
+							}
+						}
+						5 = {
+							modifier = {
+								factor = 0
+								OR = {
+									planet = {
+										any_deposit = {
+											has_deposit_flag = HMO_ancient_idol
+										}
+									}
+									has_grand_archive_dlc = no
+								}
+							}
+							set_deposit_flag = HMO_ancient_idol
+						}
+						0 = {
+							modifier = {
+								add = planet.value:HMO_isolated_village_chance
+								always = yes
+							}
+							set_deposit_flag = HMO_isolated_village
+						}
+						2 = {
+							modifier = {
+								factor = 0
+								planet = {
+									any_deposit = {
+										has_deposit_flag = HMO_waterfall
+									}
+								}
+							}
+							set_deposit_flag = HMO_waterfall
+						}
+					}
+				}
+			}
+			
+			if = {
+				limit = { owner = { is_gestalt = no } }
+				add_district = district_city
+			}
+			else_if = {
+				limit = { owner = { is_hive_empire = yes } }
+				add_district = district_hive
+			}
+			else_if = {
+				limit = { owner = { is_machine_empire = yes } }
+				add_district = district_nexus
+			}
+			
+			add_district = district_industrial
+			
+			add_district = district_generator
+			
+			if = {
+				limit = {
+					owner = {
+						is_lithoid_empire = yes
+					}
+				}
+				add_district = district_mining
+				add_district = district_mining
+			}
+			else = {
+				add_district = district_farming
+				add_district = district_farming
+			}
+			add_district = district_mining
+			# After some time, gain special projects to clear away the keppler cage. Once cleared, remove the keppler cage modifier from the planet.
+			solar_system = {
+				create_ambient_object = {
+					type = "HMO_kessler_cage_object"
+					location = event_target:HMO_wildworld_planet
+					use_3d_location = yes
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = HMO_wildworld_ambient_object
+				}
+				#while = {
+				#	count = 3
+				#	create_ambient_object = {
+				#		type = "medium_debris_02_object"
+				#		location = event_target:HMO_wildworld_planet
+				#	}
+				#	last_created_ambient_object = {
+				#		set_ambient_object_flag = HMO_wildworld_ambient_object
+				#	}
+				#}
+				#while = {
+				#	count = 5
+				#	create_ambient_object = {
+				#		type = "small_debris_object"
+				#		location = event_target:HMO_wildworld_planet
+				#	}
+				#	last_created_ambient_object = {
+				#		set_ambient_object_flag = HMO_wildworld_ambient_object
+				#	}
+				#}
+			}
+			#solar_system = {
+			#	spawn_megastructure = {
+			#		type = "HMO_orbital_arc_furnace_destroyed"
+			#		planet = event_target:HMO_wildworld_planet
+			#	}
+			#	event_target:HMO_wildworld_planet = {
+			#		set_planet_entity = { entity = invisible_turret_entity }
+			#	}
+			#}
+			
+			HMO_fix_start_pops = yes
+			
+			planet_event = { id = HMO_origin.8100 days = 15 }
+		}
+	}
+}
+
+# Set variable for Dyson Swarm
+country_event = {
+	id = HMO_game_start.10
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_origin = origin_HMO_dyson_swarm
+	}
+
+	immediate = {
+		change_variable = {
+			which = dyson_swarm_counter
+			value = 1
+		}
+	}
+}
+
+# Unlimited Potential
+country_event = {
+	id = HMO_game_start.11
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_origin = origin_HMO_unlimited_potential
+	}
+
+	immediate = {
+		capital_scope = {
+			set_planet_flag = HMO_unlimited_potential_planet
+			solar_system = {
+				every_system_planet = {
+					limit = {
+						exists = orbit
+						orbit = {
+							has_planet_flag = HMO_unlimited_potential_planet
+						}
+					}
+					set_planet_flag = HMO_unlimited_potential_moon
+				}
+				if = {
+					limit = { num_guaranteed_colonies >= 2 }
+					if = {
+						limit = {
+							NOT = {
+								any_system_planet = {
+									HMO_potential_candidate = yes
+								}
+							}
+						}
+						random_system_planet = {
+							limit = {
+								is_star = no
+								NOR = {
+									is_planet_class = pc_barren
+									is_planet_class = pc_barren_cold
+									is_planet_class = pc_gas_giant
+								}
+								is_terraforming_candidate = no
+								NOR = {
+									has_planet_flag = HMO_unlimited_potential_moon
+									has_planet_flag = HMO_unlimited_potential_planet
+								}
+							}
+							change_pc = pc_barren
+						}
+					}
+					random_system_planet = {
+						limit = {
+							HMO_potential_candidate = yes
+						}
+						HMO_fix_potential_candidate = yes
+						if = {
+							limit = { planet_size < 15 }
+							change_planet_size = 15
+						}
+						add_modifier = {
+							modifier = terraforming_candidate
+							days = -1
+						}
+						set_planet_flag = HMO_potential_realized
+					}
+				}
+				if = {
+					limit = { num_guaranteed_colonies >= 1 }
+					if = {
+						limit = {
+							NOT = {
+								any_system_planet = {
+									HMO_potential_candidate = yes
+								}
+							}
+						}
+						random_system_planet = {
+							limit = {
+								is_star = no
+								NOR = {
+									is_planet_class = pc_barren
+									is_planet_class = pc_barren_cold
+									is_planet_class = pc_gas_giant
+								}
+								is_terraforming_candidate = no
+								NOR = {
+									has_planet_flag = HMO_unlimited_potential_moon
+									has_planet_flag = HMO_unlimited_potential_planet
+								}
+							}
+							change_pc = pc_barren
+						}
+					}
+					random_system_planet = {
+						limit = {
+							HMO_potential_candidate = yes
+						}
+						HMO_fix_potential_candidate = yes
+						if = {
+							limit = { planet_size < 15 }
+							change_planet_size = 15
+						}
+						add_modifier = {
+							modifier = terraforming_candidate
+							days = -1
+						}
+						set_planet_flag = HMO_potential_realized
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_system_planet = {
+								is_planet_class = pc_gas_giant
+							}
+						}
+					}
+					random_system_planet = {
+						limit = {
+							is_star = no
+							is_colonizable = no
+							is_terraforming_candidate = no
+							is_moon = no
+							NOT = { has_planet_flag = HMO_unlimited_potential_planet }
+						}
+						change_pc = pc_gas_giant
+					}
+				}
+				random_system_planet = {
+					limit = {
+						is_planet_class = pc_gas_giant
+					}
+					HMO_fix_potential_candidate = yes
+					add_deposit = d_exotic_gases_5
+					set_planet_flag = HMO_potential_realized
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_system_planet = {
+								is_planet_class = pc_molten
+								is_terraforming_candidate = no
+							}
+						}
+					}
+					random_system_planet = {
+						limit = {
+							is_star = no
+							is_colonizable = no
+							is_terraforming_candidate = no
+							NOT = { has_planet_flag = HMO_unlimited_potential_planet }
+							NOT = { is_planet_class = pc_gas_giant }
+							NOT = { has_planet_flag = HMO_potential_realized }
+						}
+						change_pc = pc_molten
+					}
+				}
+				random_system_planet = {
+					limit = {
+						is_planet_class = pc_molten
+					}
+					HMO_fix_potential_candidate = yes
+					random_list = {
+						3 = { add_deposit = d_volatile_motes_5 }
+						5 = { add_deposit = d_volatile_motes_4 }
+						2 = { add_deposit = d_volatile_motes_3 }
+					}
+					set_planet_flag = HMO_potential_realized
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_system_planet = {
+								is_planet_class = pc_frozen
+								is_terraforming_candidate = no
+							}
+						}
+					}
+					random_system_planet = {
+						limit = {
+							is_star = no
+							is_colonizable = no
+							is_terraforming_candidate = no
+							NOT = { has_planet_flag = HMO_unlimited_potential_planet }
+							NOT = { is_planet_class = pc_gas_giant }
+							NOT = { has_planet_flag = HMO_potential_realized }
+						}
+						change_pc = pc_frozen
+					}
+				}
+				random_system_planet = {
+					limit = {
+						OR = {
+							is_planet_class = pc_frozen
+							is_planet_class = pc_ice_asteroid
+						}
+						is_terraforming_candidate = no
+					}
+					HMO_fix_potential_candidate = yes
+					random_list = {
+						2 = { add_deposit = d_rare_crystals_3 }
+						7 = { add_deposit = d_rare_crystals_2 }
+						1 = { add_deposit = d_rare_crystals_1 }
+					}
+					random_list = {
+						25 = { add_deposit = d_minerals_4 }
+						25 = { add_deposit = d_minerals_3 }
+						25 = { add_deposit = d_minerals_1 }
+						25 = { }
+					}
+					set_planet_flag = HMO_potential_realized
+				}
+				star = {
+					clear_deposits = yes
+					add_deposit = d_energy_10
+					#random_list = {
+					#	20 = { add_deposit = d_energy_5 }
+					#	20 = { add_deposit = d_energy_3 }
+					#	20 = { add_deposit = d_energy_1 }
+					#	#20 = { add_deposit = d_physics_3 }
+					#	#20 = { add_deposit = d_physics_2 }
+					#}
+				}
+			}
+			solar_system = {
+				closest_system = {
+					limit = { has_star_flag = neighbor_t1_first_colony }
+					max_steps = 3
+					random_system_planet = {
+						limit = {
+							is_colonizable = yes
+							is_colony = no
+							has_planet_flag = prescripted_ideal
+						}
+						change_pc = pc_shattered
+					}
+				}
+				closest_system = {
+					limit = { has_star_flag = neighbor_t2_second_colony }
+					max_steps = 6
+					random_system_planet = {
+						limit = {
+							is_colonizable = yes
+							is_colony = no
+							has_planet_flag = prescripted_ideal
+						}
+						change_pc = rl_habitable_normal
+					}
+				}
+				every_system_planet = {
+					limit = {
+						is_star = no
+						is_colonizable = no
+						is_terraforming_candidate = no
+						NOT = { has_planet_flag = HMO_potential_realized }
+						NOR = {
+							has_deposit_for = shipclass_mining_station
+							has_deposit_for = shipclass_research_station
+						}
+						NOT = { has_planet_flag = ignore_startup_effect }
+					}
+					if = {
+						limit = { is_planet_class = pc_toxic }
+						random_list = {
+							20 = { add_deposit = d_society_3 }
+							20 = { add_deposit = d_society_2 }
+							20 = { add_deposit = d_minerals_4 }
+							20 = { add_deposit = d_minerals_3 }
+							20 = { add_deposit = d_minerals_2 }
+						}
+					}
+					else_if = {
+						limit = { is_planet_class = pc_frozen }
+						random_list = {
+							20 = { add_deposit = d_rare_crystals_1 }
+							20 = { add_deposit = d_rare_crystals_2 }
+							20 = { add_deposit = d_minerals_3 }
+							20 = { add_deposit = d_minerals_2 }
+							20 = { add_deposit = d_minerals_1 }
+						}
+					}
+					else_if = {
+						limit = {
+							OR = {
+								is_asteroid = yes
+								is_planet_class = pc_barren
+								is_planet_class = pc_barren_cold
+							}
+						}
+						random_list = {
+							25 = { add_deposit = d_minerals_5 }
+							25 = { add_deposit = d_minerals_4 }
+							25 = { add_deposit = d_minerals_3 }
+							25 = { add_deposit = d_minerals_2 }
+						}
+					}
+					else_if = {
+						limit = {
+							is_planet_class = pc_gas_giant
+						}
+						random_list = {
+							10 = { add_deposit = d_engineering_3 }
+							10 = { add_deposit = d_engineering_2 }
+							10 = { add_deposit = d_society_4 }
+							10 = { add_deposit = d_society_5 }
+							10 = { add_deposit = d_energy_5 }
+							10 = { add_deposit = d_energy_4 }
+							10 = { add_deposit = d_energy_3 }
+							10 = { add_deposit = d_energy_2 }
+							10 = { add_deposit = d_exotic_gases_2 }
+							10 = { add_deposit = d_exotic_gases_1 }
+						}
+					}
+					else_if = {
+						limit = {
+							is_planet_class = pc_molten
+						}
+						random_list = {
+							20 = { add_deposit = d_alloys_2 }
+							20 = { add_deposit = d_alloys_1 }
+							20 = { add_deposit = d_minerals_5 }
+							20 = { add_deposit = d_minerals_3 }
+							20 = { add_deposit = d_volatile_motes_3 }
+						}
+					}
+					#else_if = {
+					#	limit = {
+					#		OR = {
+					#			is_star = yes
+					#			is_planet_class = pc_a_star
+					#			is_planet_class = pc_b_star
+					#			is_planet_class = pc_f_star
+					#			is_planet_class = pc_g_star
+					#			is_planet_class = pc_k_star
+					#			is_planet_class = pc_m_star
+					#			is_planet_class = pc_m_giant_star
+					#			is_planet_class = pc_t_star
+					#		}
+					#	}
+					#	switch = {
+					#		trigger = is_planet_class
+					#		pc_a_star = { add_deposit = d_energy_4 }
+					#		pc_m_giant_star = { add_deposit = d_energy_10 }
+					#		pc_m_star = { add_deposit = d_energy_5 }
+					#		pc_t_star = { add_deposit = d_physics_3 }
+					#		pc_k_star = { add_deposit = d_energy_2 }
+					#		pc_g_star = { add_deposit = d_energy_3 }
+					#		pc_f_star = { add_deposit = d_energy_2 }
+					#		pc_b_star = { add_deposit = d_physics_3 }
+					#		default = { add_deposit = d_energy_5 }
+					#	}
+					#}
+				}
+			}
+		}
+	}
+}

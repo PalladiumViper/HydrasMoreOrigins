@@ -1,0 +1,160 @@
+# Democratic Final Event
+# Fired by: event
+country_event = {
+	id = HMO_cyber.$EVENT_ID$
+	title = "HMO_cyber.$EVENT_ID$.name"
+	desc = {
+		trigger = {
+			check_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value > HMO_cyber_zombie_power
+			}
+		}
+		text = HMO_cyber.$EVENT_ID$.desc.weaponry
+	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value < HMO_cyber_zombie_power
+			}
+		}
+		text = HMO_cyber.$EVENT_ID$.desc.zombie
+	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value = HMO_cyber_zombie_power
+			}
+		}
+		text = HMO_cyber.$EVENT_ID$.desc.normal
+	}
+	picture = GFX_evt_cyberization_1
+	show_sound = event_cityscape
+	location = from
+	event_chain = futureshock_chain
+	is_triggered_only = yes
+
+	trigger = {
+		inline_script = {
+			script = finalAscensionEventIDLinks/HMO_Ascension_$EVENT_ID$
+			HAS_BUG = @has_bug_branch
+		}
+	}
+
+	option = {
+		trigger = {
+			check_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value >= HMO_cyber_zombie_power
+			}
+		}
+		name = {
+			trigger = {
+				check_variable = {
+					which = "HMO_cyber_weaponry_power"
+					value > HMO_cyber_zombie_power
+				}
+			}
+			text = HMO_cyber.$EVENT_ID$.a
+		}
+		
+		name = {
+			trigger = {
+				check_variable = {
+					which = "HMO_cyber_weaponry_power"
+					value = HMO_cyber_zombie_power
+				}
+			}
+			text = HMO_cyber.$EVENT_ID$.a.zombies
+		}
+		end_event_chain = futureshock_chain
+		custom_tooltip = HMO_cyber.$EVENT_ID$.a.tt
+		set_country_flag = HMO_cyber_weaponry_authority
+		set_country_flag = HMO_stable_zombie_society
+		hidden_effect = {
+			owner = {
+				modify_species = {
+					species = owner_main_species
+					add_trait = trait_cyborg_integrated_weaponry
+				}
+				change_dominant_species = {
+					species = last_created_species
+					change_all = yes
+				}
+				refresh_portraits = character
+			}
+			advanced_authority_refresh = yes
+			ruler = {
+				save_event_target_as = HMO_zcom_ruler
+				unassign_leader = this
+			}
+			set_leader = HMO_original_leader@this
+			ruler = {
+				change_species = prev.species
+				add_skill_without_trait_selection = 4 #event_target:HMO_zcom_ruler.trigger:has_skill
+				add_trait = leader_trait_cyborg
+			}
+			refresh_portraits = all
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		trigger = {
+			check_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value <= HMO_cyber_zombie_power
+			}
+		}
+		name = HMO_cyber.$EVENT_ID$.b
+		end_event_chain = futureshock_chain
+		custom_tooltip = HMO_cyber.$EVENT_ID$.b.tt
+		set_country_flag = HMO_cyber_zombie_authority
+		set_country_flag = HMO_stable_zombie_society
+		hidden_effect = {
+			advanced_authority_refresh = yes
+			ruler = {
+				save_event_target_as = HMO_zcom_ruler
+				unassign_leader = this
+			}
+			set_leader = HMO_original_leader@this
+			ruler = {
+				change_species = prev.species
+				add_skill_without_trait_selection = 4 # event_target:HMO_zcom_ruler.trigger:has_skill
+				add_trait = leader_trait_cyborg
+			}
+			refresh_portraits = all
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		name = HMO_cyber.$EVENT_ID$.c
+		end_event_chain = futureshock_chain
+		custom_tooltip = HMO_cyber.$EVENT_ID$.c.tt
+		trigger = { is_ai = no }
+		set_country_flag = HMO_normal_authority
+		hidden_effect = {
+			advanced_authority_refresh = yes
+			ruler = {
+				save_event_target_as = HMO_zcom_ruler
+				unassign_leader = this
+			}
+			set_leader = HMO_original_leader@this
+			ruler = {
+				change_species = prev.species
+				add_skill_without_trait_selection = 4 # event_target:HMO_zcom_ruler.trigger:has_skill
+				add_trait = leader_trait_cyborg
+			}
+			refresh_portraits = all
+		}
+	}
+	
+	after = {
+		clear_global_event_target = HMO_ruler@this
+	}
+}

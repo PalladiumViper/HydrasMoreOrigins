@@ -1,0 +1,4 @@
+starting_colony = pc_tropical
+habitability_preference = pc_tropical
+
+description = "origin_HMO_wildworld_effects"

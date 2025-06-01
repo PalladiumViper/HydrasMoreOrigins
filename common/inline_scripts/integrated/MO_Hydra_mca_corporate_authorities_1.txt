@@ -1,0 +1,2 @@
+	$VALUE$ = auth_corporate_fiefdom
+	$VALUE$ = auth_cooperative

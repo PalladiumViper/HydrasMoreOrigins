@@ -1,0 +1,15 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_faction_icon_HMO_loyalist"
+		textureFile = "gfx/interface/icons/faction_icons/faction_icons_imperialists.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_faction_icon_HMO_insurgent"
+		textureFile = "gfx/interface/icons/faction_icons/faction_icons_separatists.dds"
+		noOfFrames = 1
+	}
+	
+}

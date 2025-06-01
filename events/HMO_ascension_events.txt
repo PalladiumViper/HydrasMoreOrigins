@@ -1,0 +1,1172 @@
+#########################################
+#
+# HMO's Ascension Replacement Events
+#
+#########################################
+
+namespace = HMO_ascension
+
+#########################################
+
+# Fired by: tr_cybernetics_adopt
+country_event = { # Cyberization - First event
+	id = HMO_ascension.1
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_machine_age_dlc = yes
+		has_origin = origin_HMO_zombies
+		OR = {
+			has_tradition = tr_cybernetics_adopt
+			has_tradition = tr_synthetics_adopt
+			has_tradition = tr_genetics_adopt
+			has_tradition = tr_psionics_adopt
+		}
+		NOT = { has_country_flag = HMO_ascension_tradition_picked }
+		#NOT = { has_country_flag = HMO_zombies_the_truth }
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				any_situation = {
+					OR = {
+						is_situation_type = situation_cyberization
+						is_situation_type = situation_digitization
+					}
+				}
+			}
+			random_situation = {
+				limit = {
+					OR = {
+						is_situation_type = situation_cyberization
+						is_situation_type = situation_digitization
+					}
+				}
+				destroy_situation = this
+			}
+			# Start appropriate Ascension Situation. Robots are cyberized or synthetized immediately upon completion(?)
+			switch = {
+				trigger = has_tradition
+				tr_cybernetics_adopt = {
+					start_situation = {
+						type = situation_MO_Hydra_cyberization
+						target = root
+					}
+				}
+				tr_synthetics_adopt = {
+					start_situation = {
+						type = situation_MO_Hydra_digitization
+						target = root
+					}
+				}
+				tr_genetics_adopt = { }
+				tr_psionics_adopt = { }
+				default = { }
+			}
+		}
+		set_country_flag = HMO_ascension_tradition_picked
+		# Start false situation
+	}
+}
+
+# DIGITIZATION FINAL EVENT
+# Fired by: situation on_progress_complete
+situation_event = { # Digitization - Final hidden event
+	id = HMO_ascension.2
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		set_situation_flag = digitization_ongoing
+		set_situation_flag = digitization_final
+		situation_event = { id = synth.3 } # Run digitization again to change remaining people
+		situation_event = { id = HMO_ascension.4 days = 1 } # Real final event
+	}
+}
+
+# Fired by: event
+situation_event = { # Final event
+	id = HMO_ascension.4
+	title = "synth.4.name"
+	desc = "synth.4.desc"
+	picture = GFX_evt_synth_situation
+	show_sound = event_ai_started
+	situation = this
+	is_triggered_only = yes
+
+	option = {
+		name = "synth.4.a"
+		custom_tooltip = "synth.4.a.tt"
+	}
+
+	after = {
+		destroy_situation = this
+		owner = {
+			hidden_effect = {
+				if = {
+					limit = { has_active_tradition = tr_synthetics_finish_situation }
+					if = {
+						limit = { has_country_flag = HMO_zombie_ascension_protection }
+						remove_country_flag = HMO_zombie_ascension_protection
+					}
+					set_country_flag = HMO_zombie_ascension_protection
+					country_event = { id = HMO_ascension.550 days = 180 }
+				}
+			}
+			if = {
+				limit = { has_active_tradition = tr_synthetics_transubstatiation_synthesis_situation }
+				set_country_flag = synth_assimilation
+			}
+			set_country_flag = synthetics_traditions_unlocked
+		}
+	}
+}
+
+# Synthezisation STAGE 4
+# Fired by: situation stage on_first_enter
+situation_event = { # Government rival
+	id = HMO_ascension.440
+	title = "HMO_ascension.440.name"
+	desc = "HMO_ascension.440.desc"
+	picture = GFX_evt_busy_spaceport
+	show_sound = event_drilling
+	situation = this
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_situation_flag = HMO_ascension_440_happened }
+		situation_progress >= 900
+	}
+	
+	immediate = {
+		set_situation_flag = situation_digitization_pause
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_ascension_440_happened
+		owner = { set_country_flag = HMO_zombie_ascension_protection }
+	}
+
+	option = {
+		name = "HMO_ascension.440.a"
+		set_situation_flag = HMO_liberation_ongoing
+	}
+
+	after = {
+		remove_situation_flag = situation_digitization_pause
+		remove_situation_flag = situation_cyberization_pause
+		owner = {
+			home_planet = {
+				every_ground_combat_attacker = {
+					limit = { army_type = HMO_zombie_army }
+					remove_army = yes
+				}
+				switch = {
+					trigger = has_planet_flag
+					HMO_target_city = { remove_planet_flag = HMO_target_city }
+					HMO_target_industrial = { remove_planet_flag = HMO_target_industrial }
+					HMO_target_generator = { remove_planet_flag = HMO_target_generator }
+					HMO_target_farming = { remove_planet_flag = HMO_target_farming }
+					HMO_target_mining = { remove_planet_flag = HMO_target_mining }
+				}
+			}
+		}
+	}
+}
+
+# Try to have on_action that fires event when the 5th perk of synthetics is picked, which removes the synthetics_traditions_unlocked flag, then on the same on_action, when the finisher is picked, set the flag again.
+# If that does not work, have to overwrite synth.500
+# THIS WORKS!!!
+
+# 
+country_event = { # 
+	id = HMO_ascension.500
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_machine_age_dlc = yes
+		has_origin = origin_HMO_zombies
+		AND = {
+			has_tradition = tr_synthetics_optimization_algorithms
+			has_tradition = tr_synthetics_power_systems
+			has_tradition = tr_synthetics_prefabricated_components
+		}
+		NOT = { has_country_flag = HMO_synthetics_ascension_flag_fix }
+		has_country_flag = synthetics_traditions_unlocked
+	}
+	
+	immediate = {
+		remove_country_flag = synthetics_traditions_unlocked
+		set_country_flag = HMO_synthetics_ascension_flag_fix
+		# Start false situation
+	}
+}
+
+# 
+country_event = { # 
+	id = HMO_ascension.501
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_machine_age_dlc = yes
+		has_origin = origin_HMO_zombies
+		has_tradition = tr_synthetics_finish
+		has_country_flag = HMO_synthetics_ascension_flag_fix
+		NOT = { has_country_flag = synthetics_traditions_unlocked }
+	}
+	
+	immediate = {
+		set_country_flag = synthetics_traditions_unlocked
+		set_country_flag = HMO_finished_ascension
+		country_event = { id = HMO_ascension.550 days = 180 }
+	}
+}
+
+### DIGITIZATION SITUATION END ###
+
+### SOCIETAL EFFECTS EVENT CHAIN START ###
+# Fired by: tr_synthetics_finish or event
+country_event = {
+	id = HMO_ascension.550
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_variable = {
+			which = "HMO_zcom_power"
+			value = 0
+		}
+		set_variable = {
+			which = "HMO_encryption_power"
+			value = 0
+		}
+		if = {
+			limit = {
+				has_authority = auth_dictatorial
+			}
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 1
+			}
+		}
+		if = {
+			limit = {
+				is_militarist = yes
+			}
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 1
+			}
+		}
+		else_if = {
+			limit = {
+				is_pacifist = yes
+			}
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 1
+			}
+		}
+		fire_on_action = {
+			on_action = on_HMO_synthshock_chain_start
+		}
+		# Use an on-action instead with a random_event. That way mods can add their own custom events if they want to. Also, have the bug branch authority events, but their trigger is always = no when bug branch is not installed.
+		# While this does mean there's no backup, this makes it super easy for mods with modded authorities to add their own, and the origin would not work correctly anyway because of the lack of a martial law authority.
+		#switch = {
+		#	trigger = has_authority
+		#	auth_democratic = {
+		#		hidden_effect = {
+		#			country_event = { id = HMO_ascension.505 }
+		#		}
+		#	}
+		#	auth_oligarchic = {
+		#		hidden_effect = {
+		#			country_event = { id = HMO_ascension.510 }
+		#	 	}
+		#	}
+		#	auth_dictatorial = {
+		#	 	hidden_effect = {
+		#	 		country_event = { id = HMO_ascension.515 }
+		#	 	}
+		#	}
+		#	auth_imperial = {
+		#		hidden_effect = {
+		#			country_event = { id = HMO_ascension.520 }
+		#		}
+		#	}
+		#	auth_corporate = {
+		#		hidden_effect = {
+		#			country_event = { id = HMO_ascension.525 }
+		#		}
+		#	}
+		#	default = {
+		#		hidden_effect = {
+		#			HMO_ascension_600_BUG_BRANCH = yes # have an inline script inside this scripted effect. If not installed, aka inline script is 0, the effect should be a placeholder effect that fires the democratic version. The same placeholder effect should also be appended at the end of the bugged scripted effect (If the inline script is 1)
+		#		}
+		#	}
+		#}
+	}
+}
+
+# Fired by: event
+country_event = { # Democratic
+	id = HMO_ascension.505
+	title = "HMO_ascension.505.name"
+	desc = HMO_ascension.505.desc
+	picture = GFX_evt_victorious_army
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	trigger = {
+		has_authority = auth_democratic
+	}
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = HMO_synthshock_chain
+			target = this
+		}
+	}
+	option = { # Physical World Focus
+		name = HMO_ascension.505.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.505.a.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Virtual World Focus
+		name = HMO_ascension.505.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.505.b.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+# Fired by: event
+country_event = { # Oligarchic
+	id = HMO_ascension.510
+	title = HMO_ascension.510.name
+	desc = HMO_ascension.510.desc
+	picture = GFX_evt_victorious_army
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	trigger = {
+		has_authority = auth_oligarchic
+	}
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = HMO_synthshock_chain
+			target = this
+		}
+	}
+	option = { # Physical World Focus
+		name = HMO_ascension.510.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.510.a.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Virtual World Focus
+		name = HMO_ascension.510.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.510.b.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+# Fired by: event
+country_event = { # Dictatorial
+	id = HMO_ascension.515
+	title = HMO_ascension.515.name
+	desc = HMO_ascension.515.desc
+	picture = GFX_evt_victorious_army
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	trigger = {
+		has_authority = auth_dictatorial
+	}
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = HMO_synthshock_chain
+			target = this
+		}
+	}
+	option = { # Physical World Focus
+		name = HMO_ascension.515.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.515.a.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Virtual World Focus
+		name = HMO_ascension.515.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.515.b.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+# Fired by: event
+country_event = { # Imperial
+	id = HMO_ascension.520
+	title = HMO_ascension.520.name
+	desc = HMO_ascension.520.desc
+	picture = GFX_evt_victorious_army
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	trigger = {
+		has_authority = auth_imperial
+	}
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = HMO_synthshock_chain
+			target = this
+		}
+	}
+	
+	option = { # Virtual World Focus
+		name = HMO_ascension.520.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.520.b.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Physical World Focus
+		name = HMO_ascension.520.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.520.a.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+# Fired by: event
+country_event = { # Corporate
+	id = HMO_ascension.525
+	title = HMO_ascension.525.name
+	desc = HMO_ascension.525.desc
+	picture = GFX_evt_victorious_army
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	trigger = {
+		has_authority = auth_corporate
+	}
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = HMO_synthshock_chain
+			target = this
+		}
+	}
+	option = { # Physical World Focus
+		name = HMO_ascension.525.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.525.a.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Virtual World Focus
+		name = HMO_ascension.525.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.525.b.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+### Bug Branch Authorities ###
+
+# Fired by: event
+country_event = { # Corporate
+	id = HMO_ascension.530
+	title = HMO_ascension.530.name
+	desc = HMO_ascension.530.desc
+	picture = GFX_evt_victorious_army
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	inline_script = {
+		script = comptriggers/MO_Hydra_ascension_600_events_triggers
+		HAS_MOD = @has_bug_branch
+		AUTHORITY = auth_bugged_corporate_democratic
+	}
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = HMO_synthshock_chain
+			target = this
+		}
+	}
+	option = { # Physical World Focus
+		name = HMO_ascension.530.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.530.a.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Virtual World Focus
+		name = HMO_ascension.530.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.530.b.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+# Fired by: event
+country_event = { # Corporate
+	id = HMO_ascension.535
+	title = HMO_ascension.535.name
+	desc = HMO_ascension.535.desc
+	picture = GFX_evt_victorious_army
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	inline_script = {
+		script = comptriggers/MO_Hydra_ascension_600_events_triggers
+		HAS_MOD = @has_bug_branch
+		AUTHORITY = auth_bugged_corporate_imperial
+	}
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = HMO_synthshock_chain
+			target = this
+		}
+	}
+	option = { # Physical World Focus
+		name = HMO_ascension.535.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.535.a.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Virtual World Focus
+		name = HMO_ascension.535.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.535.b.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+# Fired by: event
+country_event = { # Corporate
+	id = HMO_ascension.540
+	title = HMO_ascension.540.name
+	desc = HMO_ascension.540.desc
+	picture = GFX_evt_victorious_army
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	inline_script = {
+		script = comptriggers/MO_Hydra_ascension_600_events_triggers
+		HAS_MOD = @has_bug_branch
+		AUTHORITY = auth_bugged_direct_democratic
+	}
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = HMO_synthshock_chain
+			target = this
+		}
+	}
+	option = { # Physical World Focus
+		name = HMO_ascension.540.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.540.a.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 2 # The first event is more impactful
+			}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Virtual World Focus
+		name = HMO_ascension.540.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		custom_tooltip = HMO_ascension.540.b.tt
+		hidden_effect = {
+			#change_variable = {
+			#	which = "HMO_encryption_power"
+			#	value = 2 # The first event is more impactful
+			#}
+			country_event = { id = HMO_ascension.600 days = 180 random = 90 }
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+# EVENT POOL 1: The Virus
+
+# Event pool gatekeeping event
+country_event = {
+	id = HMO_ascension.600
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		fire_on_action = {
+			on_action = on_HMO_synthshock_chain_virus_events_list
+		}
+	}
+}
+
+# Fired by: on_HMO_synthshock_chain_virus_events_list
+country_event = { # Synth Provenance
+	id = HMO_ascension.610
+	title = "HMO_ascension.610.name"
+	desc = HMO_ascension.610.desc
+	picture = GFX_evt_individualistic_machines_2
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+
+	option = { # Ignore
+		name = HMO_ascension.610.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		add_modifier = {
+			modifier = HMO_zombie_panic
+			days = 18000
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Encryption
+		name = HMO_ascension.610.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
+		add_resource = { energy = -1000 }
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 1
+			}
+		}
+		add_modifier = {
+			modifier = HMO_personal_encryption
+			days = -1
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Zcom
+		name = HMO_ascension.610.c
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 1
+			}
+		}
+		add_modifier = {
+			modifier = HMO_squashed_rumors
+			days = 18000
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = HMO_ascension.800 days = 180 random = 90 }
+		}
+	}
+}
+
+# Fired by: on_HMO_synthshock_chain_virus_events_list
+country_event = { # Synth Provenance
+	id = HMO_ascension.620
+	title = "HMO_ascension.620.name"
+	desc = HMO_ascension.620.desc
+	picture = GFX_evt_individualistic_machines_2
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+
+	option = { # Ignore
+		name = HMO_ascension.620.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		add_modifier = {
+			modifier = HMO_zombie_panic
+			days = 18000
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Ignore
+		name = HMO_ascension.620.d
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		trigger = {
+			is_authoritarian = yes
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Encryption
+		name = HMO_ascension.620.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 1
+			}
+		}
+		add_modifier = {
+			modifier = HMO_limited_ota
+			days = -1
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Zcom
+		name = HMO_ascension.620.c
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 1
+			}
+		}
+		capital_scope = {
+			add_deposit = d_HMO_isolated_city
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = HMO_ascension.800 days = 180 random = 90 }
+		}
+	}
+}
+
+# EVENT POOL 1: Malware
+
+# Event pool gatekeeping event
+country_event = {
+	id = HMO_ascension.800
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		fire_on_action = {
+			on_action = on_HMO_synthshock_chain_malware_events_list
+		}
+	}
+}
+
+# Fired by: on_HMO_synthshock_chain_virus_events_list
+country_event = { # Synth Provenance
+	id = HMO_ascension.810
+	title = "HMO_ascension.810.name"
+	desc = HMO_ascension.810.desc
+	picture = GFX_evt_individualistic_machines_2
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	trigger = {
+		NOR = {
+			has_country_flag = HMO_zombies_810_happened
+			has_country_flag = HMO_zombies_820_happened
+		}
+	}
+	
+	option = { # Ignore
+		name = HMO_ascension.810.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Encryption
+		name = HMO_ascension.810.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 1
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Zcom
+		name = HMO_ascension.810.c
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_zcom_power"
+				value = 1
+			}
+		}
+		add_modifier = {
+			modifier = HMO_backdoor
+			days = -1
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			set_country_flag = HMO_zombies_810_happened
+			country_event = { id = HMO_ascension.800 days = 180 random = 90 }
+		}
+	}
+}
+
+# Fired by: on_HMO_synthshock_chain_virus_events_list
+country_event = { # Synth Provenance
+	id = HMO_ascension.820
+	title = "HMO_ascension.820.name"
+	desc = {
+		trigger = {
+			has_modifier = HMO_backdoor
+			NOR = {
+				has_modifier = HMO_limited_ota
+				has_modifier = HMO_personal_encryption
+			}
+		}
+		text = HMO_ascension.820.desc.a
+	}
+	desc = {
+		trigger = {
+			NOR = {
+				has_modifier = HMO_backdoor
+				has_modifier = HMO_limited_ota
+				has_modifier = HMO_personal_encryption
+			}
+		}
+		text = HMO_ascension.820.desc.b
+	}
+	desc = {
+		trigger = {
+			has_modifier = HMO_backdoor
+			OR = {
+				has_modifier = HMO_limited_ota
+				has_modifier = HMO_personal_encryption
+			}
+		}
+		text = HMO_ascension.820.desc.c
+	}
+	desc = {
+		trigger = {
+			NOT = { has_modifier = HMO_backdoor }
+			OR = {
+				has_modifier = HMO_limited_ota
+				has_modifier = HMO_personal_encryption
+			}
+		}
+		text = HMO_ascension.820.desc.d
+	}
+	picture = GFX_evt_individualistic_machines_2
+	show_sound = event_cityscape
+	location = from
+	event_chain = HMO_synthshock_chain
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_country_flag = HMO_zombies_810_happened
+		}
+		NOT = {
+			has_country_flag = HMO_zombies_820_happened
+		}
+	}
+	
+	option = { # Ignore
+		name = HMO_ascension.820.b
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		trigger = {
+			NOR = {
+				has_modifier = HMO_limited_ota
+				has_modifier = HMO_personal_encryption
+			}
+		}
+		add_modifier = {
+			modifier = HMO_virus_in_circulation
+			days = 18000
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Encryption
+		name = HMO_ascension.820.a
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_encryption_power"
+				value = 1
+			}
+		}
+		trigger = {
+			NOR = {
+				has_modifier = HMO_limited_ota
+				has_modifier = HMO_personal_encryption
+			}
+		}
+		add_modifier = {
+			modifier = HMO_mandated_firewalls
+			days = -1
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Zcom
+		name = HMO_ascension.820.c
+		custom_tooltip = HMO_ascension.social_consequences.tt
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			set_country_flag = HMO_zombies_820_happened
+			country_event = { id = HMO_ascension.800 days = 180 random = 90 }
+		}
+	}
+}
+
+### SOCIETAL EFFECTS EVENT CHAIN START (Gatekeeper) ###
+##      Include this in the malware events list     ###
+# Fired by: tr_synthetics_finish or event
+country_event = {
+	id = HMO_ascension.1499
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_flag = HMO_zombies_820_happened
+	}
+	
+	immediate = {
+		country_event = { id = HMO_ascension.1500 }
+	}
+}
+
+### SOCIETAL EFFECTS EVENT CHAIN START ###
+# Fired by: tr_synthetics_finish or event
+country_event = {
+	id = HMO_ascension.1500
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		fire_on_action = {
+			on_action = on_HMO_synthshock_chain_end
+		}
+	}
+}
+
+### FINAL EVENTS ###
+
+inline_script = {
+	script = "MO_Hydra_synth_ascension_final_event"
+	EVENT_ID = "1505"
+}
+
+inline_script = {
+	script = "MO_Hydra_synth_ascension_final_event"
+	EVENT_ID = "1510"
+}
+
+inline_script = {
+	script = "MO_Hydra_synth_ascension_final_event"
+	EVENT_ID = "1515"
+}
+
+inline_script = {
+	script = "MO_Hydra_synth_ascension_final_event"
+	EVENT_ID = "1520"
+}
+
+inline_script = {
+	script = "MO_Hydra_synth_ascension_final_event"
+	EVENT_ID = "1525"
+}
+
+### Bug Branch Authorities ###
+
+inline_script = {
+	script = "MO_Hydra_synth_ascension_final_event"
+	EVENT_ID = "1530"
+}
+
+inline_script = {
+	script = "MO_Hydra_synth_ascension_final_event"
+	EVENT_ID = "1535"
+}
+
+inline_script = {
+	script = "MO_Hydra_synth_ascension_final_event"
+	EVENT_ID = "1540"
+}

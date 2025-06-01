@@ -1,0 +1,23 @@
+switch = {
+	trigger = has_authority
+	auth_bugged_corporate_democratic = {
+		hidden_effect = {
+			country_event = { id = HMO_ascension.530 }
+		}
+	}
+	auth_bugged_corporate_imperial = {
+		hidden_effect = {
+			country_event = { id = HMO_ascension.535 }
+	 	}
+	}
+	auth_bugged_direct_democratic = {
+	 	hidden_effect = {
+	 		country_event = { id = HMO_ascension.540 }
+	 	}
+	}
+	default = {
+		hidden_effect = {
+			country_event = { id = HMO_ascension.505 }
+		}
+	}
+}

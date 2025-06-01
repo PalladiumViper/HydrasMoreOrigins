@@ -1,0 +1,1063 @@
+##########################
+#
+# ARCHAEOLOGY SITE EVENTS
+#
+##########################
+
+namespace = HMO_arcsite
+
+####################################
+# "crashed ship" by Metallichydra
+####################################
+
+# computer terminal | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.25
+	title = HMO_arcsite.25.name
+	desc = HMO_arcsite.25.desc
+	picture = GFX_evt_glitchy_matrix
+	location = from
+	show_sound = event_ship_bridge
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# take the computer apart for a substantial alloy reward
+	option = {
+		name = HMO_TAKE_IT_APART
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+		}
+	}
+	# extract any files on the harddrive for a science reward, as well as a tech related to computers
+	option = {
+		# get next tier of AI
+		name = HMO_EXTRACT_FILES
+		owner = {
+			if = {
+				limit = {
+					has_technology = tech_sapient_ai
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier2researchreward
+					min = @tier2researchmin
+					max = @tier2researchmax
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_self_aware_logic
+					NOT = { has_ethic = ethic_gestalt_consciousness }
+				}
+				add_research_option = tech_sapient_ai
+				add_tech_progress = {
+					tech = tech_sapient_ai
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_administrative_ai
+					NOT = { has_ethic = ethic_gestalt_consciousness }
+				}
+				add_research_option = tech_self_aware_logic
+				add_tech_progress = {
+					tech = tech_self_aware_logic
+					progress = 0.4
+				}
+			}
+			else = {
+				add_research_option = tech_administrative_ai
+				add_tech_progress = {
+					tech = tech_administrative_ai
+					progress = 0.5
+				}
+			}
+		}
+	}
+	# scavengers option
+	option = {
+		name = HMO_DO_BOTH
+		trigger = {
+			owner = {
+				OR = {
+					has_valid_civic = civic_scavengers
+					has_valid_civic = civic_corporate_scavengers
+				}
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					has_technology = tech_sapient_ai
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier2researchreward
+					min = @tier2researchmin
+					max = @tier2researchmax
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_self_aware_logic
+				}
+				add_research_option = tech_sapient_ai
+				add_tech_progress = {
+					tech = tech_sapient_ai
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_administrative_ai
+				}
+				add_research_option = tech_self_aware_logic
+				add_tech_progress = {
+					tech = tech_self_aware_logic
+					progress = 0.4
+				}
+			}
+			else = {
+				add_research_option = tech_administrative_ai
+				add_tech_progress = {
+					tech = tech_administrative_ai
+					progress = 0.5
+				}
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+# ship reactor | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.26
+	title = HMO_arcsite.26.name
+	desc = HMO_arcsite.26.desc
+	picture = GFX_evt_physics_research
+	location = from
+	show_sound = event_default
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# dismantle the ships reactor
+	option = {
+		name = HMO_DISMANTLE_REACTOR
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+		}
+	}
+	# study its construction
+	option = {
+		# get next tier of reactor
+		name = HMO_STUDY_REACTOR
+		owner = {
+			if = {
+				limit = {
+					has_technology = tech_zero_point_power
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier2researchreward
+					min = @tier2researchmin
+					max = @tier2researchmax
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_antimatter_power
+				}
+				add_research_option = tech_zero_point_power
+				add_tech_progress = {
+					tech = tech_zero_point_power
+					progress = 0.2
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_cold_fusion_power
+				}
+				add_research_option = tech_antimatter_power
+				add_tech_progress = {
+					tech = tech_antimatter_power
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_fusion_power
+				}
+				add_research_option = tech_cold_fusion_power
+				add_tech_progress = {
+					tech = tech_cold_fusion_power
+					progress = 0.4
+				}
+			}
+			else = {
+				add_research_option = tech_fusion_power
+				add_tech_progress = {
+					tech = tech_fusion_power
+					progress = 0.5
+				}
+			}
+		}
+	}
+	# scavengers option
+	option = {
+		name = HMO_DO_BOTH
+		trigger = {
+			owner = {
+				OR = {
+					has_valid_civic = civic_scavengers
+					has_valid_civic = civic_corporate_scavengers
+				}
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier2materialreward
+				min = @tier2materialmin
+				max = @tier2materialmax
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					has_technology = tech_zero_point_power
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier2researchreward
+					min = @tier2researchmin
+					max = @tier2researchmax
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_antimatter_power
+				}
+				add_research_option = tech_zero_point_power
+				add_tech_progress = {
+					tech = tech_zero_point_power
+					progress = 0.2
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_cold_fusion_power
+				}
+				add_research_option = tech_antimatter_power
+				add_tech_progress = {
+					tech = tech_antimatter_power
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_fusion_power
+				}
+				add_research_option = tech_cold_fusion_power
+				add_tech_progress = {
+					tech = tech_cold_fusion_power
+					progress = 0.4
+				}
+			}
+			else = {
+				add_research_option = tech_fusion_power
+				add_tech_progress = {
+					tech = tech_fusion_power
+					progress = 0.5
+				}
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+# fate (branching event)
+fleet_event = {
+	id = HMO_arcsite.27
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+		# Fixed outcomes if the arc site is abandoned part way or inherited from another empire.
+		random_list = {
+			1 = {
+				modifier = {
+					factor = 0
+					owner = {
+						OR = {
+							has_ethic = ethic_gestalt_consciousness
+						}
+					}
+				}
+				fleet_event = { id = HMO_arcsite.28 } # Consumer Goods
+			}
+			1 = {
+				modifier = {
+					factor = 2
+					owner = {
+						OR = {
+							has_ethic = ethic_fanatic_materialist
+							has_ethic = ethic_materialist
+						}
+					}
+				}
+				fleet_event = { id = HMO_arcsite.29 } # research
+			}
+			1 = {
+				modifier = {
+					factor = 2
+					owner = {
+						OR = {
+							has_ethic = ethic_fanatic_militarist
+							has_ethic = ethic_militarist
+						}
+					}
+				}
+				fleet_event = { id = HMO_arcsite.30 } # alloys
+			}
+			1 = {
+				fleet_event = { id = HMO_arcsite.31 } # energy credits
+			}
+			1 = {
+				modifier = {
+					factor = 0
+					owner = {
+						OR = {
+							has_valid_civic = civic_catalytic_processing
+							has_valid_civic = civic_hive_catalytic_processing
+							has_valid_civic = civic_machine_catalytic_processing
+							has_valid_civic = civic_corporate_catalytic_processing
+						}
+					}
+				}
+				fleet_event = { id = HMO_arcsite.32 } # minerals
+			}
+		}
+	}
+}
+
+# consumer goods cargo | fromfrom = arcsite
+fleet_event = {
+	id = HMO_arcsite.28
+	title = HMO_arcsite.28.name
+	desc = HMO_arcsite.28.desc
+	picture = GFX_evt_ship_offloading_cargo
+	location = from
+	show_sound = event_default
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	# ok
+	option = {
+		name = OK
+		owner = {
+			add_resource = { consumer_goods = 400 }
+		}
+		fromfrom = { set_site_progress_locked = no }
+	}
+}
+
+
+# research cargo | fromfrom = arcsite
+fleet_event = {
+	id = HMO_arcsite.29
+	title = HMO_arcsite.29.name
+	desc = HMO_arcsite.29.desc
+	picture = GFX_evt_ship_offloading_cargo
+	location = from
+	show_sound = event_default
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	# ok
+	option = {
+		name = OK
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		fromfrom = { set_site_progress_locked = no }
+	}
+}
+
+# alloys cargo | fromfrom = arcsite
+fleet_event = {
+	id = HMO_arcsite.30
+	title = HMO_arcsite.30.name
+	desc = HMO_arcsite.30.desc
+	picture = GFX_evt_ship_offloading_cargo
+	location = from
+	show_sound = event_default
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	# ok
+	option = {
+		name = OK
+		owner = {
+			add_resource = { alloys = 200 }
+		}
+		fromfrom = { set_site_progress_locked = no }
+	}
+}
+
+# energy credits cargo | fromfrom = arcsite
+fleet_event = {
+	id = HMO_arcsite.31
+	title = HMO_arcsite.31.name
+	desc = HMO_arcsite.31.desc
+	picture = GFX_evt_ship_offloading_cargo
+	location = from
+	show_sound = event_default
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	# ok
+	option = {
+		name = OK
+		owner = {
+			add_resource = { energy = 1000 }
+		}
+		fromfrom = { set_site_progress_locked = no }
+	}
+}
+
+# minerals cargo | fromfrom = arcsite
+fleet_event = {
+	id = HMO_arcsite.32
+	title = HMO_arcsite.32.name
+	desc = HMO_arcsite.32.desc
+	picture = GFX_evt_ship_offloading_cargo
+	location = from
+	show_sound = event_default
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	# ok
+	option = {
+		name = OK
+		owner = {
+			add_resource = { minerals = 600 }
+		}
+		fromfrom = { set_site_progress_locked = no }
+	}
+}
+
+# regenerating hull | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.33
+	title = HMO_arcsite.33.name
+	desc = HMO_arcsite.33.desc
+	picture = GFX_evt_glitchy_matrix
+	location = from
+	show_sound = event_mystic_reveal
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# setup a dedicated harvest zone
+	option = {
+		name = HMO_arcsite.33.a
+		from.planet = {
+			add_deposit = d_HMO_crashed_ship_alloy_farm_zone
+			last_added_deposit = {
+				set_deposit_flag = keep_deposit_on_terraform
+			}
+		}
+	}
+	# do science on it
+	option = {
+		name = HMO_arcsite.33.b
+		trigger = {
+			owner = {
+				NOT = { has_technology = tech_regenerative_hull_tissue }
+			}
+		}
+		owner = {
+			add_research_option = tech_regenerative_hull_tissue
+			add_tech_progress = {
+				tech = tech_regenerative_hull_tissue
+				progress = 0.9
+			}
+		}
+	}
+	# scavengers option
+	option = {
+		name = HMO_DO_BOTH
+		trigger = {
+			owner = {
+				OR = {
+					has_valid_civic = civic_scavengers
+					has_valid_civic = civic_corporate_scavengers
+				}
+			}
+		}
+		from.planet = {
+			add_deposit = d_HMO_crashed_ship_alloy_farm_zone
+			last_added_deposit = {
+				set_deposit_flag = keep_deposit_on_terraform
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					has_technology = tech_regenerative_hull_tissue
+				}
+				add_monthly_resource_mult = {
+					resource = society_research
+					value = @tier2researchreward
+					min = @tier2researchmin
+					max = @tier2researchmax
+				}
+			}
+			else = {
+				add_research_option = tech_regenerative_hull_tissue
+				add_tech_progress = {
+					tech = tech_regenerative_hull_tissue
+					progress = 0.9
+				}
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+# Defect robots | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.34
+	title = HMO_arcsite.34.name
+	desc = HMO_arcsite.34.desc
+	picture = GFX_evt_robot_assembly_plant
+	location = from
+	show_sound = event_power_down
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# Dismantle the robots
+	option = {
+		name = HMO_arcsite.34.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier3materialreward
+				min = @tier3materialmin
+				max = @tier3materialmax
+			}
+		}
+	}
+	# figure out how they work
+	option = {
+		# get next tier of robots
+		name = HMO_arcsite.34.b
+		trigger = {
+			owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					has_technology = tech_synthetic_leaders
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier3researchreward
+					min = @tier3researchmin
+					max = @tier3researchmax
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_synthetic_workers
+				}
+				add_research_option = tech_synthetic_leaders
+				add_tech_progress = {
+					tech = tech_synthetic_leaders
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_droid_workers
+				}
+				add_research_option = tech_synthetic_workers
+				add_tech_progress = {
+					tech = tech_synthetic_workers
+					progress = 0.2
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_robotic_workers
+				}
+				add_research_option = tech_droid_workers
+				add_tech_progress = {
+					tech = tech_droid_workers
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_robotic_workers
+				}
+				add_research_option = tech_sapient_ai
+				add_tech_progress = {
+					tech = tech_droid_workers
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_powered_exoskeletons
+				}
+				add_research_option = tech_robotic_workers
+				add_tech_progress = {
+					tech = tech_robotic_workers
+					progress = 0.4
+				}
+			}
+			else = {
+				add_research_option = tech_powered_exoskeletons
+				add_tech_progress = {
+					tech = tech_powered_exoskeletons
+					progress = 0.5
+				}
+			}
+		}
+	}
+	# scavengers option
+	option = {
+		name = HMO_DO_BOTH
+		trigger = {
+			owner = {
+				OR = {
+					has_valid_civic = civic_scavengers
+					has_valid_civic = civic_corporate_scavengers
+				}
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier3materialreward
+				min = @tier3materialmin
+				max = @tier3materialmax
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					has_technology = tech_synthetic_leaders
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier3researchreward
+					min = @tier3researchmin
+					max = @tier3researchmax
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_synthetic_workers
+				}
+				add_research_option = tech_synthetic_leaders
+				add_tech_progress = {
+					tech = tech_synthetic_leaders
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_droid_workers
+				}
+				add_research_option = tech_synthetic_workers
+				add_tech_progress = {
+					tech = tech_synthetic_workers
+					progress = 0.2
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_robotic_workers
+				}
+				add_research_option = tech_droid_workers
+				add_tech_progress = {
+					tech = tech_droid_workers
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_robotic_workers
+				}
+				add_research_option = tech_sapient_ai
+				add_tech_progress = {
+					tech = tech_droid_workers
+					progress = 0.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_technology = tech_powered_exoskeletons
+				}
+				add_research_option = tech_robotic_workers
+				add_tech_progress = {
+					tech = tech_robotic_workers
+					progress = 0.4
+				}
+			}
+			else = {
+				add_research_option = tech_powered_exoskeletons
+				add_tech_progress = {
+					tech = tech_powered_exoskeletons
+					progress = 0.5
+				}
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+# fate of the ship | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.35
+	title = HMO_arcsite.35.name
+	desc = HMO_arcsite.35.desc
+	picture = GFX_evt_relic_shipyard
+	location = from
+	show_sound = event_finding_loot
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# Research the ship
+	option = {
+		name = HMO_SETUP_SHIP_RESEARCH_ZONE
+		custom_tooltip = HMO_arcsite.35.a.tooltip
+		hidden_effect = {
+			from.planet = {
+				remove_deposit = d_HMO_crashed_ship
+				add_deposit = d_HMO_crashed_ship_tech
+				last_added_deposit = {
+					set_deposit_flag = keep_deposit_on_terraform
+				}
+			}
+		}
+	}
+	# Scrap the ship
+	option = {
+		name = HMO_SETUP_SHIP_SCRAP_ZONE
+		custom_tooltip = HMO_arcsite.35.b.tooltip
+		hidden_effect = {
+			from.planet = {
+				remove_deposit = d_HMO_crashed_ship
+				add_deposit = d_HMO_crashed_ship_scrap
+				last_added_deposit = {
+					set_deposit_flag = keep_deposit_on_terraform
+				}
+			}
+		}
+	}
+	# Scavengers option
+	option = {
+		name = HMO_DO_BOTH
+		custom_tooltip = HMO_arcsite.35.c.tooltip
+		hidden_effect = {
+			from.planet = {
+				remove_deposit = d_HMO_crashed_ship
+				add_deposit = d_HMO_crashed_ship_mixed
+				last_added_deposit = {
+					set_deposit_flag = keep_deposit_on_terraform
+				}
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+		if = {
+            limit = { owner = { has_policy_flag = scfe_archaeology_cleanup_active } }
+            destroy_archaeological_site = from
+        }
+	}
+}
+
+######################################
+# "Project Eternum" by Metallichydra #
+######################################
+
+# Robot Factory | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.100
+	title = HMO_arcsite.100.name
+	desc = HMO_arcsite.100.desc
+	picture = GFX_evt_robot_assembly_plant
+	location = from
+	show_sound = event_mystic_reveal
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# take the computer apart for a substantial alloy reward
+	option = {
+		name = HMO_arcsite.100.a
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+# Neural Interfacing | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.105
+	title = HMO_arcsite.105.name
+	desc = HMO_arcsite.105.desc
+	picture = GFX_evt_synth_situation
+	location = from
+	show_sound = event_mystic_reveal
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# take the computer apart for a substantial alloy reward
+	option = {
+		name = HMO_arcsite.105.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+# computer terminal | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.110
+	title = HMO_arcsite.110.name
+	desc = HMO_arcsite.110.desc
+	picture = GFX_evt_glitchy_matrix
+	location = from
+	show_sound = event_power_down
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# take the computer apart for a substantial alloy reward
+	option = {
+		name = HMO_arcsite.110.a
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+# computer terminal | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.115
+	title = HMO_arcsite.115.name
+	desc = HMO_arcsite.115.desc
+	picture = GFX_evt_society_research
+	location = from
+	show_sound = event_mystic_reveal
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# take the computer apart for a substantial alloy reward
+	option = {
+		name = HMO_arcsite.115.a
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+# computer terminal | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.120
+	title = HMO_arcsite.120.name
+	desc = HMO_arcsite.120.desc
+	picture = GFX_evt_intelligence_report
+	location = from
+	show_sound = event_mystic_reveal
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	# take the computer apart for a substantial alloy reward
+	option = {
+		name = HMO_arcsite.120.a
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+}
+
+# computer terminal | from = arcsite
+fleet_event = {
+	id = HMO_arcsite.125
+	title = HMO_arcsite.125.name
+	desc = HMO_arcsite.125.desc
+	picture = GFX_evt_synth_situation
+	location = from
+	show_sound = event_bad_omen
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+		hidden_effect = {
+			owner = {
+				random_situation = {
+					limit = {
+						is_situation_type = HMO_situation_planned_obsolescence
+					}
+					set_situation_flag = situation_transformation_pause
+				}
+			}
+		}
+	}
+
+	# take the computer apart for a substantial alloy reward
+	option = {
+		name = HMO_arcsite.125.a
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+		hidden_effect = {
+			owner = {
+				random_situation = {
+					limit = {
+						is_situation_type = HMO_situation_planned_obsolescence
+						has_situation_flag = situation_transformation_pause
+					}
+					remove_situation_flag = situation_transformation_pause
+				}
+			}
+		}
+	}
+}

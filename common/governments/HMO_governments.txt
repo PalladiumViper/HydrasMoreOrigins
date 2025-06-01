@@ -1,0 +1,297 @@
+#gov_example = {
+#	possible = {}							# Determines if a government name can be chosen. AND trigger, scope: country; valid triggers: has_ethic, has_authority, has_valid_civic; everything else is undefined behavior!
+#	weight = {								# scriptable value, scope: country; the (possible) government type with the biggest weight is assigned to the country
+#		base = 100
+#	}
+#
+#	ruler_title = RT_KING					# translation tag for male ruler's title
+#	ruler_title_female = RT_QUEEN			# translation tag for female ruler's title
+#	heir_title = HT_CROWN_PRINCE			# translation tag for male heir's title
+#	heir_title_female = HT_CROWN_PRINCESS	# translation tag for female heir's title
+#	use_regnal_names = yes / no				# default: no
+#	dynastic_last_names = yes / no			# default: no
+#	should_force_rename = yes / no			# default: no - if set to yes, empires changing to or from this government will be renamed even if authority type does not change
+#
+#	election_candidates = {					# scriptable value to weight election candidates for oligarchic elections, scope: leader
+#		modifier = {
+#			add = 100
+#			leader_class = ruler
+#		}
+#	}
+#}
+
+# Insurgency
+gov_HMO_insurgency = {
+	ruler_title = HMO_INSURGENCY_LEADER_TITLE
+
+	should_force_rename = no
+
+	possible = {
+		has_valid_civic = civic_HMO_insurgency
+	}
+
+	weight = {
+		base = 100000
+	}
+}
+
+# Insurgency
+#gov_HMO_resproject = {
+#	ruler_title = HMO_RESPROJECT_LEADER_TITLE
+#
+#	should_force_rename = no
+#
+#	
+#	
+#	possible = {
+#		has_valid_civic = civic_HMO_resproject
+#	}
+#
+#	weight = {
+#		base = 100000
+#	}
+#}
+
+gov_HMO_martial_law = {
+	ruler_title = HMO_MARTIAL_LAW_LEADER_TITLE
+	ruler_title_female = HMO_MARTIAL_LAW_LEADER_TITLE
+	
+	should_force_rename = no
+	
+	possible = {
+		is_scope_valid = yes
+		has_origin = origin_HMO_zombies
+		NOR = {
+			has_country_flag = HMO_infinite_martial_law
+			has_country_flag = HMO_normal_authority
+			has_country_flag = HMO_encryption_authority
+		}
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_infinite_martial_law = {
+	ruler_title = HMO_MARTIAL_LAW_LEADER_TITLE
+	ruler_title_female = HMO_MARTIAL_LAW_LEADER_TITLE
+	
+	should_force_rename = no
+	
+	possible = {
+		is_scope_valid = yes
+		has_origin = origin_HMO_zombies
+		has_country_flag = HMO_infinite_martial_law
+		NOR = {
+			
+			has_country_flag = HMO_normal_authority
+			has_country_flag = HMO_encryption_authority
+		}
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_oligarchic_encryption = {
+	ruler_title = RT_CHIEF_PRECENTOR
+	ruler_title_female = RT_CHIEF_PRECENTOR_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_oligarchic_authority = yes
+		has_country_flag = HMO_encryption_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_dictatorial_encryption = {
+	ruler_title = RT_EXECUTOR
+	ruler_title_female = RT_EXECUTOR_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_dictatorial_authority = yes
+		has_country_flag = HMO_encryption_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_imperial_encryption = {
+	ruler_title = RT_EMPEROR
+	ruler_title_female = RT_EMPRESS
+	heir_title = HT_CROWN_PRINCE
+	heir_title_female = HT_CROWN_PRINCESS
+
+	use_regnal_names = yes
+	dynastic_last_names = yes
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_imperial_authority = yes
+		has_country_flag = HMO_encryption_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_corporate_encryption = {
+	ruler_title = RT_CEO
+	ruler_title_female = RT_CEO_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_megacorp = yes
+		has_country_flag = HMO_encryption_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_oligarchic_weaponry = {
+	ruler_title = RT_CHIEF_PRECENTOR
+	ruler_title_female = RT_CHIEF_PRECENTOR_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_oligarchic_authority = yes
+		has_country_flag = HMO_cyber_weaponry_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_dictatorial_weaponry = {
+	ruler_title = RT_EXECUTOR
+	ruler_title_female = RT_EXECUTOR_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_dictatorial_authority = yes
+		has_country_flag = HMO_cyber_weaponry_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_imperial_weaponry = {
+	ruler_title = RT_EMPEROR
+	ruler_title_female = RT_EMPRESS
+	heir_title = HT_CROWN_PRINCE
+	heir_title_female = HT_CROWN_PRINCESS
+
+	use_regnal_names = yes
+	dynastic_last_names = yes
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_imperial_authority = yes
+		has_country_flag = HMO_cyber_weaponry_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_corporate_weaponry = {
+	ruler_title = RT_CEO
+	ruler_title_female = RT_CEO_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_megacorp = yes
+		has_country_flag = HMO_cyber_weaponry_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_oligarchic_zombie = {
+	ruler_title = RT_CHIEF_PRECENTOR
+	ruler_title_female = RT_CHIEF_PRECENTOR_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_oligarchic_authority = yes
+		has_country_flag = HMO_cyber_zombie_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_dictatorial_zombie = {
+	ruler_title = RT_EXECUTOR
+	ruler_title_female = RT_EXECUTOR_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_dictatorial_authority = yes
+		has_country_flag = HMO_cyber_zombie_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_imperial_zombie = {
+	ruler_title = RT_EMPEROR
+	ruler_title_female = RT_EMPRESS
+	heir_title = HT_CROWN_PRINCE
+	heir_title_female = HT_CROWN_PRINCESS
+
+	use_regnal_names = yes
+	dynastic_last_names = yes
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_imperial_authority = yes
+		has_country_flag = HMO_cyber_zombie_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_corporate_zombie = {
+	ruler_title = RT_CEO
+	ruler_title_female = RT_CEO_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_megacorp = yes
+		has_country_flag = HMO_cyber_zombie_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+# Bug Branch Authorities
+inline_script = {
+	script = "comptriggers/MO_Hydra_bug_governments"
+	HAS_MOD = @has_bug_branch
+}

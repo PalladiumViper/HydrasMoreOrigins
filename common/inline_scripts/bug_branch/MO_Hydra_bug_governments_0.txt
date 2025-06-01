@@ -1,0 +1,44 @@
+gov_HMO_democratic_encryption = {
+	ruler_title = RT_PRESIDENT
+	ruler_title_female = RT_PRESIDENT_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_democratic_authority = yes
+		has_country_flag = HMO_encryption_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_democratic_weaponry = {
+	ruler_title = RT_PRESIDENT
+	ruler_title_female = RT_PRESIDENT_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_democratic_authority = yes
+		has_country_flag = HMO_weaponry_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_democratic_zombie = {
+	ruler_title = RT_PRESIDENT
+	ruler_title_female = RT_PRESIDENT_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		is_democratic_authority = yes
+		has_country_flag = HMO_cyber_zombie_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}

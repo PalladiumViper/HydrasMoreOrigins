@@ -1,0 +1,3 @@
+inline_script = {
+	script = bug_branch/MO_Hydra_ascension_600_end_$HAS_MOD$
+}

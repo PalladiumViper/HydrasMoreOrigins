@@ -1,0 +1,9 @@
+﻿l_english:
+ # Placeholder policies
+ mh_fake_policy: ""
+ mh_fake_policy_desc: ""
+ mh_fake_policy.name: ""
+ scfe_archaeology_cleanup_active_name: ""
+ policy_mh_fake_policy: ""
+ policy_mh_fake_policy_desc: ""
+ mh_fake_policy.name_desc: ""

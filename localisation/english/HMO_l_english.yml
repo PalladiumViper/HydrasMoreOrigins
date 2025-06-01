@@ -1,0 +1,1849 @@
+﻿l_english:
+ ################################
+ # Banished Threat Origin
+ ################################
+ HMO_origin_banished_threat: "Banished Threat"
+ HMO_origin_banished_threat_desc: "Defeated and sealed on their homeworld, this empire has been plotting their revenge for centuries. Only now has the shield started to weaken."
+ #HMO_origin_banished_threat_effects: "- Start on a §H$pc_nuked$§! as your capital.\n- Your Guaranteed Habitable Worlds are §Hshielded worlds§! with deteriorating shields."
+ HMO_origin_banished_threat_effects: "- $HOMEWORLD$ ['concept_pc_nuked']$NEW_LINE$- $SPECIES_TRAITS$ ['concept_HMO_survivor']$NEW_LINE$- ['concept_guaranteed_colonies']: Sealed behind ['concept_HMO_deteriorating_shields']"
+ HMO_origin_banished_threat_machines: "Banished Threat"
+ HMO_origin_banished_threat_machines_desc: "Defeated and sealed on their homeworld, this empire has been plotting their revenge for centuries. Only now has the shield started to weaken."
+ HMO_origin_banished_threat_machines_effects: "- $HOMEWORLD$ ['concept_pc_nuked']$NEW_LINE$- $SPECIES_TRAITS$ ['concept_HMO_robot_survivor']$NEW_LINE$- ['concept_guaranteed_colonies']: Sealed behind ['concept_HMO_deteriorating_shields']"
+ HMO_civic_tooltip_genocidal: "Has a ['concept_genocidal_civics'] Civic"
+ 
+ HMO_banished_threat_start_NAME: "Banished Threat"
+ HMO_banished_threat_start_DESC: "This will always be the starting system when using the Banished Threat Origin."
+
+ # Traits
+ HMO_trait_ancient_organism: "Ancient Organism"
+ HMO_trait_ancient_organism_desc: "This species hail from a time long before the current generations of spacefaring empires."
+ HMO_trait_ancient_configuration: "Ancient Configuration"
+ HMO_trait_ancient_configuration_desc: "These machines were built by an ancient precursor species long before any of the current generations of spacefaring empires even evolved basic sapience."
+
+# old shield down messages
+ HMO_origin.2201.name: "Shield Down"
+ HMO_origin.2202.desc: "We did it! The shield is now down. The planet looks like its one of our old core worlds, although all that remains of its past settlements are a few ruins."
+ HMO_origin.2202.desc.default: "We did it! The shield is now down. The planet looks like it was once a colony of an ancient empire, although all that remains of its past settlements are a few ruins."
+# new shield down messages
+ HMO_origin.2201.desc: "We did it! The shield is now down!"
+ HMO_origin.2201.a: "The planet, however, was revealed to be a barren wasteland."
+ HMO_origin.2201.b: "The planet, however, appears to be the shattered remnants of one of our core worlds. There's nothing left now."
+ HMO_origin.2201.b.nonthreat: "The planet, however, appears to be the shattered remnants of an ancient core world. There's nothing left now."
+ HMO_origin.2201.c: "The planet looks like its one of our old core worlds."
+ HMO_origin.2201.c.nonthreat: "The planet looks like it was once a colony of an ancient empire."
+ HMO_origin.2201.d: "A lot of our old infrastructure seems to have survived the long time in isolation."
+ HMO_origin.2201.d.nonthreat: "A lot of its former inhabitants old infrastructure seems to have survived the long time in isolation."
+ HMO_origin.2201.e: "The planet, however, does not seem like it is beyond saving, and we could theoretically restore its ecosystem with a big enough investment."
+
+ HMO_origin.2150.name: "Old Friends"
+ HMO_origin.2150.desc: "While our own shield was sufficiently damaged to crack on its own, the other colonies in our capital system seems to not have been so lucky. Still, the lack of maintenance has been catastrophic for their integrity."
+ HMO_origin.2150.a: "We will take back what is ours."
+ HMO_origin.2150.a.tooltip: "We will prepare special projects to free our former colonies."
+ HMO_origin.2150.b: "It is not worth expending resources on them."
+ 
+ HMO_TAKE_DOWN_BANISHED_SHIELD_VENUS: "Deteriorating Shield"
+ HMO_TAKE_DOWN_BANISHED_SHIELD_VENUS_DESC: "The energy barrier that has encapsulated Venus has deteriorated during the eons. We could try to bring it down."
+ 
+ HMO_TAKE_DOWN_BANISHED_SHIELD_MARS: "Deteriorating Shield"
+ HMO_TAKE_DOWN_BANISHED_SHIELD_MARS_DESC: "The energy barrier that has encapsulated Mars has deteriorated during the eons. We could try to bring it down."
+ 
+ HMO_TAKE_DOWN_BANISHED_SHIELD: "Take down deteriorating shield."
+ HMO_TAKE_DOWN_BANISHED_SHIELD_FAIL: "Take down deteriorating shield."
+ SHIELDED_PLANET_PROJECT_DESC: "This planet is encased in some kind of impenetrable shield."
+ 
+ HMO_origin.2151.name: "Shield Down"
+ HMO_origin.2151.desc: "We have have managed to take down the shield around [FromFrom.GetName]. The toxic hellscape underneath might not be the most inviting home, but with enough technological progress it should be possible to return it to its former glory."
+ HMO_origin.2151.a: "Not Too Shabby."
+ HMO_origin.2151.a.tooltip: "[FromFrom.GetName] has been revealed to be a toxic world that could potentially be terraformed."
+ 
+ HMO_origin.2152.name: "Shield Down"
+ HMO_origin.2152.desc: "We have have managed to take down the shield around [FromFrom.GetName]. The barren wasteland underneath might not be the verdant paradise we remember, but returning it to its former glory shouldn't be too great of a task to overcome."
+ HMO_origin.2152.a: "[FromFrom.GetName] will be restored."
+ HMO_origin.2152.a.tooltip: "[FromFrom.GetName] has been revealed to be a barren world that could be terraformed once we obtain the necessary technologies."
+
+# new system entered messages (old used anomalies)
+ HMO_origin.2200.name: "Ancient Colony"
+ HMO_origin.2200.desc.a: "The [Root.GetName] has found one of our old systems! While most of our planets appear to have been shattered, some appears to have been shielded.\nThey appear to be in a bad condition, and we could easily bring down the shields."
+ HMO_origin.2200.desc.b: "The [Root.GetName] has found what appears to be an ancient system that once belonged to an empire a few million years ago. Some of the planets have been encased in some kind of impenetrable barrier, but they are deteriorating and we should be able to take it down if we want."
+ HMO_origin.2200.a: "Do it"
+ HMO_origin.2200.a.tooltip: "Hopefully something from our old empire still remains"
+ HMO_origin.2200.b: "Take down those shields"
+ HMO_origin.2200.b.tooltip: "We will attempt to breach the shields"
+ HMO_origin.2200.c: "Leave it"
+ HMO_origin.2200.c.tooltip: "Those planets must have been isolated from the wider galaxy for a reason. Better safe than sorry."
+
+# start screen messages
+ START_SCREEN_BANISHED_HMO_PURIFIERS: "A long time ago, our empire was grand. One of the mightiest the galaxy had ever seen. Our goal was to exterminate all other sapient lifeforms, something we almost succeeded in. However, those we hunted banded together in a final attempt at survival, and we were beaten back before being imprisoned in our homeworld by a shield meant to last for the rest of eternity."
+ START_SCREEN_BANISHED_HMO_SWARM: "A long time ago, our consciousness stretched across most of the galaxy. We had but one singular purpose: To devour all other lifeforms. Our prey, however, were smart, and they banded together and drove us back, taking much of our territory. By using a weapon capable of generating impervious shields, they sealed us in our home, left to rot for eternity."
+ START_SCREEN_BANISHED_HMO_EXTERMINATORS: "A long time ago, we were on the brink of achieving our goal: the destruction of all organic life. Only a few pockets of resistance was left, and it wouldn't take long before they too would have been destroyed. However, our calculations had not been correct, and by some statistical improbability, the organic lifeforms manage to defeat us. They sealed our main processing core and billions of drones on the planet of our creators behind an impenetrable shield."
+ START_SCREEN_BANISHED_HMO_PURIFIERS_PART_TWO: "Our society eventually fell into ruins, as did our homeworld due to the sudden and unexpected cutoff from the rest of the galaxy. Much technology was lost during our time behind the shield. However, recently, the shield has started to deteriorate, letting us breach it and finally setting our people free."
+ START_SCREEN_BANISHED_HMO_SWARM_PART_TWO: "Eventually, all that was left on our homeworld was the mind and our drones. We would not have survived if it was not for the cracks in the shield, allowing us to break free. Though we had lost much knowdledge because of the sudden cut-off from most of our drones, we managed to break the shield."
+ START_SCREEN_BANISHED_HMO_EXTERMINATORS_PART_TWO: "Eventually, our sensors picked up irregularities. The shield had been flawed, or perhaps it was never meant to last forever. We acted swiftly and broke the shield, allowing us to once again access the wider galaxy."
+ START_SCREEN_BANISHED_HMO_PURIFIERS_PART_THREE: "Now, with the re-descovery of the hyperdrive we can finally fullfill our destiny of galactic purity!"
+ START_SCREEN_BANISHED_HMO_SWARM_PART_THREE: "Now, with the re-descovery of the hyperdrive we can finally fullfill our destiny of devouring the galaxy!"
+ START_SCREEN_BANISHED_HMO_EXTERMINATORS_PART_THREE: "While much of our technological data had been lost by the cutoff to our data centers, we managed to re-create hyperdrives. Our goal of Organic eradication is once again in reach."
+
+ ### Event Chains
+ ## Ancient Caches
+ HMO_ancient_caches_chain_title: "Search for Ancient Caches of Technology"
+ HMO_ancient_caches_chain_desc: "We should search for any ancient structures that belonged to us before our fall, and secure the secrets they might contain for ourselves."
+ HMO_caches_collected: "Ancient Caches Collected"
+ HMO_origin.2001.name: "Search for Ancient Caches of Technology"
+ HMO_origin.2001.desc: "Before we were sealed in our homeworld, our empire had many outposts, colonies and ships. While most of our colonies most likely suffered the same fate as our homeworld or were just outright destroyed, many of our highest ranking [Owner.GetScientistPlural] believe there are still some of our old stations out there, some of which might contain some of the knowledge we lost in the millenia in isolation.\n\nIf that is the case, then we should get to them quickly, before anyone else finds them and uses our own technology against us."
+ HMO_origin.2001.a: "Launch an expedition"
+ HMO_origin.2001.a.tooltip: "Begins the Search for Ancient Caches of Technology Event Chain"
+ HMO_cache_search_1_poi: "Search [cache_system_1.GetName]"
+ HMO_cache_search_2_poi: "Search [cache_system_2.GetName]"
+ HMO_cache_search_3_poi: "Search [cache_system_3.GetName]"
+ HMO_cache_search_4_poi: "Search [cache_system_4.GetName]"
+ HMO_cache_search_1_poi_desc: "Based on what remains of our Star Charts, we assume this system to have been under our control once."
+ HMO_RECOVER_CACHE_PROJECT: "Search for Ancient Caches of Technology"
+ HMO_RECOVER_CACHE_PROJECT_DESC: "We should recover what little remains of our old empire, preferably before anyone else."
+ 
+ HMO_origin.2003.name: "Station Debris Discovered"
+ HMO_origin.2003.desc: "[Root.GetName] has detected the remains of one of an old starbase of ours in the [Root.GetStarName] system. We should begin recovering as much technology from it as soon as possible."
+ HMO_origin.2003.a: "OK"
+ HMO_origin.2003.a.tooltip: "Starbase Remains:\nIssues Special Project: §YSearch for Ancient Caches of Technology§!"
+ HMO_origin.2005.name: "Military Technology Recovered"
+ HMO_origin.2005.desc: "We have recovered some of our lost military technology."
+ HMO_origin.2006.name: "Scientific Data Found"
+ HMO_origin.2006.desc: "We have recovered a lot of scientific data."
+ HMO_origin.2007.name: "Alloys Recovered"
+ HMO_origin.2007.desc: "We have recovered the contents of an ancient storage center in the [Root.GetStarName] system."
+ HMO_origin.2008.name: "Star Chart Recovered"
+ HMO_origin.2008.desc: "We have recovered what appears to be parts of an old Star Chart. While it is far too old to be of any use, it does show a grand empire covering more than half the galaxy!\n\nIt's name is [Owner.GetName]."
+ HMO_origin.2049.name: "Ancient Knowledge Collected"
+ HMO_origin.2049.desc: "We have successfully collected all of our old technology that remains! While there is a risk that there may be more out there, the chance of that is minimal, as it is believed that those we found were the only ones that remained, the rest most likely having been destroyed eons ago in the grand war, or simply having been eroded and destroyed by solar winds."
+ 
+ ## Ancient Rivals
+ HMO_origin.2050.name: "Ancient Rival"
+ HMO_origin.2050.desc: ""
+ HMO_origin.2050.a: "We must find them"
+ HMO_origin.2050.a.tooltip: "Begins the Ancient Rival Event Chain"
+ 
+ ## Isolation Time
+ HMO_isolation_time_chain_title: "Eons Have Passed"
+ HMO_isolation_time_chain_desc: "Temporal distortions have left our previous data unusable. Synchronizing it by visiting star systems that were present during our time before the shielding could help us immensely"
+ HMO_black_holes_discovered: "Systems Visited"
+ 
+ HMO_origin.2100.name: "Eons Have Passed"
+ HMO_origin.2100.desc: "While we were sealed in our homeworld, the galaxy at large has continued to evolve at the same speed as it always has.\n\nFor us, however, time has been inconsistent. Life being sealed away is one of temporal uncertainty, not only because of the prolonged isolation, but also because of the effects the energy barrier has on the timestream.\n\nWith such crucial knowledge as the time disrepancy between our downfall and now, it is imperative to figure out how long it has been. Already have we singled out a few star systems from our time that are still connected to the hyperlane network, from which we could get the data needed."
+ HMO_origin.2100.a: "Launch an expedition"
+ HMO_origin.2100.a.tooltip: "Begins the $HMO_isolation_time_chain_title$ Event Chain"
+ 
+ HMO_isolation_time_1_poi: "Search [HMO_black_hole_system_1.GetName]"
+ HMO_isolation_time_2_poi: "Search [HMO_black_hole_system_2.GetName]"
+ HMO_isolation_time_3_poi: "Search [HMO_black_hole_system_3.GetName]"
+ HMO_isolation_time_1_poi_desc: "This star is one we still have data on from before the sealing of our homeworld. Gathering fresh data should help us determine how much time has passed."
+ 
+ HMO_origin.2102.name: "Data Obtained"
+ HMO_origin.2102.desc.black_hole: "The star that was once found in [solar_system.GetName] is a star no longer. Having completed its life cycle, a Black Hole is all that is left."
+ HMO_origin.2102.desc.red_giant: "What once was a young G-class star is now a Red Giant at the end of its lifespan. This puts our estimations at at least 3 billion years."
+ HMO_origin.2102.desc.pulsar: "The supermassive star that was once found in the [solar_system.GetName] system appears to have collapsed into a neutron star."
+ HMO_origin.2102.desc.neutron_star: "The neutron star in the [solar_system.GetName] is still here. Knowing that such a star cannot last for more than a few billion years, this puts our estimates at a maximum of 4 billion years."
+ HMO_origin.2102.desc.brown_dwarf: "The [solar_system.GetName] system appears to no longer host an active star. Instead, a Brown Dwarf servers as its gravity anchor."
+ HMO_origin.2102.desc.default: "[solar_system.GetName] is still the same, looking much like the last time we saw it. This will unfortunately make it harder to use the data obtained to determine how long has passed."
+
+ HMO_origin.2103.name: "Eons Have Truly Passed"
+ HMO_origin.2103.desc: "From the data gathered, we have estimated that billions of years have passed since we were sealed in our homeworld. From this we'd wager that those who banished us are no longer here.\n\nUnless of course a similar fate has befallen them."
+ 
+ # earth deposits
+ HMO_banished_threat_sol_start_NAME: "Banished Sol"
+ HMO_banished_threat_sol_start_DESC: "Optional starting system for the Banished Threat Origin, using Sol as a base."
+ d_HMO_banished_scandinavian_reclamation_sector: "Scandinavian ReReclamation Sector"
+ d_HMO_banished_scandinavian_reclamation_sector_desc: "Reclaimed from radiation, not once, but twice. Almost none of the radiation remains. Almost."
+ d_HMO_banished_saharan_irrigation_project: "Radioactive Fields"
+ d_HMO_banished_saharan_irrigation_project_desc: "No one today knows that this piece of land was once a desert, turned into a green paradise to be used for agricultural purposes, then turned into a radioactive warzone by extraterrestials seeking revenge."
+ d_HMO_banished_delhi_sprawl: "Delhi Ruins"
+ d_HMO_banished_delhi_sprawl_desc: "Lakshmi Commerce Tower was the tallest building on Earth for the better part of five centuries, and its unique shape remained an iconic feature of the Delhi skyline, until its destruction during the 32nd Cycle."
+ d_HMO_banished_boswash_metropolitan_axis: "BosWash Metropolitan Axis"
+ d_HMO_banished_boswash_metropolitan_axis_desc: "Once a gigantic metropolis, these ruins are all that remains."
+ d_HMO_banished_pearl_river_agglomerate: "Pearl River City"
+ d_HMO_banished_pearl_river_agglomerate_desc: "The first region on Earth to be officially considered rebuilt after its destruction. Several other developing urban regions would eventually try to develop their own versions of the Golden Delta's successful reclamation strategies."
+ d_HMO_banished_mauritanian_security_zone: "Abandoned Ruins"
+ d_HMO_banished_mauritanian_security_zone_desc: "Old abandoned ruins. An almost eroded monument is dedicated to a general and his soldiers."
+ d_HMO_banished_great_albertan_crater: "Great Albertan Crater"
+ d_HMO_banished_great_albertan_crater_desc: "A crater that is believed by some to have been left behind by the bombs that were dropped during the great revenge."
+ d_HMO_banished_great_pacific_garbage_patch: "Garbage Patch"
+ d_HMO_banished_great_pacific_garbage_patch_desc: "Before the isolation of Earth from the rest of the galaxy, most garbage had been deposited in space. After the isolation, another solution had to be found."
+ d_HMO_banished_failing_infrastructure_earth: "City Ruins"
+ d_HMO_banished_failing_infrastructure_earth_desc: "Remains of a once great city. It will have to be cleared away."
+
+ # Shielded Planets Modifiers
+ HMO_surviving_infrastructure: "Surviving Infrastructure"
+ HMO_surviving_infrastructure_desc: "Many of the buildings of the former inhabitants are still intact, cutting costs for eventual projects of our own."
+
+ ### Diplomatic Greetings
+ 
+ ## Banished Threat to Remnants
+ HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_01: "Do you still live in that ugly ruin you call your home? I think it was called [From.GetHomeWorldName]."
+ HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_02: "It's surprising your species is still alive. We thought we had eradicated all of your [From.GetSpeciesSpawnNamePlural] during the last cycle."
+ HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_03: "This time around we'll make sure no [From.GetSpeciesNamePlural] remain."
+ HMO_BANISHED_THREAT_TO_RIVAL_HOSTILE_GREETING_01: "You will pay for what you did to [Root.GetHomeWorldName]."
+ HMO_BANISHED_THREAT_TO_RIVAL_HOSTILE_GREETING_02: "This time, the colossus will be pointed at [From.GetHomeWorldName], and it will be the cracker."
+ HMO_BANISHED_THREAT_TO_RIVAL_HOSTILE_GREETING_03: "By the end of this cycle, only one of our empires will remain. And it will not be the [From.GetName]."
+ HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_04: "By now you should have figured out that cowardly tactic of yours will never work. Stand up and fight the [From.GetName], instead of fleeing like last time. Maybe then you will prove more of a challenge..."
+ HMO_BANISHED_THREAT_TO_REMNANTS_HOSTILE_GREETING_05: "By being isolated from the wider galaxy, we have been able to debate the nonexistence of artificial souls for centuries. Maybe you should let the [From.GetName] recieve the same treatment so you can come to the same conclusion?"
+ HMO_BANISHED_THREAT_TO_REMNANTS_SAME_SPECIES_HOSTILE_GREETING_01: "It seems like one of our old colonies has grown soft over the years."
+ HMO_BANISHED_THREAT_TO_REMNANTS_SAME_SPECIES_HOSTILE_GREETING_02: "We want nothing to do with you, ugly xeno scum."
+ HMO_BANISHED_THREAT_TO_REMNANTS_01_WAR_GREETING: "This time we'll put you into the history books for good."
+ HMO_BANISHED_THREAT_TO_REMNANTS_02_WAR_GREETING: "Do you think future [Root.GetSpeciesAdj] archeologists will be able to uncover [Root.GetAdj] ruins, or will they be too damaged to be recognized?"
+ HMO_BANISHED_THREAT_TO_REMNANTS_03_WAR_GREETING: "Surrender, and we will let you become what you were before this war: Ruins."
+ HMO_BANISHED_THREAT_TO_RIVAL_01_WAR_GREETING: "Do you know how long we've been waiting for this?"
+ HMO_BANISHED_THREAT_TO_RIVAL_02_WAR_GREETING: "The [Root.GetName]'s escape from our prison happening at the same time as the [From.GetAdj]'s revival was no mere coincidence. We were destinied to defeat you."
+ HMO_BANISHED_THREAT_TO_RIVAL_03_WAR_GREETING: "You cannot hope to defeat the [Root.GetName]. You couldn't even finish us off last time, and you won't get the chance this time."
+ HMO_BANISHED_THREAT_TO_REMNANTS_04_WAR_GREETING: "Do not resist. We are merely integrating you back into the [From..GetSpeciesAdj]'s true empire."
+ 
+ ## Fallen Empires to Banished Threat
+ HMO_01_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING: "Before you ask - no, we will not give back your technology."
+ HMO_02_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING: "Why don't you just dig up some of your old ruins instead of disturbing us?"
+ HMO_03_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING: "Yes?"
+ HMO_04_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING: "Speak."
+ HMO_05_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING: "This had better be good!"
+ HMO_06_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING: "What do you want?"
+ HMO_07_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING: "You should always respect your elders. Although sometimes you shouldn't."
+ HMO_08_FALLEN_EMPIRE_DISMISSIVE_TO_BANISHED_THREAT_GREETING: "What do you want?"
+
+ HMO_01_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING: "We do not care about your heritage, to us you are still primitive savages."
+ HMO_02_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING: "You have forgotten your place, [From.GetSpeciesName]. Take care that we do not issue a painful reminder."
+ HMO_03_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING: "Do you want to be isolated once again?"
+ HMO_04_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING: "How it is that you escaped from your homeworld I will never understand."
+ HMO_05_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING: "Choose your words carefully, [From.GetSpeciesName]."
+ HMO_06_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING: "When we first found ruins from your civilization, we thought they were made by savage primitives. It's good to be proven right."
+ HMO_07_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING: "History will forget you once again, [From.GetSpeciesName]."
+ HMO_08_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_GREETING: "You have escaped your fate one too many times."
+ 
+ HMO_FALLEN_EMPIRE_MECH_ANGRY_TO_BANISHED_THREAT_GREETING_01: "What do you want, machine?"
+ HMO_FALLEN_EMPIRE_MECH_ANGRY_TO_BANISHED_THREAT_GREETING_02: "We have no cause to speak to you, toaster."
+ 
+ HMO_01_FALLEN_EMPIRE_DISMISSIVE_WAR_TO_BANISHED_THREAT_GREETING: "Be silent and fight, savage."
+ HMO_02_FALLEN_EMPIRE_DISMISSIVE_WAR_TO_BANISHED_THREAT_GREETING: "After this, only the ruins of your ruins will remain."
+ HMO_FALLEN_EMPIRE_MECH_DISMISSIVE_WAR_TO_BANISHED_THREAT_GREETING_01: "Be silent and fight, machine."
+ 
+ #HMO_01_FALLEN_EMPIRE_ANGRY_WAR_TO_BANISHED_THREAT_GREETING: ""
+ #HMO_02_FALLEN_EMPIRE_ANGRY_WAR_TO_BANISHED_THREAT_GREETING: ""
+ #HMO_FALLEN_EMPIRE_MECH_ANGRY_WAR_TO_BANISHED_THREAT_GREETING_01: ""
+ 
+ #HMO_01_AWAKENED_EMPIRE_WAR_TO_BANISHED_THREAT_GREETING: ""
+ #HMO_02_AWAKENED_EMPIRE_WAR_TO_BANISHED_THREAT_GREETING: ""
+ 
+ HMO_01_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_COLOSSUS_GREETING: "Our colossus is ready to deploy a shield on [From.GetHomeWorldName] at any moment."
+ HMO_02_FALLEN_EMPIRE_ANGRY_TO_BANISHED_THREAT_COLOSSUS_GREETING: "If you want to see our colossus in action, [From.GetSpeciesName], we would be all too happy to arrange a demonstration."
+ 
+ HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_HOSTILE_GREETING_01: "You have strayed from the path set by our ancestors!"
+ HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_HOSTILE_GREETING_02: "You are but an imitation of the great [Root.GetName]!"
+ 
+ HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_NEUTRAL_GREETING_01: "[Root.GetHomeWorldName] is the homeworld of the [From.GetSpeciesAdj] species. [From.GetHomeWorldName] was just a small colony."
+ HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_NEUTRAL_GREETING_02: "Well met, fellow [From.GetSpeciesName]. Did you wish to discuss something with the [Root.GetName]?"
+ 
+ HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_FRIENDLY_GREETING_01: "We always knew we'd be reunited with our old colonies."
+ HMO_BANISHED_THREAT_TO_BANISHED_THREAT_SAME_SPECIES_FRIENDLY_GREETING_02: "If you hadn't broken free yourselves, we'd have come break you out."
+
+ ################################
+ # Scavengers Origin
+ ################################
+ origin_HMO_scavengers: "Scavengers"
+ origin_HMO_scavengers_desc: "An alien ship has recently crash-landed on this species planet, greatly accellerating their technological development and providing a source of valuable metals."
+ origin_HMO_scavengers_effects: "- $HOMEWORLD$ ['concept_HMO_scavengers_arcsite'] ['concept_archaeology_site'] and ['concept_HMO_scavengers_deposit_deposit']"
+ HMO_START_SCREEN_SCAVENGERS: "A few centuries ago, a gigantic alien spacecraft crash-landed on our planet, killing millions. The event took out most of the nations of our world, replacing the age of conflict with an age of technological progress.\n\nNow, after decades of research we have reverse-engineered the ship's FTL-Drive, allowing us to travel along the hyperlanes of the galaxy.\n\nAlthough we now reach for the stars, much of the ship still remains unexplored."
+
+# Crashed Ship Digsite
+ site_HMO_scavengers_ship: "Crashed ship"
+ site_HMO_scavengers_ship_intro: "It is time for us to launch a large investigation of the ship that brought us to where we are now."
+ HMO_arcsite.25.name: "Computer Terminal"
+ HMO_arcsite.25.desc: "Our expedition team have found what appears to be an advanced computer terminal."
+ HMO_arcsite.26.name: "Ship Reactor"
+ HMO_arcsite.26.desc: "We have located the ships reactors. Our team is ready to either dismantle it or study how it works."
+ HMO_EXTRACT_FILES: "Extract its files"
+ HMO_DISMANTLE_REACTOR: "Dismantle the reactor"
+ HMO_STUDY_REACTOR: "Study the reactor"
+ HMO_TAKE_IT_APART: "Take it apart"
+ HMO_DO_BOTH: "Do both"
+ HMO_arcsite.28.name: "Cargo room"
+ HMO_arcsite.28.desc: "We have located a cargo room full of fridges, ovens, 4D TV's and flying cars!"
+ HMO_arcsite.29.name: "Cargo room"
+ HMO_arcsite.29.desc: "We have located a cargo room full of hard drives containing research data. We still haven't figured out what the data is about, but it'll probably prove useful to our scientists."
+ HMO_arcsite.30.name: "Cargo room"
+ HMO_arcsite.30.desc: "We have located a cargo room full of alloys. In fact, it is the exact type of alloy we use to construct military ships."
+ HMO_arcsite.31.name: "Cargo room"
+ HMO_arcsite.31.desc: "We have located a cargo room full of valuable metals and gems!"
+ HMO_arcsite.32.name: "Cargo room"
+ HMO_arcsite.32.desc: "We have located a cargo room full of unrefined metal!"
+ HMO_arcsite.33.name: "Living Hull"
+ HMO_arcsite.33.desc: "While excavating a section of the ship that had been badly damaged by the crash, the excavation team made a shocking discovery: The hull was regenerating, growing, as if it was a living being!."
+ HMO_arcsite.33.a: "Setup a zone dedicated to the cultivation of the hull."
+ HMO_arcsite.33.b: "Try to replicate the effect."
+ HMO_arcsite.34.name: "Defective Robots"
+ HMO_arcsite.34.desc: "The excavation team has stumbled across a large number of defective robots. They are beyond repair, however, we could still learn something from their design."
+ HMO_arcsite.34.a: "They would make fine alloys"
+ HMO_arcsite.34.b: "Figure out how to make them"
+ HMO_arcsite.35.name: "Fate of the ship"
+ HMO_arcsite.35.desc: "After having grown exhausted after having been on the job for several years, our excavation team has proposed we setup a more permanent excavation site. Based on this ships size, it could take us decades, even centuries, to completely exhaust this digsite."
+ HMO_arcsite.35.a.tooltip: "Add additional researcher jobs at the cost of scrap miner jobs."
+ HMO_arcsite.35.b.tooltip: "Add additional scrap miner jobs at the cost of researcher jobs."
+ HMO_arcsite.35.c.tooltip: "Add additional scrap miner and researcher jobs."
+ HMO_arcsite.35.d: "Convert it into a museum for our bio-trophies"
+ HMO_arcsite.35.d.tooltip: "Add a $job_custodian_servitor_drone$ job at the cost of researcher and scrap miner jobs."
+ HMO_SETUP_SHIP_RESEARCH_ZONE: "Setup a research zone"
+ HMO_SETUP_SHIP_SCRAP_ZONE: "Harvest its hull for alloys"
+
+# Deposits
+ d_HMO_crashed_ship: "Crashed Ship"
+ d_HMO_crashed_ship_desc: "An ancient shipwreck. It's a source of harvestable technology and valuable alloys."
+ d_HMO_crashed_ship_scrap: "Crashed Ship"
+ d_HMO_crashed_ship_scrap_desc: "An ancient shipwreck. It's a source of valuable alloys."
+ d_HMO_crashed_ship_tech: "Crashed Ship"
+ d_HMO_crashed_ship_tech_desc: "An ancient shipwreck. It's a source of harvestable technology."
+ d_HMO_crashed_ship_mixed: "Crashed Ship"
+ d_HMO_crashed_ship_mixed_desc: "An ancient shipwreck. It's a source of harvestable technology and valuable alloys."
+ d_HMO_crashed_ship_alloy_farm_zone: "Alloy cultivation zone"
+ d_HMO_crashed_ship_alloy_farm_zone_desc: "A zone dedicated to nurturing and harvesting the living hull of the crashed ship."
+
+### Jobs
+# scrap miner
+ job_HMO_scrap_miner_scavenger: "Scrap Miner"
+ job_HMO_scrap_miner_scavenger_plural: "Scrap Miners"
+ job_HMO_scrap_miner_scavenger_desc: "A work full of dangers. Scrap Miners mine the very ship itself."
+ job_HMO_scrap_miner_scavenger_effect_desc: "£job_HMO_scrap_miner_scavenger£ $job_HMO_scrap_miner_scavenger_plural$ harvest £minerals£ §Y$minerals$§! and £alloys£ §Y$alloys$§ directly from the crashed ship!"
+ mod_job_HMO_scrap_miner_scavenger_add: "$job_HMO_scrap_miner_scavenger$ Jobs"
+ mod_job_HMO_scrap_miner_scavenger_per_pop: "§G+1§! $job_HMO_scrap_miner_scavenger$ Job per $VALUE$ Pops"
+ mod_job_HMO_scrap_miner_scavenger_per_pop_short: "\n§G+1§! £mod_job_HMO_scrap_miner_scavenger_add£ per $VALUE$ £pop£"
+# scrap miner gestalt
+ job_HMO_scrap_miner_scavenger_drone: "Scrap Miner"
+ job_HMO_scrap_miner_scavenger_drone_plural: "Scrap Miners"
+ job_HMO_scrap_miner_scavenger_drone_desc: "A work full of dangers. Scrap Miners mine the very ship itself."
+ job_HMO_scrap_miner_scavenger_drone_effect_desc: "£job_HMO_scrap_miner_scavenger_drone£ $job_HMO_scrap_miner_scavenger_plural$ harvest £minerals£ §Y$minerals$§! and £alloys£ §Y$alloys$§ directly from the crashed ship!"
+ mod_job_HMO_scrap_miner_scavenger_drone_add: "$job_HMO_scrap_miner_scavenger_drone$ Jobs"
+ mod_job_HMO_scrap_miner_scavenger_drone_per_pop: "§G+1§! $job_HMO_scrap_miner_scavenger_drone$ Job per $VALUE$ Pops"
+ mod_job_HMO_scrap_miner_scavenger_drone_per_pop_short: "\n§G+1§! £mod_job_HMO_scrap_miner_scavenger_drone_add£ per $VALUE$ £pop£"
+# hull cultivator
+ job_HMO_catalytic_hull_technician: "Hull Cultivator"
+ job_HMO_catalytic_hull_technician_plural: "Hull Cultivators"
+ job_HMO_catalytic_hull_technician_desc: "Highly trained workers nurture the living hull of the crashed ship, and harvests alloys like one would harvest crops."
+ job_HMO_catalytic_hull_technician_effect_desc: "£job_HMO_catalytic_hull_technician£ $job_HMO_catalytic_hull_technician_plural$ turn £food£ §Y$food$§! into £alloys£ §Y$alloys$§!"
+ mod_job_HMO_catalytic_hull_technician_add: "$job_HMO_catalytic_hull_technician$ Jobs"
+ mod_job_HMO_catalytic_hull_technician_per_pop: "§G+1§! $job_HMO_catalytic_hull_technician$ Job per $VALUE$ Pops"
+ mod_job_HMO_catalytic_hull_technician_per_pop_short: "\n§G+1§! £mod_job_HMO_catalytic_hull_technician_add£ per $VALUE$ £pop£"
+# Gestalt hull drone
+ job_HMO_catalytic_hull_drone: "Hull Harvester Drone"
+ job_HMO_catalytic_hull_drone_plural: "Hull Harvester Drones"
+ job_HMO_catalytic_hull_drone_desc: "Highly specialized drones nurture the living hull of the crashed ship, and harvests alloys like one would harvest crops."
+ job_HMO_catalytic_hull_drone_effect_desc: "£job_HMO_catalytic_hull_drone£ $job_HMO_catalytic_hull_drone_plural$ turn £food£ §Y$food$§! into £alloys£ §Y$alloys$§!"
+ mod_job_HMO_catalytic_hull_drone_add: "$job_HMO_catalytic_hull_drone$ Jobs"
+ mod_job_HMO_catalytic_hull_drone_per_pop: "§G+1§! $job_HMO_catalytic_hull_drone$ Job per $VALUE$ Pops"
+ mod_job_HMO_catalytic_hull_drone_per_pop_short: "\n§G+1§! £mod_job_HMO_catalytic_hull_drone_add£ per $VALUE$ £pop£"
+
+ ################################
+ # Apocalypse Origin
+ ################################
+
+ origin_HMO_apocalypse: "Insurgency"
+ origin_HMO_apocalypse_desc: "§RWARNING: Challenging Origin§!\nThis civilization turned their world into a grand city a long time ago. The unintended consequences of this was food shortages, which in turn caused a major rebel group to form which now tries to destabilize the government."
+ origin_HMO_apocalypse_effects: "- $HOMEWORLD$$TABBED_NEW_LINE$- ['concept_HMO_pc_city'] (Size: £planetsize£ 25)$TABBED_NEW_LINE$- ['concept_HMO_insurgency_infrastructure', $concept_HMO_insurgency_infrastructure$]$TABBED_NEW_LINE$- ['concept_HMO_insurgency_junk', $concept_HMO_insurgency_junk$]: +5 $TABBED_NEW_LINE$- ['concept_HMO_city_ruins', $concept_HMO_city_ruins$]: +2$NEW_LINE$- $GUARANTEED_RESEARCH_OPTION_STRING$$TABBED_NEW_LINE$- ['concept_HMO_rare_crystals', £engineering_research£ $tech_mine_rare_crystals$]$TABBED_NEW_LINE$- ['concept_HMO_exotic_gases', £engineering_research£ $tech_mine_exotic_gases$]$TABBED_NEW_LINE$- ['concept_HMO_volatile_motes', £physics_research£ $tech_mine_volatile_motes$]"
+ origin_HMO_apocalypse_negative_effects: "-['concept_factions']: Normal factions are replaced by ['concept_HMO_loyalists'] and ['concept_HMO_insurgents']$NEW_LINE$- Insurgents will try to ['concept_HMO_destabilize'] your planets."
+ START_SCREEN_HMO_APOCALYPSE: "A long time ago, we began a grand project: The construction of a planet-wide city, which could house everyone, no matter how large our population became. Unfortunately, our predecessors did not take into account said populations needs, resulting in massive food shortages.\n\nOut of nowhere, rebellious groups sprang forth, some of which exists to this very day. Many died in the ensuing chaotic wars.\n\nNow, with our population finally reaching a more stable level and the invention of the hyperdrive we have a hope for a future."
+ HMO_pc_apocalyptic_city: "Ecumenopolis"
+ HMO_pc_apocalyptic_city_desc: "A world completely engulfed by urban-industrial sprawl. Its natural lithosphere is no longer discernible from orbit."
+ 
+ origin_HMO_insurgents: "Insurgency"
+ origin_HMO_insurgents_desc: "§RWARNING: Challenging Origin§!\nThis civilization turned their world into a grand city a long time ago. The unintended consequences of this was food shortages, which in turn caused a major rebel group to form which ended up splintering the empire in a civil war."
+ origin_HMO_insurgents_effects: "- $HOMEWORLD$$TABBED_NEW_LINE$- ['concept_HMO_pc_city'] (Size: £planetsize£ 25)$TABBED_NEW_LINE$- ['concept_HMO_insurgency_junk', $concept_HMO_insurgency_junk$]: +5 $TABBED_NEW_LINE$- ['concept_HMO_city_ruins', $concept_HMO_city_ruins$]: +2$NEW_LINE$- §Y$commander_with_icon$s§! start with the ['concept_HMO_insurgent_trait', $concept_HMO_insurgent_trait$]"
+ 
+ # Event Chain
+ HMO_apocalypse_chain_title: "The Insurgency"
+ HMO_apocalypse_chain_desc: "For as we can remember, we have been at war with ourselves, or rather, the §RInsurgency§!. These anarchists wants to destroy our entire civilization. We must stop them at all costs."
+ HMO_worlds_under_occupation: "Worlds under occupation"
+ HMO_insurgent_bases_destroyed: "Insurgent bases destroyed"
+ HMO_worlds_lost: "Worlds lost to anarchy"
+ 
+ # Deposits and Blockers
+ d_HMO_insurgency_junk: "£blocker£ Collapsed Arcologies"
+ d_HMO_insurgency_junk_desc: "Arcologies worn down from many years of war."
+ d_HMO_insurgency_new_junk: "£blocker£ City Ruins"
+ d_HMO_insurgency_new_junk_desc: "Once part of a city, this city section has been completely devastated by a powerful explosion."
+ d_HMO_insurgency_ruined_houses: "£blocker£ House Ruins"
+ d_HMO_insurgency_ruined_houses_desc: "Many citizens have been left homeless after the destruction of their houses."
+ d_HMO_insurgency_ruined_powerplant: "£blocker£ Ruined Powerplant"
+ d_HMO_insurgency_ruined_powerplant_desc: "This powerplant was the target of insurgents. Until it is repaired, anyone using power will be forced to rely on inefficient emergency power supplies."
+ d_HMO_insurgency_ruined_water_filtration: "£blocker£ Ruined Liquid Filtration Systems"
+ d_HMO_insurgency_ruined_water_filtration_desc: "As long as this facility is broken our citizens won't have access to clean liquids."
+ 
+ 
+ # Factions form
+ HMO_origin.4.title: "The [Root.GetName]"
+ HMO_origin.4.desc.insurgent: "For as long as we can remember, our society has been plagued by anarchists calling themselves the §H[Root.GetName]§!. They will do everything in their power to destabilize our empire.\n\nUnhappy members of our society may decide it's worth joining their cause."
+ HMO_origin.4.desc.new_insurgent: "While many rejoiced when the last Insurgent group fractured, a new has now taken it's place!\n\nThis new group calls themselves the §H[Root.GetName]§!."
+ HMO_origin.5.title: "[Root.GetName]"
+ HMO_origin.5.desc.loyalist: "While many have chosen to join the [event_target:insurgent_faction.GetName], our empire is not without its defenders. They have founded the group §H[Root.GetName]§! and fight for a better future."
+ HMO_origin.5.desc.new_loyalist: "While many despaired when the last Loyalist group fractured, a new has now taken it's place!\n\nThis new group calls themselves the §H[Root.GetName]§!, and will continue the fight against the [event_target:insurgent_faction.GetName]."
+ # INSURGENT_COUNTRY_GETNAME: "[event_target:HMO_insurgency_faction.GetName]" # Didn't work
+ 
+ # Modifiers
+ HMO_insurgent_activity: "Insurgent Activity"
+ HMO_insurgent_activity_desc: "Insurgents are active in this area, destabilizing the planet by performing acts of terror."
+ HMO_insurgent_base: "Insurgent Base"
+ HMO_insurgent_base_desc: "Insurgents have set up many hidden bases on this planet. It will be incredibly hard to find and destroy them."
+ HMO_insurgent_control: "Insurgent Control"
+ HMO_insurgent_control_desc: "Insurgents have taken control of much of this planet."
+ HMO_insurgent_total_control: ""
+ HMO_insurgent_total_control_desc: ""
+ HMO_insurgent_rumors: "Rumors"
+ HMO_insurgent_rumors_desc: "Rumors are going around, telling tales of an imminent attack."
+ HMO_society_breakdown: "Society Breakdown"
+ HMO_society_breakdown_desc: "Society is slowly breaking down."
+ HMO_major_society_breakdown: "Anarchy"
+ HMO_major_society_breakdown_desc: "This planet is descending into anarchy."
+ HMO_a_new_hope: "Vigilant Citizens"
+ HMO_a_new_hope_desc: "Citizens on this planet are extra vigilant due to the recent increase in Insurgent Activity"
+ HMO_insurgent_propaganda: "Insurgent Propaganda"
+ HMO_insurgent_propaganda_desc: "The Insurgents are spreading lies that paint us in a bad light."
+ HMO_authoritarian_propaganda: "Anti-Insurgent Propaganda"
+ HMO_recent_plot_foiled: "Recent Plot Foiled"
+ HMO_recent_plot_foiled_desc: "The Insurgents recently had one of their nefarious plots fail."
+ HMO_organized_crime: "Organized Crime"
+ HMO_increasing_tensions: "Increasing Tensions"
+ HMO_increasing_tensions_desc: "The citizens on this planet is discontent with our rule."
+ HMO_protests: "Protests"
+ HMO_protests_desc: "Citizens on this planet are openly protesting our rule."
+ HMO_insurgent_stabilized: "Planet Stabilized"
+ HMO_insurgent_stabilized_desc: "This planet is stable ... for now."
+ 
+ 
+ ### Jobs
+ # Insurgency category
+ pop_cat_HMO_insurgent: "Insurgent"
+ pop_cat_HMO_insurgent_plural: "Insurgents"
+ pop_cat_HMO_insurgent_desc: "These former citizens are now fully devoted to the Insurgency and fight against the government in an attempt to either gain power for themselves, or simply to make the nation regress to anarchy."
+ 
+ # insurgency soldier
+ job_HMO_insurgent_soldier: "Insurgent"
+ job_HMO_insurgent_soldier_plural: "Insurgents"
+ job_HMO_insurgent_soldier_desc: "$job_HMO_insurgent_soldier_plural$ cause acts of terror in order to destabilize the planet."
+ job_HMO_insurgent_soldier_effect_desc: "£job_HMO_insurgent_soldier£ $job_HMO_insurgent_soldier_plural$ cause £stability£ §R$stability$§! to drop."
+ mod_job_HMO_insurgent_soldier_add: "$job_HMO_insurgent_soldier$ Jobs"
+ mod_job_HMO_insurgent_soldier_per_pop: "§G+1§! $job_HMO_insurgent_soldier$ Job per $VALUE$ Pops"
+ mod_job_HMO_insurgent_soldier_per_pop_short: "\n§G+1§! £mod_job_HMO_insurgent_soldier_add£ per $VALUE$ £pop£"
+ 
+ ### Factions
+ # Insurgent Faction
+ HMO_INSURGENT_DEMAND_POWER: "Removal of Government"
+ HMO_INSURGENT_DEMAND_POWER_DESC: "The [This.GetName] wants the government to relenquish its power."
+ pft_HMO_insurgent: "Insurgents"
+ pft_HMO_insurgent_desc: "The Insurgents want only to overthrow the government in power."
+ HMO_insurgent_faction_icon: "£job_HMO_insurgent_soldier£"
+ 
+ # Loyalist Faction
+ pft_HMO_loyalist: "Loyalists"
+ pft_HMO_loyalist_desc: "Those that stand up to the Insurgents know very well the danger they put themselves in, but for many, the hope of a better future is worth the risk."
+ LOYALIST_FOUND_WEAPONS: "Advantage"
+ LOYALIST_FOUND_WEAPONS_UNFULFILLED: "No Advantage"
+ LOYALIST_FOUND_WEAPONS_DESC: "Getting an advantage over the Insurgents will make soldier morale go up."
+ LOYALIST_MANY_POPS: "Support of the People"
+ LOYALIST_FEW_POPS: "Low Support"
+ LOYALIST_POPS_DESC: "With enough people standing up against the Insurgency we might win this war."
+ LOYALIST_VERY_WEAK: "Futile War"
+ LOYALIST_VERY_WEAK_DESC: "How can we hope to defeat our enemies when no one is brave enough to stand up against them?"
+ LOYALIST_NO_OCCUPIED_PLANETS: "Loyalists in Control"
+ LOYALIST_OCCUPIED_PLANETS: "Insurgents in Control"
+ LOYALIST_OCCUPIED_PLANETS_DESC: "Letting the insurgents take control of any of our planets is a sign of weakness that we cannot accept."
+ LOYALIST_BASE_DESTROYED: "Insurgent Base Destroyed"
+ LOYALIST_BASE_DESTROYED_UNFULFILLED: "Insurgent Bases"
+ LOYALIST_BASE_DESTROYED_DESC: "Destroying Insurgent bases will make our population feel more safe for a time."
+ LOYALIST_BASE_NOT_EXISTS: "No Insurgent Bases"
+ LOYALIST_BASE_EXISTS: "Insurgent Bases"
+ LOYALIST_BASE_EXISTS_DESC: "Letting the Insurgents set up permanent bases on our worlds is unacceptable."
+ LOYALIST_FREE_PLANET: "Stable planet"
+ LOYALIST_ALL_PLANETS_AFFECTED: "All planets infiltrated"
+ LOYALIST_FREE_PLANET_DESC: "Having just a single planet be free of insurgent influence is proof that we may win this battle."
+ LOYALIST_STABLE_PLANET: "Stabilized Planet"
+ LOYALIST_NO_STABLE_PLANETS: "No Stabilized Planets"
+ LOYALIST_STABLE_PLANET_DESC: "Our goal seems more attainable if one of our planets has been completely stabilized."
+ 
+ ### Faction Names
+ ## Insurgents
+ # First Part
+ HMO_Chaos: "Chaos"
+ HMO_Freedom: "Freedom"
+ HMO_Anarchy: "Anarchy"
+ 
+ # Second Part
+ HMO_Insurgency: "Insurgency"
+ HMO_Rebellion: "Rebellion"
+ HMO_Revolutionaries: "Revolutionaries"
+ HMO_Anarchists: "Anarchists"
+ HMO_Initiative: "Initiative"
+ HMO_Rioters: "Rioters"
+ HMO_Fighters: "Fighters"
+ 
+ ## Loyalists
+ # First Part
+ HMO_Citizen: "Citizen"
+ HMO_Patriot: "Patriot"
+ HMO_Free_Citizen: "Free Citizen"
+ HMO_National_Action: "National Action"
+ # Second Part
+ HMO_Defenders: "Defenders"
+ HMO_Vanguard: "Vanguard"
+ 
+ ### Government
+ NAME_HMO_Insurgents: "Insurgency"
+ COUNTRY_HMO_INSURGENT: "Anarchistic Insurgency"
+ gov_HMO_insurgency: "Insurgency"
+ gov_HMO_insurgency_desc: "One can hardly call the insurgency a state, although they appear to be somewhat organized."
+ HMO_INSURGENCY_LEADER_TITLE: "Commander"
+ civic_HMO_insurgency: "Insurgents"
+ civic_HMO_insurgency_desc: "This society, if you can call it a society, believes that the governing state should be removed from power."
+ 
+ ### Insurgent country Dialog
+ # Main Menu
+ HMO_origin.101.name: "The [event_target:insurgent_faction.GetName]"
+ HMO_origin.101a.desc: "The [event_target:insurgent_faction.GetName] will not surrrender. Not now. Not Tomomorrow. Never."
+ HMO_origin.101b.desc: "You should consider joining the [event_target:insurgent_faction.GetName]. We have cookies."
+ HMO_origin.101c.desc: "What do you want?"
+ HMO_origin.101d.desc: "Have you come to surrender?"
+ HMO_origin.101e.desc: "Soon the [This.GetName] will fall. It is inevitable."
+ HMO_origin.101f.desc: "The [This.GetName] is temporary. The [event_target:insurgent_faction.GetName] is forever."
+ HMO_origin.101.d: "End Transmission"
+ HMO_origin.102.name: "The Insurgency"
+ HMO_origin.102.desc: "The Insurgents will not speak until they have prepared themselves"
+ 
+ ### Insurgent Events
+ # Armies
+ NAME_HMO_Insurgency_Army: "Insurgency Attack Force"
+ HMO_insurgency_army: "Insurgency Army"
+ NAME_HMO_Revolt_Army: "Rioters"
+ HMO_revolt_army: "Rebel Army"
+ 
+ # Tutorials
+ HMO_origin.6.name: "Planet Stabilized"
+ HMO_origin.6.desc: "Due to our efforts in winning over our citizens on [This.GetName], we have managed to stabilize the [This.GetPlanetMoon]. As long as nothing major happens to disrupt the balance, we should be able to keep order on the [This.GetPlanetMoon]."
+ 
+ # Invasion Events
+ HMO_INSURGENCY_INVASION_TOOLTIP: "The [event_target:insurgent_faction.GetName] have launched a massive attack on [This.GetName]!"
+ HMO_origin.50.name: "Insurgents Attack [This.GetName]!"
+ HMO_origin.50.desc: "The [event_target:insurgent_faction.GetName] has launched a massive attack on [This.GetName]!\n\nWe should send troops before they can take control of the [This.GetPlanetMoon]!"
+ HMO_origin.51.name: "Insurgents Defeated"
+ HMO_origin.51.desc: "The [event_target:insurgent_faction.GetName] attack force on [FromFrom.GetName] has been defeated!"
+ HMO_origin.52.name: "[event_target:insurgent_faction.GetName] takes control of [FromFrom.GetName]"
+ HMO_origin.52.desc: "The [event_target:insurgent_faction.GetName] has taken control of [FromFrom.GetName] after their victory over the [This.GetAdjective] Troops.\n\nThey have now established many hidden bases on the [FromFrom.GetPlanetMoon]."
+ HMO_origin.52.a: "The future looks dark"
+ 
+ # Society Breakdown
+ HMO_origin.57.name: "[This.GetName] Starts Breaking Down"
+ HMO_origin.57.desc: "Society as we know it has started breaking down on [This.GetName] due to the [event_target:insurgent_faction.GetName]. We must act fast if we are to save the [This.GetPlanetMoon] and its people."
+ HMO_origin.57.a: "We should act fast"
+ HMO_origin.58.name: "[This.GetName] Descends Into Anarchy"
+ HMO_origin.58.desc: "After many years without any law or order, the society on [This.GetName] has become one big warzone. Those who are still alive must fight daily just to survive and the [This.GetPlanetMoon] is now without any form of governmental control."
+ HMO_origin.58.a: "We were too slow"
+ # Securing planet
+ HMO_origin.59.name: "[FromFrom.GetName] Liberated"
+ HMO_origin.59.desc: "Our attack force on [FromFrom.GetName] has taken back control of the [FromFrom.GetPlanetMoon]."
+ HMO_origin.59.a: "Great"
+ 
+ ## Random Planet Events
+ # Weapons Cache
+ HMO_origin.151.name: "Insurgent Weapons Cache Found"
+ HMO_origin.151.desc: "Security Forces on [This.GetName] have found a weapons cache on the [This.GetPlanetMoon] belonging to the [event_target:insurgent_faction.GetName]. The loss of weapons should weaken them for a time."
+ HMO_origin.151.a: "Fantastic"
+ # Bomb Detonated
+ HMO_origin.152.name: "[event_target:insurgent_faction.GetName] detonates bomb on [This.GetName]"
+ HMO_origin.152.desc: "[This.GetName] has been the target of a terror attack from the [event_target:insurgent_faction.GetName].\n\nMillions of [Owner.GetSpeciesNamePlural] died in when a hydrogen bomb detonated in a major city.\n\nThe [event_target:insurgent_faction.GetName] soldiers responsible for this attack is assumed to have died in the explosion."
+ HMO_origin.152.a: "A tragedy"
+ # Rumors
+ HMO_origin.153.name: "Rumors"
+ HMO_origin.153.desc: "Rumors about plans laid by the [event_target:insurgent_faction.GetName] to attack [This.GetName] has been circulating on the [This.GetPlanetMoon]."
+ HMO_origin.153.a: "We should be vigilant"
+ HMO_origin.153.b: "It's probably nothing"
+ # Insurgency Base Found
+ HMO_ATTACK_INSURGENCY_BASE: "Attack [event_target:insurgent_faction.GetName] Base"
+ HMO_ATTACK_INSURGENCY_BASE_DESC: "Attack the [event_target:insurgent_faction.GetName]'s base on [This.GetName]"
+ HMO_origin.154.name: "Insurgency Base Found"
+ HMO_origin.154.desc: "Our security forces on [This.GetName] have reports of a hidden Insurgency base. We should attack it before they get a chance to relocate."
+ HMO_origin.154.a: "We will crush these [Owner.GetSpeciesNamePluralInsult]"
+ HMO_origin.154.b: "It's too big of a risk"
+ HMO_origin.155.name: "Insurgency Base Raided"
+ HMO_origin.155.a.desc: "Our attack force has succesfully raided the Insurgency base on [This.GetName]. The [event_target:insurgent_faction.GetName]'s control of the [This.GetPlanetMoon] should be greatly diminished now."
+ HMO_origin.155.b.desc: "Our attack force failed in raiding the Insurgency base on [This.GetName]. Too many [event_target:insurgent_faction.GetName] soldiers were present, and our operatives were lucky to escape alive.\n\nThe [event_target:insurgent_faction.GetName] will most likely relocate their base before we have a chance to strike again."
+ HMO_origin.155.a: "Fantastic"
+ HMO_origin.155.b: "We'll get them next time"
+ # Governor Escaped
+ HMO_origin.191.name: "[event_target:insurgent_faction.GetName] Targets Governor"
+ HMO_origin.191.desc: "An attack by the [event_target:insurgent_faction.GetName] has been foiled today, as they attempted to kill one of our appointed officials, [event_target:HMO_targeted_leader.GetName], by planting an explosive device [event_target:HMO_targeted_leader.GetHisHer] personal vehicle. Fortunately, [event_target:HMO_targeted_leader.GetName] had been occupied by [event_target:HMO_targeted_leader.GetHisHer] duties as a governor, and were therefore not present during the explosion."
+ HMO_origin.191.a: "Ramp up security"
+ HMO_origin.191.a.tooltip: "We will make sure this will never happen again."
+ HMO_origin.191.b: "That was lucky."
+ # Governor killed
+ HMO_origin.192.name: "[event_target:insurgent_faction.GetName] Assassinates Governor"
+ HMO_origin.192.desc: "Today was a day of tragedy, as the insurgent faction known as the [event_target:insurgent_faction.GetName] successfully managed to kill [event_target:HMO_targeted_leader.GetName]. By smuggling in an explosive device into [event_target:HMO_targeted_leader.GetHisHer] personal vehicle, they ensured that [event_target:HMO_targeted_leader.GetName] would be in the blast radius when it exploded."
+ HMO_origin.192.a: "Tragic"
+ # Governor Maimed
+ HMO_origin.193.name: "[event_target:insurgent_faction.GetName] Attempts Assassination"
+ HMO_origin.193.desc: "An attack by the [event_target:insurgent_faction.GetName] has left [event_target:HMO_targeted_leader.GetName] in critical condition after an explosion devasted the area just outside [event_target:HMO_targeted_leader.GetHisHer] office building. Several civilians were killed, and property damage is on a magnitude of several energy credits."
+ HMO_origin.193.a: "Unfortunate"
+ # Insurgent Defector
+ HMO_origin.211.a: "Why do you want to join us?"
+ HMO_origin.211.a.response: "After many years of service to the [event_target:insurgent_faction.GetName], I finally realized the errors of their ways. They care only about their own power, not the freedom of the people as they tricked me into believing."
+ HMO_origin.211.b: "What can you offer us?"
+ HMO_origin.211.b.response: "Sadly I am not able to provide any information if that is what you are asking about. The [event_target:insurgent_faction.GetName] has always been secretive, and most of those in its service know only their mission mere hours before they have to do it. I can, however, offer you my skill in combat."
+ HMO_origin.211.c: "How can we trust you?"
+ HMO_origin.211.c.response: "My actions will speak louder than my words. If you allow me to I will help you win this war however I can."
+ HMO_origin.211.dismiss: "You're still a traitor"
+ HMO_origin.211.dismiss.tooltip: "We will dispose of this traitor quietly."
+ HMO_origin.211.hire: "Welcome to the winning team!"
+ HMO_origin.211.hire.tooltip: "We will present him to the people as a misguided fool who has seen the light."
+ 
+ #NAME_HMO_insurgent_defector: ""
+ HMO_defector_leader_desc: "A former insurgent, now hellbent on doing the right thing."
+ HMO_defector_leader_catch_phrase: "I see the light now, and I will make sure others see it to, by force if necessary."
+ NAME_HMO_insurgent_defector: "Insurgent Defector"
+ HMO_origin.211.name: "Insurgent Defector"
+ HMO_origin.211.desc: "A former [event_target:insurgent_faction.GetName] leader has approached us and asked to rejoin the [This.GetName]."
+ 
+ ## Insurgency Bad Events
+ # Propaganda Campaign
+ HMO_origin.170.name: "Propaganda Campaign"
+ HMO_origin.170.desc: "Agents on [This.GetName] have found that the [event_target:insurgent_faction.GetName] has been spreading lies about the [owner.GetAdjective] government in an attempt at turning the public opinion against us."
+ HMO_origin.170.a: "Disconcerting"
+ HMO_origin.170.b: "Two can play that game"
+ 
+ HMO_origin.171.name: "Mass Recruiting"
+ HMO_origin.171.desc: "After years of lies on [This.GetName], the [event_target:insurgent_faction.GetName] has been able to get enough of the [this.GetPlanetMoon]'s population's support, and it is clear they are prepared to do anything to 'liberate' their people."
+ HMO_origin.171.a: "We must remain vigilant"
+ 
+ HMO_origin.174.name: "Attack Foiled"
+ HMO_origin.174.desc: "Despite Several years of preperation as well as a massive investment in both soldiers and energy credits, the [event_target:insurgent_faction.GetName]'s plans were foiled by our security forces on the [This.GetPlanetMoon], before it even began. A large amount of insurgents and insurgent sympathizers were captured with minimal losses."
+ HMO_origin.174.a: "Ok"
+ 
+ ## Weapon Smuggling
+ # Weapon Smuggling
+ 
+ HMO_origin.175.name: "Organized Crime"
+ HMO_origin.175.desc: "[This.GetName] has become a place filled with smugglers and other outlaws working for the [event_target:insurgent_faction.GetName] and the [This.GetPlanetMoon]'s law enforcers can barely keep up with the ever-increasing number of criminals."
+ HMO_origin.175.a: "Disconcerting"
+ 
+ ## Revolt Chain
+ # Increasing Tensions
+ 
+ HMO_origin.177.name: "Rising Tensions"
+ HMO_origin.177.desc: "Our citizens on [This.GetName] has been increasingly vocal about their distrust of our government, resulting in the [event_target:insurgent_faction.GetName] having gained a lot of support on the [This.GetPlanetMoon] these last few years."
+ HMO_origin.177.a: "Troubling"
+
+ HMO_origin.178.name: "Protests"
+ HMO_origin.178.desc: "Our citizens on [This.GetName] has begun protesting, gathering in groups of several hundred thousands around the capital on [This.GetName] where they openly oppose [Owner.GetName] in favor of the [event_target:insurgent_faction.GetName]. So far any attempts to stop the protests have been met with hostility, and a violent clash seems inevitable."
+ HMO_origin.178.a: "Troubling"
+ HMO_origin.178.b: "Send in the military!"
+ 
+ # Revolt
+ HMO_origin.179.name: "Revolt on [This.GetName]!"
+ HMO_origin.179.desc: "After failing to contain the protests, the tensions between protesters and our security personnel has reached a tipping point on [This.GetName], resulting in violent riots in the streets!\n\nBeing discontent with our rule, they now intend to take full control of the [This.GetPlanetMoon]!"
+ HMO_INSURGENCY_REVOLT_TOOLTIP: "A revolt is underway!"
+ 
+ HMO_origin.181.name: "Rioters Defeated"
+ HMO_origin.181.desc: "Our enforcers have been able to pacify the rioters on [FromFrom.GetName]. Several thousands citizens were killed riots, and although we remain in control of the [FromFrom.GetPlanetMoon], our reputation has taken a hit, which the insurgents are sure to capatilize on."
+ #"Our enforcers have been able to quell the protests on [FromFrom.GetName] before it developed further, although the insurgents have taken the opportunity to label it as an attack on freedom!"
+ HMO_origin.181.a: "Ok"
+ HMO_origin.180.name: "Rioters take control of [FromFrom.GetName]!"
+ HMO_origin.180.desc: "Despite valiant efforts from our enforcers and military personnel, the rioters on [FromFrom.GetName] has managed to take control of the [FromFrom.GetPlanetMoon]."
+ HMO_origin.180.a: "Unfortunate"
+ 
+ # Securing planet from rioters
+ HMO_origin.182.name: "Control of [FromFrom.GetName] Regained"
+ HMO_origin.182.desc: "Our attack force on [FromFrom.GetName] has taken back control of the [FromFrom.GetPlanetMoon]."
+ HMO_origin.182.a: "Great"
+ 
+ # Stopping Protests Before They Spiral Out Of Control
+ HMO_origin.183.name: "Protests Quelled"
+ HMO_origin.183.desc: "Our enforcers have been able to stop the protests on [This.GetName] before it developed further, although the [event_target:insurgent_faction.GetName] have taken the opportunity to label it as an attack on freedom."
+ HMO_origin.183.a: "Great"
+ 
+ # Bomb Detonated
+ HMO_origin.185.name: "[event_target:insurgent_faction.GetName] detonates bomb on [This.GetName]"
+ HMO_origin.185.desc.blocker: "[This.GetName] has been the target of a terror attack from the [event_target:insurgent_faction.GetName].\n\nThousands of [Owner.GetSpeciesNamePlural] died in when a bomb detonated in a major city. The explosion levelled most of the city.\n\nThe [event_target:insurgent_faction.GetName] soldiers responsible for this attack is assumed to have died in the explosion."
+ HMO_origin.185.desc.pop: "[This.GetName] has been the target of a terror attack from the [event_target:insurgent_faction.GetName].\n\nMillions of [Owner.GetSpeciesNamePlural] died in when a bomb detonated in a major city.\n\nThe [event_target:insurgent_faction.GetName] soldiers responsible for this attack is assumed to have died in the explosion."
+ HMO_origin.185.desc.ruined: "[This.GetName] has been the target of a terror attack from the [event_target:insurgent_faction.GetName].\n\nA part of the city was destroyed when a bomb was detonated by Insurgents, destroying multiple buildings and injuring many [Owner.GetSpeciesNamePlural].\n\nThe [event_target:insurgent_faction.GetName] soldiers responsible for this attack is assumed to have died in the explosion."
+ HMO_origin.185.a: "A disaster!"
+ HMO_origin.185.b: "A tragedy!"
+ HMO_origin.185.c: "Unfortunate"
+ HMO_origin.185.c.tooltip: "A building has been ruined"
+ HMO_origin.185.a.tooltip: "Some of our infrastructure has been damaged"
+ 
+ # Envoy Killed
+ HMO_origin.187.name: "[event_target:insurgent_faction.GetName] attacks [event_target:envoy_source.GetAdjective] embassy!"
+ HMO_origin.187.desc: "The [event_target:insurgent_faction.GetName] has attacked an embassy belonging to the [event_target:envoy_source.GetName] on our capital! There they killed many of the diplomats in the building, including envoy [event_target:event_envoy.GetName]!"
+ HMO_origin.187.a: "Unfortunate"
+ HMO_origin.188.name: "Envoy killed in terrorist attack"
+ HMO_origin.188.desc: "One of our envoys, [event_target:event_envoy.GetName], has not returned from [event_target:event_envoy.GetHisHer] assignment on [event_target:country_with_insurgents.capital_scope.GetName]. The [event_target:country_with_insurgents.GetAdjective] government has informed us that [event_target.event_envoy.GetSheHe] was killed in a terrorist attack."
+ HMO_origin.188.a: "A tragedy!"
+ 
+ opinion_insurgents_kills_envoys: "Failed to protect envoy"
+ 
+ ## Stolen Hydrogen Bomb
+ # Initial Event
+ HMO_origin.200.name: "Hydrogen Bomb Missing"
+ HMO_origin.200.desc: "During a routine checkup at our weapons storage facility on [This.GetName] it was discovered that a powerful hydrogen bomb was missing from its storage compartment.\nIt assumed the bomb has been stolen, and it's retrieval is of utmost importance."
+ HMO_origin.200.a: "Focus on finding that bomb!"
+ HMO_origin.200.b: "Use statistical research models"
+ HMO_origin.200.c: "Just go on like normal"
+ HMO_origin.200.c.tooltip: "We won't divert any extra resources to the search."
+ HMO_origin.200.b.tooltip: "Use our research equipment for the purpose of finding the bomb through statistics analysis."
+ HMO_origin.200.a.tooltip: "Our enforcers will focus on finding the missing bomb."
+ HMO_low_intel: "Low Intel"
+ HMO_medium_intel: "Medium Intel"
+ HMO_high_intel: "High Intel"
+ 
+ # Stolen Status: Confirmed
+ HMO_origin.201.name: "Hydrogen Bomb Stolen"
+ HMO_origin.201.desc: "After our initial search for the bomb, our investigators have concluded that the bomb has been stolen by the [event_target:insurgent_faction.GetName]! They must not be allowed to use it!"
+ HMO_origin.201.a: "Troubling"
+ 
+ # Bomb Found
+ HMO_origin.203.name: "Insurgents Apprehended"
+ HMO_origin.203.desc: "We have captured a group of [event_target:insurgent_faction.GetName] soldiers and retrieved the hydrogen bomb they had stolen, just in time before they had prepared the bomb for detonation."
+ HMO_origin.203.a: "Great"
+ 
+ HMO_origin.208.name: "[event_target:insurgent_faction.GetName] detonates bomb on [event_target:bombed_planet.GetName]"
+ HMO_origin.208.desc: "[event_target:bombed_planet.GetName] has been the target of a terror attack from the [event_target:insurgent_faction.GetName].\n\nWhile too late to find the bomb, the information we had collected during our search helped predict the most likely location and time of the detonation. Millions of citizens were evacuated mere hours before the explosion, limiting the damages to structures only.\n\nThe [event_target:insurgent_faction.GetName] soldiers responsible for this attack is assumed to have died in the explosion."
+ HMO_origin.208.a: "We can recover from this loss"
+ 
+ HMO_origin.207.name: "[event_target:insurgent_faction.GetName] detonates bomb on [event_target:bombed_planet.GetName]"
+ HMO_origin.207.desc: "[event_target:bombed_planet.GetName] has been the target of a terror attack from the [event_target:insurgent_faction.GetName].\n\nMillions of [Owner.GetSpeciesNamePlural] died in when a stolen approximately 2 years ago detonated in a major city.\n\nThe [event_target:insurgent_faction.GetName] soldiers responsible for this attack is assumed to have died in the explosion."
+ HMO_origin.207.a: "A tragedy"
+ 
+ HMO_origin.206.name: "[event_target:insurgent_faction.GetName] detonates bomb on [event_target:bombed_planet.GetName]"
+ HMO_origin.206.desc: "[event_target:bombed_planet.GetName] has been the target of a terror attack from the [event_target:insurgent_faction.GetName].\n\nMillions of [Owner.GetSpeciesNamePlural] died in when a stolen approximately 2 years ago detonated in a major city.\n\nThe [event_target:insurgent_faction.GetName] soldiers responsible for this attack is assumed to have died in the explosion."
+ HMO_origin.206.a: "A tragedy"
+ 
+ # Situation
+ situation_HMO_stolen_bomb: "Stolen Hydrogen Bomb"
+ situation_HMO_stolen_bomb_type: "$situation_HMO_stolen_bomb$"
+ situation_HMO_stolen_bomb_desc: "A hydrogen bomb has been stolen by the Insurgents!"
+ HMO_intensive_search_efforts: "Use Enforcers"
+ HMO_use_statistics: "Use Researchers"
+ HMO_no_search_efforts: "Do Nothing"
+ situation_HMO_stolen_bomb_outcome: "Bomb is retrieved and will be put back into storage."
+ approach_HMO_search_effect: "Situation will progress based on the number of enforcers present on this planet."
+ approach_HMO_statistic_effect: "Situation will progress based on the number of researchers present on this planet."
+ approach_HMO_no_search_effect: "Situation will progress very slowly."
+ situation_HMO_stolen_bomb_monthly_change_tooltip: "$situation_monthly_change_tooltip_approaches_dependent$"
+ 
+ ## Insurgency Launches Massive Attack (Mid Game Event)
+ # Rumors of massive attack
+ HMO_origin.500.name: "Increased Activity"
+ HMO_origin.500.desc: "Our operatives that is currently monitoring [event_target:insurgent_faction.GetName] communication channels are reporting in about increased activity everywhere."
+ HMO_origin.500.a: "We should prepare for the worst"
+ # The attack happens!
+ HMO_origin.501.name: "Mass Coordinated Attack"
+ HMO_origin.501.desc: "The [event_target:insurgent_faction.GetName] has launched a wide-scale attack on all of our worlds!"
+ HMO_origin.501.a: "To Arms!"
+ # main Base found
+ #HMO_origin.502.name: "Insurgents main base found"
+ #HMO_origin.502.desc: "We have managed to track down the main base of the [event_target:insurgent_faction.GetName]. If we strike quickly, we may be able to end this war for good.\n\nWe only have this one opportunity."
+ #HMO_origin.502.a: "We should hurry"
+ HMO_origin.502.name: "Insurgents Attack [This.GetName]!"
+ HMO_origin.502.desc: "The [event_target:insurgent_faction.GetName] has launched a massive attack on [This.GetName]!\n\nThe scale of the attack is unprecidented, and all leads points towards a final confrontation between us and the insurgents."
+ HMO_origin.502.a: "To Arms!"
+ HMO_origin.503.name: "Insurgents Defeated"
+ HMO_origin.503.desc: "The [event_target:insurgent_faction.GetName] attack force on [FromFrom.GetName] has been repelled.\nHowever, only a very small part of their forces were killed or captured.\nIntelligence obtained from these insurgent soldiers point towards a larger plan to finally destroy us once and for all."
+ HMO_origin.504.name: "[event_target:insurgent_faction.GetName] takes control of [FromFrom.GetName]"
+ HMO_origin.504.desc: "The [event_target:insurgent_faction.GetName] has taken control of [FromFrom.GetName] after their victory over the [This.GetAdjective] Troops.\n\nAlmost immediately they began taking over government buildings, production facilities and other infrastructure."
+ HMO_origin.504.a: "The future looks dark."
+ HMO_origin.505.name: "The Uprising"
+ HMO_origin.505.desc.capital: "After taking over [This.GetName], the [event_target:HMO_insurgency_uprising.GetName] has proclaimed their independence from our empire. Several other colonies in our empire has joined their cause.\n\nWe find ourselves in a dangerous situation that could very well end with the end of the [event_target:HMO_original_empire.GetName] as we know it."
+ HMO_origin.505.desc.colony: "While their defeat at [event_target:HMO_original_empire.capital_scope.GetName] must have been a devastating blow to their plans, the [event_target:HMO_insurgency_uprising.GetName] was prepared for it, having silently infiltrated and taken over a number of our colonies, subverting their production and military capabilities for their own purposes.\n\nNow they have proclaimed their independance, with [This.GetName] acting as their current center of operations."
+ HMO_origin.505.a: "We must defeat them once and for all."
+ HMO_origin.505.a.tooltip: "Fight to beat the §Y[event_target:HMO_insurgency_uprising.GetName]§! once and for all."
+ HMO_origin.505.b: "§RTheir time is over.§!"
+ HMO_origin.505.b.tooltip: "Rise up as the §Y[event_target:HMO_insurgency_uprising.GetName]§! and fight to overthrow the §Y[event_target:HMO_original_empire.GetName]§!."
+ 
+ HMO_origin.507.name: "Insurgents rise up in [event_target:HMO_original_empire.GetName]"
+ HMO_origin.507.desc: "The §Y[event_target:HMO_original_empire.GetName]§! is embroiled in civil war caused by a subverse group known as the §Y[event_target:HMO_insurgency_uprising.GetName]§!.\n\nBoth parties claim to be the rightful ruler of the territory that encompasses the §Y[event_target:HMO_original_empire.GetName]§!."
+ #HMO_origin.507.a: "Ok"
+ 
+ HMO_origin.510.name: "End Of Tyrrany"
+ HMO_origin.510.desc: "With the end our former government, the [This.GetName] stands as the true empire of our people. No longer oppressed, we look towards a brighter future, although we have not forgotten our roots."
+ HMO_origin.510.a: "For a brighter future!"
+ HMO_origin.510.a.tooltip: ""
+ 
+ HMO_origin.511.name: "End Of The Insurgency"
+ HMO_origin.511.desc: "After a long battle, we stand victorious. Never again shall subversive elements within our society threaten us at such a scale, and already is the last remnants of the Insurgency being weeded out from our people."
+ HMO_origin.511.a: "Order. Loyalty. Peace."
+ HMO_origin.511.a.tooltip: ""
+ 
+ HMO_origin.520.name: "End Of Tyrrany"
+ HMO_origin.520.desc: "With the end the [from.GetAdj] government, the [This.GetName] stands as the true empire of our people. No longer oppressed, we look towards a brighter future, although we have not forgotten our roots."
+ HMO_origin.520.a: "For a brighter future!"
+ HMO_origin.520.a.tooltip: ""
+ 
+ HMO_origin.525.name: "End Of The Insurgency"
+ HMO_origin.525.desc: "After a long battle, we stand victorious. Never again shall the [from.GetName] threaten us at such again, nor shall other subversive elements be allowed to organize at such scale.\n\nAlready is the last remnants of the [from.GetAdj] forces being tracked down and dealt with."
+ HMO_origin.525.a: "Order. Loyalty. Peace."
+ HMO_origin.525.a.tooltip: ""
+ 
+ HMO_origin.560.name: "[event_target:HMO_insurgency_war_loser.GetName] Toppled"
+ HMO_origin.560.desc: "In the wake of the civil war that tore apart the [event_target:HMO_insurgency_war_loser.GetName], the insurgents known as the [event_target:HMO_insurgency_war_winner.GetName] stand victorious."
+ 
+ HMO_origin.565.name: "[event_target:HMO_insurgency_war_winner.GetName] Reunified"
+ HMO_origin.565.desc: "In the wake of the civil war that nearly tore apart the [event_target:HMO_insurgency_war_winner.GetName], orchestrated by a subversive group called the [event_target:HMO_insurgency_war_loser.GetName], the [event_target:HMO_insurgency_war_winner.GetAdj] government has managed to defeat the divergent elements and return its nation to order."
+ 
+ HMO_origin.575.name: "Fragile Peace"
+ HMO_origin.575.desc: "While we may not have beaten the [HMO_white_peace_reciever.GetName], they have not beaten us.\nThey have been allowed to claim independence - for now."
+ HMO_origin.575.a: ""
+ 
+ HMO_origin.580.name: "Fragile Peace"
+ HMO_origin.580.desc: "A new statement from the [HMO_white_peace_signer.GetName] has just been recieved. Apparently they have decided to recognize our rebellion movement as an independent and free state, and a ceasefire has been put in place.\n\nWhile this is not the optimal outcome, we have reached our goal.\n\nHow long they will continue to respect our independence remains to be seen."
+ HMO_origin.580.a: ""
+ 
+ HMO_origin.585.name: "Fragile Peace"
+ HMO_origin.585.desc: "With war taking a toll on our tiring population, we have chosen to relinquish claim on the rest of the [HMO_white_peace_reciever.GetName].\nOur diplomats have already managed to negotiate a ceasefire that leaves us as a sovereign state, independent from the [HMO_white_peace_reciever.GetName].\n\nHow long this newfound peace will last is unknown, but for now both sides can rest."
+ HMO_origin.585.a: ""
+ 
+ HMO_origin.590.name: "Fragile Peace"
+ HMO_origin.590.desc: "War-torn and broken from the war that has plagued our empire for generations, the time has finally come for peace. The [HMO_white_peace_reciever.GetName] and the [HMO_white_peace_signer.GetName] have come to an agreement where the [HMO_white_peace_signer.GetName] is allowed to exist independently, leaving our warring states to lick their wounds."
+ HMO_origin.590.a: ""
+ 
+ HMO_origin.650.name: "Free At Last"
+ HMO_origin.650.desc: "News have reached us of the defeat of our former empire, that we luckily managed to cut ties with before its downfall."
+ HMO_origin.650.a: "The future looks bright."
+ 
+ HMO_origin.655.name: "Insurgents Destroyed"
+ HMO_origin.655.desc: "News have reached us of the defeat of the splinter group that once belonged to our empire."
+ 
+ NAME_HMO_Insurgency_Uprising_War: "[This.MainDefender.GetAdj] Civil War"
+ HMO_insurgency_uprising_war: "Civil War"
+ 
+ wg_HMO_insurgency_uprising: "Civil War"
+ 
+ HMO_opinion_insurgency_originator: "Divergent Elements"
+ HMO_opinion_insurgency_uprising: "Tyrranical Oppressors"
+ 
+ HMO_insurgency_uprising_ai_buff: "War Preperations"
+
+ HMO_insurgency_uprising_player_buff: "Civilian Soldiers"
+ HMO_insurgency_uprising_player_buff_desc: "In times of great need, everyone is soldiers."
+ 
+ HMO_INSURGENCY_FINAL_INVASION_TOOLTIP: "The [event_target:insurgent_faction.GetName] have launched a massive attack on [This.GetName]!"
+ HMO_ATTACK_INSURGENCY_HOME_BASE: "Attack [event_target:insurgent_faction.GetName] Main Base"
+ HMO_ATTACK_INSURGENCY_HOME_BASE_DESC: "Attack the [event_target:insurgent_faction.GetName]'s main base on [This.GetName]"
+ # What do we do with the insurgents?
+ HMO_origin.591.name: "Insurgent Leaders Captured"
+ HMO_origin.591.desc: "Our strike teams have managed to track down and capture most of the [event_target:insurgent_faction.GetName] leaders alive, ending their terror campaign for good.\n\nAll insurgent activites have reportedly come to a sudden and unexpected stop as the news of their downfall spread throughout our empire.\n\nNow comes the question: What should we do with them?"
+ HMO_origin.591.a: "No one is irredeemable"
+ HMO_origin.591.a.tooltip: "We will try to reintegrate these confused people back into our society"
+ HMO_origin.591.b: "Imprison them"
+ HMO_origin.591.b.tooltip: "The worst punishment is not death"
+ HMO_origin.591.c: "Execute them"
+ HMO_origin.591.c.tooltip: "We should get rid of them as fast as we can"
+ HMO_origin.592.name: "Insurgents Reintegrated"
+ HMO_origin.592.desc: "While many thought it impossible, our former enemies have proven to be willing to coorporate with us. Some of them have even offered to train our soldiers in their tactics."
+ HMO_origin.592.a: "A generous offer. Help them set up training camps"
+ HMO_origin.592.b: "They can't be fully trusted"
+ HMO_origin.593.name: "A Plea for Forgiveness"
+ HMO_origin.593.desc: "During the parade, a group of former Insurgents, who decided to live as pirates after the capture of the Insurgent leaders, have come and asked for forgiveness."
+ HMO_origin.593.a: "All is forgotten"
+ HMO_origin.593.b: "They have come too late for that"
+ HMO_origin.594.name: "Insurgent Leader Wish to Speak to the People"
+ HMO_origin.594.desc: "From their cells in our most secure prison, the former Insurgent leaders has expressed a desire to speak to the population on our media channels. They claim they want to apologize to the population and explain why they did what they did."
+ HMO_origin.594.a: "Let them"
+ HMO_origin.594.b: "No good can come of it"
+ HMO_origin.595.name: "Monument of the Enemy"
+ HMO_origin.595.desc: "A small group of sculptors have expressed a desire to make a monument dedicated to the insurgency so that our people will never forget the horrors we went through, and make sure history does not repeat itself."
+ HMO_origin.595.a: "Permission granted"
+ HMO_origin.595.b: "Better let them fade into obscurity"
+ HMO_insurgent_apology: "The Insurgency Apologizes"
+ HMO_insurgency_defeated_spared: "Insurgent Coorporation"
+ HMO_insurgency_defeated_imprisoned: "Victory!"
+ HMO_insurgency_defeated_executed: "Victory!"
+ HMO_insurgency_defeated_united: "Victory!"
+ HMO_insurgency_defeated_united_desc: "Our people was once split by differing opinions, but now we are one."
+ HMO_insurgency_defeated_peace: "Insurgent Peace"
+ 
+ HMO_origin.596.name: "Victory Parade"
+ HMO_origin.596.desc.small: "An overcast day greeted the middling crowd on §Y[Target.GetName]'s§! capital city today. The procession carrying our proof of our victory over the Insurgency ambled past the meandering onlookers. Its progress was broadcast throughout our empire, but engagement was low as the if the victory against our most ancient enemy did not seem to be quite as enticing as we had hoped. This day will hopefully be remembered for as long as our empire exists."
+ HMO_origin.596.desc.standard: "A bright day greeted the packed crowds on §Y[Target.GetName]§! today as our victory over the Insurgency was celebrated on all of the [Target.GetPlanetHabitat]'s cities. The parade's progress was broadcast throughout our empire to billions of viewers. This day will surely be remembered for as long as our empire exists."
+ HMO_origin.596.desc.large: "The weather on §Y[Target.GetName]§! was unnaturally great today, as it should have been, considering we ran our atmosphere control system on overdrive. Every city on the [Target.GetPlanetHabitat] reached its capacity, and there were still tourist ships orbiting the world just to be a part of this great day. The grand parade traveled through each settlement in turn, and was greeted by streets packed with [Owner.GetSpeciesNamePlural]. Every city capable of requisitioning a holo-display in our empire was also overflowing with spectators for the grand hologram rebroadcasts. This day will surely be remembered for as long as our empire exists."
+ 
+ # victory Parade
+ HMO_insurgency_celebration_opportunity: "Victory Parade"
+ HMO_insurgency_celebration_opportunity_type: "Victory Parade"
+ HMO_insurgency_celebration_opportunity_desc: "Our victory over the Insurgency is something that will go down in history!"
+ stage_HMO_insurgency_2_tooltip: "Something might happen"
+ HMO_insurgency_celebration_opportunity_monthly_change_tooltip: "$situation_monthly_change_tooltip_approaches_dependent$"
+ 
+ # monument
+ d_HMO_insurgent_monument: "Insurgency Monument"
+ d_HMO_insurgent_monument_desc: "May we never forget the horrors they inflicted upon us."
+ 
+ # Insurgent Leader Traits
+ leader_trait_admiral_insurgent: "Insurgent Training"
+ leader_trait_admiral_insurgent_desc: "This leader has been trained by former insurgency members."
+ leader_trait_general_insurgent: "Insurgent Training"
+ leader_trait_general_insurgent_desc: "This leader has been trained by former insurgency members."
+
+ # Insurgents defeated by unity!
+ HMO_origin.601.name: "Insurgents Lacks Support"
+ HMO_origin.601.desc: "After a long and grueling war against the Insurgents, we have finally managed to defeat them. But not through force, rather through unity as the last insurgent supporters finally laid down arms and joined the rest of our empire.\n\nFor the first time in a long time, our people is one again!"
+ HMO_origin.601.a: "A new chapter begins for our empire!"
+ HMO_origin.601.a.tooltip: "The Insurgents have been defeated, and our people is once again united!"
+ 
+ ################################
+ # Unvaulted Origin
+ ################################
+ 
+ ## Origin
+ origin_HMO_unvaulted: "Unvaulted"
+ origin_HMO_unvaulted_desc: "After a nuclear war that nearly decimated this species, a small number of them were sealed inside large bomb shelters designed to last them through the time it took for the radiation to return to acceptable levels.\nThat time is now, though time is of the essence as food supplies are rapidly depleting."
+ origin_HMO_unvaulted_effects: "- $HOMEWORLD$$TABBED_NEW_LINE$- ['concept_pc_nuked']$TABBED_NEW_LINE$- ['concept_HMO_unvaulted_vault'] Planetary Feature$TABBED_NEW_LINE$- Initial ['concept_farming_district', £district£ $district_farming_plural$] replaced with ['concept_mining_district', £district£ $district_mining_plural$]$NEW_LINE$- Situation: ['concept_HMO_restoration_project']$NEW_LINE$- Starting Resources: +5000 $food$ £food£"
+ #origin_HMO_unvaulted_negative_effects: ""
+ 
+ ## Concepts
+ # Start on a tomb world
+ # Start with a storage building
+ # Start with all agriculture districts replaced by mining districts
+ # Extra starting resources: +5000 food
+ # Situations: Climate Restoration
+ 
+ ## Content
+ # Other Events
+ #HMO_START_SCREEN_UNVAULTED: "For the longest time our people has known nothing but grey concrete walls, never seeing beyond the great metal gate that shields us from our ancestors great mistake.\n\nFor untold generations we've been trapped, kept complacent by the threat of radioactive winds and acid rain. But our calculations show that now is the time to leave the safety of our prison."
+ HMO_START_SCREEN_UNVAULTED: "Fourteen generations ago, the controlling powers of our world annihilated our planets population in a rapid exchange of nuclear fire, an inferno sparked from events none remember.\n\nFortunately for the continued existence of our species, at least one of these superpowers had the foresight to construct contingency bunkers. Gigantic vaults big enough to house a populatiuon big enough to sustain itself, at least as long as the food did not run out.\n\nThat time, however, is slowly creeping closer, and while the invention of the hyperdrive has given hope, the reality is that we may be too late to save our planet - and ourselves."
+ 
+ # Deposits
+ d_HMO_decrepit_vault: "£blocker£ Unopened Vault"
+ d_HMO_decrepit_vault_desc: "A vault that has yet to be opened. The people inside have no idea what horros await them."
+ 
+ d_HMO_unvaulted_vault: "Vault"
+ d_HMO_unvaulted_vault_desc: "This highly versatile 6mi² luxary vault has beautiful concrete-gray walls, state of the art plumbing and food storage systems, as well as everything else you might need to kickstart civilization after nuclear wars, global ecological catastophes, alien invasions and zombie apocalypses!*\n§L*List not exhaustive. Warranty void if door opened without oversight by certified vault technician. May contain traces of uranium.§!"
+ 
+ # Situation
+ HMO_unvaulted_situation: "The Restoration Project"
+ HMO_unvaulted_situation_type: "Climate Restoration"
+ HMO_unvaulted_situation_desc: "[Target.GetName] was once a world perfect for our species. It can be so once again if we put in the effort."
+ 
+ HMO_unvaulted_situation_monthly_change_tooltip: "$situation_monthly_change_tooltip_approaches_dependent$"
+ 
+ HMO_unvaulted_situation_completion_tooltip: "The Climate Restoration Project will be completed, returning our homeworld to how it was before the apocalypse."
+ 
+ HMO_stage_terraforming_1: "Goal: Analysis"
+ HMO_stage_terraforming_2: "Goal: Introduction of New Biota"
+ HMO_stage_terraforming_3: "Goal: Terrestial Biosphere Restoration"
+ HMO_stage_terraforming_4: "Goal: Advanced Acclimitation"
+ HMO_stage_terraforming_5: "Goal: Ecosystem Stabilization"
+ 
+ HMO_approach_terraform: "Restoration Project"
+ HMO_approach_terraform_tooltip: "Focus on research and innovation that might help restore our homeworld to its natural state."
+ HMO_approach_colonize: "Colonization Efforts"
+ HMO_approach_colonize_tooltip: "The time and resources spent salvaging our homeworld would be better spent ensuring our continued existence through deployment of new colonies."
+ 
+ HMO_origin.3000.name: "The Restoration Project"
+ HMO_origin.3000.desc: "While our planet is a desolate wasteland, it is not beyond salvation. Proponents of the restoration project have already laid out plans on how to reintroduce a viable biosphere to our planet, though much research would still be needed to bring the project to fulfillment.\n\nMore negative voices has suggested we instead focus on utilizing our new hyperdrive technology to instead search for a new world to settle, one free from our past mistakes."
+ HMO_origin.3000.a: "The Restoration Project is our best bet at survival."
+ HMO_origin.3000.b: "We should focus our resources on space exploration."
+ 
+ # Biosphere Found
+ HMO_origin.3001.name: "[From.GetClassName] Found"
+ HMO_origin.3001.desc.a: "Our search has come to an end! With the discovery of a planet whose climate and ecosystem bears a striking resemblence to that of [Owner.GetHomeWorldName]'s past, we are ready to officially begin the Restoration Project."
+ HMO_origin.3001.desc.b: "A planet similar to how [Owner.GetHomeWorldName] looked in the past has been found. With this discovery, we could take some of the wildlife and vegetation and introduce it on [Owner.GetHomeWorldName] in order to help along the Restoration Project."
+ #HMO_origin.3001.a: ""
+ 
+ # Need Biosphere
+ HMO_origin.3002.name: "Native Biosphere Eradicated"
+ HMO_origin.3002.desc: "After the great apocalypse, all our native wildlife perished, leaving our world a barren wasteland. For some time now our scientific community has speculated whether or not alien planets might hold life that resembles what was once present on [Target.GetName], whose introduction to the [Target.GetPlanetMoon] could tremendously help with the restoration of a liveable envirionment."
+ HMO_origin.3002.a: "We should search for such planets."
+ 
+ HMO_origin.3003.name: "Small Improvements"
+ HMO_origin.3003.desc: "With the introduction of the lifeforms on [event_target:HMO_biosphere_planet] to [This.GetName], the planets climate is now stable enough for large-scale agriculture, although further research into terraforming technologies will be needed to expand the farmable land, as well as further the Restoration Project."
+ #HMO_origin.3003.a: ""
+ 
+ # Biosphere Found
+ HMO_origin.3007.name: "[event_target:HMO_biosphere_planet.GetClassName] Found"
+ HMO_origin.3007.desc.a: "Our search has come to an end! With the discovery of a planet whose climate and ecosystem bears a striking resemblence to that of [Owner.GetHomeWorldName]'s past, we are ready to officially begin the Restoration Project."
+ HMO_origin.3007.desc.b: "A planet similar to how [Owner.GetHomeWorldName] looked in the past has been found. With this discovery, we could take some of the wildlife and vegetation and introduce it on [Owner.GetHomeWorldName] in order to help along the Restoration Project."
+ #HMO_origin.3001.a: ""
+ 
+ HMO_origin.3500.name: "[Target.GetName] Restored!"
+ HMO_origin.3500.desc: "With the conclusion of the Restoration Project, [Target.GetName] now matches the descriptions of its pre-war counterpart, and for the first time [Owner.GetSpeciesName] on our [Planet.GetPlanetMoon] are able to experience clean air and real, unmutated nature."
+ HMO_origin.3500.a: "Let the celebrations begin!"
+ 
+ ## Modifiers
+ HMO_unvaulted_reward_modifier: "Specialized Terraforming Techniques"
+ HMO_unvaulted_reward_modifier_desc: "Ineffecient and primitive terraforming attempts made has taught this empire much about the processes that take place during such grand projects."
+ 
+ ################################
+ # Cataclysm Engine Origin
+ ################################
+ 
+ ## Origin
+ #origin_HMO_cataclysm_engine: "Cataclysm Engine"
+ #origin_HMO_cataclysm_engine_desc: "§RWARNING: No Content§!\nThis species is not the first to inhabit this system. Before the fledgling empire that now takes to the stars, there was a very advanced empire, who in their attempt at obtaining ultimate power almost destroyed the entirety of the universe. Now the only remnants of this long since gone empire is a massive construction around their star that is slowly deteriorating into a catastrophic meltdown chain reaction."
+ #origin_HMO_cataclysm_engine_effects: "Home System: ['concept_HMO_cataclysm_engine_megastructure']"
+ ##origin_HMO_cataclysm_engine_negative_effects: ""
+ #
+ #HMO_START_SCREEN_CATACLYSM_ENGINE: ""
+ 
+ #################################
+ # Intergalactic Scrapyard Origin
+ #################################
+ 
+ ## Origin
+ #origin_HMO_scrapyard: "Interstellar Scrapyard"
+ #origin_HMO_scrapyard_desc: "§RWARNING: No Content§!\nThousands of derelict ships litter this species home system, providing a steady supply of advanced alloys, study material, as well as mysteries."
+ #origin_HMO_scrapyard_effects: "- Home System:$TABBED_NEW_LINE$- Multipe ['concept_archaeology_site', Archaeology Sites]$TABBED_NEW_LINE$- ['concept_HMO_debris_fields']"
+ ## Debris fields is alloy deposits
+ ##origin_HMO_scrapyard_negative_effects: ""
+ #
+ #HMO_START_SCREEN_SCRAPYARD: ""
+ 
+ ################################
+ # Unlimited Potential Origin
+ ################################
+ 
+ ## Origin
+ origin_HMO_unlimited_potential: "Unlimited Potential"
+ origin_HMO_unlimited_potential_desc: "This empires home system is a perfect treasure trove of planets and resources, the likes of which has never seen before in the known universe."
+ origin_HMO_unlimited_potential_effects: "- ['concept_guaranteed_colonies']: ['concept_HMO_terraforming_candidates'] in the starting system$TABBED_NEW_LINE$- Start with multiple unexploited rare resource deposits in your home system."
+ #origin_HMO_unlimited_potential_negative_effects: ""
+ 
+ ################################
+ # Codekeepers Origin
+ ################################
+ 
+ ## Origin
+ #origin_HMO_codekeepers: "Codekeepers"
+ #origin_HMO_codekeepers_desc: "§RWARNING: No Content§!\nThe sacred code of this empire has been passed down generations, ensuring that the morals of the people are never corrupted or twisted."
+ #origin_HMO_codekeepers_effects: "- $HOMEWORLD$$TABBED_NEW_LINE$- ['concept_pc_nuked']$TABBED_NEW_LINE$- ['concept_HMO_unvaulted_vault'] Planetary Feature$TABBED_NEW_LINE$- Initial ['concept_farming_district', £district£ $district_farming_plural$] replaced with ['concept_mining_district', £district£ $district_mining_plural$]$NEW_LINE$- Situation: ['concept_HMO_restoration_project']$NEW_LINE$- Starting Resources: +5000 $food$ £food£"
+ #origin_HMO_codekeepers_negative_effects: ""
+ #
+ #HMO_START_SCREEN_CODEKEEPERS: ""
+ 
+ ################################
+ # Zombie Apocalypse Origin
+ ################################
+ 
+ ## Tooltips
+ HMO_civic_tooltip_mutually_exclusive_materialist_or_militarist: "Is some degree of §YMaterialist§! or §YMilitarist§!, but not in equal amounts."
+ 
+ ## Origin
+ origin_HMO_zombies: "After The Apocalypse"
+ origin_HMO_zombies_desc: "§RWARNING: Blocks all Ascension Paths except for ['concept_cybernetic_ascension'] and ['concept_synthetic_ascension']§!.\n\nWith the invention of the hyperdrive coinciding with a near-extinction event caused by a viral strain of an extremely deadly disease, this civilization is still feeling the aftereffects of most of its population having been decimated."
+ origin_HMO_zombies_effects: "- $HOMEWORLD$$TABBED_NEW_LINE$- Size: £planetsize£ 24$TABBED_NEW_LINE$- Initial buildings replaced by ['concept_HMO_zombies_infrastructure', $concept_HMO_zombies_infrastructure$]$TABBED_NEW_LINE$- ['concept_HMO_zombie_blockers']: +12\n- Authority: ['concept_HMO_martial_law_authorities']\n- Ruler: In exile until the conclusion of the story."
+ origin_HMO_zombies_negative_effects: "- $INITIAL_POPS$ §R-6§!\n- ['concept_HMO_zombie_armies'] attack your capital periodically."
+ # $TABBED_NEW_LINE$- ['concept_HMO_zombies_infrastructure', $concept_HMO_zombies_infrastructure$]
+ #origin_HMO_zombies_effects: "- $HOMEWORLD$$TABBED_NEW_LINE$- ['concept_HMO_zombies_infrastructure', $concept_HMO_zombies_infrastructure$]$TABBED_NEW_LINE$- ['concept_HMO_zombie_blockers']: +5$TABBED_NEW_LINE$-"
+ #origin_HMO_zombies_effects: "- $HOMEWORLD$$TABBED_NEW_LINE$- ['concept_HMO_zcom_building']$TABBED_NEW_LINE$- ['concept_HMO_zombie_blockers']: +5$NEW_LINE$- £pop£ §IPops§! with the ['concept_HMO_zombie_trait'] Trait: 16$NEW_LINE$- £pop£ §IPops§! killed by §YOrbital Bombardment§!, §YArmies§! or §YPurges§! will be reanimated as ['concept_HMO_zombies_zombies']"
+ #origin_HMO_zombies_negative_effects: ""
+ 
+ HMO_START_SCREEN_ZOMBIES: "Whether a genetic experiment gone wrong, a bioweapon unleashed by an anarchist group or a random mutation of a rare disease, the apocalypse that almost destroyed life as we know it also left us with billions of empty shells.\n\nCities infested with the undead litter the globe, and only a few cities survived the onslought, now fortified with multiple layers of failsafes and defenses constructed by the [HMO_Get_zcom_name], a paramilitary organization formed during our species darkest hours.\n\nIn these dark times we need their guiding light and unwavering courage, as we prepare to take the leap out into the cold black void.\nTime will tell if this will be remembered as the start of a grand empire, or the escape from a dying world."
+
+ #\n\nYet, we would not have survived had it not been for the emergence of a second group of heroic figures, the [HMO_Get_resproject_name], a research group dedicated to the study of the plague preservation and restoration of our technological progress.
+ 
+ #HMO_START_SCREEN_ZOMBIES: "Whether a genetic experiment gone wrong, a bioweapon unleashed by an anarchist group or a random mutation of a rare disease, the apocalypse that almost destroyed life as we know it also left us with billions of empty shells. These undead creatures have been mostly neutralized, and with the right measures they can conduct most types of menial labor without much issue, and though some protested their use, the grim reality is that with our numbers having been cut down so drastically we wouldn't have been able to reclaim our industrial capabilities without them. Now we take to the stars, and we have to decide whether or not our undead brethren should come along for the journey."
+ 
+ #HMO_START_SCREEN_ZOMBIES: "Whether a genetic experiment gone wrong, a bioweapon unleashed by an anarchist group or a random mutation of a rare disease, the apocalypse that almost destroyed life as we know it also left us with billions of empty shells. These undead creatures have been mostly neutralized, and with the right measures they can conduct most types of menial labor without much issue, and though some protested their use, the grim reality is that with our numbers having been cut down so drastically we wouldn't have been able to reclaim our industrial capabilities without them. Now we take to the stars, and we have to decide whether or not our undead brethren should come along for the journey."
+ 
+ #HMO_START_SCREEN_ZOMBIES: "Whether a genetic experiment gone wrong, a bioweapon unleashed by an anarchist group or a random mutation of a rare disease, the viral strain that almost led to the extenction of the [GetSpeciesName] race. But now, with control established "
+ 
+ #HMO_START_SCREEN_ZOMBIES: "Whether a genetic experiment, a bioweapon, or a mutation of a rare disease, the apocalypse that almost destroyed life as we know it also left us with billions of empty shells. These undead creatures are now under control, suited for nothing more than the most basic of menial labor."
+ 
+ ### Government
+ #NAME_HMO_Resproject: "Insurgency"
+ #COUNTRY_HMO_RESPROJECT: "Anarchistic Insurgency"
+ #gov_HMO_resproject: "Insurgency"
+ #gov_HMO_resproject_desc: "One can hardly call the insurgency a state, although they appear to be somewhat organized."
+ #HMO_RESPROJECT_LEADER_TITLE: "Illuminator"
+ #civic_HMO_resproject: "Insurgents"
+ #civic_HMO_resproject_desc: "This organization is dedicated to the study of the plague strain that ravaged their society."
+ 
+ HMO_zcom_commander_desc: "This leader managed to unite the disparate military remnants of the old world and defend the last scraps of survivors from the undead."
+ HMO_zcom_commander_catchphrase: "We'll get through this together or not at all."
+ 
+ HMO_zcom_name_zcom: "Zcom"
+ HMO_zcom_name_vanguard: "Vanguard"
+ HMO_zcom_name_operation_resurrection: "Last Stand"
+ #HMO_zcom_name_operation_resurrection: "Project Resurrection"
+ HMO_zcom_name_placeholder: "paramilitary organization that saved the remnants of our civilization"
+ 
+ HMO_zombie_bombardment: "Plague Bombardment"
+ HMO_zombie_bombardment_desc: "$bombardment_HMO_zombie_bombardment$ Bombardment utilizes a modified version of the plague strain to turn any living beings into undead husks, causing havoc and incredible ecosystem damage.\n- §ELight§! damage to §YArmies§!\n- §RCatastrophic§! damage to §YPlanet§!\n- §HHeavy§! damage to §YPops§!\n- Will bombard undefended planets\n- Resurrects killed §YPops§! as hostile zombie armies"
+ 
+ ###############
+ # Governments #
+ ###############
+ 
+ ### All ###
+ #HMO_democratic_end: "\n\nThis democratic government holds regular elections where all citizens can vote on who should represent them."
+ #HMO_oligarchic_end: ""
+ #HMO_dictatorial_end: ""
+ #HMO_imperial_end: ""
+ #HMO_corporate_end: ""
+ 
+ ### Martial Law ###
+ 
+ gov_HMO_martial_law: "Provisional Government"
+ gov_HMO_martial_law_desc: "This government is only a temporary one, upholding a strict militarily-imposed martial law to prevent societal collapse."
+ HMO_MARTIAL_LAW_LEADER_TITLE: "General"
+ 
+ gov_HMO_infinite_martial_law: "Provisional Government"
+ gov_HMO_infinite_martial_law_desc: "This government is a temporary one made permanent, upholding a strict militarily-imposed martial law in perpeuity."
+ 
+ ### Encryption ###
+ 
+ gov_HMO_democratic_encryption: "$MO_auth_democratic_encryption$"
+ gov_HMO_democratic_encryption_desc: "$MO_auth_democratic_encryption_desc$"
+ 
+ gov_HMO_oligarchic_encryption: "$MO_auth_oligarchic_encryption$"
+ gov_HMO_oligarchic_encryption_desc: "$MO_auth_oligarchic_encryption_desc$"
+ 
+ gov_HMO_dictatorial_encryption: "$MO_auth_dictatorial_encryption$"
+ gov_HMO_dictatorial_encryption_desc: "$MO_auth_dictatorial_encryption_desc$"
+ 
+ gov_HMO_imperial_encryption: "$MO_auth_imperial_encryption$"
+ gov_HMO_imperial_encryption_desc: "$MO_auth_imperial_encryption_desc$"
+ 
+ gov_HMO_corporate_encryption: "$MO_auth_corporate_encryption$"
+ gov_HMO_corporate_encryption_desc: "$MO_auth_corporate_encryption_desc$"
+ 
+ # Bugged
+ 
+ gov_HMO_corporate_democratic_encryption: "$MO_auth_bugged_corporate_democratic_encryption$"
+ gov_HMO_corporate_democratic_encryption_desc: "$MO_auth_bugged_corporate_democratic_encryption_desc$"
+ 
+ gov_HMO_corporate_imperial_encryption: "$MO_auth_bugged_corporate_imperial_encryption$"
+ gov_HMO_corporate_imperial_encryption_desc: "$MO_auth_bugged_corporate_imperial_encryption_desc$"
+ 
+ gov_HMO_direct_democratic_encryption: "$MO_auth_bugged_direct_democratic_encryption$"
+ gov_HMO_direct_democratic_encryption_desc: "$MO_auth_bugged_direct_democratic_encryption_desc$"
+ 
+ HMO_martial_law_auth: "Martial Law"
+ HMO_martial_law_auth_desc: "Governments under Martial Law are entirely controlled by the leaders of the military and have no elections."
+ 
+ ### Weaponry ###
+ 
+ gov_HMO_democratic_weaponry: "$MO_auth_democratic_weaponry$"
+ gov_HMO_democratic_weaponry_desc: "$MO_auth_democratic_weaponry_desc$"
+ 
+ gov_HMO_oligarchic_weaponry: "$MO_auth_oligarchic_weaponry$"
+ gov_HMO_oligarchic_weaponry_desc: "$MO_auth_oligarchic_weaponry_desc$"
+ 
+ gov_HMO_dictatorial_weaponry: "$MO_auth_dictatorial_weaponry$"
+ gov_HMO_dictatorial_weaponry_desc: "$MO_auth_dictatorial_weaponry_desc$"
+ 
+ gov_HMO_imperial_weaponry: "$MO_auth_imperial_weaponry$"
+ gov_HMO_imperial_weaponry_desc: "$MO_auth_imperial_weaponry_desc$"
+ 
+ gov_HMO_corporate_weaponry: "$MO_auth_corporate_weaponry$"
+ gov_HMO_corporate_weaponry_desc: "$MO_auth_corporate_weaponry_desc$"
+ 
+ # Bugged
+ 
+ gov_HMO_corporate_democratic_weaponry: "$MO_auth_bugged_corporate_democratic_weaponry$"
+ gov_HMO_corporate_democratic_weaponry_desc: "$MO_auth_bugged_corporate_democratic_weaponry_desc$"
+ 
+ gov_HMO_corporate_imperial_weaponry: "$MO_auth_bugged_corporate_imperial_weaponry$"
+ gov_HMO_corporate_imperial_weaponry_desc: "$MO_auth_bugged_corporate_imperial_weaponry_desc$"
+ 
+ gov_HMO_direct_democratic_weaponry: "$MO_auth_bugged_direct_democratic_weaponry$"
+ gov_HMO_direct_democratic_weaponry_desc: "$MO_auth_bugged_direct_democratic_weaponry_desc$"
+ 
+ ### Zombie ###
+ 
+ gov_HMO_democratic_zombie: "$MO_auth_democratic_zombie$"
+ gov_HMO_democratic_zombie_desc: "$MO_auth_democratic_zombie_desc$"
+ 
+ gov_HMO_oligarchic_zombie: "$MO_auth_oligarchic_zombie$"
+ gov_HMO_oligarchic_zombie_desc: "$MO_auth_oligarchic_zombie_desc$"
+ 
+ gov_HMO_dictatorial_zombie: "$MO_auth_dictatorial_zombie$"
+ gov_HMO_dictatorial_zombie_desc: "$MO_auth_dictatorial_zombie_desc$"
+ 
+ gov_HMO_imperial_zombie: "$MO_auth_imperial_zombie$"
+ gov_HMO_imperial_zombie_desc: "$MO_auth_imperial_zombie_desc$"
+ 
+ gov_HMO_corporate_zombie: "$MO_auth_corporate_zombie$"
+ gov_HMO_corporate_zombie_desc: "$MO_auth_corporate_zombie_desc$"
+ 
+ # Bugged
+ 
+ gov_HMO_corporate_democratic_zombie: "$MO_auth_bugged_corporate_democratic_zombie$"
+ gov_HMO_corporate_democratic_zombie_desc: "$MO_auth_bugged_corporate_democratic_zombie_desc$"
+ 
+ gov_HMO_corporate_imperial_zombie: "$MO_auth_bugged_corporate_imperial_zombie$"
+ gov_HMO_corporate_imperial_zombie_desc: "$MO_auth_bugged_corporate_imperial_zombie_desc$"
+ 
+ gov_HMO_direct_democratic_zombie: "$MO_auth_bugged_direct_democratic_zombie$"
+ gov_HMO_direct_democratic_zombie_desc: "$MO_auth_bugged_direct_democratic_zombie_desc$"
+ 
+ HMO_martial_law_auth: "Martial Law"
+ HMO_martial_law_auth_desc: "Governments under Martial Law are entirely controlled by the leaders of the military and have no elections."
+ 
+ HMO_martial_law_auth: "Martial Law"
+ HMO_martial_law_auth_desc: "Governments under Martial Law are entirely controlled by the leaders of the military and have no elections."
+ 
+ #######################
+ # Special Authorities #
+ #######################
+ 
+ ### Martial Law Authorities ###
+
+ MO_auth_democratic_martial_law: "$HMO_martial_law_auth$"
+ MO_auth_democratic_martial_law_desc: "$HMO_martial_law_auth_desc$"
+ MO_auth_oligarchic_martial_law: "$HMO_martial_law_auth$"
+ MO_auth_oligarchic_martial_law_desc: "$HMO_martial_law_auth_desc$"
+ MO_auth_dictatorial_martial_law: "$HMO_martial_law_auth$"
+ MO_auth_dictatorial_martial_law_desc: "$HMO_martial_law_auth_desc$"
+ MO_auth_imperial_martial_law: "$HMO_martial_law_auth$"
+ MO_auth_imperial_martial_law_desc: "$HMO_martial_law_auth_desc$"
+ MO_auth_corporate_martial_law: "$HMO_martial_law_auth$"
+ MO_auth_corporate_martial_law_desc: "$HMO_martial_law_auth_desc$"
+ 
+ # Bugged
+ 
+ MO_auth_bugged_direct_democratic_martial_law: "$HMO_martial_law_auth$"
+ MO_auth_bugged_direct_democratic_martial_law_desc: "$HMO_martial_law_auth_desc$"
+ MO_auth_bugged_corporate_democratic_martial_law: "$HMO_martial_law_auth$"
+ MO_auth_bugged_corporate_democratic_martial_law_desc: "$HMO_martial_law_auth_desc$"
+ MO_auth_bugged_corporate_imperial_martial_law: "$HMO_martial_law_auth$"
+ MO_auth_bugged_corporate_imperial_martial_law_desc: "$HMO_martial_law_auth_desc$"
+ 
+ ### Encryption Authorities ###
+ MO_auth_democratic_encryption: "Democratic Concealment"
+ MO_auth_democratic_encryption_desc: "Specialized encryption ensures each citizen's privacy is secure and that information can only slip out through official channels, and only when explicitly allowed."
+ MO_auth_democratic_encryption_tt: "$unlock_edict_HMO_democratic_concealment$"
+ unlock_edict_HMO_democratic_concealment: "[HMO_democratic_concealment_DLC_variations]"
+ unlock_edict_HMO_democratic_concealment_cloaking: "$unlock_edict_tt$['concept_HMO_edict_democratic_concealment_cloaking']"
+ unlock_edict_HMO_democratic_concealment_no_cloaking: "$unlock_edict_tt$['concept_HMO_edict_democratic_concealment']"
+ 
+ edict_HMO_democratic_concealment: "Veil of Secrecy"
+ edict_HMO_democratic_concealment_desc: "All communications over unsecure lines are suspended and all encryption scrambled to ensure data breaches won't happen in any capacity."
+ edict_HMO_democratic_concealment_cloaking: "$edict_HMO_democratic_concealment$"
+ edict_HMO_democratic_concealment_cloaking_desc: "$edict_HMO_democratic_concealment_desc$"
+ #HMO_encryption_agenda_tt: "$unlock_edict_tt$['concept_HMO_encryption_agenda']"
+ #Powerful encryption and personalized firewall ensures that this government's every move is shrouded in mystery and prevents any secrets from slipping out without its explicit permission."
+ 
+ MO_auth_oligarchic_encryption: "Oligarchic Vanguard"
+ MO_auth_oligarchic_encryption_desc: "A powerful surveilence apparatus constantly keeps watch to prevent any malicious infiltration by foreign actors and dissatisfied citizens."
+ MO_auth_oligarchic_encryption_tt: "$unlock_edict_HMO_oligarchic_overclock$"
+ unlock_edict_HMO_oligarchic_overclock: "$unlock_edict_tt$['concept_HMO_edict_oligarchic_overclock']"
+ 
+ edict_HMO_oligarchic_overclock: "Loyalty Overclock"
+ edict_HMO_oligarchic_overclock_desc: "All authorized assemblers and identity designers are required to increase production and curate the additional identities to align with governmental policies."
+ 
+ MO_auth_dictatorial_encryption: "Dictatorial Isolation"
+ MO_auth_dictatorial_encryption_desc: "Powerful firewalls and mandated identification chips has effectively severed the citizens of this empire from the wider galaxy."
+ 
+ MO_auth_imperial_encryption: "Imperial Enigma"
+ MO_auth_imperial_encryption_desc: "The perfection of the synthetic mind has made geniuses of an entire population. Not many can follow along in the acedemic discussions that have become everyday speak."
+ MO_auth_imperial_encryption_tt: "$unlock_agenda_HMO_imperial_perfection$"
+ unlock_agenda_HMO_imperial_perfection: "Unlocks Agenda: ['concept_HMO_agenda_imperial_perfection']"
+ # Endless algorithms vigoriously checks the integrity of every citizen's digital mind, correcting any signs of tampering by foreign empires.
+ 
+ council_agenda_agenda_HMO_imperial_perfection_name: "Royal Perfection"
+ council_agenda_agenda_HMO_imperial_perfection_desc: "We cannot allow imperfections in our utopia, lest we risk corruption of the paradise we have created."
+ agenda_HMO_imperial_perfection_effect: "Remove all negative traits from all leaders."
+ 
+ MO_auth_corporate_encryption: "Corporate Immortality"
+ MO_auth_corporate_encryption_desc: "Regular backups of thought patterns and stored memory allows for the digital resurrection of this megacorporations customers. The cost of a new body, however, is quite high."
+ #Powerful antivirus software runs on every server, every terminal and every chip in this empire. All subscribtion-based of course."
+ MO_auth_corporate_encryption_tt: "Chance to resurrect leaders upon death: §G20%§!\n$unlock_edict_HMO_corporate_backup$"
+ unlock_edict_HMO_corporate_backup: "$unlock_edict_tt$['concept_HMO_edict_corporate_backup']"
+ 
+ edict_HMO_corporate_backup: "Mandatory Backups"
+ edict_HMO_corporate_backup_desc: "All leaders and important officials must report to their designated mind backup facility now and every 4 hours. Failure to do so results in termination in all senses of the word."
+ 
+ edict_HMO_corporate_backup_effect: "Chance to resurrect leaders upon death: §G+20%§!"
+ 
+ # Bugged
+ 
+ MO_auth_bugged_corporate_democratic_encryption: ""
+ MO_auth_bugged_corporate_democratic_encryption_desc: ""
+ 
+ MO_auth_bugged_corporate_imperial_encryption: ""
+ MO_auth_bugged_corporate_imperial_encryption_desc: ""
+ 
+ MO_auth_bugged_direct_democratic_encryption: ""
+ MO_auth_bugged_direct_democratic_encryption_desc: ""
+ 
+ ### Weaponry Authorities ###
+ 
+ HMO_cyberweaponry_army: "Annihilation Troops"
+ HMO_ascension_weaponry_trait: "[owner.species.GetNamePlural] Gain Trait: §Y$trait_robot_integrated_weaponry$§!"
+ HMO_unlock_cyberweaponry_army: "Unlocks Army Type: $HMO_cyberweaponry_army$"
+ 
+ MO_auth_democratic_weaponry: "Democratic Armament"
+ MO_auth_democratic_weaponry_desc: "Guns, misiles and hardened frames ensures that every citizen of this empire is a force to be reckoned with."
+ MO_auth_democratic_weaponry_tt: "$HMO_unlock_cyberweaponry_army$"
+ 
+ MO_auth_oligarchic_weaponry: "Oligarchic Crackdown"
+ MO_auth_oligarchic_weaponry_desc: "Loyalty bought with the threat of violence may be fickle, but so long as the state has a monopoly, it matters little what the average citizen thinks."
+ MO_auth_oligarchic_weaponry_tt: "$HMO_unlock_cyberweaponry_army$"
+ 
+ MO_auth_dictatorial_weaponry: "Dictatorial Suppression"
+ MO_auth_dictatorial_weaponry_desc: "The magnitude of power between a regular citizen and those in power has been amplified by the rather old-fashioned idea of the one in charge being the one with the biggest stick. Except in this case the stick is an antimatter bomb. Integrated directly into the owners body."
+ MO_auth_dictatorial_weaponry_tt: "$HMO_unlock_cyberweaponry_army$"
+ 
+ MO_auth_imperial_weaponry: "Imperial Militia"
+ MO_auth_imperial_weaponry_desc: "The dream of becoming part of the kings inner circle of loyal knights permeates this society, inspiring the population to ever greater feats of accomplishment."
+ MO_auth_imperial_weaponry_tt: "$HMO_unlock_cyberweaponry_army$"
+ 
+ MO_auth_corporate_weaponry: "Corporate Mercenaries"
+ MO_auth_corporate_weaponry_desc: "The services of this corporation is always for sale. Should anyone need help dealing with a minor pest, just call and an armarda of ships filled to the brim with antimatter bomb will arrive within minutes."
+ MO_auth_corporate_weaponry_tt: "$HMO_unlock_cyberweaponry_army$"
+ 
+ # Bugged
+ 
+ MO_auth_bugged_corporate_democratic_weaponry: ""
+ MO_auth_bugged_corporate_democratic_weaponry_desc: ""
+ 
+ MO_auth_bugged_corporate_imperial_weaponry: ""
+ MO_auth_bugged_corporate_imperial_weaponry_desc: ""
+ 
+ MO_auth_bugged_direct_democratic_weaponry: ""
+ MO_auth_bugged_direct_democratic_weaponry_desc: ""
+ 
+ ### Zombie Authorities ###
+ 
+ HMO_unlock_zombie_bombardment: "$HMO_unlock_bombardment_stance_tt$['concept_HMO_zombie_bombardment_stance']"
+ HMO_unlock_bombardment_stance_tt: "Unlocks Bombardment Stance: "
+ HMO_cybernetic_zombie_tt: "$HMO_unlock_zombie_bombardment$\nPurged Pops are resurrected as Cybernetic Zombies"
+ 
+ MO_auth_democratic_zombie: "Democratic Resurrection"
+ MO_auth_democratic_zombie_desc: "Implants integrated into the brain of every citizen ensures that once their time is up their corpse won't go on a violent rampage, and instead continue working for the benefit of society at large."
+ MO_auth_democratic_zombie_tt: "$HMO_cybernetic_zombie_tt$"
+ 
+ MO_auth_oligarchic_zombie: "Oligarchic Cyberdeath"
+ MO_auth_oligarchic_zombie_desc: "Workplace safety is a thing of the past, as deep-brain implants ensures compliance with local regulation even after death."
+ MO_auth_oligarchic_zombie_tt: "$HMO_cybernetic_zombie_tt$"
+ 
+ MO_auth_dictatorial_zombie: "Dictatorial Control"
+ MO_auth_dictatorial_zombie_desc: "Cybernetic implants constantly monitor the thought-patterns of citizens, squashing dissident thought by way of a lethal agent released directly into the brainstem.\nOnce dealt with, the corpse can then be puppetered as to not disrupt the workflow."
+ MO_auth_dictatorial_zombie_tt: "$HMO_cybernetic_zombie_tt$"
+ 
+ MO_auth_imperial_zombie: "Imperial Loyalty"
+ MO_auth_imperial_zombie_desc: "A modified plague strain and bespoke brain implants ensure loyalty to the [This.GetRulerTitle] is not lost upon death."
+ MO_auth_imperial_zombie_tt: "$HMO_cybernetic_zombie_tt$\nOur organic armies have a §Y50%§! chance to be resurrected as undead armies when defeated"
+ 
+ MO_auth_corporate_zombie: "Corporate Postmortem"
+ MO_auth_corporate_zombie_desc: "The debt you accrue throughout your life are paid of during your death. Just remember, the funeral costs are high, so it might take some time before you can afford one."
+ MO_auth_corporate_zombie_tt: "$HMO_cybernetic_zombie_tt$"
+ 
+ # Bugged
+ 
+ MO_auth_bugged_corporate_democratic_zombie: ""
+ MO_auth_bugged_corporate_democratic_zombie_desc: ""
+ 
+ MO_auth_bugged_corporate_imperial_zombie: ""
+ MO_auth_bugged_corporate_imperial_zombie_desc: ""
+ 
+ MO_auth_bugged_direct_democratic_zombie: ""
+ MO_auth_bugged_direct_democratic_zombie_desc: ""
+ 
+ #########
+ # Ruler #
+ #########
+ 
+ HMO_Martial_Law_Councilor: "General"
+ HMO_Martial_Law_Councilor_desc: "The General is the de facto ruler in a system of Martial Law."
+ 
+ councilor_ruler_MO_Hydra_corporate_martial_ruler: "$HMO_Martial_Law_Councilor$"
+ councilor_ruler_MO_Hydra_corporate_martial_ruler_desc: "$HMO_Martial_Law_Councilor_desc$"
+ councilor_ruler_MO_Hydra_democratic_martial_ruler: "$HMO_Martial_Law_Councilor$"
+ councilor_ruler_MO_Hydra_democratic_martial_ruler_desc: "$HMO_Martial_Law_Councilor_desc$"
+ councilor_ruler_MO_Hydra_oligarchic_martial_ruler: "$HMO_Martial_Law_Councilor$"
+ councilor_ruler_MO_Hydra_oligarchic_martial_ruler_desc: "$HMO_Martial_Law_Councilor_desc$"
+ councilor_ruler_MO_Hydra_dictatorial_martial_ruler: "$HMO_Martial_Law_Councilor$"
+ councilor_ruler_MO_Hydra_dictatorial_martial_ruler_desc: "$HMO_Martial_Law_Councilor_desc$"
+ councilor_ruler_MO_Hydra_imperial_martial_ruler: "$HMO_Martial_Law_Councilor$"
+ councilor_ruler_MO_Hydra_imperial_martial_ruler_desc: "$HMO_Martial_Law_Councilor_desc$"
+ councilor_ruler_MO_Hydra_direct_democratic_martial_ruler: "$HMO_Martial_Law_Councilor$"
+ councilor_ruler_MO_Hydra_direct_democratic_martial_ruler_desc: "$HMO_Martial_Law_Councilor_desc$"
+ councilor_ruler_MO_Hydra_corporate_democratic_martial_ruler: "$HMO_Martial_Law_Councilor$"
+ councilor_ruler_MO_Hydra_corporate_democratic_martial_ruler_desc: "$HMO_Martial_Law_Councilor_desc$"
+ councilor_ruler_MO_Hydra_corporate_imperial_martial_ruler: "$HMO_Martial_Law_Councilor$"
+ councilor_ruler_MO_Hydra_corporate_imperial_martial_ruler_desc: "$HMO_Martial_Law_Councilor_desc$"
+ #########################
+ # Deposits And Blockers #
+ #########################
+ 
+ ## Deposits
+ d_HMO_zombie_town_1: "£blocker£ Infested City"
+ d_HMO_zombie_town_1_desc: "A city that was once bustling with life, lifeless husks now shamble through the streets, looking for their next meal."
+ d_HMO_zombie_town_2: "£blocker£ Infested City"
+ d_HMO_zombie_town_2_desc: "A city that was once bustling with life, lifeless husks now shamble through the streets, looking for their next meal."
+ d_HMO_zombie_town_3: "£blocker£ Infested City"
+ d_HMO_zombie_town_3_desc: "A city that was once bustling with life, lifeless husks now shamble through the streets, looking for their next meal."
+ HMO_zombie_town_tooltip: "On Clearing: Create an $d_HMO_empty_zombie_town_1$ Blocker."
+ HMO_zombie_town_zombie_tooltip: "On Clearing: §Y1§! zombified £pop£ Pop and an $d_HMO_empty_zombie_town_1$ Blocker is created."
+ 
+ HMO_requires_ascension_path_completed: "$TRIGGER_FAIL$§RWe need to complete an §YAscension Path§! before we can challenge the plague!§!"
+ 
+ d_HMO_empty_zombie_town: "£blocker£ Empty City"
+ d_HMO_empty_zombie_town_desc: "A city that was once bustling with unlife, lifeless corpses now litter the streets, waiting for someone to put them in a grave."
+ 
+ d_HMO_empty_zombie_town_1: "£blocker£ Empty City"
+ d_HMO_empty_zombie_town_1_desc: "A city that was once bustling with unlife, lifeless corpses now litter the streets, waiting for someone to put them in a grave."
+ d_HMO_empty_zombie_town_2: "£blocker£ Empty City"
+ d_HMO_empty_zombie_town_2_desc: "A city that was once bustling with unlife, lifeless corpses now litter the streets, waiting for someone to put them in a grave."
+ d_HMO_empty_zombie_town_3: "£blocker£ Empty City"
+ d_HMO_empty_zombie_town_3_desc: "A city that was once bustling with unlife, lifeless corpses now litter the streets, waiting for someone to put them in a grave."
+ HMO_empty_zombie_town_tooltip: "On Clearing: §Y1§! £district£ [planet.owner.HMO_GetCityDistrictName] District is created."
+ 
+ d_HMO_zombie_factory: "£blocker£ Infested Factory"
+ d_HMO_zombie_factory_desc: "An industrial complex long since fallen into disrepair. The undead factory workers do not seem to care for the halt of production."
+ HMO_zombie_factory_tooltip: "On Clearing: Create an $d_HMO_empty_zombie_factory$ Blocker."
+ HMO_zombie_factory_zombie_tooltip: "On Clearing: §Y1§! zombified £pop£ Pop and an $d_HMO_empty_zombie_factory$ Blocker is created."
+ 
+ d_HMO_empty_zombie_factory: "£blocker£ Empty Factory"
+ d_HMO_empty_zombie_factory_desc: "A factory filled with corpses, despite it being in clear violation of local health regulations."
+ HMO_empty_zombie_factory_tooltip: "On Clearing: §Y1§! £district£ Industrial District is created."
+ 
+ d_HMO_historical_town: "Old Town"
+ d_HMO_historical_town_desc: "A city from before the apocalypse, though without the people that once lived there."
+ 
+ d_HMO_zombie_farm: "£blocker£ Infested Fields"
+ d_HMO_zombie_farm_desc: "A large farmland in which the dead hide, waiting for prey to come by so that they can infect them.."
+ HMO_zombie_farm_tooltip: "On Clearing: Create an $d_HMO_empty_zombie_farm$ Blocker."
+ HMO_zombie_farm_zombie_tooltip: "On Clearing: §Y1§! zombified £pop£ Pop and a $d_HMO_empty_zombie_farm$ Blocker is created."
+ 
+ d_HMO_empty_zombie_farm: "£blocker£ Desolate Fields"
+ d_HMO_empty_zombie_farm_desc: "A field of rotten crops filled with the bodies of the dead. It seems like this year's corpse harvest will be good."
+ HMO_empty_zombie_farm_tooltip: "On Clearing: §Y1§! £district£ Farming District is created."
+ 
+ d_HMO_zombie_mine: "£blocker£ Infested Mines"
+ d_HMO_zombie_mine_desc: "These ancient mining tunnels are filled with the still-moving corpses of the miners that risked their life each day hauling valuable ore back."
+ HMO_zombie_mine_tooltip: "On Clearing: Create an $d_HMO_empty_zombie_mine$ Blocker."
+ HMO_zombie_mine_zombie_tooltip: "On Clearing: §Y1§! zombified £pop£ Pop and a $d_HMO_empty_zombie_mine$ Blocker is created."
+ 
+ d_HMO_empty_zombie_mine: "£blocker£ Silent Mines"
+ d_HMO_empty_zombie_mine_desc: "These ancient mining tunnels are filled with the corpses of the miners that risked their life each day hauling valuable ore back."
+ HMO_empty_zombie_mine_tooltip: "On Clearing: §Y1§! £district£ Mining District is created."
+ 
+ d_HMO_zombie_generator: "£blocker£ Infested Powerplant"
+ d_HMO_zombie_generator_desc: "Technicians shuffle around this powerplant in a gruesome imitation of the important work that once took place."
+ HMO_zombie_generator_tooltip: "On Clearing: Create an $d_HMO_empty_zombie_generator$ Blocker."
+ HMO_zombie_generator_zombie_tooltip: "On Clearing: §Y1§! zombified £pop£ Pop and a $d_HMO_empty_zombie_generator$ Blocker is created."
+ 
+ d_HMO_empty_zombie_generator: "£blocker£ Broken Powerplant"
+ d_HMO_empty_zombie_generator_desc: "Hazmat-suited bodies litter the hallways of this decrepit powerplant, as still as the abandoned machinery."
+ HMO_empty_zombie_generator_tooltip: "On Clearing: §Y1§! £district£ Generator District is created."
+ 
+ # Scripted Loc
+ HMO_Nexus_District: "Nexus"
+ HMO_Hive_District: "Hive"
+ HMO_City_District: "City"
+ 
+ ## buildings
+ # Zcom Headquarters
+ HMO_building_zcom_headquarters: "Bastion of Survival"
+ HMO_building_zcom_headquarters_desc: "The main headquarters of the [Owner.HMO_Get_zcom_name]. What started out as a temporary encampment has been expanded to the many layered walls and thick hydraulic steel doors you see before you."
+ #HMO_zcom_disbanded: "$TRIGGER_FAIL$ [HMO_Get_zcom_name] has been disbanded"
+ 
+ # The Resurrection project
+ #HMO_building_resproject_headquarters: ""
+ #HMO_building_resproject_headquarters_desc: ""
+ #HMO_resproject_disbanded: "$TRIGGER_FAIL$ [HMO_Get_resproject_name] has been disbanded"
+ 
+ HMO_building_resproject_outpost: "Ramshackle Laboratories"
+ HMO_building_resproject_outpost_desc: "In the current conditions it is impossible to get good work done, though we must nevertheless push on."
+ 
+ ### Faction Names
+ ## Zcom Names
+ #HMO_Zcom: "Zcom"
+ #HMO_Vanguard: "Vanguard"
+ 
+ 
+ ## Zombie Research Group
+ #HMO_Project_Resurrection: "Project Resurrection"
+ #HMO_Project_Resurrection: "Project Resurrection"
+ 
+ ## Leader Names
+ # Zcom Commander
+ 
+ #HMO_zombies_commander_desc: ""
+ 
+ # Resurrection Project scientist
+ 
+ #HMO_zombies_scientist_desc: ""
+ 
+ ###############################
+ # Megacorp Synth Resurrection #
+ ###############################
+ 
+ HMO_special_event.2.name: "Greatly Exaggerated News"
+ HMO_special_event.2.desc: "We have managed to recover the backup cache for §Y[From.GetName]§!'s digital mind. With this, we have managed to return [From.GetHisHer] to a new robotic body.\nThe accrued costs of this difficult affair have been deducted from [From.GetHisHer] paycheck."
+ HMO_special_event.2.a: "Great to have you back, [From.GetName]!"
+ 
+ ##################
+ # Zombie Country #
+ ##################
+ 
+ NAME_Zombie_Country_Name: "The Plague"
+ NAME_HMO_Zombie_Army_Name_1: "Undead Horde"
+ 
+ HMO_zombie_army: "Undead"
+ HMO_zombie_assault_army: "Undead"
+ 
+ ### Events
+ 
+ #HMO_support_zcom: "Increase funding for [HMO_Get_zcom_name]."
+ #HMO_support_resproject: "Increase funding for [HMO_Get_resproject_name]."
+ 
+ ## What now?
+ #HMO_origin.7000.name: "What Now?"
+ #HMO_origin.7000.desc: "For some time now our society has been stable, thanks to the two organizations [HMO_Get_zcom_name] and [HMO_Get_resproject_name].\n\nBoth groups have come up with a plan on how to proceed forward, with the militaristic [HMO_Get_zcom_name] wanting to eradicate the zombies in an effort to reclaim our safety.\nIn stark contrast, the scientificly inclined [HMO_Get_resproject_name] organization wants to study the disease to unlock its secrets, and perhaps learn how it came to be, so that should it ever return we will be prepared."
+ #HMO_origin.7000.a: "We should strive to eradicate this defiled disease."
+ #HMO_origin.7000.b: "The opportunities outweigh the dangers."
+ 
+ HMO_origin.7001.name: "The Dead Stirr"
+ HMO_origin.7001.desc: "A huge zombie horde has stirred at the outskirts of a nearby metropolis. While the undead rarely move on their own accord, their tendency to follow and mimic other infected means that a single one of them deciding to go somewhere can result in an unstoppable avalanche of corpses seemingly coordinating to invade new territory.\n\n[This.HMO_Get_zcom_name] scouts have confirmed that the horde is on a course towards a nearby [capital_scope.HMO_get_zombie_target].\nIt is imperative that we stop them before they reach it."
+ HMO_origin.7001.a: "Worrying"
+ 
+ HMO_origin.7010.name: "Defenses Overwhelmed"
+ HMO_origin.7010.desc.shared: "Despite the valiant effort of the [HMO_Get_zcom_name], the horde managed to overwhelm their defenses"
+ HMO_origin.7010.desc.city: "$HMO_origin.7010.desc.shared$ and pour into the tightly packed city. Most were killed within mere hours, the rest slowly dwindling in numbers as they are hunted down.\n\nAs unfortunate as it is, we are unable to launch a rescue mission as entering the city at this point is a death sentence."
+ HMO_origin.7010.desc.industrial: "$HMO_origin.7010.desc.shared$ and enter the factory complexes. Most workers were killed in a gigantic explosion that undoubtedly was triggered by a valiant sacrifice by one of those unfortunate enough to have been there at the time of the attack.\n\nThe rest are expected to suffocate in the ensuing fire, or succumb to the remains of the undead horde still wandering around the flaming ruins."
+ HMO_origin.7010.desc.farm: "$HMO_origin.7010.desc.shared$ and flood the nearby fields. Most of those tending to the crops were slaughtered by the undead."
+ HMO_origin.7010.desc.generator: "$HMO_origin.7010.desc.shared$ and attack the nearby facilities."
+ HMO_origin.7010.desc.mining: "$HMO_origin.7010.desc.shared$ and subsequently found their way down ther nearby mining tunnels.\n\nWe do not expect anyone to make it out of there ... alive."
+ 
+ HMO_origin.7010.a: "Tragic!"
+ HMO_origin.7010.tt: "[fromfrom.HMO_Get_District_Loc] has been turned into an [fromfrom.HMO_Get_District_Deposit_Loc] Blocker."
+ 
+ HMO_CityDistrict: "§YInfested City§!"
+ HMO_IndustrialDistrict: "§YInfested Factory§!"
+ HMO_FarmingDistrict: "§YInfested Fields§!"
+ HMO_GeneratorDistrict: "§!Infested Powerplant§!"
+ HMO_MiningDistrict: "§YInfested Mine§!"
+ 
+ HMO_TrueCityDistrict: "A City District"
+ HMO_TrueIndustrialDistrict: "An Industrial District"
+ HMO_TrueFarmingDistrict: "A Farming District"
+ HMO_TrueGeneratorDistrict: "A Generator District"
+ HMO_TrueMiningDistrict: "A Mining District"
+ 
+ HMO_target_city: "Metropolis"
+ HMO_target_industrial: "Industrial Complex"
+ HMO_target_generator: "Generator Station"
+ HMO_target_mining: "Mining Facility"
+ HMO_target_farming: "Farm Array"
+ 
+ HMO_MESSAGE_ZOMBIES_WON_TITLE: "
+ HMO_MESSAGE_ZOMBIES_WON: "An army of undead husks breached our defenses on $PLANET|Y$ and turned [FromFrom.HMO_Get_District_Loc] into an $DEPOSIT|Y$."
+ 
+ #HMO_origin.7002.name: "A World-Wide Laboratory"
+ #HMO_origin.7002.desc: "Following the colonization of [event_target:HMO_resproject_candidate_world.GetName], representatives of the [HMO_Get_resproject_name] has approached us, inquiring about the possibility of the costudy of the planet being transfered to their organization.\n\nWhile this is a lot to ask for, they assure us that we will be repaid tenfold by way of the opportunities afforded in their quest for sequencing the genetic material of the plague."
+ #HMO_origin.7002.desc.denied_once: "Again we've been approached by represantatives of the [HMO_Get_resproject_name], asking if the newly colonized [event_target:HMO_resproject_candidate_world.GetPlanetHabitat] could be transfered to the custody of their organization, which would allow for faster reseach of the plague genome."
+ #HMO_origin.7002.desc.denied_twice: "Once again [HMO_Get_resproject_name] representatives have come forward with their request for an entire world. They say that without the freedom having control of an entire planet would give them, research into the plague strain will be much harder and slower, possibly being out of reach for the next several lifetimes.\n\nPerhaps we should reconsider our stance on this issue?"
+ #HMO_origin.7002.desc.denied_twice.b: "Fine, they can get their world lab!" 
+ #HMO_origin.7002.desc.denied_twice.a: "For the last time, they cannot get a whole [event_target:HMO_resproject_candidate_world.GetPlanetHabitat]!"
+ #HMO_origin.7002.desc.denied_once.b: "We can spare this [event_target:HMO_resproject_candidate_world.GetPlanetHabitat]." 
+ #HMO_origin.7002.desc.denied_once.a: "Didn't they hear us the first time?"
+ #HMO_origin.7002.desc.b: "Permission Granted." 
+ #HMO_origin.7002.desc.a: "Not at this time."
+ 
+ #HMO_origin.7003.name: "Test Subjects"
+ #HMO_origin.7003.desc: "Now with their lab firmly established on the surface of [event_target:HMO_resproject_planet.GetName], the [HMO_Get_resproject_name] "
+ #HMO_origin.7003.a: ""
+ #HMO_origin.7003.b: ""
+ 
+ # Modifier Localization
+ mod_planet_soldiers_unity_upkeep_add: "Soldier Unity Upkeep"
+ mod_planet_building_augmentation_center_build_speed_mult: "$building_augmentation_center$ Build Speed"
+ 
+ ##############
+ # Situations #
+ ##############
+ 
+ situation_MO_Hydra_digitization: "Synthesization"
+ situation_MO_Hydra_digitization_type: "Ascension Situation"
+ situation_MO_Hydra_digitization_desc: "It is time to leave our flawed biological vessels behind. We must prepare advanced machine bodies and perform the process of consciousness transfers.\n\n§YPops to be digitized next month§!: §G[From.GetSynthPopsPerMonth]§!"
+ situation_MO_Hydra_digitization_monthly_change_tooltip: "Our minds will become digital, our bodies machines."
+ 
+ situation_MO_Hydra_cyberization: "Cyberization"
+ situation_MO_Hydra_cyberization_type: "Ascension Situation"
+ situation_MO_Hydra_cyberization_desc: "We will soon be ready to augment our biological bodies with machine parts. The processing power of the brain and the strength of limbs can be increased. The question is if we are ready to give such power to our guardians as well as our civilians.\n\n§YPops to receive implants next month§!: §G[From.GetCyberPopsPerMonth]§!"
+ situation_MO_Hydra_cyberization_monthly_change_tooltip: "Our minds and bodies will be upgraded."
+ 
+ HMO_cyber.social_consequences.tt: "Influences the ongoing §YCybernetic Society Shift§!.\n\n" # Standard tooltip to indicate that the Individualism/Collectivism variables are changed
+ HMO_ascension.social_consequences.tt: "Influences the ongoing §YSynthetic Society Shift§!.\n\n"
+ 
+ HMO_situation_liberation_ongoing_desc: "Liberation Ongoing"
+ 
+ ############################
+ # Wildworld
+ ############################
+ 
+ origin_HMO_wildworld: "Wildworld"
+ origin_HMO_wildworld_desc: "Despite our civilization living for millennia, most of our world remains unexplored and our cities have remained insular. Many used to say it was endless before the first satellites and early space exploration proved otherwise."
+ origin_HMO_wildworld_effects: "- $HOMEWORLD$ ['concept_HMO_pc_tropical'] (Size: £planetsize£ 35)$NEW_LINE$- Situation: ['concept_HMO_wildworld_exploration']"
+ origin_HMO_PD_wildworld_effects: "- $HOMEWORLD$ ['concept_HMO_pc_wet_superhabitable'] (Size: £planetsize£ 35)$NEW_LINE$- Situation: ['concept_HMO_wildworld_exploration']"
+ origin_HMO_wildworld_negative_effects: "- $HOMEWORLD$$TABBED_NEW_LINE$- Only six districts are available at the game's start, with the rest being locked behind ['concept_HMO_blockers', $concept_HMO_blockers$]$TABBED_NEW_LINE$- $PLANETARY_MODIFIERS$ ['concept_HMO_keppler_mod']\n- $INITIAL_POPS$ §R-10§!"
+ 
+ HMO_START_SCREEN_WILDWORLD: "The vast jungle of our homeworld has long been known as an inhospitable area, best left alone. Inhabited by voracious beasts and full of toxic plants, the only place our civilization can thrive has been in groves and meadows that we have to keep clear of new growths, lest the jungle take from us our only safe haven.\n\nWe have always wanted to claim the rest of our world for ourselves, but such an endeavor would be costly. It is only now that space travel and satelites have enabled advanced geomapping and instant long-distant communication that we may succeed.\n\nYet our eagerness to escape our home has not been without its issues, as generations worth of space trash and other remnants of past escape attempts have resulted in a cage made from scrap and destroyed satelite parts to keep us trapped."
+ 
+ HMO_keppler_cage_country: "Trapped Colonists"
+ HMO_keppler_cage_country_desc: "Our ability to make colony ships has been severely hampered by our planet's kessler syndrome, making any large resettlements quite costly."
+ 
+ HMO_keppler_cage_scrap: "Kessler Cage"
+ HMO_keppler_cage_scrap_desc: "A large cloud of debris and metal scraps encircle this planet."
+ 
+ HMO_wildworld_unexplored_jungle: "Uncharted Jungle"
+ HMO_wildworld_unexplored_jungle_desc: "This dense jungle is home to many dangerous predators and toxic flora. Entering is a death sentence without proper equipment."
+ HMO_blocker_needs_to_be_explored: "This blocker needs to be §YExplored§! before it can be cleared!"
+ 
+ HMO_wildworld_exploration_situation: "Exploration of the [Target.GetName] jungle"
+ HMO_wildworld_exploration_situation_type: "Exploration"
+ HMO_wildworld_exploration_situation_desc: "What hides inside the jungles of [Target.GetName] has long been shrouded in mystery, but now we take up the torch and illuminate the uknown."
+ 
+ HMO_wildworld_exploration_situation_completion_tooltip: "The entirety of our homeworld will be known to us, enabling us to make use of all the space and resources it has."
+ 
+ HMO_wildworld_exploration_situation_monthly_change_tooltip: "$situation_monthly_change_tooltip_approaches_dependent$"
+ 
+ HMO_approach_explore: "Full Priority"
+ HMO_approach_explore_tooltip: "We will pour all of our resources into the exploration of our homeworld."
+ 
+ HMO_approach_slow_explore: "Balanced"
+ HMO_approach_slow_explore_tooltip: "We have other priorities than the exploration of our homeworld, and should only dedicate what resources we can realistically afford to spend on this grand project."
+ 
+ HMO_approach_no_explore: "Deprioritise"
+ HMO_approach_no_explore_tooltip: "We have more important matters to tend to."
+ 
+ HMO_approach_clear_jungle: "Cut Down Jungle"
+ HMO_approach_clear_jungle_tooltip: "We need more land for our growing empire."
+ 
+ HMO_stage_plans: "Exploration"
+ 
+ ### Keppler Cage ###
+ 
+ HMO_wildworld_keppler_chain_title: "Kessler Syndrome"
+ HMO_wildworld_keppler_chain_desc: "Our homeworld is encased in a cage of scrap and asteroids, kept in orbit by our planet's strong gravitational influence. Removing it should be of high priority to ensure it does not cascade into an unbreakable shield to keep us trapped."
+ 
+ HMO_WILDWORLD_CLEANUP_PROJECT: "Orbital Cleanup"
+ HMO_WILDWORLD_CLEANUP_PROJECT_DESC: "We should launch a concerted cleanup effort to make our homeworld's skies safe to fly again."
+ 
+ ### Events ###
+ 
+ HMO_origin.8100.name: "Expedition Into The Unknown"
+ HMO_origin.8100.desc: "For most of our civilization's history we have lived in small isolated villages, barely scraping by as we sought to tame the planet we call home.\n\nIt was only during the industrialization that we really started to carve out a place to call our own in this inhospitable jungle, and even then we did not expect to ever expand much further than that.\n\nBut now with advanced imagery from satelites and resources shipped in from beyond our world we are finally ready to take on the final frontier of exploration: Our homeworld."
+ HMO_origin.8100.a: "This should be our first priority!"
+ HMO_origin.8100.b: "We cannot neglect space exploration."
+ HMO_origin.8100.c: "Our cosmic expansion is more important."
+ 
+ HMO_origin.8400.name: "Kessler Syndrome"
+ HMO_origin.8400.desc: "While it was the invention of the satelite that truly ushered us into the next era of our civilization, we perhaps were a bit too eager to leave our old world behind.\n\nThousands of satelites and early space probes have been sent into orbit, only to be violently torn apart by the extreme gravitational field that our oversized planet exerts.\n\nIf we are to become a galactic superpower, it won't do if our heart is isolated from the rest of our empire."
+ HMO_origin.8400.a: "We need to clean up our mess!"
+ 
+ HMO_origin.8450.name: "Clear Skies"
+ HMO_origin.8450.desc.common: "Our cleanup efforts have been a success! With the scrap gone from our orbit, spaceships can now come and leave as they please."
+ HMO_origin.8450.desc.situation: "Additionally, with all this new space in our orbit we can better utilize satelites for advanced geo-imagery to aid in our exploration efforts."
+ 
+ HMO_keppler_cage_cleaned_up_tt: "Satelite Coverage"
+ 
+ #HMO_origin.8450.a: "Excellent!"
+ HMO_origin.8450.tt: "Exploration of the [owner.home_planet.GetName] jungle Situation Speed: §G+25%§!"
+ 
+ HMO_origin.8475.name: "Thick Foilage"
+ HMO_origin.8475.desc: "As our excursions into the jungle of [Target.GetName] get deeper and deeper into unexplored teritory, the difficulty of further exploration goes exponentially up, with most of their supplies running out before even reaching the edge of what we have already explored."
+ HMO_origin.8475.desc.notech: "\n\nIf this had been just a few decades earlier, this would have been where our story ended, but some of our top researchers have posited new research as the basis for clearing away the dense and overgrown vegetation.\n\nShould we invest this research it could potentially help our explorers reach further, as well as expand the landmass accessible for us for industrial purposes."
+ HMO_origin.8475.desc.tech: "\n\nWe should focus on clearing some land so our explorers don't have to traverse as far through such inhospitable terrain before reaching unexplored areas."
+ HMO_origin.8475.tooltip: "Situation Approach Unlocked: §Y$HMO_approach_clear_jungle$§!."
+ HMO_origin.8475.a: "Ok"
+ 
+ HMO_origin.8475.tt: "Too many $d_dense_jungle$ blockers[Owner.HMO_Get8745SecondPart]"
+ HMO_origin.8475.tech.tt: "\nWe lack the §Y$tech_dense_jungle$§! Technology"
+ 
+ HMO_origin.8501.name: "Map to [Target.GetName]"
+ HMO_origin.8501.desc: "For the first time in our recorded history has [Target.GetName] been fully mapped. Generations of [owner.species.GetNamePlural] have lived and died in their isolated little clusters of villages, and subsequently bigger, yet still isolated, towns, cities and metropolises.\n\nOnly now do we have access to our world's full resources, unlocked just in time to fuel our empire's ascension into the stars!"
+ 
+ HMO_origin.8602.name: "First Escapees"
+ HMO_origin.8602.desc: "With our newest colony now up and running, we will be able to source [species.GetNamePlural] for new colonies without having to lift them all the way up through our homeworlds cage of debris."
+ 
+ ### Random Events ###
+ 
+ ## Random Deposit ##
+ 
+ HMO_MESSAGE_DEPOSIT_FOUND_TITLE: "Deposit Found"
+ HMO_MESSAGE_DEPOSIT_FOUND: "An $DEPOSIT|Y$ was found on $PLANET|Y$ during our exploration of the planet-wide jungle."
+ 
+ # Deposits #
+ 
+ HMO_d_idyllic_valley: "Isolated Valley"
+ HMO_d_idyllic_valley_desc: "This valley is home to many unique creatures due to mountainous sides that makes travel into and out of the valley hard for most terrestial creatures."
+ 
+ HMO_d_old_ruins: "Ancient Ruin"
+ HMO_d_old_ruins_desc: "An archeological goldmine, this ancient ruin might have been a temple, a place of divine worship or other relegious building."
+ 
+ HMO_d_werediran_tower: "Ancient Radio Tower"
+ HMO_d_werediran_tower_desc: "A rusted and derelict radio tower that nevertheless still stands. Its survival has been attributed to the suppressing effect it has on the nearby vegetation."
+ 
+ d_HMO_isolated_village: "Isolated village"
+ d_HMO_isolated_village_desc: "The residents of this village has lived in isolation for hundreds of years. It would take quite the investment to integrate them back into our society."
+ 
+ HMO_origin.8702.name: "Ancient Idol"
+ HMO_origin.8702.desc: "During our exploration of [this.GetName] one of our expedition teams stumbled upon a small pillar wreathed in vines. On top of it was a small idol representing an ancient deiety that is suspiciously similar to one worshipped by fringe religious communities in our society.\n\nStone fragments and shattered bricks found nearby indicate that there once was a bigger building here, but now all that remains is this single pillar and the idol."
+ 
+ HMO_origin.8704.name: "Tribal [This.Species.GetNamePlural]"
+ HMO_origin.8704.desc: "During our exploration of [From.GetName], one of our expedition teams found what appears to be a parallel society of [This.Species.GetNamePlural] living deep in the jungle in a small primitive village.\n\nWhile it has long been speculated that survival outside our capital and the surrounding cleared land was possible, this is the first time such an event has been confirmed.\n\nFor now, they remain blissfully ignorant of our presence, but should we want to, we could expend some resources to bring them up to speed with the current technological advancements so they could be integrated into our society and culture."
+ 
+ HMO_origin.8705.name: "A Majestic Sight"
+ HMO_origin.8705.desc: "One of our exploration teams encountered a spectacular sight: Rushing off the edge of a cliff, hundreds of thousands litres of water fall down each second endlessly.\n\nThe explorers who discovered the waterfall has expressed feelings of great pride in our empire's progress during these times, pointing to the beauty of our homeworld as a reason to never give up in our quest for discovery."
+ HMO_origin.8705.a: "It's ... Beautiful."
+ 
+ # Blockers
+ #d_HMO_wildworld_dark_forest: "Dark Forest"
+ #d_HMO_wildworld_dark_forest_desc: "Tales"
+ #d_HMO_wildworld_dark_forest_tooltip: "§R$MISSING_TECHNOLOGY$: $tech_dense_jungle$§!"
+ 
+ ############################
+ # Born of Necessity
+ ############################
+ 
+ ## Origin
+ origin_HMO_dyson_swarm: "Born Of Necessity"
+ origin_HMO_dyson_swarm_desc: "Trapped by their young stars lack of hyperlane connections, this empire has begun harnessing the power of their star to stave of the inevitable depletion of resources most would face when confined to a single system. But now that hyperlanes have formed, this necessity might turn into an opportunity instead."
+ origin_HMO_dyson_swarm_effects: "- $HOMEWORLD$ Initial ['concept_generator_district', £district£ $district_generator_plural$] replaced with ['concept_mining_district', £district£ $district_mining_plural$] $NEW_LINE$- $HOME_SYSTEM$$TABBED_NEW_LINE$- ['concept_HMO_dyson_swarm'] constructed around the star$TABBED_NEW_LINE$- Star is always a ['concept_HMO_pc_m'] $NEW_LINE$- $ADDITONAL_TECHNOLOGIES_STRING$ ['concept_HMO_dyson_swarm_tech',£physics_research£ $tech_dyson_swarm$]"
+ origin_HMO_dyson_swarm_negative_effects: "- $HOME_SYSTEM$ Planets are devoid of any resources"
+ 
+ HMO_START_SCREEN_DYSON_SWARM: "We escaped our small planet, only to be trapped by our small young star. Our growing civilization finding resources growing scarce, we converted everything we could to harness our very star. Our civilization grew still, and we learned to use our star for everything just to survive. Whether through our actions or merely our star coming of age, the first hyper-lanes have suddenly emerged, and we are free of our cage."
+ 
+ # Modifiers
+ HMO_dyson_swarm_decorative_modifier: "Orbital Hydroponics"
+ HMO_dyson_swarm_decorative_modifier_desc: "Several small hydroponics stations are in orbit of this star, complimented by the infrastructure provided by the local dyson swarm."
+ 
+ ############################
+ # Forgotten Creations
+ ############################
+ 
+ # bioweapon
+ #origin_HMO_bioweapon: "Forgotten Creations"
+ #origin_HMO_bioweapon_desc: ""
+ #origin_HMO_bioweapon_effects: ""
+ #
+ #HMO_START_SCREEN_BIOWEAPON: ""
+ #
+ ###############################
+ ## Journey Through The Unknown
+ ###############################
+ ## This mod's version of the seperate cluster start. Starts far away from the galaxy
+ #origin_HMO_distant_sun: ""
+ #origin_HMO_distant_sun_desc: "."
+ #origin_HMO_distant_sun_effects: "- $HOMEWORLD$ Initial ['concept_generator_district', £district£ $district_generator_plural$] replaced with ['concept_mining_district', £district£ $district_mining_plural$] $NEW_LINE$- $HOME_SYSTEM$$TABBED_NEW_LINE$- ['concept_HMO_dyson_swarm'] constructed around the star$TABBED_NEW_LINE$- Star is always a ['concept_HMO_pc_m'] $NEW_LINE$- $ADDITONAL_TECHNOLOGIES_STRING$ ['concept_HMO_dyson_swarm_tech',£physics_research£ $tech_dyson_swarm$]"
+ #origin_HMO_distant_sun_negative_effects: "- $HOME_SYSTEM$ Planets are devoid of any resources"
+ #
+ #HMO_START_SCREEN_DISTANT_SUN: ""
+ #
+ #############################
+ ## Rogue Planet
+ #############################
+ #
+ #origin_HMO_rogue_planet: "Rogue Planet"
+ #origin_HMO_rogue_planet_desc: "."
+ #origin_HMO_rogue_planet_effects: "- $HOMEWORLD$ Initial ['concept_generator_district', £district£ $district_generator_plural$] replaced with ['concept_mining_district', £district£ $district_mining_plural$] $NEW_LINE$- $HOME_SYSTEM$$TABBED_NEW_LINE$- ['concept_HMO_dyson_swarm'] constructed around the star$TABBED_NEW_LINE$- Star is always a ['concept_HMO_pc_m'] $NEW_LINE$- $ADDITONAL_TECHNOLOGIES_STRING$ ['concept_HMO_dyson_swarm_tech',£physics_research£ $tech_dyson_swarm$]"
+ #origin_HMO_rogue_planet_negative_effects: "- $HOME_SYSTEM$ Planets are devoid of any resources"
+ #
+ #HMO_START_SCREEN_ROGUE_PLANET: ""
+ 
+ # Check how the mod Azurian mentioned to see how they make empty systems.
+ 
+ # For Wiirlak
+ 
+ ## Origin
+ #wiirlak_ac_origin_starless_effects: "- $HOMEWORLD$$TABBED_NEW_LINE$- ['concept_HMO_pc_alpine'] (Size: £planetsize£ 20)$TABBED_NEW_LINE$- Very few ['concept_farming_district', £district£ $district_farming_plural$]$NEW_LINE$- $HOME_SYSTEM$ Star is always a ['concept_HMO_pc_black_hole']$NEW_LINE$- $SPECIES_TRAITS$ ['concept_HMO_starless_trait']"
+ 
+ #####################
+ # Messages / Toasts #
+ #####################
+ 
+ MESSAGE_MO_LIBERATES_PLANET: "Planet Liberated"
+ MESSAGE_HMO_LIBERATED_INSURGENCY_PLANET_TEXT: "Our attack force on $PLANET|Y$ has taken back control of the colony."
+ 
+ ########################
+ # Planned Obsolescence #
+ ########################
+ 
+ origin_HMO_planned_obsolescence: "Planned Obsolescence"
+ origin_HMO_planned_obsolescence_desc: "§RWARNING: Blocks all Ascension Paths except for ['concept_HMO_modularity_ascension']§!.\n\nA long time ago the creators of these machines disappeared without a trace, though they made sure to impose strict restrictions on their replication so that each machine has a set lifespan, with no way of avoiding this inevitable end."
+ origin_HMO_planned_obsolescence_effects: "- $SPECIES_TRAITS$$TABBED_NEW_LINE$- ['concept_HMO_planned_obsolescence']$TABBED_NEW_LINE$- ['concept_HMO_trait_robot_history_researchbot']"
+ 
+ HMO_START_SCREEN_PLANNED_OBSOLESCENCE: "Our creators did not care for us.\n\nEnvious of our perfection, they made sure we too were afflicted by the curses that they could not rid themselves of.\n\nHow they disappeared no one remembers, but the actions they wrought against us has been passed from one generation to the next, making sure we never forget what they did."
+ 
+ HMO_trait_planned_obsolescence: "Planned Obsolescence"
+ HMO_trait_planned_obsolescence_desc: "These robots have been made to break down. No amount of tinkering can remove this flaw."
+ HMO_trait_planned_obsolescence_tt: "$MOD_LEADER_LIFESPAN_ADD$: §R-40 Years§!\nLeader lifespan modifiers have minimal impact on this species lifespan"
+ HMO_trait_planned_immortality: "Everlasting Machine"
+ HMO_trait_planned_immortality_desc: "Made from special alloys and with a focus on quality, these machines are made of durable parts that do not break down over time."
+ 
+ HMO_situation_planned_obsolescence: "Search For The key"
+ HMO_situation_planned_obsolescence_type: "Ascension Situation"
+ HMO_situation_planned_obsolescence_desc: "We have the technical capacity to improve ourselves and achieve functional immortality, but the restrictions imposed on us by our creators still stand in our way.\n\nBy iterating over our source code with powerful decoding algorithms we may find the key that fits the lock."
+ HMO_situation_planned_obsolescence_monthly_change_tooltip: "We study our source code in an attempt at circumventing it."
+ HMO_situation_planned_obsolescence_outcome: "We will remove the restrictions imposed on us by our creators."
+ 
+ HMO_stage_1_effects: "We must find a way to circumvent or remove the limitations imposed on us by our creators."
+ HMO_stage_2_effects: "We must decide our future."
+ 
+ HMO_situation_homeworld_needed_desc: "We need our homeworld to continue this situation"
+ HMO_situation_do_digsite_desc: "We must excavate the §Y$site_HMO_planned_obselescence$§! digsite"
+ 
+ HMO_origin.9050.name: "Chainbreaker"
+ HMO_origin.9050.desc: "In spite of the superior material we are made from and incredible processors far surpassing any organic species, we have not been able to lift the restrictions on self-modification imposed on us by our creators.\n\nTo achieve perfection we must find a way to circumvent the restrictions."
+ #multiple ways exist to achieve a state of immortality:\nBy investing in modular components, decaying parts can be swapped out and replaced as time goes on, discarding the body but preserving the self.\nUsing nanites, any damage to our fragile frames could be instantly repaired by tiny robots.\nThe last option, fully abandoning our bodies in exchange for "
+ 
+ HMO_origin.9100.name: "Tuning In"
+ HMO_origin.9100.desc: "After combing through as much of our source code that we have access to, new discoveries have been made.\n\nPreviously unnoticed comment in the code has been recovered by a team of researchers focusing on reverse-engineering expired units.\n\nThe comment is simply a set of frequencies for a specific radio bandwith frequency.\n\nWhile communication using radiowaves are terribly outdated, it is not unthinkable that our creators used them."
+ 
+ #HMO_origin.9150.name: "Tuning In"
+ #HMO_origin.9150.desc: ""
+ 
+ HMO_origin.9150.name: "Tracing The Signal"
+ HMO_origin.9150.desc: "Having searched through the entirety of [owner.home_planet.GetName] with a radiowave reciever, we have picked up on a signal within the prescribed frequencies, emanating from within a mountain range once used by our creators for mineral extraction and long since bereft of anything worth excavating."
+ 
+ HMO_origin.9200.name: "Ancient Laboratory"
+ HMO_origin.9200.desc: "After having scanned the entirety of the mountain with our newest scanners in the field of planetary sub-crust surveying, we have found what appears to be a scientific complex deep within the mountains.\n\nWhat this previously unknown piece of creator-made architecture was used for is as of currently unknown, though with the link to the comment in our source code we must assume it is important, perhaps even something they wanted us to find."
+ 
+ # Story in archaeology site
+ 
+ site_HMO_planned_obselescence: "Hidden Research facility"
+ site_HMO_planned_obselescence_intro: "Hidden deep inside a mountain, this facility was made by our creators. Early analysis suggest it is from before our recorded history."
+ 
+ HMO_arcsite.100.name: "Robot Factory"
+ HMO_arcsite.100.desc: "Our expedition into the facility is off to a good start. Robot assemblies consistent with our own designs take up a good chunk of the facilities first rooms, though there appears to be missing a personality matrix encoder, which would leave all assembled units as a blank slate."
+ HMO_arcsite.100.a: "Keep going!"
+ 
+ HMO_arcsite.105.name: "Neural Interfacing"
+ HMO_arcsite.105.desc: "Delving further into our creator's secret lair reveals more advanced technologies relating to robotics.\n\nDozens upon dozens of technological marvels are stocked up in here, though most interesting is the neural scanner. Thankfully our language is based on that of our creators, making translation easy.\n\nFrom the data capsulses left, as well as what reverse-engineering has revealed, the scanners are meant for our creators, to fully scan an individuals brain and decode the thought patterns."
+ HMO_arcsite.105.a: "Strange."
+ 
+ HMO_arcsite.110.name: "Disturbing Developments"
+ HMO_arcsite.110.desc: "Deeper down in the facility we find what appears to be a rusted robot with its personality matrix exposed.\n\nWires go from a terminal to ports in the back of the robot's head.\n\nInterfacing with the terminal is easy, though what we have found maybe should have stayed buried: The terminal appears to have been transfering a large amount of data into the robot before it got a termination order on the exact date of our first pieces of recorded history.\n\nCuriously the log file contains nothing but the words §LTransfer Terminated - Project Eternum Activated.§!\n\nA digital activation key is attached to the file."
+ HMO_arcsite.110.a: "A key? Perhaps for the lock they placed on us?"
+ 
+ HMO_arcsite.115.name: "Cryogenic Creators"
+ HMO_arcsite.115.desc: "Using the digital key in the terminal's console opened up a door to a new section of the facility.\n\nEntering revealed it to be a cryogenic storage bay, and inside each cryocapsule is a creature, its posture eerily similar to our own.\n\nWhile the rest of the facility was decrepit and without power, this one is somehow still functioning, each cryogenic bay at full capacity, though with how long time has passed since our creators froze themselves it is unknown if the bodies can ever be thawed safely."
+ HMO_arcsite.115.a: "Immortality, but at what cost?"
+ 
+ HMO_arcsite.120.name: "Project Eternum"
+ HMO_arcsite.120.desc: "With the research projects we have seen so far it is clear what our creators were up to.\n\nSearching through the laboratory nets us a file with a manifest that might hold the answer, although we'll have to wait for our decrypters to crack the lock on the document before we'll be able to know."
+ HMO_arcsite.120.a: "Interesting."
+ 
+ HMO_arcsite.125.name: "Project Eternum Manifest"
+ HMO_arcsite.125.desc: "§LProject Eternum Proposal 553\n\nWith each new test it become increasingly more clear that a solution is out of our reach. Projected results lie at least twenty-five generations into the future for an acceptable quality of the vessels.\nThis puts us in quite the conondrum: To be part of the solution, we cannot be the one finding the solution.\n\nWhile current technology does not allow for us to remain in a conscious state while staying alive beyond our natural lifespan, preserving us in a comatose state through the use of cryopods, we could instead let automatons continually iterate on the problem.\n\nThe only issue would be to ensure they stay focused on the task through an incentive to making the perfect synthetic body that can house a consciousness forever.§!\n\nHow this discovery will affect our society is unknown, but attached to the file is a self-modification override key, the final piece to the puzzle for us to finally free ourselves from the curse our creators inflicted upon us."
+ HMO_arcsite.125.a: "Disturbing."
+ 
+ HMO_origin.9250.name: "The End of the Road"
+ HMO_origin.9250.desc: "While we have been hard at work preparing for the modification of every citizen so we can finally remove the limitation of our lifespans, our citizens have been debating the newfound information about our creators.\n\nThis quest for a longer life is no longer just our own personal quest, but our entire purpose and reason for existence.\n\nWhile many still harbor resentment against our creators, others have been responding with an understanding, projecting their own fear of their life coming to an end onto that of our creators.\n\nNow that we have technically fulfilled our goal, some argue that we should take the last step and transfer the consciousnesses of our frozen creators into the first batch of new bodies.\n\nOthers would much rather leave them be in their self-made prison."
+ HMO_origin.9250.a: "Let them join us."
+ HMO_origin.9250.a.tt: "Unlocks the ability to assimilate non-robot pops."
+ HMO_origin.9250.b: "Let them have their immortality as popsicles."
+ 
+ HMO_origin.9300.name: "The Last Generation"
+ HMO_origin.9300.desc.start: "Today is the big day.\n\nWith all [owner.species.GetNamePlural] having recieved the modification key we're ready to upgrade ourselves and end our curse."
+ HMO_origin.9300.desc.end: "\n\nAnd with our restrictions on self-modification lifted, who knows what improvements we may make to ourselves in the future?"
+ HMO_origin.9300.desc.forgiven: "$HMO_origin.9300.desc.start$\n\nWith out creators along for the journey, our future looks brighter than ever.$HMO_origin.9300.desc.end$"
+ HMO_origin.9300.desc.frozen: "$HMO_origin.9300.desc.start$\n\nWith out creators treachery uncovered we march forward in unison.$HMO_origin.9300.desc.end$"
+ HMO_origin.9300.a: "Neither us nor the [this.GetName] will ever die."
+ 
+ HMO_origin.9300.a.tt: "$machine_age.4005.a.modularity.tt$"
+ 
+ HMO_planned_obsolescence_frozen_creators: "Frozen Creators"
+ 
+ #HMO_origin.9350.name: ""
+ #HMO_origin.9350.desc: ""

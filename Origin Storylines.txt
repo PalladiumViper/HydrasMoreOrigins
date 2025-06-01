@@ -1,0 +1,277 @@
+# = removed story, but kept in the document anyway. Ignore parts after #
+
+After The Apocalypse:
+
+Components: 2 factions
+
+Part 1: Story
+
+Major Change: The story takes place after the eradication of the zombies, save for a few test subjects. (This means the synthetic ascension is no longer (as much of) a problem)
+
+#An event tells about how two groups, the scientific Resurrection Project and the Militaristic Zcom has helped save the world, the Resurrection Project stating that they want to resurrect their world and helps civilians recover,
+#while the Zcom states that they want to eradicate the zombies. There is no choice except a flavor choice. Soon after the start of the game an exposition event says that Zcom wants to eradicate the zombies,
+#while the Resurrection Project wants to study the virus and potentially make a cure. # Gain an agenda named "Approve Resurrection Project." Upon completing the agenda, start the resurrection project situation.
+#
+#An event tells about how the Zcom saved the world. Now, after the apocalypse, wild conspiracies run wild and a scientific project (an independent one) has begun studying the origins of the disease
+#
+#The situation progresses slowly, but can be boosted and slowed by events.
+#If the project is shut down, the situation disappears.
+#If all zombie blockers are cleared and no zombie pops exist, the situation disappears and the Zcom declares victory, granting modifiers.
+#
+#The following factions exist:
+#- Zcom (Militaristic)
+#- Resurrection Project (Materialistic)
+#The following minor factions exist:
+#- No More Room In Hell (Spiritualistic)
+#
+#The following options, agendas, decisions, buildings (and more) is available:
+#- When not having been used before: "Approve Resurrection Project" agenda. Boosts resproject situation speed.
+#
+#The following events can happen at any time:
+#- Zombie outbreaks (Invasions) can happen on the capital. If the capital is invaded then pops are slowly turned into hostile zombie armies (And zombie blockers).
+#
+#The following events can happen once the situation exists:
+#
+#- Upon colonizing a new world, you can give it to the Resurrection Project. If given to the Resurrection Project the planet gets a ResProject headquarters and the leader for the resproject is permanently assigned as governor.
+#	#The headquarters has a special job for zombie pops only.
+#	#If an outbreak happens on a new colony, the Zcom will demand the Resurrection Project be shut down / be supervised.
+#	#Supervising the project slows it down.
+#	- If the Resurrection Project is denied this world, they will ask 2 more times (For a total of 3 times). If denied each time, the progress will be extremely slow.
+#
+#- Upon clearing your first zombie blocker while the Resurrection Project has a planet, the Resurrection Project asks for the zombie population to be moved to their base instead of mowed down. If agreed,
+#	instead of spawning a zombie army, a zombie pop is created on their base. If this pop is resettled, it is instead resettled back to their base, stating that they captured their escaped specimens.
+#	- Zombie outbreaks can happen if a zombie is present on the planet
+#	The Resurrection Project headquarters has a special job that can only be filled by zombies, with insane weight to keep the zombies working it. After some time the pop is killed and they request more zombies.
+#	# If they are denied zombies at any point, or providing new zombies takes too long, and until they are provided with new zombies, the event "Pops mysteriously vanish" can randomly happen.
+#	# If 5 pops mysteriously vanish, Zcom will become suspicious of the Resurrection Project.
+#
+#- If the respoject has no planet (Whether because it was captured or never established), the resproject may request funding to create a habitat. Only happens if you have the technology (And a system is available for habitat construction)
+#
+#- When first contact is established for the first time with a biological empire, the resproject says that test subjects from that empire would benefit the research.
+#	Capturing a member of an alien species, or signing a migration pact will fulfill this requirement and award bonus progress and research (Robot and Machine species does not count)
+#
+#- During the first 20 years: No More Room In Hell: A new faith has taken root: A spiritualistic movement has been spreading, claiming that the disease is caused by overpopulation in the afterlife, returning our souls back to
+#	the material world, as no room can be found.
+#
+#As the project progresses, events happen. These Include:
+#
+#- At 10% the resproject requests additional funding. Accepting incurs an energy credits penalty. # Declining increases the risk of outbreaks on the colony (If any)
+#- At 45% The resurrection project finds that a cure is not possible. They state that will look into the origin of the disease, as well as a way to control or pacify the zombies
+#- At 50%, if the resurrection project is at fault, they will be accused of being secretive about the project and origins of the zombie plague. If the zcom is at fault a fire will ravage their headquarters
+#- When the project reaches 90%, the Zcom will demand the project be shut down over safety concerns. The Resurrection Project will also be accused of creating the zombie plague.
+#	If investigated by the Zcom they will find evidence no matter who is at fault.
+#	An independent investigation will reveal the truth, but you can choose to bury the evidence. (Choice is to either bury evidence or expose the truth.). Burying evidence while the Zcom is at fault will pin the blame on the
+#	project and shut them down. Burying the evidence while the project is at fault will cause their labs to burn down (But rest assured, we will finish the project. Some stuff got lost in the fire, and that was definitely
+#	not evidence of us creating the virus!)
+#	Zcom will disband if there is no more zombies and will be integrated into the military and navy.
+#	If shut down, the Resurrection Project scientists will be put to trial and the Zcom will take power. The Resurrection Project scientists will get the death penalty. The Zcom will find "evidence" that the project made the zombies.
+#	If they are allowed to continue the Resurrection Project will uncover evidence that Zcom commisioned the zombie plague as a bioweapon. The Zcom will disband.
+#	- Siding with the Zcom will grant the martial law authority immediately.
+#	#- Siding with the Zcom will end the project and will leave eradication of the zombies as the only option
+#- At 100% the resproject finds that a cure is not possible, but the zombies can be controlled. / the Zcom eradicates the final samples of the zombie plague. Situation is paused until all zombie blockers are gone.
+#	The Zcom will claim it will maintain power as a security measure to disallow other such groups from making other plagues. Gain their authority (Martial Law)
+#
+#Part 2: Mechanics
+#When clearing a zombie blocker, unless the resurrection project has been promised zombies, there is a risk of spawning zombie armies. Zombie armies can also happen randomly. If zombies invade a planet, they will
+#randomly convert pops into more zombie armies and zombie blockers until the planet is empty.
+#
+#
+#
+#Part 3: Endings
+#
+#If the Resurrection Project finishes their project, you gain zombie pops and scientist bonuses.
+#
+#If the Resurrection Project is deemed too dangerous, the Zcom will shut it down and the Zcom instates permanent martial law (New authority Type).
+#
+#
+#
+#Part 4: Rewards
+#
+#If the Zcom is embraced, a special authority will be given. This is named "Martial Law" or something, and shows how the Zcom has instated a permanent martial law situation to hold onto power. This authority type greatly
+#boosts soldiers. Martial law never has elections, although every 10 years (or 20 if oligarch) (multiplied by election time), a toast will state that an election was held and that the current ruler won a landslide
+#victory with x% of the votes (Starts at 87% or something and goes up by 1 each time, continuing beyond 100 if enough time passes).
+#
+#If the cybernetics traditions are picked, the situation is destroyed and replaced by a special one where the Resurrection Project offers to implant cybernetics into zombies to control them. When picked, the story is put on hold
+#and when finished, ends the story. The reward is a special cybernetic authority (New Custom one) that gives bonuses, allows the creation of more zombie pops.
+#
+#If cybernetics traditions are picked after the zcom entered power, the situation is destroyed and replaced by a copy of it, except with no final choice to change authority.
+#
+#
+#
+#Part 5: Mutually Exclusive Stuff
+#
+#If the synthetic ascension path is taken at any point during the story, the Resurrection Project will be overcome with the desire to upload decayed zombie brains into robots, and they will disband shortly after.
+#The Zcom will stick around until the main species becomes robots. Then it will state that the zombies are no longer is a threat.
+#If picked after the story, if the Zcom was in charge, they will remain in charge. This is achieved by destroying the situation and replacing it with a copy # they state that the new robotic bodies means they are safe from zombie infection, and thus martial law is no longer needed. They are still in charge.
+#
+#When picking the cybernetic or synthetic ascension paths, the situation start as normal (Except it has been replaced by a copy specifically for this origin) that is almost the same, except the random events are
+#zombie-themed and has mentions of the resproject. Instead of choosing between physical and virtual, and collectivist and individualist, the choice is between the resproject and the zcom.
+#
+#Cybernetics (Machine age only): Once completed, an event tells that the cybernetics will help control the zombies.
+#Synthetics during the story: Once the population is robots, the resproject is aborted with a message that with the new robotic bodies, we no longer need to fear the
+#Synthetics after the story (Machine age only)
+#
+#Technical Change: No pops are changed during the situations. Instead once the situation is done, all pops are changed.
+#
+#During the story (Once the situation reached 90% the story is considered over and these will not happen):
+#- Cybernetics: The resurrection project states it can use cybernetics to control the zombies, boosting its research rate. The cybernetics situation is destroyed, and the resproject situation will have cybernetic-themed text
+#	and options. The player gets the choice between letting the resproject or the Zcom control the implants. Choosing the Resproject gives a special authority (Death-Implants) that allows for controlling zombies.
+#	Choosing the Zcom gives a martial law authority (Military Undeath) that allows for zombie assault armies.
+#	- The situation, like the normal cyberization situation, cyberizes a number of pops each month while pausing the situation progress. This effect starts once the situation reaches 90%. The reason is "Now we know enough
+#		about the zombies and cybernetics. Before, we did not."
+#
+#- Synthetic Evolution: The resproject states it can transport people into synthetic bodies to save themselves from the disease. The synthetics situation is destroyed, and the resproject will have
+#	synthetic-themed text and options. The player gets the choice between letting the resproject or the Zcom helm the project. Choosing the Zcom will add and enable a "war machines" trait, as well as grant
+#	the martial law authority (Steel Legions). Choosing the resurrection project gives access to either the virtual authority (Virtual Resurrection) that creates AI virtual personalities of those lost
+#	to the zombie plague, or the physical authority (Immortal Resurrectionists) that, inspired by the plague, allows for the resurrection of any fallen robots (A bit like the necrons from WH40K).
+#
+#After the story:
+#- Cybernetics, Zcom: The situation is replaced by a copy that is mostly the same, but flavored around the Zcom. Their authority is the only choice at the end (Cybernetic Martial Law)
+#- Cybernetics, Resproject: The situation occours as normal
+#
+#- Synthetics, Zcom: The situation is replaced by a copy that is mostly the same, but flavored around the Zcom. Their authority is the only choice at the end (Synthetic Martial Law)
+#- Synthetics, resproject: The situation occours as normal.
+#
+#
+#Part 6: Authorities and Rewards
+#
+#- Immortal Resurrectionists: Physical Resproject Synthetics | Any synths bombarded to death on your worlds will be teleported to your capital in new robotic bodies (As primary species). Does not work while
+#	the capital is being bombarded or has been invaded.
+#
+#
+
+########################
+# After The Apocalypse #
+########################
+
+#An event tells of how a zombie apocalypse ravaged this world. A military group emerged and saved the world from extinction, and developed a vaccine to prevent the spread of the disease.
+#However, now, after the apocalypse, journalists and independent researchers are questioning how the disease could even come into existence, and how the military research division was so fast at developing a vaccine.
+#
+#A situation in the background ticks down as evidence is collected. Random monthly events details how journalists go missing, research disappears and such.
+#At the end of the situation, the Zcom is outed as the source of the disease, which was a biological weapon developed for war.
+#
+#The cybernetic and Synthetic situations are replaced (only if machine age is enabled) with a special version that has 3 seperate descriptions based on whether the Zcom has been outed or not.
+#1. If the story is ongoing (Story situation is paused during this)
+#2. If the Zcom won
+#3. If the Zcom lost (Original Situation is used)
+
+########################
+# After The Apocalypse #
+########################
+
+- Requires Necroids and Machine Age
+- Requires Materialist or Militaristic
+- Requires not natural perfection civic
+
+Start with zombie city blockers.
+Start with the two factions:
+- Zcom
+- Resurrection Project
+
+The Resproject seeks to make a cure or somehow neutralize the zombies
+
+When you pick an ascension path, the resproject wants to use the corresponding ascension to fulfil their goal.
+All of them use the same situation, and cancels the original transformation situation.
+Cybernetic: Install implants in the zombies to control them
+Synthetic: Transfer the trapped consiousness of the zombie into a new robotic body
+Biological: Make them docile, using genetic therapy
+Psionic: Will the zombies to become docile
+
+When the situation is finished, the the zcom should technically step down, but they still have power and can make it permanent (Choice to gain advanced authority) (Event: Time to step down. Choices: Order has been restored | ...Or not.) Shifts
+
+Advanced Governments (Before ascending)
+Democratic (Martial Law): +2 Unity from soldiers
+Oligarchic (Martial Law): +2 Stability from soldiers
+Dictatorship (Martial Law): + 2 Stability from soldiers
+Imperial (Martial Law): +1 stability and unity from soldiers
+
+Advanced Governments (Zcom):
+Cybernetic ():
+Synthetic (Immortal Machines): This government is a heavily militarized dictatorship where the top commander holds all power.
+Genetic ():
+Psionic ():
+
+###################################
+# Origin Ideas + their storylines #
+###################################
+
+##############
+# Bio-weapon #
+##############
+
+Start on an ancient world of some kind, with ancient cloning buildings (Has bio-assembly flag) and genetic research buildings.
+Gain access to a variety of deadly-sounding traits.
+Traits:
+- Extreme Strength
+- Acidic Blood
+- Thousand-Teethed Jaw
+
+Your species is infertile.
+Once the mid-game starts, uncover a digsite that allows you to figure out your origins.
+Your species was made as a bio-weapon, but when it gained enough intelligence to outwit its creators, they broke out and hunted their creators. The base was shut down and abandoned, but your species was not advanced enough
+for it to make a society, nor spaceflight. Over the centuries, they became even smarter and formed a civilization on the broken world.
+
+################
+# Rogue Planet #
+################
+
+Start on a planet outside a solar system
+
+How to make: Make a new star class that has the entity / model of a derelict spaceship, or mesh that has no texture / texture that is somehow hidden. Or see if its possible to disable nameplates and set size to 0. Also test if a no-deposit star has a nameplate.
+
+###############
+# Story Ideas #
+###############
+
+- Start with a wormhole / Gateway
+- The bypass (wormhole/gateway) is locked for 10/20 years at a time, only opening sporadically.
+- Use the lock bypass function with a costum country (Or global event country)
+- Probably best with gateways to allow for multiple routes out.
+- No, actually, look at deep space mod (https://steamcommunity.com/sharedfiles/filedetails/?id=3178100057) and make something similar so a bypass can be created, then destroyed after a few years/months.
+
+
+#######################
+# Planned Obselesence #
+#######################
+
+Our creators did not care for us. Envious of our perfection, they made sure we too were afflicted by the curses that they could not rid themselves of. How they disappeared no one remembers, but the actions they wrought against us has been passed
+from one generation to the next, making sure we never forget what they did.
+
+- Warning: Can only follow the modularity Ascension Path
+- Start with the planned obselescence trait
+- [Actually, no, story changed] Design a secondary species (You do not start with any pops of this species)
+- Starting Trait: The science boost history / 0 cost trait to signify that these robots were made for research
+
+Machine-only (Individual)
+Start with a trait that reduces lifespan drastically (And is opposite of infinite machine)
+The trait cannot be removed until the conclusion of the story
+
+#If you choose virtual then the story concludes with an event that says "During our transfer into the digital realm we abandoned our cursed bodies." and get a minor reward.
+
+When you pick the synthetic age ascension perk, cancel the situation and replace it with one named "Cracking the code"
+It focuses on your efforts in decoding your code and removing the taboos so you can remove the planned obselesence part.
+Halfway through it spawns an archaeological site that uncovers a vault with cryogenically frozen pops of your creator's species
+The cryogenic complex was built to keep the creator species frozen until their robots (the player empire) discovers a way of transfering their consciousnesses into immortal machine bodies. They implanted the obselesence part to ensure the robots
+did not become a gestalt machine intelligence and/or so that they would focus on making machine bodies that never dies. ("As a way to steer us onto the correct path")
+The bodies cannot be unthawed without putting them into robot bodies as they are too damaged for that.
+
+The vault contains a code to disable the planned obselesence --> Once obtained, you get the choice to either rid you of it (And get a free version of eternal machine) or proclaim that the short lives makes life have meaning.
+Eternal Machines: New Authority (Democratic Immortality / Oligarchic Permanence / Dictatorial Static / Imperial Eternity / Corporate Continuety)
+Generational Machines: New Authority (Democratic )
+
+You can then decide:
+- Thaw our creators and put them into robot bodies (Apply synth_assimilation as to grant the ability to synthetically assimilate biopops (Special as this is an individual machine empire, and they normally cannot) (Nothing bad should come of this))
+- Let them stay frozen forever. (Gain a bonus to robots or something, or just unity.)
+
+Text for thawing changes based on authority chosen. Eternal Machines makes the option name positive (They too deserve to live). Generational Machines makes the option name negative (Let them be cursed)
+
+Make sure to test if the situation can be cancelled and a new one made to see if it is even possible. Should be, but would be annoying to waste too much time if it isn't possible)
+
+Things to make:
+[Done]- Planned Obsolescence Trait (+ concept)
+[Done]- Concept for forced history trait
+[Done]- Situation Swap
+- Situation
+- Archaeology Site
+- New Authorities (+ concepts)
+- Eternal Machine Trait (Name something different to avoid the same name)

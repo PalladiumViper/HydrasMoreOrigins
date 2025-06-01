@@ -1,0 +1,27 @@
+concept_HMO_rare_crystals = {
+	icon = "gfx/interface/icons/technologies/tech_mine_rare_crystals.dds"
+}
+
+concept_HMO_exotic_gases = {
+	icon = "gfx/interface/icons/technologies/tech_exotic_gases.dds"
+}
+
+concept_HMO_volatile_motes = {
+	icon = "gfx/interface/icons/technologies/tech_volatile_motes.dds"
+}
+
+concept_HMO_foundry = {
+	icon = "gfx/interface/icons/buildings/building_foundry_1.dds"
+}
+
+concept_HMO_factory = {
+	icon = "gfx/interface/icons/buildings/building_factory_1.dds"
+}
+
+concept_HMO_hydroponics_farm = {
+	icon = "gfx/interface/icons/buildings/building_hydroponics_farm.dds"
+}
+
+concept_HMO_precinct_house = {
+	icon = "gfx/interface/icons/buildings/building_precinct_house.dds"
+}

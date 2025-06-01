@@ -1,0 +1,513 @@
+# These may be overwitten in an "extendable" manner, meaning (for example) you can create a second "auth_democratic" with extra swaps in it.
+# WARNING: The extend functionality breaks if you make changes in runtime and will require a restart to work correctly.
+#auth_example = {
+#	potential = {}										# requirements list, see ../readme_requirements.txt
+#	possible = {}										# requirements list, see ../readme_requirements.txt
+#	random_weight = { value = 1 }						# random weight, no scope; default: 1
+#
+#	traits = { trait = tait1 trait = tait2 }			# force listed traits on the founder species (only verified for empire designs, no effect after game start)
+#
+#	has_heir = yes / no									# default: no; you can either have a hereditary system (has_heir = yes), or an election system (has_heir = no)
+#	election_type = oligarchic / democratic	/ none		# default: none; oligarchic generate candidates only from leaders in the country
+#	election_term_years = 40							# default: 0
+#	election_term_variance = 10							# default: 0; actual election term = election_term_years +/- election_term_variance
+#	re_election_allowed = yes / no						# default: no
+#	can_have_emergency_elections = yes / no				# default: no
+#	max_election_candidates = 5							# default: -1; -1 == no limit
+#	can_reform = yes / no								# default = yes, whether you can reform into/out of this government type
+#	ruler_council_position = <>							# decides the authority's ruler council position, these are defined in 00_councilors.txt
+#
+#	has_agendas = yes / no								# default: no, replaced with Council Agendas
+#	uses_mandates = yes / no							# default: no, replaced with Council Agendas
+#
+#	advanced_authority_swap	= {							# To make sure everything is updated correctly after triggering a swap, use <advanced_authority_refresh = yes>
+#		name = "<name key>"								# Will also be used to attempt and find an icon from "interface/icons/governments/authorities/"
+#		description = "<localization key>"				# Used to customize the description in the case of a swap
+#		inherit_icon = yes/no							# Decides if we should inherit the icon of the original authority
+#		inherit_effects = yes/no						# Decides if we should inherit the modifiers from the base Authority and combine it with the advanced authority
+#		ruler_council_position = <>						# Used to swap out the ruler council position
+#		trigger = {}									# This will decide when the swap to advanced authority type will be made
+#		modifier = {}									# The modifiers that are used instead of the authority after the swap, can include the original by using inherit_effects
+#		tags = { <key> <key2> }							# Translation tags used for the authority swap
+#		has_heir = yes / no								# you can either have a hereditary system (has_heir = yes), or an election system (has_heir = no)
+#		election_type = oligarchic / democratic	/ none	# oligarchic generate candidates only from leaders in the country
+#		election_term_years = 40						#
+#		election_term_variance = 10						# actual election term = election_term_years +/- election_term_variance
+#		can_have_emergency_elections = yes / no			#
+#		max_election_candidates = 5						# -1 == no limit
+#		weight = {}										# If there are multiple options, the one with the highest weight is picked. Scope: Country
+#	}
+#
+#	tags = { <key> <key2> }								# add these translation tags to the description
+#}
+
+# Make government types, you know, the flavor ones like fanatical befrienders
+
+auth_democratic = {
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_democratic_martial_law"
+		description = "MO_auth_democratic_martial_law_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			NOT = { has_country_flag = HMO_normal_authority }
+			NOT = { has_country_flag = HMO_stable_zombie_society }
+		}
+		modifier = {
+			planet_soldiers_unity_produces_add = 2
+			#faction_approval = -0.1
+			country_influence_produces_mult = -0.33
+			pop_demotion_time_mult = -0.75
+		}
+		ruler_council_position = councilor_ruler_MO_Hydra_democratic_martial_ruler
+		has_heir = no
+		election_type = none	# oligarchic generate candidates only from leaders in the country
+		election_term_years = 0						#
+		can_have_emergency_elections = no
+		tags = {
+			AUTHORITY_SUCCESSION_TYPE
+			AUTHORITY_DICTATORIAL_SUCCESSION
+		}
+		weight = { base = 200 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_democratic_encryption"
+		description = "MO_auth_democratic_encryption_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_encryption_authority
+		}
+		modifier = {
+			intel_encryption_add = 4
+			espionage_hostile_operation_difficulty_mult = 0.5
+			country_hostile_claim_influence_cost_mult = 1
+			pop_government_ethic_attraction = -0.5
+			custom_tooltip = MO_auth_democratic_encryption_tt # Unlocks the enigmatic tradition tree's agenda. Named encryption scramble
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_democratic_weaponry"
+		description = "MO_auth_democratic_weaponry_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_weaponry_authority
+		}
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 2
+			BIOLOGICAL_species_trait_picks_add = 1
+			planet_soldiers_unity_produces_add = 6
+			job_soldier_stability_add = 2
+			custom_tooltip = MO_auth_democratic_weaponry_tt # Unlocks various new traits that grant massive army and soldier benefits and perhaps also leader traits. Some cost alloys instead of energy to maintain, if possible # Actually, no upkeep is possible since that is in a seperate file that is not good to overwrite
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_democratic_zombie"
+		description = "MO_auth_democratic_zombie_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_zombie_authority
+		}
+		modifier = {
+			planet_jobs_cyborg_worker_produces_mult = 0.2
+			pop_cyborg_worker_happiness = 0.05
+			pop_growth_speed = 0.1
+			custom_tooltip = MO_auth_democratic_zombie_tt # Pops that die return as zombies. Armies are reanimated.
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+}
+
+auth_oligarchic = {
+	advanced_authority_swap	= {
+		name = "MO_auth_oligarchic_martial_law"
+		description = "MO_auth_oligarchic_martial_law_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			NOT = { has_country_flag = HMO_normal_authority }
+		}
+		modifier = {
+			planet_enforcers_unity_produces_add = 2
+			#num_tech_alternatives_add = -1
+			country_influence_produces_mult = -0.33
+			pop_demotion_time_mult = -0.75
+		}
+		ruler_council_position = councilor_ruler_MO_Hydra_oligarchic_martial_ruler
+		has_heir = no
+		election_type = none	# oligarchic generate candidates only from leaders in the country
+		election_term_years = 0						#
+		can_have_emergency_elections = no
+		tags = {
+			AUTHORITY_SUCCESSION_TYPE
+			AUTHORITY_DICTATORIAL_SUCCESSION
+		}
+		weight = { base = 200 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_oligarchic_encryption"
+		description = "MO_auth_oligarchic_encryption_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_encryption_authority
+		}
+		modifier = {
+			intel_encryption_add = 4
+			espionage_hostile_operation_difficulty_mult = 0.5
+			planet_enforcers_unity_produces_add = 4
+			custom_tooltip = MO_auth_oligarchic_encryption_tt
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_oligarchic_weaponry"
+		description = "MO_auth_oligarchic_weaponry_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_weaponry_authority
+		}
+		modifier = {
+			planet_soldiers_unity_produces_add = 4
+			planet_enforcers_unity_produces_add = 4
+			job_soldier_stability_add = 2
+			BIOLOGICAL_species_trait_points_add = 2
+			BIOLOGICAL_species_trait_picks_add = 1
+			custom_tooltip = MO_auth_oligarchic_weaponry_tt # Unlocks various new traits that grant massive army and soldier benefits and perhaps also leader traits. Some cost alloys instead of energy to maintain, if possible # Actually, no upkeep is possible since that is in a seperate file that is not good to overwrite
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_oligarchic_zombie"
+		description = "MO_auth_oligarchic_zombie_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_zombie_authority
+		}
+		modifier = {
+			planet_cyborg_jobs_produces_mult = 0.25
+			custom_tooltip = MO_auth_oligarchic_zombie_tt # Pops that die return as zombies. Armies are reanimated.
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+}
+
+auth_dictatorial = {
+	advanced_authority_swap	= {
+		name = "MO_auth_dictatorial_martial_law"
+		description = "MO_auth_dictatorial_martial_law_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			NOT = { has_country_flag = HMO_normal_authority }
+		}
+		modifier = {
+			#planet_amenities_mult = -0.25
+			country_influence_produces_mult = -0.33
+			pop_demotion_time_mult = -0.75
+		}
+		ruler_council_position = councilor_ruler_MO_Hydra_dictatorial_martial_ruler
+		has_heir = no
+		election_type = none	# oligarchic generate candidates only from leaders in the country
+		election_term_years = 0						#
+		can_have_emergency_elections = no
+		tags = {
+			AUTHORITY_SUCCESSION_TYPE
+			AUTHORITY_DICTATORIAL_SUCCESSION
+		}
+		weight = { base = 200 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_dictatorial_encryption"
+		description = "MO_auth_dictatorial_encryption_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_encryption_authority
+		}
+		modifier = {
+			intel_encryption_add = 4
+			espionage_hostile_operation_difficulty_mult = 0.5
+			pop_government_ethic_attraction = 1
+			country_war_exhaustion_mult = -0.75
+			external_leader_pool_add = -3
+			#custom_tooltip = HMO_dictatorial_isolation_tt
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_dictatorial_weaponry"
+		description = "MO_auth_dictatorial_weaponry_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_weaponry_authority
+		}
+		modifier = {
+			planet_soldiers_unity_produces_add = 4
+			job_soldier_stability_add = 4
+			BIOLOGICAL_species_trait_points_add = 2
+			BIOLOGICAL_species_trait_picks_add = 1
+			custom_tooltip = MO_auth_dictatorial_weaponry_tt # Unlocks various new traits that grant massive army and soldier benefits and perhaps also leader traits. Some cost alloys instead of energy to maintain, if possible # Actually, no upkeep is possible since that is in a seperate file that is not good to overwrite
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_dictatorial_zombie"
+		description = "MO_auth_dictatorial_zombie_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_zombie_authority
+		}
+		modifier = {
+			planet_jobs_cyborg_worker_produces_mult = 0.2
+			pop_cyborg_worker_happiness = -0.2
+			pop_cat_worker_political_power = -0.5
+			custom_tooltip = MO_auth_dictatorial_zombie_tt # Pops that die return as zombies. Armies are reanimated.
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+}
+
+auth_imperial = {
+	advanced_authority_swap	= {
+		name = "MO_auth_imperial_martial_law"
+		description = "MO_auth_imperial_martial_law_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			NOT = { has_country_flag = HMO_normal_authority }
+		}
+		modifier = {
+			#country_hostile_claim_influence_cost_mult = -0.5
+			country_influence_produces_mult = -0.33
+			pop_demotion_time_mult = -0.75
+		}
+		ruler_council_position = councilor_ruler_MO_Hydra_imperial_martial_ruler
+		has_heir = no
+		election_type = none	# oligarchic generate candidates only from leaders in the country
+		election_term_years = 0						#
+		can_have_emergency_elections = no
+		tags = {
+			AUTHORITY_SUCCESSION_TYPE
+			AUTHORITY_DICTATORIAL_SUCCESSION
+			AUTH_IMPERIAL_CAPITAL_SYSTEM_BONUS
+		}
+		weight = { base = 200 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_imperial_encryption"
+		description = "MO_auth_imperial_encryption_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_encryption_authority
+		}
+		modifier = {
+			intel_encryption_add = 4
+			espionage_hostile_operation_difficulty_mult = 0.5
+			leader_initial_skill = 2
+			leader_trait_selection_options_add = 2
+			custom_tooltip = MO_auth_imperial_encryption_tt
+			show_only_custom_tooltip = no
+			#negative_traits_country = -2
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_imperial_weaponry"
+		description = "MO_auth_imperial_weaponry_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_weaponry_authority
+		}
+		modifier = {
+			planet_soldiers_unity_produces_add = 4
+			job_soldier_stability_add = 2
+			BIOLOGICAL_species_trait_points_add = 2
+			BIOLOGICAL_species_trait_picks_add = 1
+			army_damage_mult = 0.5
+			army_health = 0.5
+			army_morale = 0.5
+			custom_tooltip = MO_auth_imperial_weaponry_tt # Unlocks various new traits that grant massive army and soldier benefits and perhaps also leader traits. Some cost alloys instead of energy to maintain, if possible # Actually, no upkeep is possible since that is in a seperate file that is not good to overwrite
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_imperial_zombie"
+		description = "MO_auth_imperial_zombie_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_zombie_authority
+		}
+		modifier = {
+			planet_jobs_cyborg_worker_produces_mult = 0.1
+			custom_tooltip = MO_auth_imperial_zombie_tt # Pops that die return as zombies. Armies are reanimated.
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+}
+
+auth_corporate = {
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_corporate_martial_law"
+		description = "MO_auth_corporate_martial_law_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			NOT = { has_country_flag = HMO_normal_authority }
+		}
+		modifier = {
+			planet_soldiers_energy_produces_add = 2
+			pop_demotion_time_mult = -0.75
+			country_influence_produces_mult = -0.33
+			#empire_size_colonies_mult = 0.5
+		}
+		ruler_council_position = councilor_ruler_MO_Hydra_corporate_martial_ruler
+		has_heir = no
+		election_type = none	# oligarchic generate candidates only from leaders in the country
+		election_term_years = 0						#
+		can_have_emergency_elections = no
+		tags = {
+			AUTHORITY_SUCCESSION_TYPE
+			AUTHORITY_DICTATORIAL_SUCCESSION
+		}
+		weight = { base = 200 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_corporate_encryption"
+		description = "MO_auth_corporate_encryption_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_encryption_authority
+		}
+		modifier = {
+			intel_encryption_add = 4
+			espionage_hostile_operation_difficulty_mult = 0.5
+			custom_tooltip = MO_auth_corporate_encryption_tt
+			show_only_custom_tooltip = no
+			# Unlocks an edict that increases defenses at the cost of trade (named security ads. Description: We channel some of our commercial budget into security measures.)
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_corporate_weaponry"
+		description = "MO_auth_corporate_weaponry_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_weaponry_authority
+		}
+		modifier = {
+			planet_soldiers_unity_produces_add = 4
+			job_soldier_stability_add = 2
+			BIOLOGICAL_species_trait_points_add = 2
+			BIOLOGICAL_species_trait_picks_add = 1
+			country_enclave_capacity_mult = 1
+			custom_tooltip = MO_auth_corporate_weaponry_tt # Unlocks various new traits that grant massive army and soldier benefits and perhaps also leader traits. Some cost alloys instead of energy to maintain, if possible # Actually, no upkeep is possible since that is in a seperate file that is not good to overwrite
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+	
+	advanced_authority_swap	= {
+		name = "MO_auth_corporate_zombie"
+		description = "MO_auth_corporate_zombie_desc"
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			is_scope_valid = yes
+			has_origin = origin_HMO_zombies
+			has_country_flag = HMO_cyber_zombie_authority
+		}
+		modifier = {
+			planet_jobs_cyborg_worker_produces_mult = 0.2
+			pop_cyborg_worker_happiness = 0.05
+			custom_tooltip = MO_auth_corporate_zombie_tt # Pops that die return as zombies. Armies are reanimated.
+			show_only_custom_tooltip = no
+		}
+		weight = { base = 400 }
+	}
+	
+	# For Corporate Weaponry: 
+}
+
+# Bug Branch Authorities
+inline_script = {
+	script = "MO_Hydra_authorities"
+	HAS_MOD = @has_bug_branch
+}

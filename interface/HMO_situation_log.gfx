@@ -1,0 +1,6 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_situation_approach_HMO_magnifying_glass"
+		texturefile = "gfx/interface/icons/situation_log/situations/approaches/HMO_situation_approach_magnifying_glass.dds"
+	}
+}

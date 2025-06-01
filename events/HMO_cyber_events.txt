@@ -1,0 +1,1180 @@
+#########################################
+#
+# HMO's Cybernetic Ascension Replacement Events
+#
+#########################################
+
+namespace = HMO_cyber
+
+#########################################
+
+# CYBERIZATION FINAL EVENT
+# Fired by: situation on_progress_complete
+situation_event = { # Cyberization - Final hidden event - Full
+	id = HMO_cyber.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_situation_flag = cyberization_ongoing
+		set_situation_flag = cyberization_final
+		situation_event = { id = cyber.3 } # Run full cyberization again to change remaining non-spiritualists
+		if = {
+			limit = {
+				owner = {
+					NOR = {
+						any_owned_pop = { has_ethic = ethic_spiritualist }
+						any_owned_leader = { has_ethic = ethic_spiritualist }
+					}
+				}
+			}
+			situation_event = { id = HMO_cyber.21 days = 1 } # Real final event
+		}
+		else = {
+			situation_event = { id = HMO_cyber.20 days = 1 } # Go to final spiritualist cyberization
+		}
+	}
+}
+
+# Event pools gatekeeping event | Situation Random Events
+# Fired by: situation on_monthly and situation flag
+situation_event = {
+	id = HMO_cyber.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			AND = {
+				has_situation_flag = cyber_5_stage_1_fire
+				situation_progress >= 300
+			}
+			AND = {
+				has_situation_flag = cyber_5_stage_2_fire
+				situation_progress >= 450
+			}
+			AND = {
+				has_situation_flag = cyber_5_stage_3_fire
+				situation_progress >= 700
+			}
+		}
+	}
+
+	immediate = {
+		remove_situation_flag = cyber_5_stage_1_fire
+		remove_situation_flag = cyber_5_stage_2_fire
+		remove_situation_flag = cyber_5_stage_3_fire
+
+		fire_on_action = {
+			on_action = on_HMO_cyberization_situation_random_events_list
+		}
+	}
+}
+
+# Fired by: event
+situation_event = { # Cyberization - Final hidden event - Spiritualists
+	id = HMO_cyber.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				owner = { has_policy_flag = cyberization_standards_limited }
+			}
+			set_situation_flag = cyberization_ongoing_limited
+			set_situation_flag = cyberization_final
+			situation_event = { id = cyber.4 } # Run limited cyberization again to change remaining spiritualists
+			situation_event = { id = HMO_cyber.21 days = 1 } # Real final event
+		}
+		else = {
+			set_situation_flag = cyberization_ongoing_forced
+			set_situation_flag = cyberization_final
+			situation_event = { id = cyber.6 } # Run forced cyberization again to change remaining spiritualists
+			situation_event = { id = HMO_cyber.21 days = 1 } # Real final event
+		}
+	}
+}
+
+# Fired by: event
+situation_event = { # Final event
+	id = HMO_cyber.21
+	title = "HMO_cyber.21.name"
+	desc = HMO_cyber.21.desc
+	picture = GFX_evt_cyberization_1
+	show_sound = event_announcement
+	situation = this
+	is_triggered_only = yes
+
+	option = {
+		name = "HMO_cyber.21.a"
+		owner = {
+			custom_tooltip = "HMO_cyber.21.a.tt"
+			set_country_flag = cyber_augmentation_center_government
+		}
+	}
+
+	after = {
+		destroy_situation = this
+		owner = {
+			hidden_effect = {
+				if = {
+					limit = { has_active_tradition = tr_cybernetics_finish_situation }
+					if = {
+						limit = { has_country_flag = HMO_zombie_ascension_protection }
+						remove_country_flag = HMO_zombie_ascension_protection
+					}
+					set_country_flag = HMO_zombie_ascension_protection
+					country_event = { id = HMO_cyber.550 days = 180 }
+				}
+			}
+			set_country_flag = cybernetics_traditions_unlocked
+		}
+	}
+}
+
+# CYBERIZATION STAGE 1
+# Fired by: situation stage on_first_enter
+situation_event = { # Stage 1 - Start event - Controlling the Future
+	id = HMO_cyber.100
+	title = "HMO_cyber.100.name"
+	desc = "HMO_cyber.100.desc"
+	picture = GFX_evt_cyberization_1
+	show_sound = event_worrying_signal
+	situation = this
+	is_triggered_only = yes
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+	}
+
+	option = {
+		name = "HMO_cyber.100.a"
+		owner = {
+			set_country_flag = cyber_control_government # Purely for cosmetic
+		}
+	}
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# Fired by: situation on_monthly
+situation_event = { # By the People, For the People
+	id = HMO_cyber.105
+	title = "HMO_cyber.105.name"
+	desc = "HMO_cyber.105.desc"
+	picture = GFX_evt_engineering_research
+	show_sound = event_worrying_signal
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_situation_flag = HMO_cyber_105_happened }
+		situation_progress >= 100
+	}
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_cyber_105_happened
+	}
+	
+	option = {
+		name = "HMO_cyber.105.a"
+	}
+	option = {
+		name = "HMO_cyber.105.b"
+		custom_tooltip = "HMO_cyber.105.b.tt"
+		trigger = {
+			owner = {
+				is_megacorp = no
+			}
+		}
+		set_situation_flag = HMO_armed_civilians_limited
+	}
+	option = {
+		name = "HMO_cyber.105.c"
+		custom_tooltip = "HMO_cyber.105.c.tt"
+		trigger = {
+			owner = {
+				is_megacorp = no
+			}
+		}
+		set_situation_flag = HMO_armed_civilians
+	}
+	option = {
+		name = "HMO_cyber.105.c.megacorp"
+		custom_tooltip = "HMO_cyber.105.c.tt"
+		trigger = {
+			owner = {
+				is_megacorp = yes
+			}
+		}
+		set_situation_flag = HMO_armed_civilians
+	}
+
+	after = {
+		set_situation_flag = cyber_5_stage_1_fire # Fire a random event
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# Fired by: on_cyberization_situation_random_events_list
+situation_event = { # Stage 1 Opportunity
+	id = HMO_cyber.120
+	title = "HMO_cyber.120.name"
+	desc = "HMO_cyber.120.desc"
+	picture = GFX_evt_bribery
+	show_sound = event_radio_chatter
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		situation_progress > 300
+		situation_progress < 450
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = @cyber_approach_mult
+			current_situation_approach = situation_cyberization_cautious
+		}
+		modifier = {
+			factor = 0
+			has_situation_flag = HMO_cyber_120_happened
+		}
+	}
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_cyber_120_happened
+	}
+
+	option = {
+		name = "HMO_cyber.120.a"
+		custom_tooltip = HMO_cyber.120.a.tt
+		set_situation_flag = HMO_max_firepower
+	}
+	option = {
+		name = "HMO_cyber.120.b"
+		custom_tooltip = HMO_cyber.120.b.tt
+		set_situation_flag = HMO_rebuilders
+	}
+	option = {
+		name = "HMO_cyber.120.c"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+	}
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# Fired by: on_cyberization_situation_random_events_list
+situation_event = { # Stage 1 Challenge
+	id = HMO_cyber.130
+	title = "HMO_cyber.130.name"
+	desc = "HMO_cyber.130.desc"
+	picture = GFX_evt_worrying_signal
+	show_sound = event_radio_chatter
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		situation_progress > 300
+		situation_progress < 450
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = @cyber_approach_mult
+			current_situation_approach = situation_cyberization_overdrive
+		}
+		modifier = {
+			factor = 0
+			has_situation_flag = HMO_cyber_130_happened
+		}
+	}
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_cyber_130_happened
+	}
+
+	option = {
+		name = "HMO_cyber.130.a"
+		owner = {
+			add_modifier = {
+				modifier = HMO_soldiers_are_better
+				days = 18000
+			}
+		}
+	}
+	option = {
+		name = "HMO_cyber.130.b"
+		owner = {
+			add_modifier = {
+				modifier = HMO_unhappy_soldiers
+				days = 1800
+			}
+		}
+	}
+	option = {
+		name = "HMO_cyber.130.c"
+		owner = {
+			add_resource = {
+				unity = -500
+			}
+		}
+	}
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# CYBERIZATION STAGE 2
+# Fired by: situation stage on_first_enter
+situation_event = { # Stage 2 - Start event
+	id = HMO_cyber.200
+	title = "HMO_cyber.200.name"
+	desc = "HMO_cyber.200.desc"
+	picture = GFX_evt_busy_spaceport
+	show_sound = event_construction
+	situation = this
+	is_triggered_only = yes
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		owner = {
+			set_country_flag = augmentation_center_available
+			set_country_flag = augmentation_center_needed
+		}
+	}
+
+	option = {
+		name = "HMO_cyber.200.a"
+		custom_tooltip = HMO_cyber.200.a.tt
+	}
+	# No new event triggered, wait for HMO_cyber.201
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# Fired by: situation on_monthly
+situation_event = { # Pilot projects
+	id = HMO_cyber.205
+	title = "HMO_cyber.205.name"
+	desc = "HMO_cyber.205.desc"
+	picture = GFX_evt_scientific_experiments
+	show_sound = event_laboratory_sound
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_situation_flag = HMO_cyber_205_happened }
+		situation_progress >= 350
+	}
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_cyber_205_happened
+	}
+
+	option = {
+		name = "HMO_cyber.205.a"
+		custom_tooltip = HMO_cyber.205.a.tt
+		owner = {
+			add_modifier = {
+				modifier = HMO_augment_center_initiative
+				days = -1
+			}
+		}
+	}
+	option = {
+		name = "HMO_cyber.205.b"
+		custom_tooltip = HMO_cyber.205.b.tt
+		owner = {
+			set_country_flag = cyber_focus_everyone
+		}
+	}
+
+	after = {
+		set_situation_flag = cyber_5_stage_2_fire # Fire a random event
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# Fired by: situation on_monthly
+situation_event = { # Pilot projects
+	id = HMO_cyber.210
+	title = "HMO_cyber.210.name"
+	desc = "HMO_cyber.210.desc"
+	picture = GFX_evt_scientific_experiments
+	show_sound = event_laboratory_sound
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_situation_flag = HMO_cyber_210_happened }
+		situation_progress >= 350
+	}
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_cyber_210_happened
+	}
+
+	option = {
+		name = "HMO_cyber.210.a"
+		custom_tooltip = HMO_cyber.210.a.tt
+		set_timed_situation_flag = {
+			flag = HMO_full_replacements
+			months = 12
+		}
+	}
+	option = {
+		name = "HMO_cyber.210.b"
+	}
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# Fired by: situation on_monthly
+situation_event = { # Pilot projects Opportunity
+	id = HMO_cyber.220
+	title = "HMO_cyber.220.name"
+	desc = "HMO_cyber.220.desc"
+	picture = GFX_evt_scientific_experiments
+	show_sound = event_laboratory_sound
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_situation_flag = HMO_cyber_220_happened }
+		situation_progress >= 350
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = @cyber_approach_mult
+			current_situation_approach = situation_cyberization_cautious
+		}
+		modifier = {
+			factor = 0
+			has_situation_flag = HMO_cyber_220_happened
+		}
+	}
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_cyber_220_happened
+	}
+
+	option = {
+		name = "HMO_cyber.220.a"
+		owner = {
+			add_modifier = {
+				modifier = HMO_scientist_focus
+				days = 360
+			}
+		}
+	}
+	option = {
+		name = "HMO_cyber.220.b"
+		owner = {
+			add_modifier = {
+				modifier = HMO_army_focus
+				days = 360
+			}
+		}
+	}
+	option = {
+		name = "HMO_cyber.220.c"
+		owner = {
+			add_modifier = {
+				modifier = HMO_civilian_focus
+				days = 360
+			}
+		}
+	}
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# Fired by: situation on_monthly
+situation_event = { # Pilot projects Problem
+	id = HMO_cyber.230
+	title = "HMO_cyber.230.name"
+	desc = "HMO_cyber.230.desc"
+	picture = GFX_evt_hive_mind
+	show_sound = event_screams
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_situation_flag = HMO_cyber_230_happened }
+		situation_progress >= 350
+	}
+	
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = @cyber_approach_mult
+			current_situation_approach = situation_cyberization_overdrive
+		}
+		modifier = {
+			factor = 0
+			has_situation_flag = HMO_cyber_230_happened
+		}
+	}
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_cyber_230_happened
+	}
+
+	option = {
+		name = "HMO_cyber.230.a"
+		custom_tooltip = HMO_cyber.230.a.tt
+		set_timed_situation_flag = {
+			flag = HMO_230_slowdown
+			months = 6
+		}
+	}
+	option = {
+		name = "HMO_cyber.230.b"
+		owner = {
+			add_modifier = {
+				modifier = HMO_unhappy_soldiers
+				days = 1800
+			}
+		}
+	}
+	option = {
+		name = "HMO_cyber.230.c"
+		custom_tooltip = HMO_cyber.230.c.tt
+		set_situation_flag = HMO_230_permanent_slowdown
+	}
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# CYBERIZATION STAGE 3
+# Fired by: situation stage on_first_enter
+situation_event = { # Stage 3 - Start event
+	id = HMO_cyber.300
+	title = "HMO_cyber.300.name"
+	desc = "HMO_cyber.300.desc"
+	picture = GFX_evt_cybernetics
+	show_sound = event_the_flesh_is_weak
+	situation = this
+	is_triggered_only = yes
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+	}
+
+	option = {
+		name = "HMO_cyber.300.a"
+		custom_tooltip = "HMO_cyber.300.a.tt"
+	}
+
+	after = {
+		set_situation_flag = cyberization_ongoing
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# Fired by: on_cyberization_situation_random_events_list
+situation_event = { # Stage 3 Random Event
+	id = HMO_cyber.320
+	title = "HMO_cyber.320.name"
+	desc = "HMO_cyber.320.desc"
+	picture = GFX_evt_busy_spaceport
+	show_sound = event_construction
+	situation = this
+	is_triggered_only = yes
+
+	trigger = {
+		situation_progress > 500
+		owner = {
+			capital_scope = {
+				is_same_value = owner.home_planet
+			}
+		}
+	}
+	
+	### Check weights for all events! ###
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = 0
+			has_situation_flag = HMO_cyber_320_happened
+		}
+	}
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_cyber_320_happened
+	}
+
+	option = {
+		name = HMO_cyber.320.a
+		owner = {
+			capital_scope = {
+				random_deposit = {
+					limit = { HMO_is_zombie_deposit_town = yes }
+					clear_blocker = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = HMO_cyber.320.b
+		owner = {
+			capital_scope = {
+				set_planet_flag = HMO_no_city_district_next_clear
+				random_deposit = {
+					limit = { HMO_is_zombie_deposit_town = yes }
+					clear_blocker = yes
+				}
+				remove_planet_flag = HMO_no_city_district_next_clear
+				add_deposit = d_HMO_historical_town
+			}
+		}
+	}
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# CYBERIZATION STAGE 4
+# Fired by: situation stage on_first_enter
+situation_event = { # Government rival
+	id = HMO_cyber.405
+	title = "HMO_cyber.405.name"
+	desc = "HMO_cyber.405.desc"
+	picture = GFX_evt_victorious_army
+	show_sound = event_ground_battle
+	situation = this
+	is_triggered_only = yes
+
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		owner = { set_country_flag = HMO_zombie_ascension_protection }
+	}
+
+	option = {
+		name = "HMO_cyber.405.a"
+		set_situation_flag = HMO_liberation_ongoing
+		hidden_effect = {
+			set_timed_situation_flag = {
+				flag = HMO_business_venture_cooldown
+				months = 3
+			}
+		}
+	}
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# CYBERIZATION STAGE 4
+# Fired by: situation stage on_first_enter
+situation_event = { # Stage 4 Opportunity
+	id = HMO_cyber.410
+	title = "HMO_cyber.410.name"
+	desc = "HMO_cyber.410.desc"
+	picture = GFX_evt_busy_spaceport
+	show_sound = event_construction
+	situation = this
+	is_triggered_only = yes
+	
+	trigger = {
+		situation_progress > 751
+		owner = {
+			capital_scope = {
+				is_same_value = owner.home_planet
+			}
+		}
+		has_situation_flag = HMO_liberation_ongoing
+		NOT = {	has_situation_flag = HMO_business_venture_cooldown }
+		NOT = { has_situation_flag = HMO_cyber_410_happened }
+	}
+	
+	### Check weights for all events! ###
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = @cyber_approach_mult
+			current_situation_approach = situation_cyberization_cautious
+		}
+		modifier = {
+			factor = 0
+			has_situation_flag = HMO_cyber_410_happened
+		}
+	}
+	
+	immediate = {
+		set_situation_flag = situation_cyberization_pause
+		set_situation_flag = HMO_cyber_410_happened
+	}
+
+	option = {
+		name = "HMO_cyber.410.a"
+		owner = {
+			add_modifier = {
+				modifier = HMO_zombie_city_permits
+				days = 18000
+			}
+		}
+	}
+	option = {
+		name = "HMO_cyber.410.b"
+		#custom_tooltip = "HMO_cyber.410.b.tt"
+	}
+
+	after = {
+		remove_situation_flag = situation_cyberization_pause
+	}
+}
+
+# Liberation of Cities
+situation_event = { # Government rival
+	id = HMO_cyber.450
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_situation_flag = HMO_liberation_ongoing
+	}
+	
+	immediate = {
+		owner.capital_scope = {
+			if = {
+				limit = { HMO_has_zombie_deposit = yes }
+				random_deposit = {
+					limit = { HMO_is_zombie_deposit = yes }
+					clear_blocker = yes
+				}
+			}
+			else = {
+				root = { remove_situation_flag = HMO_liberation_ongoing }
+			}
+		}
+	}
+}
+
+country_event = { # 
+	id = HMO_cyber.500
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_machine_age_dlc = yes
+		has_origin = origin_HMO_zombies
+		AND = {
+			has_tradition = tr_cybernetics_augmentation_overload
+			has_tradition = tr_cybernetics_modular_cybernetics
+		}
+		NOT = { has_country_flag = HMO_cybernetics_ascension_flag_fix }
+		has_country_flag = cybernetics_traditions_unlocked
+	}
+	
+	immediate = {
+		remove_country_flag = cybernetics_traditions_unlocked
+		set_country_flag = HMO_cybernetics_ascension_flag_fix
+		# Start false situation
+	}
+}
+
+# 
+country_event = { # 
+	id = HMO_cyber.501
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_machine_age_dlc = yes
+		has_origin = origin_HMO_zombies
+		has_tradition = tr_cybernetics_finish
+		has_country_flag = HMO_cybernetics_ascension_flag_fix
+		NOT = { has_country_flag = cybernetics_traditions_unlocked }
+	}
+	
+	immediate = {
+		set_country_flag = cybernetics_traditions_unlocked
+		set_country_flag = HMO_finished_ascension
+		country_event = { id = HMO_cyber.550 days = 180 }
+	}
+}
+
+### SOCIETAL EFFECTS EVENT CHAIN START ###
+# Fired by: tr_synthetics_finish or event
+country_event = {
+	id = HMO_cyber.550
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_variable = {
+			which = "HMO_cyber_weaponry_power"
+			value = 0
+		}
+		set_variable = {
+			which = "HMO_cyber_zombie_power"
+			value = 0
+		}
+		if = {
+			limit = {
+				has_authority = auth_dictatorial
+			}
+			change_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value = 1
+			}
+		}
+		if = {
+			limit = {
+				inline_script = {
+					script = preassembled/MO_Hydra_event_corporate_authorities
+					GATE = or
+				}
+			}
+			change_variable = {
+				which = "HMO_cyber_zombie_power"
+				value = 1
+			}
+		}
+		if = {
+			limit = {
+				is_militarist = yes
+			}
+			change_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value = 1
+			}
+		}
+		else_if = {
+			limit = {
+				is_authoritarian = yes
+			}
+			change_variable = {
+				which = "HMO_cyber_zombie_power"
+				value = 1
+			}
+		}
+		fire_on_action = {
+			on_action = on_HMO_cybershock_chain_start
+		}
+	}
+}
+
+### Start Events ###
+
+# Democratic
+inline_script = {
+	script = "MO_Hydra_cyber_start_event"
+	EVENT_ID = "505"
+}
+
+# Oligarchic
+inline_script = {
+	script = "MO_Hydra_cyber_start_event"
+	EVENT_ID = "510"
+}
+
+# Dictatorial
+inline_script = {
+	script = "MO_Hydra_cyber_start_event"
+	EVENT_ID = "515"
+}
+
+# Imperial
+inline_script = {
+	script = "MO_Hydra_cyber_start_event"
+	EVENT_ID = "520"
+}
+
+# Corporate
+inline_script = {
+	script = "MO_Hydra_cyber_start_event"
+	EVENT_ID = "525"
+}
+
+### Bugged ###
+
+# Democratic Corporate
+inline_script = {
+	script = "MO_Hydra_cyber_start_event"
+	EVENT_ID = "530"
+}
+
+# Imperial Corporate
+inline_script = {
+	script = "MO_Hydra_cyber_start_event"
+	EVENT_ID = "535"
+}
+
+# Direct Democratic
+inline_script = {
+	script = "MO_Hydra_cyber_start_event"
+	EVENT_ID = "540"
+}
+
+# Event pools gatekeeping event | Work and Family
+# Fired by: event
+country_event = {
+	id = HMO_cyber.600
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		fire_on_action = {
+			on_action = HMO_on_futureshock_chain_society_events_list
+		}
+	}
+}
+
+# Fired by: on_futureshock_chain_work_family_events_list
+country_event = { # Instant Bliss
+	id = HMO_cyber.610
+	title = "HMO_cyber.610.name"
+	desc = HMO_cyber.610.desc
+	picture = GFX_evt_hive_mind
+	show_sound = event_worrying_signal
+	location = from
+	event_chain = futureshock_chain
+	is_triggered_only = yes
+
+	option = { # Weaponry
+		name = HMO_cyber.610.a
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_cyber_zombie_power"
+				value = 1
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # None
+		name = HMO_cyber.610.b
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Weaponry
+		name = HMO_cyber.610.c
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value = 1
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = HMO_cyber.800 days = 180 random = 90 }
+		}
+	}
+}
+
+# Event pools gatekeeping event | Work and Family
+# Fired by: event
+country_event = {
+	id = HMO_cyber.800
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		fire_on_action = {
+			on_action = HMO_on_futureshock_chain_zombies_events_list
+		}
+	}
+}
+
+# Fired by: on_futureshock_chain_work_family_events_list
+country_event = { # Instant Bliss
+	id = HMO_cyber.810
+	title = "HMO_cyber.810.name"
+	desc = HMO_cyber.810.desc
+	picture = GFX_evt_cybernetics
+	show_sound = event_worrying_signal
+	location = from
+	event_chain = futureshock_chain
+	is_triggered_only = yes
+
+	option = { # Weaponry
+		name = HMO_cyber.810.a
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_cyber_zombie_power"
+				value = 1
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # None
+		name = HMO_cyber.810.b
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Weaponry
+		name = HMO_cyber.810.c
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value = 1
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = HMO_cyber.1500 days = 180 random = 90 }
+		}
+	}
+}
+
+# Fired by: on_futureshock_chain_work_family_events_list
+country_event = { # Instant Bliss
+	id = HMO_cyber.820
+	title = "HMO_cyber.820.name"
+	desc = HMO_cyber.820.desc
+	picture = GFX_evt_cyberization_2
+	show_sound = event_worrying_signal
+	location = from
+	event_chain = futureshock_chain
+	is_triggered_only = yes
+
+	option = { # Weaponry
+		name = HMO_cyber.820.a
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_cyber_zombie_power"
+				value = 1
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = { # Weaponry
+		name = HMO_cyber.820.b
+		custom_tooltip = HMO_cyber.social_consequences.tt
+		hidden_effect = {
+			change_variable = {
+				which = "HMO_cyber_weaponry_power"
+				value = 1
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = HMO_cyber.1500 days = 180 random = 90 }
+		}
+	}
+}
+
+# Ending
+# Fired by: event
+country_event = {
+	id = HMO_cyber.1500
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		fire_on_action = {
+			on_action = on_HMO_futureshock_chain_end
+		}
+	}
+}
+
+### FINAL EVENTS ###
+
+inline_script = {
+	script = "MO_Hydra_cyber_ascension_final_event"
+	EVENT_ID = "1505"
+}
+
+inline_script = {
+	script = "MO_Hydra_cyber_ascension_final_event"
+	EVENT_ID = "1510"
+}
+
+inline_script = {
+	script = "MO_Hydra_cyber_ascension_final_event"
+	EVENT_ID = "1515"
+}
+
+inline_script = {
+	script = "MO_Hydra_cyber_ascension_final_event"
+	EVENT_ID = "1520"
+}
+
+inline_script = {
+	script = "MO_Hydra_cyber_ascension_final_event"
+	EVENT_ID = "1525"
+}
+
+### Bug Branch Authorities ###
+
+inline_script = {
+	script = "MO_Hydra_cyber_ascension_final_event"
+	EVENT_ID = "1530"
+}
+
+inline_script = {
+	script = "MO_Hydra_cyber_ascension_final_event"
+	EVENT_ID = "1535"
+}
+
+inline_script = {
+	script = "MO_Hydra_cyber_ascension_final_event"
+	EVENT_ID = "1540"
+}

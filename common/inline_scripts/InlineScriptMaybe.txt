@@ -1,0 +1,59 @@
+
+                 # FlickerScript_1 #
+##############################################################
+
+@NextMod[Num+1] = 8912
+
+inline_script = {
+	script = FlickerScript8912
+	ISCURRENT = [@NextMod1-8912] (reduce to 0 or 1)
+	Num = [Num+1]
+}
+
+##############################################################
+
+The idea is that these are in seperate files
+Say, we have a mod that is numbered 8912
+
+For mod 8912, which we say loads first, the file will look like this:
+
+@NextMod1 = 8912
+
+(FlickerScript8912_0)
+
+$Code$
+
+For mod 6723, which loads after that, the file will look like this
+
+@NextMod1 = 6723
+
+(FlickerScript6723_1)
+
+@NextMod2 = 6723
+
+FlickerScript6723_0
+
+$code$
+
+0 contains the code
+1 contains NextMod[1+Num] and flickerscript
+
+inline script = {
+	script = FeedIntoNext
+	NextMod = @NextMod1
+	Num = 1
+}
+
+# FeedIntoNext #
+
+@NextMod$[NM+1]$ = 8912
+
+inline_script = {
+	script = MO_Hydra_test
+	inline = MO_Hydra_NM_$[NextMod+2]$
+	NM = $NextMod$
+}
+
+################################
+
+Unfortunately scripted variables cannot use inline scripts. Inline scripts in scripted variables are simply ignored.

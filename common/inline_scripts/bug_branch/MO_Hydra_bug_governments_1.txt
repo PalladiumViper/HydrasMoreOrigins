@@ -1,0 +1,149 @@
+gov_HMO_democratic_encryption = {
+	ruler_title = RT_PRESIDENT
+	ruler_title_female = RT_PRESIDENT_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		OR = {
+			is_democratic_authority = yes
+			has_authority = auth_bugged_direct_democratic
+		}
+		has_country_flag = HMO_encryption_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_democratic_weaponry = {
+	ruler_title = RT_PRESIDENT
+	ruler_title_female = RT_PRESIDENT_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		OR = {
+			is_democratic_authority = yes
+			has_authority = auth_bugged_direct_democratic
+		}
+		has_country_flag = HMO_cyber_weaponry_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_democratic_zombie = {
+	ruler_title = RT_PRESIDENT
+	ruler_title_female = RT_PRESIDENT_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		OR = {
+			is_democratic_authority = yes
+			has_authority = auth_bugged_direct_democratic
+		}
+		has_country_flag = HMO_cyber_zombie_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_corporate_democratic_encryption = {
+	ruler_title = RT_CEO
+	ruler_title_female = RT_CEO_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		has_authority = auth_bugged_corporate_democratic
+		has_country_flag = HMO_encryption_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_corporate_imperial_encryption = {
+	ruler_title = RT_CEO
+	ruler_title_female = RT_CEO_FEMALE
+	heir_title = RT_CHAIRMAN
+	heir_title_female = RT_CHAIRWOMAN
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		has_authority = auth_bugged_corporate_imperial
+		has_country_flag = HMO_encryption_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_corporate_democratic_weaponry = {
+	ruler_title = RT_CEO
+	ruler_title_female = RT_CEO_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		has_authority = auth_bugged_corporate_democratic
+		has_country_flag = HMO_cyber_weaponry_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_corporate_imperial_weaponry = {
+	ruler_title = RT_CEO
+	ruler_title_female = RT_CEO_FEMALE
+	heir_title = RT_CHAIRMAN
+	heir_title_female = RT_CHAIRWOMAN
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		has_authority = auth_bugged_corporate_imperial
+		has_country_flag = HMO_cyber_weaponry_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_corporate_democratic_zombie = {
+	ruler_title = RT_CEO
+	ruler_title_female = RT_CEO_FEMALE
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		has_authority = auth_bugged_corporate_democratic
+		has_country_flag = HMO_cyber_zombie_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
+
+gov_HMO_corporate_imperial_zombie = {
+	ruler_title = RT_CEO
+	ruler_title_female = RT_CEO_FEMALE
+	heir_title = RT_CHAIRMAN
+	heir_title_female = RT_CHAIRWOMAN
+	
+	possible = {
+		has_origin = origin_HMO_zombies
+		has_authority = auth_bugged_corporate_imperial
+		has_country_flag = HMO_cyber_zombie_authority
+	}
+	
+	weight = {
+		base = @gov_authority_swap_weight
+	}
+}
