@@ -7,9 +7,12 @@ has_ascension_situation_ongoing = {
 		is_situation_type = situation_cyberization_hive
 		is_situation_type = situation_digitization
 		is_situation_type = situation_transformation
+		is_situation_type = genetic_ascension_situation
+		is_situation_type = genetic_ascension_situation_hive
 		# The situations for the After The Apocalypse Ascension Origin
 		is_situation_type = situation_MO_Hydra_digitization
 		is_situation_type = situation_MO_Hydra_cyberization # Cybernetic Situation
+		# Situations for Planned Obsolescence
 		is_situation_type = HMO_situation_planned_obsolescence # Planned Obsolescence
 	}
 }

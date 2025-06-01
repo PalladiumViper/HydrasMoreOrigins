@@ -7,7 +7,6 @@
 
 HMO_trait_ancient_organism = {
 	cost = 0
-	potential_crossbreeding_chance = 0.33
 	initial = no
 	randomized = no
 	species_potential_add = {

@@ -5,10 +5,10 @@ has_MAP_active = {
 }
 
 # Forgotten History
-has_forgotten_history_active = {
-    optimize_memory
-    always = no
-}
+#has_forgotten_history_active = {
+#    optimize_memory
+#    always = no
+#}
 
 # More Precursors
 has_FHMP_active = {

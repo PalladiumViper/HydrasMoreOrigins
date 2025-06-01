@@ -80,21 +80,28 @@ HMO_num_city_districts = {
 	}
 }
 
-HMO_num_industrial_districts = {
-	complex_trigger_modifier = {
-		trigger = num_districts
-		parameters = {
-			type = district_industrial
-		}
-		mode = add
-	}
-}
+#HMO_num_industrial_districts = {
+#	complex_trigger_modifier = {
+#		trigger = num_districts
+#		parameters = {
+#			type = district_industrial
+#		}
+#		mode = add
+#	}
+#}
 
 HMO_num_farming_districts = {
 	complex_trigger_modifier = {
 		trigger = num_districts
 		parameters = {
 			type = district_farming
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_farming_uncapped
 		}
 		mode = add
 	}
@@ -108,6 +115,13 @@ HMO_num_mining_districts = {
 		}
 		mode = add
 	}
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_mining_uncapped
+		}
+		mode = add
+	}
 }
 
 HMO_num_generator_districts = {
@@ -115,6 +129,13 @@ HMO_num_generator_districts = {
 		trigger = num_districts
 		parameters = {
 			type = district_generator
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_generator_uncapped
 		}
 		mode = add
 	}
@@ -167,4 +188,136 @@ HMO_wildworld_cleared_districts = {
 		}
 		mode = subtract
 	}
+}
+
+### Search for the bomb | Insurgency ###
+
+HMO_num_enforcers_on_planet = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = num_assigned_jobs
+		parameters = {
+			job = politician
+		}
+		mode = add
+	}
+	modifier = {
+		set = 0
+		politician_is_planetary_warden = no
+	}
+	complex_trigger_modifier = {
+		trigger = num_assigned_jobs
+		parameters = {
+			job = enforcer
+		}
+		mode = add
+	}
+}
+
+HMO_num_scientists_on_planet = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = num_assigned_jobs
+		parameters = {
+			job = politician
+		}
+		mode = add
+	}
+	modifier = {
+		set = 0
+		NOR = {
+			politician_is_science_director = yes
+			politician_is_technophant = yes
+		}
+	}
+	complex_trigger_modifier = {
+		trigger = num_assigned_jobs
+		parameters = {
+			job = physicist
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_assigned_jobs
+		parameters = {
+			job = biologist
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_assigned_jobs
+		parameters = {
+			job = engineer
+		}
+		mode = add
+	}
+}
+
+HMO_insurgent_strength = {
+	base = 100
+	add = value:HMO_insurgent_years_impact
+	modifier = {
+		divide = 2
+		owner = {
+			has_country_flag = HMO_found_insurgency_weapons
+		}
+	}
+	modifier = {
+		divide = 20
+		has_planet_flag = HMO_insurgents_has_no_weapons_on_this_planet
+	}
+	multiply = value:HMO_insurgent_crime_impact
+	multiply = value:HMO_insurgent_stability_impact
+	multiply = value:HMO_insurgent_happiness_impact
+	modifier = {
+		multiply = 3
+		has_planet_flag = HMO_insurgent_final_invasion_planet
+	}
+	divide = 200
+	ceiling = yes
+}
+
+HMO_insurgent_years_impact = {
+	base = 1
+	add = trigger:years_passed
+	multiply = 3
+	add = trigger:colony_age_years
+	multiply = 100
+	square_root = yes
+}
+
+# multiply by 66% to 100% (Insurgent strength will be 2/3 if you have no crime, normal insurgent strength if full crime)
+HMO_insurgent_crime_impact = {
+	base = 200
+	add = trigger:planet_crime
+	divide = 300
+}
+
+# Multiply by 100% to 200% (Double insurgent strength if stability is 0)
+HMO_insurgent_stability_impact = {
+	base = 200
+	subtract = trigger:planet_stability
+	divide = 100
+}
+
+# Multiply by 1 - 11 depending on happiness, with 0 happiness giving insurgents 11 times normal strength
+HMO_insurgent_happiness_impact = {
+	base = 110
+	subtract = trigger:happiness_planet
+	divide = 10
+}
+
+HMO_20_percent_of_pop_group = {
+	base = 0
+	set = trigger:pop_group_size
+	divide = 5
+	ceiling = yes
+}
+
+HMO_35_percent_of_available_housing = {
+	base = 0
+	set = trigger:free_housing
+	divide = 100
+	multiply = 35
+	min = 100
 }

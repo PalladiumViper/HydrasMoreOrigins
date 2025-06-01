@@ -68,28 +68,37 @@ defined_text = { # Country/leader/pop/species scope
 			last_district_changed = district_city
  		}
  	}
-	text = {
- 		localization_key = HMO_IndustrialDistrict	#The loc key used if this text entry is picked.
- 		trigger = {							#Triggers that determine if this text entry can be picked.
-			last_district_changed = district_industrial
- 		}
- 	}
+	#text = {
+ 	#	localization_key = HMO_IndustrialDistrict	#The loc key used if this text entry is picked.
+ 	#	trigger = {							#Triggers that determine if this text entry can be picked.
+	#		last_district_changed = district_industrial
+ 	#	}
+ 	#}
 	text = {
  		localization_key = HMO_FarmingDistrict	#The loc key used if this text entry is picked.
  		trigger = {							#Triggers that determine if this text entry can be picked.
-			last_district_changed = district_farming
+			OR = {
+				last_district_changed = district_farming
+				last_district_changed = district_farming_uncapped
+			}
  		}
  	}
 	text = {
  		localization_key = HMO_GeneratorDistrict	#The loc key used if this text entry is picked.
  		trigger = {							#Triggers that determine if this text entry can be picked.
-			last_district_changed = district_generator
+			OR = {
+				last_district_changed = district_generator
+				last_district_changed = district_generator_uncapped
+			}
  		}
  	}
 	text = {
  		localization_key = HMO_MiningDistrict	#The loc key used if this text entry is picked.
  		trigger = {							#Triggers that determine if this text entry can be picked.
-			last_district_changed = district_mining
+			OR = {
+				last_district_changed = district_mining
+				last_district_changed = district_mining_uncapped
+			}
  		}
  	}
 	default = HMO_CityDistrict
@@ -103,28 +112,37 @@ defined_text = { # Country/leader/pop/species scope
 			last_district_changed = district_city
  		}
  	}
-	text = {
- 		localization_key = HMO_TrueIndustrialDistrict	#The loc key used if this text entry is picked.
- 		trigger = {							#Triggers that determine if this text entry can be picked.
-			last_district_changed = district_industrial
- 		}
- 	}
+	#text = {
+ 	#	localization_key = HMO_TrueIndustrialDistrict	#The loc key used if this text entry is picked.
+ 	#	trigger = {							#Triggers that determine if this text entry can be picked.
+	#		last_district_changed = district_industrial
+ 	#	}
+ 	#}
 	text = {
  		localization_key = HMO_TrueFarmingDistrict	#The loc key used if this text entry is picked.
  		trigger = {							#Triggers that determine if this text entry can be picked.
-			last_district_changed = district_farming
+			OR = {
+				last_district_changed = district_farming
+				last_district_changed = district_farming_uncapped
+			}
  		}
  	}
 	text = {
  		localization_key = HMO_TrueGeneratorDistrict	#The loc key used if this text entry is picked.
  		trigger = {							#Triggers that determine if this text entry can be picked.
-			last_district_changed = district_generator
+			OR = {
+				last_district_changed = district_generator
+				last_district_changed = district_generator_uncapped
+			}
  		}
  	}
 	text = {
  		localization_key = HMO_TrueMiningDistrict	#The loc key used if this text entry is picked.
  		trigger = {							#Triggers that determine if this text entry can be picked.
-			last_district_changed = district_mining
+			OR = {
+				last_district_changed = district_mining
+				last_district_changed = district_mining_uncapped
+			}
  		}
  	}
 	default = HMO_TrueCityDistrict
@@ -138,12 +156,12 @@ defined_text = { # Country/leader/pop/species scope
 			has_planet_flag = HMO_target_city
  		}
  	}
-	text = {
- 		localization_key = HMO_target_industrial	#The loc key used if this text entry is picked.
- 		trigger = {							#Triggers that determine if this text entry can be picked.
-			has_planet_flag = HMO_target_industrial
- 		}
- 	}
+	#text = {
+ 	#	localization_key = HMO_target_industrial	#The loc key used if this text entry is picked.
+ 	#	trigger = {							#Triggers that determine if this text entry can be picked.
+	#		has_planet_flag = HMO_target_industrial
+ 	#	}
+ 	#}
 	text = {
  		localization_key = HMO_target_generator	#The loc key used if this text entry is picked.
  		trigger = {							#Triggers that determine if this text entry can be picked.

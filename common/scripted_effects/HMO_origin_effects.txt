@@ -93,46 +93,6 @@ HMO_set_insurgency_celebration_modifier = {
 	}
 }
 
-HMO_update_enforcer_scientist_values = {
-
-	set_variable = {
-		which = HMO_enforcers
-		value = 0
-	}
-	
-	set_variable = {
-		which = HMO_scientists
-		value = 0
-	}
-
-	export_trigger_value_to_variable = {
-		trigger = count_owned_pop
-		parameters = {
-			limit = {
-				OR ={
-					has_job = enforcer
-					has_job = telepath
-				}
-			}
-		}
-		variable = HMO_enforcers
-	}
-
-	export_trigger_value_to_variable = {
-		trigger = count_owned_pop
-		parameters = {
-			limit = {
-				OR ={
-					has_job = researcher
-					has_job = archaeoengineers
-					has_job = head_researcher
-				}
-			}
-		}
-		variable = HMO_scientists
-	}
-}
-
 HMO_add_insurgency_junk = {
 	random_list = {
 		20 = {
@@ -238,6 +198,14 @@ HMO_create_insurgency_real_country = {
 		civics = random
 		flag = random
 		origin = origin_HMO_insurgents
+		ship_kinds = {
+			$SHIPTYPE$_ship
+			space_amoeba
+			tiyanki
+			voidworm
+			cutholoid
+			crystalline_entity
+		}
 		effect = {
 			save_event_target_as = HMO_insurgency_uprising
 		}
@@ -296,48 +264,22 @@ HMO_apply_deposit_flag_to_planet = {
 	}
 }
 
-### After The Apocalypse ###
-#create_HMO_resproject_country = {
-#	if = {
-#		limit = {
-#			NOT = {
-#				any_country = {
-#					has_country_flag = HMO_resproject@prev
-#				}
-#			}
-#		}
-#		create_country = {
-#			name = "NAME_HMO_Resproject"
-#			type = HMO_resproject
-#			authority = "auth_oligarchic"
-#			civics = {
-#				civic = civic_HMO_resproject
-#			}
-#			origin = "origin_default"
-#			species = event_target:resproject_owner_species
-#			ethos = {
-#				ethic = ethic_fanatic_materialist
-#			}
-#			flag = {
-#				icon = {
-#					category = "zoological"
-#					file = "flag_zoological_1.dds"
-#				}
-#				background= {
-#					category = "backgrounds"
-#					file = "00_solid.dds"
-#				}
-#				colors={
-#					"black"
-#					"black"
-#					"null"
-#					"null"
-#				}
-#			}
-#			effect = {
-#				root = { save_global_event_target_as = HMO_resproject_country@prev }
-#				set_country_flag = HMO_resproject_country@root
-#			}
-#		}
-#	}
-#}
+HMO_create_insurgency_army = {
+	$OWNER$ = {
+		create_leader = {
+			class = commander
+			species = owner_main_species
+			name = random
+			skill = $INSURGENT_LEADER_LEVEL$
+		}
+	}
+	while = {
+		count = $COUNT$
+		create_army = {
+			name = "NAME_HMO_Insurgency_Army"
+			owner = $OWNER$
+			type = "HMO_insurgency_army"
+			leader = last_created_leader
+		}
+	}
+}

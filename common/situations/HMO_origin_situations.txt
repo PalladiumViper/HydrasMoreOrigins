@@ -229,12 +229,6 @@ situation_HMO_stolen_bomb = {
 	# goal: Find the bomb before the insurgents use it
 	# Bad ending if the situation is not completed before 2 - 2.5 years
 
-	on_monthly = {
-		events = {
-			HMO_origin.202 # Update Enforcer and Scientist Variables
-		}
-	}
-
 	# Stages
 	stages = {
 		HMO_low_intel = {
@@ -261,11 +255,9 @@ situation_HMO_stolen_bomb = {
 		icon_background = GFX_situation_approach_bg_green
 		potential = {
 			target = {
-				any_owned_pop = {
-					OR ={
-						has_job = enforcer
-						has_job = telepath
-					}
+				check_variable_arithmetic = {
+					which = value:HMO_num_enforcers_on_planet
+					value >= 1
 				}
 			}
 		}
@@ -276,7 +268,7 @@ situation_HMO_stolen_bomb = {
 			category = situations
 			upkeep = {
 				energy = 1
-				multiplier = target.HMO_enforcers
+				multiplier = target.value:HMO_num_enforcers_on_planet
 			}
 		}
 		target_modifier = {
@@ -291,12 +283,9 @@ situation_HMO_stolen_bomb = {
 		icon_background = GFX_situation_approach_bg_green
 		potential = {
 			target = {
-				any_owned_pop = {
-					OR ={
-						has_job = researcher
-						has_job = archaeoengineers
-						has_job = head_researcher
-					}
+				check_variable_arithmetic = {
+					which = value:HMO_num_scientists_on_planet
+					value >= 1
 				}
 			}
 		}
@@ -307,7 +296,7 @@ situation_HMO_stolen_bomb = {
 			category = situations
 			upkeep = {
 				energy = 1
-				multiplier  = target.HMO_scientists
+				multiplier  = target.value:HMO_num_scientists_on_planet
 				# multiply this value by the number of scientists on the planet
 			}
 		}

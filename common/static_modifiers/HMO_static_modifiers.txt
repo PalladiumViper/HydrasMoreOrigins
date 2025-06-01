@@ -206,7 +206,10 @@ HMO_army_focus = {
 }
 
 HMO_scientist_focus = {
-	planet_researchers_produces_mult = 0.1
+	#planet_researchers_produces_mult = 0.1
+	planet_physicists_produces_mult = 0.1
+	planet_biologists_produces_mult = 0.1
+	planet_engineers_produces_mult = 0.1
 }
 
 HMO_zombie_city_permits = {

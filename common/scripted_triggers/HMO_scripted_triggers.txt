@@ -55,7 +55,7 @@ HMO_has_zombie_deposit = {
 		has_deposit = d_HMO_zombie_mine
 		has_deposit = d_HMO_zombie_farm
 		has_deposit = d_HMO_zombie_generator
-		has_deposit = d_HMO_zombie_factory
+		#has_deposit = d_HMO_zombie_factory
 	}
 }
 
@@ -67,7 +67,7 @@ HMO_is_zombie_deposit = {
 		is_deposit_type = d_HMO_zombie_mine
 		is_deposit_type = d_HMO_zombie_farm
 		is_deposit_type = d_HMO_zombie_generator
-		is_deposit_type = d_HMO_zombie_factory
+		#is_deposit_type = d_HMO_zombie_factory
 	}
 }
 

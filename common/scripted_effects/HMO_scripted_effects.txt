@@ -30,7 +30,7 @@ HMO_change_to_ideal_planet_class = {
 				trigger = has_trait
 				trait_dry_planet_preference = { $TARGET_PLANET$ = { change_pc = pc_arid } }
 				trait_wet_planet_preference = { $TARGET_PLANET$ = { change_pc = pc_continental } }
-				trait_frozen_planet_preference = { $TARGET_PLANET$ = { change_pc = pc_alpine } }
+				trait_cold_planet_preference = { $TARGET_PLANET$ = { change_pc = pc_alpine } }
 				default = { $TARGET_PLANET$ = { change_pc = pc_gaia } }
 			}
 		}
@@ -73,54 +73,73 @@ HMO_create_zombie_pop = {
 		limit = { owner = { has_country_flag = HMO_cyber_zombie_authority } }
 		if = {
 			limit = {
-				any_owned_pop = {
+				any_owned_pop_group = {
 					has_trait = trait_zombie
 					has_trait = trait_cybernetic
-					is_robot_pop = no
+					is_robot_pop_group = no
 				}
 			}
-			random_owned_pop = {
+			random_owned_pop_group = {
 				limit = {
 					has_trait = trait_zombie
 					has_trait = trait_cybernetic
-					is_robot_pop = no
+					is_robot_pop_group = no
+				}
+				species = {
+					save_event_target_as = HMO_zombie_species_target
 				}
 				root = {
-					create_pop = {
-						species = prev
+					create_pop_group = {
+						species = event_target:HMO_zombie_species_target
+						size = $AMOUNT$
 					}
 				}
 			}
 		}
 		else_if = {
 			limit = {
-				any_owned_pop = {
-					is_robot_pop = no
+				any_owned_pop_group = {
+					is_robot_pop_group = no
 				}
 			}
-			random_owned_pop = {
+			random_owned_pop_group = {
 				limit = {
-					is_robot_pop = no
+					is_robot_pop_group = no
 				}
 				# Add stuff that adds zombie trait
-				root = {
-					create_pop = {
-						species = prev.species
-					}
+				species = {
+					save_event_target_as = HMO_zombie_species_target
 				}
-				last_created_pop = {
-					modify_species = {
-						species = this
-						add_trait = trait_cybernetic
-						add_trait = trait_zombie
-						add_traits_at_start_of_list = yes
-						remove_trait = trait_self_modified
-						remove_trait = trait_latent_psionic
-						remove_trait = trait_psionic
-					}
-					set_citizenship_type = {
-						country = root.owner
-						type = citizenship_full
+				modify_species = {
+					species = event_target:HMO_zombie_species_target
+					add_trait = trait_cybernetic
+					add_trait = trait_zombie
+					remove_trait = trait_self_modified
+					remove_trait = trait_latent_psionic
+					remove_trait = trait_psionic
+					add_traits_at_start_of_list = yes # optional, pushes out other traits if needed
+					change_scoped_species = no
+					sapient = yes
+				}
+				root = {
+					create_pop_group = {
+						species = last_created_species
+						size = $AMOUNT$
+						#effect = {
+						#	modify_species = {
+						#		species = this
+						#		add_trait = trait_cybernetic
+						#		add_trait = trait_zombie
+						#		add_traits_at_start_of_list = yes
+						#		remove_trait = trait_self_modified
+						#		remove_trait = trait_latent_psionic
+						#		remove_trait = trait_psionic
+						#	}
+						#	set_citizenship_type = {
+						#		country = root.owner
+						#		type = citizenship_full
+						#	}
+						#}
 					}
 				}
 			}

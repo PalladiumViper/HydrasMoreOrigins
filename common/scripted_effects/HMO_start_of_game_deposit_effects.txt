@@ -1,0 +1,289 @@
+# This is called after game start
+HMO_generate_banished_threat_start_deposits_and_blockers = {
+	optimize_memory
+	clear_deposits = yes
+
+	# blockers
+	if = {
+		limit = {
+			owner = {
+				has_civic = civic_fanatic_purifiers
+			}
+		}
+		add_deposit = d_tomb_world_ruins
+		add_deposit = d_tomb_world_wasteland
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_civic = civic_machine_terminator
+			}
+		}
+
+		add_deposit = d_exterminators_ruins
+		add_deposit = d_former_battlefield
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+
+		add_deposit = d_tomb_world_wasteland
+		add_deposit = d_tomb_world_wasteland
+	}
+	if = {
+		limit = {
+			owner = {
+				HMO_is_banished_threat = yes
+			}
+		}
+
+		# 1 + 1 + 2 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_hot_springs
+		add_deposit = d_frozen_gas_lake
+		add_deposit = d_geothermal_vent
+
+		# 1 + 2 + 2 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 2 + 2 + 3 farming
+		add_deposit = d_fungal_caves
+		add_deposit = d_fungal_caves
+		add_deposit = d_fungal_forest
+	}
+}
+
+# Special for Earth
+HMO_generate_generate_banished_earth_deposits_and_blockers = {
+	optimize_memory
+	clear_deposits = yes
+	add_deposit = d_mesopotamian_urban_corridor
+	add_deposit = d_HMO_banished_boswash_metropolitan_axis
+	add_deposit = d_HMO_banished_mauritanian_security_zone
+	add_deposit = d_HMO_banished_great_albertan_crater
+	add_deposit = d_HMO_banished_scandinavian_reclamation_sector
+	add_deposit = d_HMO_banished_saharan_irrigation_project
+	add_deposit = d_HMO_banished_pearl_river_agglomerate
+	add_deposit = d_HMO_banished_great_pacific_garbage_patch
+	add_deposit = d_HMO_banished_failing_infrastructure_earth
+	if = {
+		limit = {
+			owner = { is_machine_empire = yes }
+		}
+		add_deposit = d_rushing_waterfalls
+	}
+
+	# blockers
+	if = {
+		limit = {
+			owner = {
+				has_civic = civic_fanatic_purifiers
+			}
+		}
+		add_deposit = d_tomb_world_ruins
+		add_deposit = d_tomb_world_wasteland
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_civic = civic_machine_terminator
+			}
+		}
+
+		add_deposit = d_exterminators_ruins
+		add_deposit = d_former_battlefield
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+
+		add_deposit = d_tomb_world_wasteland
+		add_deposit = d_tomb_world_wasteland
+	}
+}
+
+# This is called after game start
+HMO_generate_unvaulted_start_deposits_and_blockers = {
+	optimize_memory
+	clear_deposits = yes
+
+	# blockers
+	if = {
+		limit = {
+			owner = {
+				has_civic = civic_fanatic_purifiers
+			}
+		}
+		add_deposit = d_tomb_world_ruins
+		add_deposit = d_tomb_world_wasteland
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_civic = civic_machine_terminator
+			}
+		}
+
+		add_deposit = d_exterminators_ruins
+		add_deposit = d_former_battlefield
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_civic = civic_hive_devouring_swarm
+			}
+		}
+
+		add_deposit = d_tomb_world_wasteland
+		add_deposit = d_tomb_world_wasteland
+	}
+	else = {
+		add_deposit = d_HMO_decrepit_vault
+		#add_deposit = d_tomb_world_ruins # Also gives a pop
+		add_deposit = d_tomb_world_wasteland
+	}
+	# 1 + 1 + 2 + 3 energy
+	add_deposit = d_hot_springs
+	add_deposit = d_hot_springs
+	add_deposit = d_frozen_gas_lake
+	add_deposit = d_geothermal_vent
+	
+	# 1 + 2 + 2 + 3 + 3 mining
+	add_deposit = d_veiny_cliffs
+	add_deposit = d_ore_rich_caverns
+	add_deposit = d_ore_rich_caverns
+	add_deposit = d_rich_mountain
+	add_deposit = d_rich_mountain
+
+	# 0 farming
+	
+	# Vault
+	add_deposit = d_HMO_unvaulted_vault
+	last_added_deposit = {
+		set_deposit_flag = keep_deposit_on_terraform
+	}
+}
+
+HMO_dyson_swarm_start_effect = {
+	save_event_target_as = HMO_dyson_swarm_empire
+	every_planet_within_border = {
+		limit = {
+			has_deposit_for = shipclass_mining_station
+			OR = {
+				is_star = no
+				#is_planet_class = pc_barren
+				#is_planet_class = pc_barren_cold
+				#is_planet_class = pc_molten
+				#is_planet_class = pc_toxic
+				#is_planet_class = pc_frozen
+				#is_planet_class = pc_gas_giant
+				#is_planet_class = pc_asteroid
+			}
+		}
+		if = {
+			limit = {
+				has_orbital_station = yes
+			}
+			mining_station = {
+				dismantle = yes
+			}
+		}
+		clear_deposits = yes
+	}
+	capital_scope.solar_system = {
+		# Scope to star
+		set_star_class = sc_m
+		system_star = {
+			save_event_target_as = HMO_dyson_swarm_location
+			# First test if it is applied when spawned
+			#add_modifier = {
+			#	modifier = dyson_swarm_1_mod
+			#	days = -1
+			#}
+		}
+		spawn_megastructure = {
+			type = dyson_swarm_1
+			owner = event_target:HMO_dyson_swarm_empire
+			planet = event_target:HMO_dyson_swarm_location
+			coords_from = event_target:HMO_dyson_swarm_location
+			graphical_culture = event_target:HMO_dyson_swarm_empire
+		}
+	}
+	species = {
+		switch = {
+			trigger = is_archetype
+			BIOLOGICAL = { event_target:HMO_dyson_swarm_location = { add_deposit = d_food_3 add_modifier = { modifier = HMO_dyson_swarm_decorative_modifier days = -1 } } }
+			MACHINE = { event_target:HMO_dyson_swarm_location = { add_deposit = d_energy_3 } }
+			ROBOT = { event_target:HMO_dyson_swarm_location = { add_deposit = d_energy_3 } }
+			LITHOID = { event_target:HMO_dyson_swarm_location = { add_deposit = d_minerals_2 } }
+			OTHER = { event_target:HMO_dyson_swarm_location = { add_deposit = d_energy_3 } }
+			default = { event_target:HMO_dyson_swarm_location = { add_deposit = d_energy_3 } }
+		}
+	}
+	country_event = {
+		id = HMO_game_start.10	# Need to set the variable for number of Dyson Swarms constructed
+		days = 1
+	}
+	give_technology = {
+		tech = tech_dyson_swarm
+		message = no
+	}
+	capital_scope = {
+		HMO_swap_district_with_district = {
+			REMOVE_DISTRICT = generator
+			ADD_DISTRICT = mining
+		}
+	}
+}
+
+HMO_reduce_start_pops = {
+	capital_scope = {
+		while = {
+			count = $START_POP_REDUCTION_COUNT$
+			random_owned_pop_group = {
+				limit = {
+					is_same_species = owner.species
+				}
+				kill_single_pop = yes
+			}
+		}
+	}
+}
+
+HMO_fix_start_pops = {
+	random_owned_pop_group = {
+		limit = {
+			is_same_species = owner.species
+			is_unemployed = no
+		}
+		save_event_target_as = HMO_species_for_copy
+	}
+	save_event_target_as = HMO_target_planet
+	every_owned_pop_group = {
+		limit = {
+			is_same_species = owner.species
+			is_unemployed = yes
+		}
+		event_target:HMO_target_planet = {
+			set_variable = {
+				which = fix_start_pop_value
+				value = prev.trigger:pop_group_size
+			}
+			create_pop_group = {
+				species = prev
+				size = fix_start_pop_value
+			}
+			clear_variable = fix_start_pop_value
+		}
+		kill_pop_group = { pop_group = this percentage = 1 }
+	}
+}

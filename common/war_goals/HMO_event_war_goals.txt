@@ -2,9 +2,10 @@ wg_HMO_insurgency_uprising = {
 	casus_belli = cb_event
 
 	total_war = yes
-
-	allowed_peace_offers = {
-		status_quo
+	
+	forbidden_peace_offers = {
+		demand_surrender = ""
+		surrender = ""
 	}
 
 	surrender_acceptance = -1000
