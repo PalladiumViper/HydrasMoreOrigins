@@ -5,7 +5,7 @@
 
  # Insurgency
  concept_HMO_pc_city: "$pc_city$"
- concept_HMO_pc_city_desc: "- Base Habitability: §Y100%§!\n- uses special £district£ §IArcology Districts§!\n\n§L$HMO_pc_apocalyptic_city_desc$§!"
+ concept_HMO_pc_city_desc: "- Base Habitability: §Y100%§!\n- Uses special £district£ §IArcology Districts§!\n\n§L$HMO_pc_apocalyptic_city_desc$§!"
 
  concept_HMO_insurgency_junk: "$d_HMO_insurgency_junk$"
  concept_HMO_insurgency_junk_desc: "- Time to Clear:\n$tt$- £time£ 360 §IDays§!\n- Cost to Clear:\n$tt$- 250 $i_energy$\n- $MOD_PLANET_MAX_DISTRICTS_ADD$: §R-2§!\n- On Clearing:\n$tt$- 300 $i_minerals$\n$tt$- 50 $i_alloys$\n\n§L$d_HMO_insurgency_junk_desc$§!"
@@ -28,22 +28,26 @@
  concept_HMO_insurgent_trait_desc: "$FLEET_EFFECTS_TXT$:$TABBED_NEW_LINE$- $MOD_SHIP_SPEED_MULT$: §G+10%§!$TABBED_NEW_LINE$- $MOD_SHIP_FIRE_RATE_MULT$: §G+20%§!\n\n§L$leader_trait_admiral_insurgent_desc$§!"
  
  concept_HMO_insurgency_infrastructure: "Advanced Infrastructure"
- concept_HMO_insurgency_infrastructure_desc: "Additional Starting Buildings:$TABBED_NEW_LINE$- ['concept_HMO_hydroponics_farm', £building£ $building_hydroponics_farm$]$TABBED_NEW_LINE$- ['concept_HMO_factory', £building£ $building_factory_1$]$TABBED_NEW_LINE$- ['concept_HMO_foundry', £building£ $building_foundry_1$]$TABBED_NEW_LINE$- ['concept_HMO_precinct_house', £building£ $building_precinct_house$]"
+ concept_HMO_insurgency_infrastructure_desc: "Additional Starting Buildings:$TABBED_NEW_LINE$- ['concept_HMO_hydroponics_farm', £building£ $building_hydroponics_farm$]$TABBED_NEW_LINE$- ['concept_HMO_stronghold', £building£ $building_stronghold$]$TABBED_NEW_LINE$- ['concept_HMO_precinct_house', £building£ $building_precinct_house$]"
+ #['concept_HMO_precinct_house', £building£ $building_precinct_house$]"
  
  concept_HMO_hydroponics_farm: "$building_hydroponics_farm$"
- concept_HMO_hydroponics_farm_desc: "- £mod_job_farmer_add£ ['concept_farmer', $job_farmer$] Jobs: §G+3§!\n\n§L$building_hydroponics_farm_desc$§!"
+ concept_HMO_hydroponics_farm_desc: "- £mod_job_farmer_add£ ['concept_farmer', $job_farmer$] Jobs: §G+200§!\n$h_line$§L$building_hydroponics_farm_desc$§!"
  
  concept_HMO_factory: "$building_factory_1$"
- concept_HMO_factory_desc: "- £mod_job_artisan_add£ ['concept_artisan', $job_artisan$] Jobs: §G+2§!\n\n§L$building_factory_1_desc$§!"
+ concept_HMO_factory_desc: "- £mod_job_artisan_add£ ['concept_artisan', $job_artisan$] Jobs: §G+200§!\n$h_line$§L$building_factory_1_desc$§!"
  
  concept_HMO_foundry: "$building_foundry_1$"
- concept_HMO_foundry_desc: "- £mod_job_foundry_add£ ['concept_foundry', $job_foundry$] Jobs: §G+2§!\n\n§LThe $job_foundry_plural$ working in these foundries produce high-quality alloys.§!"
+ concept_HMO_foundry_desc: "- £mod_job_foundry_add£ ['concept_foundry', $job_foundry$] Jobs: §G+200§!\n$h_line$§LThe $job_foundry_plural$ working in these foundries produce high-quality alloys.§!"
  
  concept_HMO_precinct_house: "$building_precinct_house$"
- concept_HMO_precinct_house_desc: "- £mod_job_enforcer_add£ ['concept_HMO_enforcer', $job_enforcer$] Jobs: §G+2§!\n\n§L$building_precinct_house_desc$§!"
+ concept_HMO_precinct_house_desc: "- £mod_job_enforcer_add£ ['concept_enforcer', $job_enforcer$] Jobs: §G+200§!\n$h_line$§L$building_precinct_house_desc$§!"
  
- concept_HMO_enforcer: "$job_enforcer_plural$"
- concept_HMO_enforcer_desc: "$job_enforcer_plural$ produce $i_unity$ and reduce £crime£ §ICrime§!.\n\n§L$job_enforcer_desc$§!"
+ concept_HMO_stronghold: "$building_stronghold$"
+ concept_HMO_stronghold_desc: "- £mod_job_soldier_add£ ['concept_soldier', $job_soldier$] Jobs: §G+200§!\n$h_line$§L$building_stronghold_desc$§!"
+ 
+ #concept_HMO_enforcer: "$job_enforcer_plural$"
+ #concept_HMO_enforcer_desc: "$job_enforcer_plural$ produce $i_unity$ and reduce £crime£ §ICrime§!.\n\n§L$job_enforcer_desc$§!"
  
  # Strategic Resource Techs
  concept_HMO_rare_crystals: "$tech_mine_rare_crystals$"
@@ -112,10 +116,10 @@
  concept_HMO_zombies_zombies: "Zombies"
  
  concept_HMO_zcom_building: "$HMO_building_zcom_headquarters$"
- #concept_HMO_zcom_building_desc: "$HMO_building_zcom_headquarters_desc$"
+ concept_HMO_zcom_building_desc: "- ['concept_soldier', [soldier.GetName]] Jobs: §G+2§!\n- $MOD_PLANET_HOUSING_ADD$: §G+6§!\n- $MOD_PLANET_AMENITIES_ADD$: §R-4§!\n- $MOD_DEFENSE_ARMIES_ADD$: §G+4§!\n\n§L$HMO_building_zcom_headquarters_desc$§!"
  
- concept_HMO_resproject_outpost: "$MO_building_resproject_outpost$"
- #concept_HMO_resproject_outpost_desc: ""
+ concept_HMO_resproject_outpost: "$HMO_building_resproject_outpost$"
+ concept_HMO_resproject_outpost_desc: "- ['concept_planet_physicists', [Physicist.GetNamePlural]] Jobs: §G+60§!\n- ['concept_planet_biologists', [Biologist.GetNamePlural]] Jobs: §G+60§!\n- ['concept_planet_engineers', [Engineer.GetNamePlural]] Jobs: §G+60§!\n\n§L$HMO_building_resproject_outpost_desc$§!"
  
  #concept_HMO_encryption_agenda: ""
  #concept_HMO_encryption_agenda_desc: ""
@@ -141,7 +145,7 @@
  concept_HMO_zombie_blockers_desc: "Infested Blockers can only be cleared through story events or after completing an ascension path.\n\n§LEmpty monuments to the old world. Now only the undead make use of the decrepit ruins.§!"
  
  concept_HMO_zombies_infrastructure: "Jury-Rigged Infrastructure"
- concept_HMO_zombies_infrastructure_desc: "- ['concept_HMO_zcom_building', £building£ $HMO_building_zcom_headquarters$]$NEW_LINE$- ['concept_HMO_resproject_outpost', £building£ $HMO_building_resproject_outpost$]"
+ concept_HMO_zombies_infrastructure_desc: "- ['concept_HMO_zcom_building']$NEW_LINE$- ['concept_HMO_resproject_outpost']"
 
  concept_HMO_martial_law_authorities: "Martial Law"
  concept_HMO_martial_law_authorities_desc: "Normal Authorities replaced with Martial Law:$TABBED_NEW_LINE$- ['concept_MO_auth_democratic_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_oligarchic_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_dictatorial_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_imperial_martial_law']$TABBED_NEW_LINE$- ['concept_MO_auth_corporate_martial_law']\n\n§LMartial Law has been imposed upon this society to prevent societial collapse.§!"
