@@ -15,7 +15,6 @@ HMO_origin_banished_threat = {
 			host_has_dlc = "Utopia"
 			host_has_dlc = "Synthetic Dawn Story Pack"
 		}
-		has_forgotten_history_active = no
 	}
 	# Forgot this earlier
 	ai_playable = {
@@ -78,7 +77,6 @@ HMO_origin_banished_threat_machines = {
 			host_has_dlc = "Utopia"
 			host_has_dlc = "Synthetic Dawn Story Pack"
 		}
-		has_forgotten_history_active = no
 	}
 	# Forgot this earlier
 	ai_playable = {
@@ -129,10 +127,6 @@ origin_HMO_scavengers = {
 	icon = "gfx/interface/icons/origins/origin_HMO_scavengers.dds"
 	picture = GFX_origin_HMO_scavengers
 	flags = { custom_start_screen Story5 }
-
-	playable = {
-		has_forgotten_history_active = no
-	}
 	
 	potential = {
 		always = yes
@@ -156,10 +150,6 @@ origin_HMO_apocalypse = {
 	max_once_global = yes
 
 	starting_colony = HMO_pc_apocalyptic_city
-
-	playable = {
-		has_forgotten_history_active = no
-	}
 	
 	potential = {
 		always = yes
@@ -518,6 +508,12 @@ origin_HMO_zombies = {
 				value = civic_reanimated_armies
 				value = civic_permanent_employment
 				value = civic_parliamentary_system
+				value = civic_civil_education
+				value = civic_crowdsourcing
+				value = civic_corporate_crowdsourcing
+				value = civic_beastmasters
+				value = civic_environmental_architects
+				value = civic_environmental_architects_megacorp
 			}
 			inline_script = {
 				script = comptriggers/MO_Hydra_toggle

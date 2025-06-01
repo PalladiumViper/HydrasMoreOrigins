@@ -1,0 +1,56 @@
+$ID$ = {
+	icon = $ICON$
+	time = 120
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	on_cleared = {
+		hidden_effect = {
+			if = {
+				limit = {
+					any_owned_pop_group = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop_group = no
+					}
+				}
+				random_owned_pop_group = {
+					limit = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop_group = no
+					}
+					root = {
+						create_pop_group = {
+							species = prev
+							size = 100
+						}
+					}
+				}
+			}
+			else = {
+				random_owned_pop_group = {
+					root = {
+						create_pop_group = {
+							species = prev
+							size = 100
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = d_decrepit_dwellings_custom_tooltip
+	}
+	inline_script = deposits/ai_weight_pop_creating_blocker
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}

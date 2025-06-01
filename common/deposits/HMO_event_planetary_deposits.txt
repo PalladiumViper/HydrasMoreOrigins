@@ -26,50 +26,50 @@ d_HMO_crashed_ship = {
 		}
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_researcher_add = 2
-			job_HMO_scrap_miner_scavenger_add = 4
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_valid_civic = civic_scavengers }
-		}
-		modifier = {
-			job_researcher_add = 2
-			job_HMO_scrap_miner_scavenger_add = 4
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_brain_drone_add = 2
-			job_HMO_scrap_miner_scavenger_drone_add = 4
-			
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_calculator_add = 2
-			job_HMO_scrap_miner_scavenger_drone_add = 4
-		}
-	}
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_regular_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_engineer_add = 200
+	#		job_HMO_scrap_miner_scavenger_add = 4
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { has_valid_civic = civic_scavengers }
+	#	}
+	#	modifier = {
+	#		job_researcher_add = 2
+	#		job_HMO_scrap_miner_scavenger_add = 4
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_hive_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_brain_drone_add = 2
+	#		job_HMO_scrap_miner_scavenger_drone_add = 4
+	#		
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_machine_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_calculator_add = 2
+	#		job_HMO_scrap_miner_scavenger_drone_add = 4
+	#	}
+	#}
 	planet_modifier = {
 		planet_amenities_add = 10
 	}
@@ -96,46 +96,46 @@ d_HMO_crashed_ship_scrap = {
 		planet_miners_alloys_produces_add = 0.5
 	}
 	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_scrap_miner_add = 16
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_valid_civic = civic_scavengers }
-		}
-		modifier = {
-			job_scrap_miner_add = 16
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_scrap_miner_drone_add = 16
-			
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_scrap_miner_drone_add = 16
-		}
-	}
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_regular_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_scrap_miner_add = 16
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { has_valid_civic = civic_scavengers }
+	#	}
+	#	modifier = {
+	#		job_scrap_miner_add = 16
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_hive_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_scrap_miner_drone_add = 16
+	#		
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_machine_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_scrap_miner_drone_add = 16
+	#	}
+	#}
 
 	drop_weight = {
 		weight = 0
@@ -155,51 +155,51 @@ d_HMO_crashed_ship_tech = {
 		}
 	}
 
-	planet_modifier = {
-		planet_researchers_physics_research_produces_add = 0.25
-		planet_researchers_society_research_produces_add = 0.25
-		planet_researchers_engineering_research_produces_add = 0.5
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_researcher_add = 8
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_valid_civic = civic_scavengers }
-		}
-		modifier = {
-			job_researcher_add = 8
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_brain_drone_add = 8
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_calculator_add = 8
-		}
-	}
+	#planet_modifier = {
+	#	planet_researchers_physics_research_produces_add = 0.25
+	#	planet_researchers_society_research_produces_add = 0.25
+	#	planet_researchers_engineering_research_produces_add = 0.5
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_regular_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_researcher_add = 8
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { has_valid_civic = civic_scavengers }
+	#	}
+	#	modifier = {
+	#		job_researcher_add = 8
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_hive_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_brain_drone_add = 8
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_machine_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_calculator_add = 8
+	#	}
+	#}
 
 	drop_weight = {
 		weight = 0
@@ -221,57 +221,57 @@ d_HMO_crashed_ship_mixed = {
 		}
 	}
 
-	planet_modifier = {
-		planet_miners_alloys_produces_add = 0.25
-		planet_researchers_physics_research_produces_add = 0.12
-		planet_researchers_society_research_produces_add = 0.12
-		planet_researchers_engineering_research_produces_add = 0.25
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_researcher_add = 4
-			job_HMO_scrap_miner_scavenger_add = 8
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_valid_civic = civic_scavengers }
-		}
-		modifier = {
-			job_researcher_add = 4
-			job_HMO_scrap_miner_scavenger_add = 8
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_brain_drone_add = 4
-			job_HMO_scrap_miner_scavenger_drone_add = 8
-			
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_calculator_add = 4
-			job_HMO_scrap_miner_scavenger_drone_add = 8
-		}
-	}
+	#planet_modifier = {
+	#	planet_miners_alloys_produces_add = 0.25
+	#	planet_researchers_physics_research_produces_add = 0.12
+	#	planet_researchers_society_research_produces_add = 0.12
+	#	planet_researchers_engineering_research_produces_add = 0.25
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_regular_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_researcher_add = 4
+	#		job_HMO_scrap_miner_scavenger_add = 8
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { has_valid_civic = civic_scavengers }
+	#	}
+	#	modifier = {
+	#		job_researcher_add = 4
+	#		job_HMO_scrap_miner_scavenger_add = 8
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_hive_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_brain_drone_add = 4
+	#		job_HMO_scrap_miner_scavenger_drone_add = 8
+	#		
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_machine_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_calculator_add = 4
+	#		job_HMO_scrap_miner_scavenger_drone_add = 8
+	#	}
+	#}
 
 	drop_weight = {
 		weight = 0
@@ -284,36 +284,36 @@ d_HMO_crashed_ship_alloy_farm_zone = {
 
 	icon = d_HMO_crashed_ship
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_HMO_catalytic_hull_technician_add = 2
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_HMO_catalytic_hull_drone_add = 2
-			
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_HMO_catalytic_hull_drone_add = 2
-		}
-	}
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_regular_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_HMO_catalytic_hull_technician_add = 2
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_hive_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_HMO_catalytic_hull_drone_add = 2
+	#		
+	#	}
+	#}
+	#
+	#triggered_planet_modifier = {
+	#	potential = {
+	#		exists = owner
+	#		owner = { is_machine_empire = yes }
+	#	}
+	#	modifier = {
+	#		job_HMO_catalytic_hull_drone_add = 2
+	#	}
+	#}
 
 	drop_weight = {
 		weight = 0
@@ -394,8 +394,8 @@ d_HMO_insurgency_ruined_houses = {
 	}
 	
 	planet_modifier = {
-		planet_amenities_add = -1
-		planet_housing_add = -3
+		planet_amenities_add = -100
+		planet_housing_add = -300
 	}
 	
 	drop_weight = {
@@ -465,47 +465,6 @@ d_HMO_insurgent_monument = {
 		}
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_culture_worker_add = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_valid_civic = civic_memorialist }
-		}
-		modifier = {
-			job_death_chronicler_add = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_brain_drone_add = 1
-			
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_calculator_add = 1
-		}
-	}
-
 	drop_weight = {
 		weight = 0
 	}
@@ -541,62 +500,10 @@ d_HMO_unvaulted_vault = {
 	}
 }
 
-# Decrepit Dwellings vault-style
-d_HMO_decrepit_vault = {
-	icon = d_bunker_door
-	time = 120
-
-	is_for_colonizable = yes
-	category = deposit_cat_blockers
-
-	potential = { always = no }
-
-	planet_modifier = {
-		planet_max_districts_add = -1
-	}
-
-	on_cleared = {
-		hidden_effect = {
-			if = {
-				limit = {
-					any_owned_pop = {
-						NOT = { has_trait = trait_hive_mind }
-						is_robot_pop = no
-					}
-				}
-				random_owned_pop = {
-					limit = {
-						NOT = { has_trait = trait_hive_mind }
-						is_robot_pop = no
-					}
-					root = {
-						create_pop = {
-							species = prev
-						}
-					}
-				}
-			}
-			else = {
-				random_owned_pop = {
-					root = {
-						create_pop = {
-							species = prev
-						}
-					}
-				}
-			}
-		}
-		custom_tooltip = d_decrepit_dwellings_custom_tooltip
-	}
-
-	inline_script = deposits/ai_weight_pop_creating_blocker
-
-	resources = {
-		category = deposit_blockers
-		cost = {
-			energy = 300
-		}
-	}
+inline_script = {
+	script = "common_deposits/decrepit_dwellings"
+	ID = d_HMO_decrepit_vault
+	ICON = d_bunker_door
 }
 
 # After The Apocalypse
@@ -655,87 +562,87 @@ d_HMO_isolated_city = {
 }
 
 # Zombie-infested cities
-d_HMO_zombie_factory = {
-	icon = d_broken_spire
-	time = 240
-
-	is_for_colonizable = yes
-	category = deposit_cat_blockers
-
-	potential = { always = no }
-
-	planet_modifier = {
-		planet_max_districts_add = -1
-	}
-	
-	can_be_cleared = {
-		custom_tooltip = {
-			fail_text = HMO_requires_ascension_path_completed
-			exists = owner
-			owner = {
-				OR = {
-					has_country_flag = HMO_finished_ascension
-					NOT = { has_origin = origin_HMO_zombies }
-				}
-			}
-		}
-	}
-	
-	inline_script = deposits/ai_weight_pop_creating_blocker
-	
-	on_cleared = {
-		hidden_effect = {
-			planet = {
-				add_deposit = d_HMO_empty_zombie_factory
-				HMO_create_zombie_pop = yes
-			}
-		}
-		if = {
-			limit = { planet.owner = { has_country_flag = HMO_cyber_zombie_authority } }
-			custom_tooltip = HMO_zombie_factory_zombie_tooltip
-		}
-		else = {
-			custom_tooltip = HMO_zombie_factory_tooltip
-		}
-	}
-	
-	resources = {
-		category = deposit_blockers
-		cost = {
-			energy = 300
-		}
-	}
-}
-
-d_HMO_empty_zombie_factory = {
-	icon = d_broken_spire
-	time = 240
-
-	is_for_colonizable = yes
-	category = deposit_cat_blockers
-
-	potential = { always = no }
-
-	planet_modifier = {
-		planet_max_districts_add = -1
-	}
-
-	inline_script = deposits/ai_weight_pop_creating_blocker
-	
-	on_cleared = {
-		hidden_effect = {
-			add_district = district_industrial
-		}
-		custom_tooltip = HMO_empty_zombie_factory_tooltip
-	}
-	
-	resources = {
-		category = deposit_blockers
-		cost = {
-			energy = 300
-		}
-	}
-}
+#d_HMO_zombie_factory = {
+#	icon = d_broken_spire
+#	time = 240
+#
+#	is_for_colonizable = yes
+#	category = deposit_cat_blockers
+#
+#	potential = { always = no }
+#
+#	planet_modifier = {
+#		planet_max_districts_add = -1
+#	}
+#	
+#	can_be_cleared = {
+#		custom_tooltip = {
+#			fail_text = HMO_requires_ascension_path_completed
+#			exists = owner
+#			owner = {
+#				OR = {
+#					has_country_flag = HMO_finished_ascension
+#					NOT = { has_origin = origin_HMO_zombies }
+#				}
+#			}
+#		}
+#	}
+#	
+#	inline_script = deposits/ai_weight_pop_creating_blocker
+#	
+#	on_cleared = {
+#		hidden_effect = {
+#			planet = {
+#				add_deposit = d_HMO_empty_zombie_factory
+#				HMO_create_zombie_pop = yes
+#			}
+#		}
+#		if = {
+#			limit = { planet.owner = { has_country_flag = HMO_cyber_zombie_authority } }
+#			custom_tooltip = HMO_zombie_factory_zombie_tooltip
+#		}
+#		else = {
+#			custom_tooltip = HMO_zombie_factory_tooltip
+#		}
+#	}
+#	
+#	resources = {
+#		category = deposit_blockers
+#		cost = {
+#			energy = 300
+#		}
+#	}
+#}
+#
+#d_HMO_empty_zombie_factory = {
+#	icon = d_broken_spire
+#	time = 240
+#
+#	is_for_colonizable = yes
+#	category = deposit_cat_blockers
+#
+#	potential = { always = no }
+#
+#	planet_modifier = {
+#		planet_max_districts_add = -1
+#	}
+#
+#	inline_script = deposits/ai_weight_pop_creating_blocker
+#	
+#	on_cleared = {
+#		hidden_effect = {
+#			add_district = district_industrial
+#		}
+#		custom_tooltip = HMO_empty_zombie_factory_tooltip
+#	}
+#	
+#	resources = {
+#		category = deposit_blockers
+#		cost = {
+#			energy = 300
+#		}
+#	}
+#}
 
 d_HMO_zombie_mine = {
 	icon = d_mining_tunnels

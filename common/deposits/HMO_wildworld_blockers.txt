@@ -91,62 +91,10 @@ HMO_wildworld_unexplored_jungle = {
 	}
 }
 
-# Decrepit Dwellings vault-style
-d_HMO_isolated_village = {
-	icon = d_tribal_settlement
-	time = 120
-
-	is_for_colonizable = yes
-	category = deposit_cat_blockers
-
-	potential = { always = no }
-
-	planet_modifier = {
-		planet_max_districts_add = -1
-	}
-
-	on_cleared = {
-		hidden_effect = {
-			if = {
-				limit = {
-					any_owned_pop = {
-						NOT = { has_trait = trait_hive_mind }
-						is_robot_pop = no
-					}
-				}
-				random_owned_pop = {
-					limit = {
-						NOT = { has_trait = trait_hive_mind }
-						is_robot_pop = no
-					}
-					root = {
-						create_pop = {
-							species = prev
-						}
-					}
-				}
-			}
-			else = {
-				random_owned_pop = {
-					root = {
-						create_pop = {
-							species = prev
-						}
-					}
-				}
-			}
-		}
-		custom_tooltip = d_decrepit_dwellings_custom_tooltip
-	}
-
-	inline_script = deposits/ai_weight_pop_creating_blocker
-
-	resources = {
-		category = deposit_blockers
-		cost = {
-			energy = 300
-		}
-	}
+inline_script = {
+	script = "common_deposits/decrepit_dwellings"
+	ID = d_HMO_isolated_village
+	ICON = d_tribal_settlement
 }
 
 HMO_d_idyllic_valley = {

@@ -66,7 +66,6 @@ on_monthly_pulse_country = {
 
 on_decade_pulse_country = {
 	events = {
-		HMO_origin.189 # Insurgents Grow In Strength
 		HMO_origin.7500 # Regular Zombie Attacks for After The Apocalypse
 	}
 }

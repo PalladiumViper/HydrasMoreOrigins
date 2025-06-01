@@ -25,3 +25,7 @@ concept_HMO_hydroponics_farm = {
 concept_HMO_precinct_house = {
 	icon = "gfx/interface/icons/buildings/building_precinct_house.dds"
 }
+
+concept_HMO_stronghold = {
+	icon = "gfx/interface/icons/buildings/building_stronghold.dds"
+}

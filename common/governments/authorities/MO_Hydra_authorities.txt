@@ -129,7 +129,7 @@ auth_democratic = {
 		modifier = {
 			planet_jobs_cyborg_worker_produces_mult = 0.2
 			pop_cyborg_worker_happiness = 0.05
-			pop_growth_speed = 0.1
+			logistic_growth_mult = 0.1
 			custom_tooltip = MO_auth_democratic_zombie_tt # Pops that die return as zombies. Armies are reanimated.
 			show_only_custom_tooltip = no
 		}
@@ -219,7 +219,7 @@ auth_oligarchic = {
 			has_country_flag = HMO_cyber_zombie_authority
 		}
 		modifier = {
-			planet_cyborg_jobs_produces_mult = 0.25
+			planet_jobs_cyborg_worker_produces_mult = 0.35
 			custom_tooltip = MO_auth_oligarchic_zombie_tt # Pops that die return as zombies. Armies are reanimated.
 			show_only_custom_tooltip = no
 		}

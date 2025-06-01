@@ -8,7 +8,11 @@ HMO_building_zcom_headquarters = {
 	can_be_ruined = no
 
 	category = army
-
+	
+	building_sets = {
+		fortress
+	}
+	
 	empire_limit = {
 		base = 1
 	}
@@ -50,8 +54,7 @@ HMO_building_zcom_headquarters = {
 	planet_modifier = {
 		planet_housing_add = 6
 		planet_amenities_add = -4
-		defense_armies_add = 4
-		job_soldier_add = @b2_jobs
+		planet_defense_armies_add = 4
 	}
 
 	resources = {
@@ -64,8 +67,9 @@ HMO_building_zcom_headquarters = {
 		}
 	}
 
-	triggered_desc = {
-		text = job_soldier_effect_desc
+	inline_script = {
+		script = jobs/soldiers_add
+		AMOUNT = @building_static_jobs
 	}
 }
 
@@ -74,7 +78,11 @@ HMO_building_resproject_outpost = {
 	can_demolish = yes
 	can_be_ruined = no
 
-	category = army
+	category = research
+
+	building_sets = {
+		research
+	}
 
 	empire_limit = {
 		base = 1
@@ -114,8 +122,10 @@ HMO_building_resproject_outpost = {
 		}
 	}
 	
-	planet_modifier = {
-		job_researcher_add = @b1_jobs
+	inline_script = {
+		script = jobs/researchers_add
+		AMOUNT = @building_static_jobs_3
+		LARGE_AMOUNT = @building_static_jobs
 	}
 
 	resources = {
@@ -126,10 +136,6 @@ HMO_building_resproject_outpost = {
 		upkeep = {
 			energy = 1
 		}
-	}
-	
-	triggered_desc = {
-		text = job_researcher_effect_desc
 	}
 }
 
@@ -206,7 +212,7 @@ HMO_building_resproject_outpost = {
 #	
 #	can_demolish = no
 #	
-#	base_cap_amount = 1
+#	planet_limit = 1
 #	empire_limit = {
 #		base = 1
 #		modifier = {
@@ -298,7 +304,7 @@ HMO_building_resproject_outpost = {
 #	
 #	can_demolish = no
 #	
-#	base_cap_amount = 1
+#	planet_limit = 1
 #	empire_limit = {
 #		base = 1
 #		modifier = {
@@ -390,7 +396,7 @@ HMO_building_resproject_outpost = {
 #	
 #	can_demolish = no
 #	
-#	base_cap_amount = 1
+#	planet_limit = 1
 #	empire_limit = {
 #		base = 1
 #		modifier = {
