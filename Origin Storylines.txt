@@ -275,3 +275,14 @@ Things to make:
 - Archaeology Site
 - New Authorities (+ concepts)
 - Eternal Machine Trait (Name something different to avoid the same name)
+
+###################
+# Decaying Matrix #
+###################
+
+Description: These machines creators inflicted it with a genetically engineered virus that slowly eats away at their machinery. They must find a way to decontaminate themselves or cut off their infected parts.
+
+- Start on a decaying machine world
+- Periodically, blockers spawn on your homeworld
+- Periodically, lose pops
+
